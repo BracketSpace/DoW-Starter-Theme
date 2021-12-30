@@ -1,0 +1,49 @@
+{
+    "name": "dow/starter-theme",
+    "type": "wordpress-theme",
+    "description": "DoW Starter Theme",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4",
+        "composer-runtime-api": "^2.0",
+        "micropackage/dochooks": "^1.0",
+        "micropackage/filesystem": "^1.1"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "php-parallel-lint/php-parallel-lint": "^1.3",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "php-stubs/acf-pro-stubs": "dev-master",
+        "php-stubs/wordpress-stubs": "*",
+        "phpstan/phpstan-strict-rules": "^0.12.7",
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.5.0",
+        "szepeviktor/phpstan-wordpress": "^0.7.0"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "DoW\\": "src/"
+        }
+    },
+    "scripts": {
+        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/* --ignore=*/node_modules/* .",
+        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/* --ignore=*/node_modules/* .",
+        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/* --ignore=*/node_modules/* .",
+        "phpstan": "phpstan analyze",
+        "syntax": "parallel-lint --exclude node_modules --exclude vendor .",
+        "test": [
+            "@syntax",
+            "@phpcompat",
+            "@phpstan",
+            "@cs"
+        ],
+        "lint": [
+            "@syntax",
+            "@phpcompat"
+        ]
+    }
+}
