@@ -23,6 +23,13 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install Composer dependencies
         run: composer install --no-progress
+      - name: Upload files
+        uses: actions/upload-artifact@v2
+        with:
+          name: php
+          path: .
+          retention-days: 1
+
   syntax:
     needs: prepare-php
     name: PHP Syntax
@@ -30,6 +37,10 @@ jobs:
     steps:
       - name: Set PHP version
         run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Download files
+        uses: actions/download-artifact@v2
+        with:
+          name: php
       - name: Lint
         run: composer syntax
   phpcompat:
@@ -39,6 +50,10 @@ jobs:
     steps:
       - name: Set PHP version
         run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Download files
+        uses: actions/download-artifact@v2
+        with:
+          name: php
       - name: Analyze
         run: composer phpcompat
   phpstan:
@@ -48,6 +63,10 @@ jobs:
     steps:
       - name: Set PHP version
         run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Download files
+        uses: actions/download-artifact@v2
+        with:
+          name: php
       - name: Analyze
         run: composer phpstan
   phpcs:
@@ -57,5 +76,9 @@ jobs:
     steps:
       - name: Set PHP version
         run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Download files
+        uses: actions/download-artifact@v2
+        with:
+          name: php
       - name: Coding Standards
         run: composer phpcs
