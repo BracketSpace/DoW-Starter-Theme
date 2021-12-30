@@ -1,0 +1,61 @@
+name: Test
+
+on: push
+
+jobs:
+  prepare-php:
+    name: Prepare PHP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup variables
+        id: vars
+        run: |
+          echo "::set-output name=composer-cache-path::$(composer config cache-files-dir)"
+      - name: Cache Composer
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.vars.outputs.composer-cache-path }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install Composer dependencies
+        run: composer install --no-progress
+  syntax:
+    needs: prepare-php
+    name: PHP Syntax
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Lint
+        run: composer syntax
+  phpcompat:
+    needs: prepare-php
+    name: PHP Compat
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Analyze
+        run: composer phpcompat
+  phpstan:
+    needs: prepare-php
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Analyze
+        run: composer phpstan
+  phpcs:
+    needs: prepare-php
+    name: PHP Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set PHP version
+        run: sudo update-alternatives --set php /usr/bin/php7.4
+      - name: Coding Standards
+        run: composer phpcs
