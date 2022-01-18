@@ -27,7 +27,8 @@
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
-                <element value="dow"/>
+                <element value="dowst_"/>
+                <element value="DoWStarterTheme"/>
             </property>
         </properties>
     </rule>
