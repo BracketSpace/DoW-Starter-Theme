@@ -8,7 +8,8 @@
         "composer-runtime-api": "^2.0",
         "hassankhan/config": "^3.0",
         "micropackage/dochooks": "^1.0",
-        "micropackage/filesystem": "^1.1"
+        "micropackage/filesystem": "^1.1",
+        "micropackage/singleton": "^1.1"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
