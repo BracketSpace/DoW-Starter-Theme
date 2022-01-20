@@ -23,7 +23,7 @@ class DateShortcode extends Shortcode
      *
      * @var string
      */
-    protected $tag = 'date';
+    protected string $tag = 'date';
 
     /**
      * Shortcode attributes
@@ -45,6 +45,6 @@ class DateShortcode extends Shortcode
      */
     protected function render($atts, $content)
     {
-        echo esc_html(current_time($atts['format']));
+        echo esc_html((string)current_time($atts['format']));
     }
 }
