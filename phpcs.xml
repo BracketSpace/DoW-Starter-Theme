@@ -12,6 +12,7 @@
         <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
         <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
         <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+        <exclude name="PEAR.Commenting.FileComment.Missing"/>
 
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
 
