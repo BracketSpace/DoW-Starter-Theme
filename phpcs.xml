@@ -25,6 +25,8 @@
         <exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction" />
 
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
+
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
     </rule>
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
