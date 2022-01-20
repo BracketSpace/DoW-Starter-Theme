@@ -86,6 +86,9 @@ if (!$dowstFs->exists('assets/dist')) {
 // Create core class instance.
 $dowstTheme = Theme::get($dowstFs);
 
+// Add WordPress actions and filters.
+$dowstTheme->add_hooks();
+
 // Bootstrap the Theme, create class instances.
 $dowstTheme->bootstrap(Config::get('bootstrap.classes'));
 
