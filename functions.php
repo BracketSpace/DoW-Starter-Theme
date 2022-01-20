@@ -15,6 +15,7 @@ namespace DoWStarterTheme;
 use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
 use Micropackage\Filesystem\Filesystem;
+use Micropackage\Requirements\Requirements;
 
 /**
  * Helper function for displaying errors
@@ -29,7 +30,9 @@ $dowstError = static function ( $message, $title ): void {
     wp_die($message, $title);
 };
 
-// Composer autoload file.
+/**
+ * Composer autoload file
+ */
 $dowstAutoloader = __DIR__ . '/vendor/autoload.php';
 
 if (!file_exists($dowstAutoloader)) {
@@ -42,6 +45,29 @@ if (!file_exists($dowstAutoloader)) {
 
 // Require autoloader.
 require_once $dowstAutoloader;
+
+// Create Requirements instance.
+$dowstRequirements = new Requirements(
+    'DoW Starter Theme',
+    [
+        'dochooks' => true,
+        'php' => '7.4',
+        'php_extensions' => ['SimpleXML'],
+        'plugins' => [
+            [
+                'file' => 'advanced-custom-fields-pro/acf.php',
+                'name' => 'Advanced Custom Fields Pro',
+            ],
+        ],
+        'wp' => '5.8',
+    ]
+);
+
+if (!$dowstRequirements->satisfied()) {
+    $dowstRequirements->print_notice();
+
+    return;
+}
 
 // Create Filesystem instance.
 $dowstFs = new Filesystem(__DIR__);
