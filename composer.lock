@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53d4ac09ee916da2bb7abeefd62217f4",
+    "content-hash": "88c73b1e95963fa7c7a81d65b96164d9",
     "packages": [
         {
             "name": "amphp/amp",
@@ -893,16 +893,16 @@
         },
         {
             "name": "micropackage/requirements",
-            "version": "1.1.3",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/requirements.git",
-                "reference": "dfbbb165d02bf4270933d4737d9fdb9751fac76c"
+                "reference": "114d49df7c5860108c008853b514d9a7eccaedf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/requirements/zipball/dfbbb165d02bf4270933d4737d9fdb9751fac76c",
-                "reference": "dfbbb165d02bf4270933d4737d9fdb9751fac76c",
+                "url": "https://api.github.com/repos/micropackage/requirements/zipball/114d49df7c5860108c008853b514d9a7eccaedf3",
+                "reference": "114d49df7c5860108c008853b514d9a7eccaedf3",
                 "shasum": ""
             },
             "require": {
@@ -935,9 +935,9 @@
             "description": "Requirements checker for WordPress plugins",
             "support": {
                 "issues": "https://github.com/micropackage/requirements/issues",
-                "source": "https://github.com/micropackage/requirements/tree/1.1.3"
+                "source": "https://github.com/micropackage/requirements/tree/1.2.0"
             },
-            "time": "2022-01-20T10:56:07+00:00"
+            "time": "2022-01-20T14:02:33+00:00"
         },
         {
             "name": "micropackage/singleton",
