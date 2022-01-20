@@ -2,9 +2,6 @@
 /**
  * This file bootstraps the theme by creating the core Theme class instance.
  *
- * @package DoW Starter Theme
- * @license https://www.gnu.org/licenses/gpl-3.0.txt GPL-3.0-or-later
- *
  * phpcs:disable NeutronStandard.Functions.VariableFunctions.VariableFunction
  */
 
