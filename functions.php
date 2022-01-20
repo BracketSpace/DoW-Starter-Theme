@@ -13,19 +13,7 @@ use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
 use Micropackage\Filesystem\Filesystem;
 use Micropackage\Requirements\Requirements;
-
-/**
- * Helper function for displaying errors
- *
- * @param  string $message Error message.
- * @param  string $title   Error title.
- * @return void
- */
-$dowstError = static function ( $message, $title ): void {
-    $message = "<h1>{$title}</h1><p>{$message}</p>";
-    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-    wp_die($message, $title);
-};
+use DoWStarterTheme\Requirements\AssetsChecker;
 
 /**
  * Composer autoload file
@@ -34,10 +22,11 @@ $dowstAutoloader = __DIR__ . '/vendor/autoload.php';
 
 if (!file_exists($dowstAutoloader)) {
     // Composer autoload file does not exist.
-    $dowstError(
-        __('You must run <code>composer install</code> from the theme directory.', 'dow-starter-theme'),
-        __('Autoloader not found.', 'dow-starter-theme')
-    );
+    $dowstTitle = __('Autoloader not found.', 'dow-starter-theme');
+    $dowstDescription = __('You must run <code>composer install</code> from the theme directory.', 'dow-starter-theme');
+    $dowstMessage = "<h1>{$dowstTitle}</h1><p>{$dowstDescription}</p>";
+
+    wp_die($dowstMessage, $dowstTitle);
 }
 
 // Require autoloader.
@@ -47,6 +36,7 @@ require_once $dowstAutoloader;
 $dowstRequirements = new Requirements(
     'DoW Starter Theme',
     [
+        'assets' => true,
         'dochooks' => true,
         'php' => '7.4',
         'php_extensions' => ['SimpleXML'],
@@ -60,25 +50,26 @@ $dowstRequirements = new Requirements(
     ]
 );
 
+$dowstRequirements->register_checker(AssetsChecker::class);
+
 if (!$dowstRequirements->satisfied()) {
-    $dowstRequirements->print_notice(
+    $dowstMessage = sprintf(
         /* Translators: %s is a theme name. */
-        sprintf(__('The theme: %s cannot be activated.', 'dow-starter-theme'), '<strong>DoW Starter Theme</strong>')
+        __('The theme: %s cannot be activated.', 'dow-starter-theme'),
+        '<strong>DoW Starter Theme</strong>'
     );
+
+    if (is_admin()) {
+        $dowstRequirements->print_notice($dowstMessage);
+    } else {
+        $dowstRequirements->kill($dowstMessage);
+    }
 
     return;
 }
 
 // Create Filesystem instance.
 $dowstFs = new Filesystem(__DIR__);
-
-if (!$dowstFs->exists('assets/dist')) {
-    // Assets build dir does not exist.
-    $dowstError(
-        __('You must run <code>yarn install & yarn build</code> from the theme directory.', 'dow-starter-theme'),
-        __('Assets build directory not found.', 'dow-starter-theme')
-    );
-}
 
 // Create core class instance.
 $dowstTheme = Theme::get($dowstFs);
