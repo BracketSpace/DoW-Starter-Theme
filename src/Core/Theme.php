@@ -49,8 +49,6 @@ class Theme extends Singleton
         parent::__construct();
 
         static::$fs = $fs;
-
-        $this->add_hooks();
     }
 
     /**
