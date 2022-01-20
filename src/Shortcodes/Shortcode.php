@@ -20,7 +20,7 @@ abstract class Shortcode
      *
      * @var string
      */
-    private $prefix = 'dowst_';
+    private string $prefix = 'dowst_';
 
     /**
      * Default attributes
@@ -34,7 +34,7 @@ abstract class Shortcode
      *
      * @var string
      */
-    protected $tag;
+    protected string $tag;
 
     /**
      * Constructor
@@ -43,13 +43,6 @@ abstract class Shortcode
      */
     public function __construct()
     {
-        if (!isset($this->tag)) {
-            throw new \Exception(
-                /* translators: %s is class name. */
-                sprintf(__('Property $tag must be declared in class %s', 'dow-starter-theme'), static::class)
-            );
-        }
-
         add_shortcode($this->prefix . $this->tag, [ $this, 'renderCallback' ]);
     }
 
