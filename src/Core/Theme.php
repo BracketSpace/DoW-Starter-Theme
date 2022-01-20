@@ -210,7 +210,7 @@ class Theme extends Singleton
      */
     public function setup()
     {
-        load_theme_textdomain('starter-theme', get_stylesheet_directory() . '/languages');
+        load_theme_textdomain('dow-starter-theme', get_stylesheet_directory() . '/languages');
 
         $this->setupImageSizes();
     }
