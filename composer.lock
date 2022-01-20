@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9a96f2a7104b1ff1a73ee21baa07158",
+    "content-hash": "53d4ac09ee916da2bb7abeefd62217f4",
     "packages": [
         {
             "name": "amphp/amp",
@@ -893,16 +893,16 @@
         },
         {
             "name": "micropackage/requirements",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/requirements.git",
-                "reference": "d21f2b54100d15246d493382dfd06a23ed49630a"
+                "reference": "dfbbb165d02bf4270933d4737d9fdb9751fac76c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/requirements/zipball/d21f2b54100d15246d493382dfd06a23ed49630a",
-                "reference": "d21f2b54100d15246d493382dfd06a23ed49630a",
+                "url": "https://api.github.com/repos/micropackage/requirements/zipball/dfbbb165d02bf4270933d4737d9fdb9751fac76c",
+                "reference": "dfbbb165d02bf4270933d4737d9fdb9751fac76c",
                 "shasum": ""
             },
             "require": {
@@ -910,7 +910,7 @@
                 "php": ">=5.6"
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
                 "php-mock/php-mock-phpunit": "^2.5",
                 "phpcompatibility/php-compatibility": "^9.1",
                 "phpunit/phpunit": "^6.5.5",
@@ -935,9 +935,9 @@
             "description": "Requirements checker for WordPress plugins",
             "support": {
                 "issues": "https://github.com/micropackage/requirements/issues",
-                "source": "https://github.com/micropackage/requirements/tree/1.1.2"
+                "source": "https://github.com/micropackage/requirements/tree/1.1.3"
             },
-            "time": "2021-11-14T08:45:42+00:00"
+            "time": "2022-01-20T10:56:07+00:00"
         },
         {
             "name": "micropackage/singleton",
@@ -2649,16 +2649,16 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.23.0",
+            "version": "v1.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010"
+                "reference": "cc5db0e22b3cb4111010e48785a97f670b350ca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fba8933c384d6476ab14fb7b8526e5287ca7e010",
-                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/cc5db0e22b3cb4111010e48785a97f670b350ca5",
+                "reference": "cc5db0e22b3cb4111010e48785a97f670b350ca5",
                 "shasum": ""
             },
             "require": {
@@ -2708,7 +2708,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.24.0"
             },
             "funding": [
                 {
@@ -2724,7 +2724,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-19T12:13:01+00:00"
+            "time": "2021-06-05T21:20:04+00:00"
         },
         {
             "name": "symfony/polyfill-php80",

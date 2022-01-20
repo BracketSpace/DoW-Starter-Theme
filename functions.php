@@ -64,7 +64,10 @@ $dowstRequirements = new Requirements(
 );
 
 if (!$dowstRequirements->satisfied()) {
-    $dowstRequirements->print_notice();
+    $dowstRequirements->print_notice(
+        /* Translators: %s is a theme name. */
+        sprintf(__('The theme: %s cannot be activated.', 'dow-starter-theme'), '<strong>DoW Starter Theme</strong>')
+    );
 
     return;
 }
