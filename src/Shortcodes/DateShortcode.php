@@ -45,6 +45,6 @@ class DateShortcode extends Shortcode
      */
     protected function render($atts, $content)
     {
-        echo esc_html(gmdate($atts['format']));
+        echo esc_html(current_time($atts['format']));
     }
 }
