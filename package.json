@@ -9,9 +9,9 @@
     "postbuild": "tools generate theme-json",
     "build:production": "mp-scripts build --mode=production",
     "lint:js": "mp-scripts lint-js",
-    "lint:style": "mp-scripts lint-style",
+    "lint:scss": "mp-scripts lint-style",
     "fix:js": "mp-scripts lint-js --fix",
-    "fix:style": "mp-scripts lint-style --fix",
+    "fix:scss": "mp-scripts lint-style --fix",
     "lint": "run-p \"lint:*\"",
     "fix": "run-p \"fix:*\""
   },
