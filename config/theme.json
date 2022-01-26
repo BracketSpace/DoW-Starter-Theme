@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "defaultPalette": false
+    },
+    "spacing": {
+      "padding": "40px"
+    }
+  }
+}
