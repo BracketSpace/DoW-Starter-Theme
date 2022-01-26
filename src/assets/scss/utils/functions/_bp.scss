@@ -1,0 +1,28 @@
+/**
+ * Breakpoint function
+ */
+@use "../variables" as *;
+@use "sass:map";
+
+@function bp($breakpoint, $use-em: true) {
+	$breakpoint-value: false;
+
+	@if (map.has-key($breakpoints, $breakpoint)) {
+		$breakpoint-value: map.get($breakpoints, $breakpoint);
+	} @else if (type-of($breakpoint) == "number") {
+		$breakpoint-value: $breakpoint;
+	} @else {
+
+		@warn "Invalid breakpoint: #{$breakpoint}.";
+	}
+
+	@if (is-unitless($breakpoint-value)) {
+		@if ($use-em == true) {
+			$breakpoint-value: em-calc($breakpoint-value);
+		} @else {
+			$breakpoint-value: $breakpoint-value * 1px;
+		}
+	}
+
+	@return $breakpoint-value;
+}

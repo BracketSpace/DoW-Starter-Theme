@@ -1,0 +1,34 @@
+/**
+ * Helper Functions
+ */
+@use "sass:math";
+
+$rem-base: 16 !default;
+
+@function strip-unit($num) {
+	@return math.div($num, $num * 0 + 1);
+}
+
+@function is-unitless($value) {
+	@return 0 == str-length(unit($value));
+}
+
+@function is-number($value) {
+	@return type-of($value) == "number";
+}
+
+@function rem-calc($size) {
+	@return math.div($size, $rem-base) * 1rem;
+}
+
+@function rem-to-val($value) {
+	@if (rem == unit($value)) {
+		@return (strip-unit($value) * $rem-base);
+	}
+
+	@return $value;
+}
+
+@function em-calc($value, $base: 16) {
+	@return math.div($value, $base) * 1em;
+}

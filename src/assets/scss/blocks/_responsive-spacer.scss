@@ -1,0 +1,29 @@
+@use "../utils/mixins" as m;
+
+.responsive-spacer {
+	&-fullsize {
+		@include m.bp-down(md) {
+			display: none;
+		}
+	}
+
+	&-tablet {
+		display: none;
+
+		@include m.bp-down(md) {
+			display: block;
+		}
+
+		@include m.bp-down(sm) {
+			display: none;
+		}
+	}
+
+	&-mobile {
+		display: none;
+
+		@include m.bp-down(sm) {
+			display: block;
+		}
+	}
+}

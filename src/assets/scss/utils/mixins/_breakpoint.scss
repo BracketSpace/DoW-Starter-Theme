@@ -1,0 +1,49 @@
+/**
+ * Breakpoint mixins
+ */
+@use '../functions/bp' as *;
+@use '../functions/unit' as *;
+
+@mixin up($breakpoint, $use-em: true) {
+	$breakpoint-value: bp($breakpoint, $use-em);
+
+	@if ($breakpoint-value) {
+
+		@media (min-width: $breakpoint-value) {
+			@content;
+		}
+	}
+}
+
+@mixin down($breakpoint, $use-em: true) {
+	$breakpoint-value: bp($breakpoint, $use-em);
+	$diff: 1;
+
+	@if ($use-em == true) {
+		$diff: em-calc($diff);
+	}
+
+	@if ($breakpoint-value) {
+
+		@media (max-width: ($breakpoint-value - $diff)) {
+			@content;
+		}
+	}
+}
+
+@mixin between($low, $high, $use-em: true) {
+	$low-value: bp($low, $use-em);
+	$high-value: bp($high, $use-em);
+	$diff: 1;
+
+	@if ($use-em == true) {
+		$diff: em-calc($diff);
+	}
+
+	@if ($low-value and $high-value) {
+
+		@media (min-width: $low-value) and (max-width: ($high-value - $diff)) {
+			@content;
+		}
+	}
+}

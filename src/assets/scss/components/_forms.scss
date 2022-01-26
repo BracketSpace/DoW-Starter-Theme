@@ -1,0 +1,6 @@
+@use "../placeholders/forms";
+@use "../utils/mixins" as m;
+
+@include m.input {
+	@extend %form-field;
+}

@@ -1,0 +1,11 @@
+@use "../placeholders/layout";
+
+.wp-block-group {
+	&.alignfull > .wp-block-group__inner-container {
+		@extend %container-full;
+
+		> * {
+			@extend %content-width;
+		}
+	}
+}

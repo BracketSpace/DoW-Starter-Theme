@@ -1,0 +1,13 @@
+/**
+ * Font function
+ */
+@use "../variables" as *;
+@use "sass:map";
+
+@function get($font) {
+	@if map.has-key($fonts, $font) {
+		@return map.get($fonts, $font);
+	} @else {
+		@warn "Invalid font: #{$font}.";
+	}
+}

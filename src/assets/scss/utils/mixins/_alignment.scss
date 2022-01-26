@@ -1,0 +1,32 @@
+/**
+ * Alignment mixins
+ */
+@use "../functions/bp" as *;
+@use "../variables" as *;
+@use "breakpoint" as bp;
+
+@mixin props($padding) {
+	margin-left: -1 * $padding !important;
+	margin-right: -1 * $padding !important;
+	max-width: none !important;
+	width: auto !important;
+}
+
+@mixin full($bp: null) {
+	$bp-mobile: sm;
+
+	@if (null == $bp) {
+		@include props($padding);
+		$bp-mobile: sm;
+	} @else if (bp($bp) > bp(sm)) {
+		@include bp.down($bp) {
+			@include props($padding);
+		}
+	} @else {
+		$bp-mobile: $bp;
+	}
+
+	@include bp.down($bp-mobile) {
+		@include props($padding-mobile);
+	}
+}

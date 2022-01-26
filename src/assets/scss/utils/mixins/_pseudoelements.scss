@@ -1,0 +1,48 @@
+/**
+ * Pseudoelement mixins
+ */
+@use "sass:string";
+
+@mixin pseudoelement($content: "", $width: null, $height: null, $top: null, $left: null) {
+	@if (is-number($width) and 0 == string.length(unit($width))) {
+		$width: rem-calc($width);
+	}
+
+	@if (is-number($height) and 0 == string.length(unit($height))) {
+		$height: rem-calc($height);
+	}
+
+	@if (is-number($top) and 0 == string.length(unit($top))) {
+		$top: rem-calc($top);
+	}
+
+	@if (is-number($left) and 0 == string.length(unit($left))) {
+		$left: rem-calc($left);
+	}
+
+	content: $content;
+	display: block;
+	height: $height;
+	left: $left;
+	position: absolute;
+	top: $top;
+	width: $width;
+
+	@content;
+}
+
+@mixin before($content: "", $width: null, $height: null, $top: null, $left: null) {
+	&::before {
+		@include pseudoelement($content, $width, $height, $top, $left) {
+			@content;
+		}
+	}
+}
+
+@mixin after($content: "", $width: null, $height: null, $top: null, $left: null) {
+	&::after {
+		@include pseudoelement($content, $width, $height, $top, $left) {
+			@content;
+		}
+	}
+}

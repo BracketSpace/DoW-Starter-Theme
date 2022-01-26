@@ -1,0 +1,15 @@
+.spacing-settings-row {
+	display: flex;
+
+	&:not(:first-child) {
+		margin-top: rem-calc(16);
+	}
+
+	> * {
+		flex-basis: 50%;
+
+		&:first-child {
+			margin-right: rem-calc(8);
+		}
+	}
+}

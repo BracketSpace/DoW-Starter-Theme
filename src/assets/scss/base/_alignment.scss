@@ -1,0 +1,39 @@
+/**
+ * Internal dependencies
+ */
+@use "../utils/mixins/alignment";
+@use "../utils/variables" as *;
+
+.alignfull {
+	@include alignment.full;
+}
+
+.alignwide {
+	max-width: $alignwide-width !important;
+}
+
+.aligncenter {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.alignleft {
+	float: left;
+	margin-bottom: rem-calc(20);
+	margin-right: rem-calc(20);
+	text-align: left;
+}
+
+.alignright {
+	float: right;
+	margin-bottom: rem-calc(20);
+	margin-left: rem-calc(20);
+	text-align: right;
+}
+
+.clearfix::after {
+	clear: both;
+	content: "";
+	display: block;
+}

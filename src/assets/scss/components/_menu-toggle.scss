@@ -1,0 +1,90 @@
+@use "../utils/functions/color";
+@use "../utils/functions/unit" as u;
+@use "../utils/mixins" as m;
+
+$menu-toggle-color:             color.get(white) !default;
+$menu-toggle-width:             u.rem-calc(34) !default;
+$menu-toggle-height:            $menu-toggle-width !default;
+$menu-toggle-bar-height:        u.rem-calc(2) !default;
+$menu-toggle-active-bar-height: $menu-toggle-bar-height !default;
+$menu-toggle-bar-spacing:       u.rem-calc(9) !default;
+
+$menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
+
+%menu-toggle-active {
+	span {
+		height: $menu-toggle-active-bar-height;
+		transform: rotate(-45deg);
+		transition: all 0.12s 0.2s ease;
+		width: $menu-toggle-width;
+
+		@include m.bp-down(sm) {
+			background-color: $menu-toggle-color;
+		}
+
+		&::before {
+			top: 0;
+			transform: rotate(90deg);
+			transition: top 0.12s ease, transform 0.12s 0.2s ease;
+
+			@include m.bp-down(sm) {
+				background-color: $menu-toggle-color;
+			}
+		}
+
+		&::after {
+			opacity: 0;
+			top: 0;
+			transition: opacity 0.12s 0.2s ease, top 0.12s ease;
+
+			@include m.bp-down(sm) {
+				background-color: $menu-toggle-color;
+			}
+		}
+	}
+}
+
+.menu-toggle {
+	appearance: none;
+	background-color: transparent;
+	border: 0;
+	color: $menu-toggle-color;
+	cursor: pointer;
+	height: $menu-toggle-height;
+	padding: 0;
+	transition: all 0.32s ease;
+	z-index: 999;
+
+	span,
+	span::before,
+	span::after {
+		background-color: $menu-toggle-color;
+		height: $menu-toggle-bar-height;
+		width: 100%;
+	}
+
+	span {
+		display: block;
+		opacity: 1;
+		position: relative;
+		transition: transform 0.12s ease;
+		width: $menu-toggle-width;
+
+		@include m.bp-down(md) {
+			display: block;
+		}
+
+		@include m.before("", 100%, 100%, -$menu-toggle-bar-top, 0) {
+			transition: top 0.12s 0.2s ease, transform 0.12s ease;
+		}
+
+		@include m.after("", 100%, 100%, $menu-toggle-bar-top, 0) {
+			transition: opacity 0.12s ease, top 0.12s 0.2s ease;
+			width: $menu-toggle-width;
+		}
+	}
+
+	&.active {
+		@extend %menu-toggle-active;
+	}
+}

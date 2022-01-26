@@ -1,0 +1,63 @@
+/**
+ * Layout
+ */
+@use "../placeholders/layout";
+@use "../utils/mixins" as m;
+
+$header-height:        false !default;
+$header-height-mobile: $header-height !default;
+
+.container {
+    @extend %container;
+}
+
+.container-full {
+    @extend %container-full;
+}
+
+.site-container {
+	align-items: stretch;
+	display: flex;
+    min-height: 100vh;
+	flex-direction: column;
+
+	@if $header-height {
+		padding-top: $header-height;
+
+		@include m.bp-down(sm) {
+			padding-top: $header-height-mobile;
+		}
+	}
+
+	.admin-bar & {
+		@if $header-height {
+			padding-top: calc(32px + #{ $header-height });
+
+			@include m.bp-down(sm) {
+				padding-top: calc(46px + #{ $header-height-mobile });
+			}
+		} @else {
+			padding-top: 32px;
+		}
+
+		@media (max-width: 782px) {
+			@if $header-height {
+				padding-top: calc(46px + #{ $header-height });
+			} @else {
+				padding-top: 46px;
+			}
+		}
+	}
+}
+
+.site-inner {
+	flex: 1 0 auto;
+
+    @extend %container-full;
+}
+
+.content-width,
+.entry-content > *,
+.reusable-content > * {
+    @extend %content-width;
+}

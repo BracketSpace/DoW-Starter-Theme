@@ -1,0 +1,28 @@
+/**
+ * Target offset mixin
+ */
+
+@mixin target-offset($offset: null) {
+	:target::before {
+		@if ($offset) {
+			content: "";
+			display: block;
+			height: $offset;
+			margin-top: -$offset;
+		}
+
+		.admin-bar & {
+			@media (min-width: 783px) {
+				@if ($offset) {
+					height: calc(#{ $offset } + 32px);
+					margin-top: calc(#{ -$offset } - 32px);
+				} @else {
+					content: "";
+					display: block;
+					height: 32px;
+					margin-top: -32px;
+				}
+			}
+		}
+	}
+}

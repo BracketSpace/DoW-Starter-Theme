@@ -1,0 +1,9 @@
+@use "../utils/mixins" as m;
+
+.btn,
+.wp-block-button__link,
+.wp-block-file .wp-block-file__button,
+input[type="submit"],
+input[type="button"] {
+	@include m.colors;
+}

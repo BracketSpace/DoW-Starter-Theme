@@ -1,0 +1,27 @@
+/**
+ * Container mixin
+ */
+@use "../variables" as v;
+@use "breakpoint" as bp;
+
+@mixin container($width: v.$container-width, $p: v.$padding, $pm: v.$padding-mobile) {
+	margin: auto;
+	padding-left: $p;
+	padding-right: $p;
+	width: 100%;
+
+	@if full != $width {
+		max-width: $width + ($p * 2);
+	}
+
+	$padding-breakpoint: sm !default;
+
+	@include bp.down($padding-breakpoint) {
+		padding-left: $pm;
+		padding-right: $pm;
+
+		@if full != $width {
+			max-width: $width + ($pm * 2);
+		}
+	}
+}

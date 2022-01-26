@@ -1,0 +1,13 @@
+@use "../utils/mixins" as m;
+
+%container {
+	@include m.container;
+}
+
+%container-full {
+	@include m.container(full);
+}
+
+%content-width {
+    @include m.content;
+}

@@ -1,0 +1,62 @@
+/**
+ * ACF Editor
+ */
+
+%acf-pull {
+	clear: none !important;
+	min-height: auto !important;
+}
+
+.acf-pull-left {
+
+	@extend %acf-pull;
+	float: left !important;
+}
+
+.acf-pull-right {
+
+	@extend %acf-pull;
+	float: right !important;
+}
+
+.acf-repeater-horizontal {
+
+	.acf-repeater {
+
+		tbody {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		tr.acf-row:hover {
+			z-index: 10 !important;
+		}
+
+		tr.acf-row:not(.acf-clone) {
+			width: 100%;
+
+			td.acf-fields {
+				width: 100% !important;
+			}
+		}
+
+		.acf-row-handle.remove {
+			border-right: 1px solid #e1e1e1;
+		}
+	}
+
+	&.two-col {
+
+		.acf-repeater tr.acf-row:not(.acf-clone) {
+			width: 50%;
+		}
+	}
+
+	&.three-col {
+
+		.acf-repeater tr.acf-row:not(.acf-clone) {
+			width: 33.333333333333%;
+		}
+	}
+}

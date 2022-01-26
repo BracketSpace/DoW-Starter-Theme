@@ -1,0 +1,30 @@
+{
+	"name": "wsfirst/responsive-spacer",
+	"category": "layout",
+	"attributes": {
+		"height": {
+			"type": "number",
+			"default": 100
+		},
+		"auto": {
+			"type": "boolean",
+			"default": true
+		},
+		"tabletHeight": {
+			"type": "number",
+			"default": 70
+		},
+		"mobileHeight": {
+			"type": "number",
+			"default": 40
+		},
+		"useRem": {
+			"type": "boolean",
+			"default": true
+		},
+		"remSize": {
+			"type": "number",
+			"default": 16
+		}
+	}
+}

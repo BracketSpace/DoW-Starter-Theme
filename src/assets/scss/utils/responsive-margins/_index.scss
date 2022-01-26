@@ -1,0 +1,8 @@
+$min-responsive-margin: $padding-mobile !default;
+$max-responsive-margin: $min-responsive-margin * 2 !default;
+
+$min-responsive-margin: rem-to-val($min-responsive-margin);
+$max-responsive-margin: rem-to-val($max-responsive-margin);
+
+@import "functions";
+@import "mixins";

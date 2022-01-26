@@ -1,0 +1,76 @@
+@mixin responsive-value($value, $type: "margin", $position: "top") {
+	$value-sm: calc-responsive-sm-value($value);
+	$value-md: calc-responsive-md-value($value, $value-sm);
+
+	@if (unitless($value)) {
+		$value: rem-calc($value);
+	}
+
+	@if (unitless($value-sm)) {
+		$value-sm: rem-calc($value-sm);
+	}
+
+	@if (unitless($value-md)) {
+		$value-md: rem-calc($value-md);
+	}
+
+	#{ $type }-#{$position}: $value;
+
+	@include bp-down(md) {
+		#{ $type }-#{$position}: $value-md;
+	}
+
+	@include bp-down(sm) {
+		#{ $type }-#{$position}: $value-sm;
+	}
+}
+
+@mixin responsive-margin-top($value) {
+	@include responsive-value($value);
+}
+
+@mixin responsive-margin-bottom($value) {
+	@include responsive-value($value, "margin", "bottom");
+}
+
+@mixin responsive-margin($top, $bottom) {
+	@include responsive-margin-top($top);
+	@include responsive-margin-bottom($bottom);
+}
+
+@mixin rm-top($value) {
+	@include responsive-margin-top($value);
+}
+
+@mixin rm-bottom($value) {
+	@include responsive-margin-bottom($value);
+}
+
+@mixin rm($top, $bottom) {
+	@include responsive-margin($top, $bottom);
+}
+
+@mixin responsive-padding-top($value) {
+	@include responsive-value($value, "padding");
+}
+
+@mixin responsive-padding-bottom($value) {
+	@include responsive-value($value, "padding", "bottom");
+}
+
+@mixin responsive-padding($top, $bottom) {
+	@include responsive-padding-top($top);
+	@include responsive-padding-bottom($bottom);
+}
+
+@mixin rp-top($value) {
+	@include responsive-padding-top($value);
+}
+
+@mixin rp-bottom($value) {
+	@include responsive-padding-bottom($value);
+}
+
+@mixin rp($top, $bottom) {
+	@include responsive-padding($top, $bottom);
+}

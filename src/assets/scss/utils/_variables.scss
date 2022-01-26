@@ -1,0 +1,30 @@
+/**
+ * Variables
+ */
+@use ".tmp/colors" as cs;
+@use ".tmp/general" as gl;
+@use ".tmp/typography" as ty;
+@use "functions/string";
+@use "sass:map";
+@use "scss/utils/functions/unit" as *;
+
+$typography: string.kebab-case-keys(ty.$typography, true);
+$breakpoints: string.kebab-case-keys(map.get(gl.$general, "breakpoints"));
+$colors: string.kebab-case-keys(cs.$colors);
+
+$font-primary: "Arial", sans-serif;
+$font-secondary: "Times New Roman", serif;
+
+$fonts: (
+	primary: $font-primary,
+	secondary: $font-secondary,
+	header: $font-secondary,
+);
+
+$content-width:   rem-calc(700);
+$alignwide-width: rem-calc(900);
+$container-width: rem-calc(1200);
+$padding:         rem-calc(40);
+$padding-mobile:  rem-calc(24);
+
+$padding-breakpoint: sm;

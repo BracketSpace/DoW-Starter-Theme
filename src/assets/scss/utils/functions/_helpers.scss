@@ -1,0 +1,7 @@
+/**
+ * Helper functions
+ */
+
+@function contain($list, $value) {
+	@return not not index($list, $value);
+}

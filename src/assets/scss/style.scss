@@ -1,0 +1,34 @@
+/**
+ * Vendor
+ */
+@use "~normalize.css" as *;
+
+/**
+ * Base
+ */
+@use "base/**/*" as *;
+
+/**
+ * Components
+ */
+@use "components/**/*" as *;
+
+/**
+ * Sections
+ */
+@use "sections/**/*" as *;
+
+/**
+ * Blocks
+ */
+@use "blocks/**/*" as *;
+
+/**
+ * Templates
+ */
+@use "templates/**/*" as *;
+
+/**
+ * Widgets
+ */
+@use "widgets/**/*" as *;

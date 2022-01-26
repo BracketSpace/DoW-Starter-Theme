@@ -1,0 +1,49 @@
+/**
+ * Internal dependencies
+ */
+@use "utils/variables" as *;
+
+/**
+ * Block attributes
+ */
+@use "editor/block-attributes";
+
+/**
+ * Base
+ */
+@use "base/alignment";
+@use "base/global";
+@use "base/typography";
+@use "base/layout";
+
+/**
+ * Components
+ */
+@use "components/buttons";
+@use "components/forms";
+@use "components/links";
+
+/**
+ * Editor-specific styles
+ */
+@use "editor/acf";
+
+/**
+ * Blocks
+ */
+@use "blocks/**/*" as *;
+
+.editor-post-title textarea {
+    font-family: font(header) !important;
+}
+
+.wp-block {
+
+    &:not([data-align="full"]) {
+        max-width: $content-width;
+    }
+
+    &[data-align="wide"] {
+        max-width: $alignwide-width;
+    }
+}
