@@ -30,7 +30,7 @@ class AssetsChecker extends Checker
             return;
         }
 
-        if (file_exists(get_stylesheet_directory() . '/assets/build/styles.css')) {
+        if (file_exists(get_stylesheet_directory() . '/build/css/style.css')) {
             return;
         }
 
