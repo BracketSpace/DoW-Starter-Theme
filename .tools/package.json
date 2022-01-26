@@ -1,0 +1,21 @@
+{
+  "name": "tools",
+  "license": "GPL-3.0-or-later",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Wojtek Szałkiewicz <wojtek@bracketspace.com>",
+  "description": "Custom tools for WordPress theme project.",
+  "type": "module",
+  "bin": {
+    "tools": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^5.0.0",
+    "chokidar": "^3.5.3",
+    "inquirer": "^8.2.0",
+    "lodash-es": "^4.17.21",
+    "ora": "^6.0.1",
+    "signale": "^1.4.0",
+    "yargs": "^17.3.1"
+  }
+}
