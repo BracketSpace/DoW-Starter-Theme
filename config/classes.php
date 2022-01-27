@@ -10,7 +10,12 @@ return [
     /**
      * General classes instantiated at startup
      */
-    'classes' => [
+    'general' => [
+        /**
+         * Template Manager
+         */
+        DoWStarterTheme\Template\Manager::class,
+
         /**
          * Features
          */
