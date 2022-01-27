@@ -78,10 +78,10 @@ $dowstTheme = Theme::get($dowstFs);
 $dowstTheme->add_hooks();
 
 // Bootstrap the Theme, create class instances.
-$dowstTheme->bootstrap(Config::get('bootstrap.classes'));
+$dowstTheme->bootstrap(Config::get('classes.general'));
 
 // Add widgets to be registered.
-$dowstTheme->addWidgets(Config::get('bootstrap.widgets'));
+$dowstTheme->addWidgets(Config::get('classes.widgets'));
 
 // Add theme support.
 $dowstTheme->addThemeSupport(Config::get('theme-support'));
