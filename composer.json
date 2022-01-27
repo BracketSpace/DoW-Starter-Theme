@@ -34,9 +34,9 @@
         }
     },
     "scripts": {
-        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/* --ignore=*/node_modules/* .",
-        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/* --ignore=*/node_modules/* .",
-        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/* --ignore=*/node_modules/* .",
+        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
+        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
+        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
         "phpstan": "phpstan analyze",
         "syntax": "parallel-lint --exclude node_modules --exclude vendor .",
         "test": [
