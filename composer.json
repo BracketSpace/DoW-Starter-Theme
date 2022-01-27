@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "DoWStarterTheme\\": "src/"
+            "DoWStarterTheme\\": "src/classes"
         }
     },
     "scripts": {
