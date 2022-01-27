@@ -27,8 +27,8 @@ grumphp:
         - '/develop|(feature|fix|component|section|block\/.*)/'
       blacklist:
         - 'master'
-    npm_script:
-      script: "lint"
-      triggered_by: [js, scss]
-      working_directory: "./"
-      is_run_task: true
+    # npm_script:
+    #   script: "lint"
+    #   triggered_by: [js, scss]
+    #   working_directory: "./"
+    #   is_run_task: true
