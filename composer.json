@@ -10,7 +10,7 @@
         "micropackage/dochooks": "^1.0",
         "micropackage/filesystem": "^1.1",
         "micropackage/requirements": "^1.2",
-        "micropackage/singleton": "^1.1",
+        "micropackage/singleton": "^1.1.1",
         "phpro/grumphp": "^1.5"
     },
     "require-dev": {
