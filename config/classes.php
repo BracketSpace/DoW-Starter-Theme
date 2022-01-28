@@ -12,6 +12,11 @@ return [
      */
     'general' => [
         /**
+         * Core
+         */
+        DoWStarterTheme\Core\Layout::class,
+
+        /**
          * Features
          */
         DoWStarterTheme\Features\SVGSupport::class,
