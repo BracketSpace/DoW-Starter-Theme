@@ -18,20 +18,25 @@ return [
         DoWStarterTheme\Core\TemplateFilters::class,
 
         /**
-         * View
-         */
-        DoWStarterTheme\View\Factory::class,
-        DoWStarterTheme\View\Finder::class,
-
-        /**
          * Features
          */
         DoWStarterTheme\Features\SVGSupport::class,
 
         /**
+         * Integration
+         */
+        DoWStarterTheme\Integration\ACF::class,
+
+        /**
          * Shortcodes
          */
         DoWStarterTheme\Shortcodes\DateShortcode::class,
+
+        /**
+         * View
+         */
+        DoWStarterTheme\View\Factory::class,
+        DoWStarterTheme\View\Finder::class,
     ],
 
     /**
