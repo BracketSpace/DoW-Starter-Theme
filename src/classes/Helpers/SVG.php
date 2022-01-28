@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Helpers;
 
-use DoWStarterTheme\Core\Theme;
+use DoWStarterTheme\Factories\Filesystem;
 
 /**
  * SVG helper class
@@ -23,7 +23,7 @@ class SVG
             $filename .= '.svg';
         }
 
-        $fs = Theme::getFs();
+        $fs = Filesystem::get();
         $path = "assets/dist/images/{$filename}";
 
         if ($fs->exists($path)) {
