@@ -32,12 +32,18 @@ abstract class Composer
             return static::$views;
         }
 
+        $name = (string)preg_replace(
+            '/Composer$/',
+            '',
+            static::class
+        );
+
         return [
             implode(
                 '.',
                 array_map(
                     [Str::class, 'kebabCase'],
-                    array_slice(explode('\\', static::class), 3)
+                    array_slice(explode('\\', $name), 3)
                 )
             ),
         ];
