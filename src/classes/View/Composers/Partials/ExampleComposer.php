@@ -12,7 +12,7 @@ use DoWStarterTheme\View\Composer;
 /**
  * Test partial composer class
  */
-class Example extends Composer
+class ExampleComposer extends Composer
 {
     /**
      * Returns an array of data for the view.
