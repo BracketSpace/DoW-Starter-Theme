@@ -27,6 +27,8 @@
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
 
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
+
+        <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
     </rule>
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
