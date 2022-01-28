@@ -15,6 +15,7 @@ return [
          * Core
          */
         DoWStarterTheme\Core\Layout::class,
+        DoWStarterTheme\Core\TemplateFilters::class,
 
         /**
          * Features
