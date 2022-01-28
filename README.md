@@ -10,6 +10,55 @@ Department of Web Starter Theme
 -   `DoWStarterTheme` - PHP namespace
 -   `dowst` - Variables/functions prefix
 
+## Tools
+
+To run the tools:
+
+```console
+npx tools
+```
+
+or
+
+```console
+yarn tools
+```
+
+This command will display help by default.
+
+### Options
+
+| Name   | Alias | Descrition                                                                                                 |
+| ------ | ----- | ---------------------------------------------------------------------------------------------------------- |
+| --help | -h    | Displays general help (this is a default behavior, the help will be displayed even without any parameter). |
+
+### Available commands
+
+#### `generate <what>`
+
+This command will generate `theme.json` file and remporary sass variables file from config files.
+Both commands will ran as `prebuild` and `postbuild` script, so there is no need to use them when using `npm run build` or `yarn build`.
+
+#### Parameters
+
+| Name      | Descrition                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| &lt;what> | **Required.** <br> Possible values: \['sass-vars', 'theme-json'] <br> This tells the script what to generate. <br> `theme.json` should be generated in production environment (it happens automatically after `build` script). <br> Sass vars are not needed in production, but they are used DURING the build, so they need to be generated BEFORE runnign `start` script during development. Sass vars will be automatically generated BEFORE `build` script. |
+
+#### Example
+```console
+yarn tools generate theme-json
+npx tools generate sass-vars -w
+```
+
+**Note:** For development it's advised to run `yarn tools generate sass-vars -w` (in watch mode) in one terminal window and then run `yarn start` in second window, so that any change to config files will cause regeneration of the sass vars file which will then cause the rebuild of the assets.
+
+#### Options
+
+| Name    | Alias | Descrition                                                                                                                                                        |
+| ------- | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| --watch | -w    | This flag will start the script in watch mode, watching changes in `config` directory and rebuilding selected json file each time any of the config files change. |
+
 ## Config files
 
 Config files need to use a `.json` extension if used in `js`. Those used in php only can be `.json`, `.php`, `.xml`, `.yml` or `.ini`.
