@@ -1,9 +1,9 @@
 /**
  * External dependencies
  */
-import { existsSync } from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import { readFile, writeFile } from 'fs/promises';
-import { resolve } from 'path';
+import { resolve, dirname } from 'path';
 import chalk from 'chalk';
 
 export const getPath = (name) => resolve('./config', name);
@@ -19,4 +19,13 @@ export const loadConfig = async (name) => {
     return JSON.parse(await readFile(path));
 }
 
-export const saveConfig = async (name, data) => writeFile(resolve(`${name}.json`), JSON.stringify(data, null, 2));
+export const saveConfig = async (name, data) => {
+    const path = resolve(`${name}.json`);
+    const dir = dirname(path);
+
+    if (!existsSync(dir)) {
+        mkdirSync(dir, { recursive: true });
+    }
+
+    return writeFile(path, JSON.stringify(data, null, 2));
+};
