@@ -8,8 +8,7 @@ declare(strict_types=1);
 use DoWStarterTheme\Core\Layout;
 use DoWStarterTheme\Core\Theme;
 
-?>
-<!doctype html>
+?><!doctype html>
 <html <?php language_attributes(); ?>>
   <head>
     <meta charset="utf-8">
