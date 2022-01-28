@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features;
 
+use Micropackage\DocHooks\HookTrait;
+
 /**
  * SVG Support class
  */
 class SVGSupport
 {
+    use HookTrait;
+
     /**
      * Adds styles necessary for media library display.
      *
