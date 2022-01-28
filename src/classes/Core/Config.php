@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Core;
 
+use DoWStarterTheme\Factories\Filesystem;
 use Noodlehaus\Config as BaseConfig;
 use Noodlehaus\Parser;
 
@@ -48,12 +49,12 @@ class Config
         $key = $parts[1] ?? false;
 
         if (!array_key_exists($namespace, static::$config)) {
-            $fs = Theme::getFs();
+            $fs = Filesystem::get('config');
             $extensions = static::getSupportedExtensions();
             $filenames = [];
 
             foreach ($extensions as $ext) {
-                $filename = "config/{$namespace}.{$ext}";
+                $filename = "{$namespace}.{$ext}";
 
                 if (!$fs->exists($filename)) {
                     continue;
