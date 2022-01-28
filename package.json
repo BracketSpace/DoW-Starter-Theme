@@ -5,6 +5,7 @@
   "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "mp-scripts start --mode=development",
+    "prebuild": "tools generate sass-vars",
     "build": "mp-scripts build --mode=development",
     "postbuild": "tools generate theme-json",
     "build:production": "mp-scripts build --mode=production",
