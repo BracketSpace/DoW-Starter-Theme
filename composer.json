@@ -7,6 +7,8 @@
         "php": ">=7.4",
         "composer-runtime-api": "^2.0",
         "hassankhan/config": "^3.0",
+        "micropackage/acf-block-creator": "^1.0",
+        "micropackage/block-loader": "^1.0",
         "micropackage/dochooks": "^1.0",
         "micropackage/filesystem": "^1.1",
         "micropackage/requirements": "^1.2",
