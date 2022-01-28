@@ -60,7 +60,7 @@ class ACF
     public function __construct()
     {
         $this->blocksLocation = Config::get('blocks.location', 'src/blocks');
-        $this->jsonLocation = Config::get('acf.location', 'config/acf-json');
+        $this->jsonLocation = Config::get('acf.location', 'config/acf');
         $this->fs = Filesystem::get();
 
         BlockLoader::init(
