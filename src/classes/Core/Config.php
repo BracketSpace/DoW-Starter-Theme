@@ -67,7 +67,7 @@ class Config
         }
 
         if (!static::$config[$namespace] instanceof BaseConfig) {
-            return false;
+            return $default;
         }
 
         if (is_string($key)) {
