@@ -1,16 +1,16 @@
 /**
  * Variables
  */
-@use ".tmp/colors" as cs;
-@use ".tmp/general" as gl;
-@use ".tmp/typography" as ty;
+@use ".tmp/scss/vars" as *;
 @use "functions/string";
 @use "sass:map";
 @use "scss/utils/functions/unit" as *;
 
-$typography: string.kebab-case-keys(ty.$typography, true);
-$breakpoints: string.kebab-case-keys(map.get(gl.$general, "breakpoints"));
-$colors: string.kebab-case-keys(cs.$colors);
+@error map.get($vars, 'colors');
+
+$typography: string.kebab-case-keys(map.get($vars, 'typography'), true);
+$breakpoints: string.kebab-case-keys(map.get($vars, "general.breakpoints"));
+$colors: string.kebab-case-keys(map.get($vars, 'colors'));
 
 $font-primary: "Arial", sans-serif;
 $font-secondary: "Times New Roman", serif;
