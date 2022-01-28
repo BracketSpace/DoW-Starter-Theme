@@ -4,11 +4,11 @@ Department of Web Starter Theme
 
 ## Strings to replace
 
--   `dowst` - textdomain
--   `DoW Starter Theme` - full package name
--   `dow/starter-theme` - composer package name
+-   `DoW Starter Theme` - Full package name
+-   `dow-starter-theme` - Textdomain, node package name etc.
+-   `dow/starter-theme` - Composer package name
 -   `DoWStarterTheme` - PHP namespace
--   `dowst_` - PHP function prefix
+-   `dowst` - Variables/functions prefix
 
 ## Config files
 
