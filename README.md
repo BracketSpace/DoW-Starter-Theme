@@ -26,6 +26,7 @@ Optional ACF configuration.
 | options-pages\[]          | array\|string | Single page item can be a string or an array. If string is passed, it will be used as a page title, `themes.php` will be used as parent. If it's an array, ti needs to have a `title` and `parent` keys. |
 | options-pages[]['title']  | string        | Page title.                                                                                                                                                                                              |
 | options-pages[]['parent'] | string        | Slug of a WordPress page to be used as parent.                                                                                                                                                           |
+| location                  | string        | Json save location. **Default:** `config/acf-json`                                                                                                                                                       |
 
 #### Example
 
@@ -47,9 +48,11 @@ This file contains block loading configuration.
 
 #### Options
 
-| Option name | Type   | Descrition                 |
-| ----------- | ------ | -------------------------- |
-| location    | string | Blocks directory location. |
+| Option name      | Type   | Descrition                                           |
+| ---------------- | ------ | ---------------------------------------------------- |
+| location         | string | Blocks directory location. **Default:** `src/blocks` |
+| templateFilename | string | Block template filename. **Default:** `template.php` |
+| styleFilename    | string | Block style filename. **Default:** `style.scss`      |
 
 #### Example
 
