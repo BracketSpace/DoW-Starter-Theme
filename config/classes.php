@@ -18,6 +18,12 @@ return [
         DoWStarterTheme\Core\TemplateFilters::class,
 
         /**
+         * View
+         */
+        DoWStarterTheme\View\Factory::class,
+        DoWStarterTheme\View\Finder::class,
+
+        /**
          * Features
          */
         DoWStarterTheme\Features\SVGSupport::class,
