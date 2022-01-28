@@ -55,7 +55,7 @@ export default async () => {
         }
     }
 
-    saveConfig('theme', themeJson);
+    await saveConfig('theme', themeJson);
 
     return notes;
 }
