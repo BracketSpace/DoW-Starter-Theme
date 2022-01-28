@@ -21,7 +21,7 @@ return [
      * Composers
      */
     'composers' => [
-        DoWStarterTheme\View\Composers\Partials\Example::class,
+        DoWStarterTheme\View\Composers\Partials\ExampleComposer::class,
         DoWStarterTheme\View\Composers\Single::class,
     ],
 ];
