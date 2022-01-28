@@ -11,9 +11,9 @@ namespace DoWStarterTheme;
 
 use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
-use Micropackage\Filesystem\Filesystem;
-use Micropackage\Requirements\Requirements;
+use DoWStarterTheme\Factories\Filesystem;
 use DoWStarterTheme\Requirements\AssetsChecker;
+use Micropackage\Requirements\Requirements;
 
 /**
  * Composer autoload file
@@ -68,8 +68,8 @@ if (!$dowstRequirements->satisfied()) {
     return;
 }
 
-// Create Filesystem instance.
-$dowstFs = new Filesystem(__DIR__);
+// Create root Filesystem instance.
+$dowstFs = Filesystem::get(__DIR__, 'root');
 
 // Create core class instance.
 $dowstTheme = Theme::get($dowstFs);
