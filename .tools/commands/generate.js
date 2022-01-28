@@ -9,6 +9,7 @@ import chokidar from 'chokidar';
  * Internal dependencies
  */
 import generateThemeJson from '../utils/generate-theme-json.js';
+import generateSassVars from '../utils/generate-sass-vars.js';
 
 export const command = [
     'generate <what>',
@@ -28,34 +29,52 @@ export const builder = (yargs) => {
     });
 };
 
+const displayNotes = (notes) => {
+    if (!Array.isArray(notes)) {
+        return;
+    }
+
+    for (const note of notes) {
+        signale.note(note);
+    }
+};
+
+const displayErrors = (errors) => {
+    if (!Array.isArray(errors)) {
+        return;
+    }
+
+    for (const error of errors) {
+        const messages = error.message.split('|');
+
+        for (const message of messages) {
+            signale.error(message);
+        }
+    }
+}
+
 const internalHandler = async (what) => {
     const name = what === 'theme-json' ? 'theme.json' : 'Sass variables';
 
     const spinner = ora(`Generating ${name}...`).start();
 
     let errors = [];
-    let notes = [];
+    let notes;
 
-    if (what === 'theme-json') {
-        try {
-            notes = await generateThemeJson();
-        } catch (error) {
-            errors.push(error);
-        }
+    const func = what === 'theme-json' ? generateThemeJson : generateSassVars;
+
+    try {
+        notes = await func();
+    } catch (error) {
+        errors.push(error);
     }
 
     if (!errors.length) {
         spinner.succeed(`${name} generated.`);
-
-        for (const note of notes) {
-            signale.note(note);
-        }
+        displayNotes(notes);
     } else {
         spinner.fail(`Generation of ${name} failed.`);
-
-        for (const error of errors) {
-            signale.error(error.message);
-        }
+        displayErrors(errors);
     }
 }
 
@@ -75,10 +94,6 @@ export const handler = async ({ what, watch }) => {
             .on('change', callback)
             .on('unlink', callback);
     } else {
-        console.time('Executed in');
-
         await internalHandler(what);
-
-        console.timeEnd('Executed in');
     }
 };
