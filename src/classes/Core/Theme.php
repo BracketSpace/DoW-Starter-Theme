@@ -4,15 +4,16 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Core;
 
-use Micropackage\DocHooks\Helper;
+use Micropackage\DocHooks\HookTrait;
 use Micropackage\Filesystem\Filesystem;
 use Micropackage\Singleton\Singleton;
-use Micropackage\DocHooks\HookTrait;
 
 /**
  * Core Theme class
  *
  * @phpstan-type ImageSize array{width?: int, height?: int, crop?: bool}
+ *
+ * @template T
  */
 class Theme extends Singleton
 {
@@ -26,13 +27,23 @@ class Theme extends Singleton
     protected static $fs;
 
     /**
-     * Returns Filesystem instance.
+     * Returns service instance.
      *
-     * @return \Micropackage\Filesystem\Filesystem
+     * @param  class-string<T> $class Class name.
+     * @return T
      */
-    public static function getFs()
+    public static function getService(string $class)
     {
-        return static::$fs;
+        $instance = static::get();
+
+        if (!array_key_exists($class, $instance->services)) {
+            throw new \Exception(
+                /* translators: %s is a class name. */
+                sprintf(__('The service "%s" does not exist.', 'dow-starter-theme'), $class)
+            );
+        }
+
+        return $instance->services[$class];
     }
 
     /**
@@ -50,7 +61,7 @@ class Theme extends Singleton
     /**
      * Class instances.
      *
-     * @var array<object>
+     * @var array<T>
      */
     protected $services = [];
 
@@ -79,7 +90,7 @@ class Theme extends Singleton
     /**
      * Bootstraps the theme.
      *
-     * @param array<string> $classes Class names to bootstrap.
+     * @param array<class-string<T>> $classes Class names to bootstrap.
      * @return void
      */
     public function bootstrap(array $classes = []): void
@@ -92,8 +103,22 @@ class Theme extends Singleton
             // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
             $this->services[$class] = new $class();
 
-            Helper::hook($this->services[$class]);
+            // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
+            if ($this->isClassHookable($class)) {
+                $this->services[$class]->add_hooks();
+            }
         }
+    }
+
+    /**
+     * Checks whether the given class uses HookTrait.
+     *
+     * @param  string $class Class name.
+     * @return bool
+     */
+    private function isClassHookable(string $class): bool
+    {
+        return in_array(HookTrait::class, (array)class_uses($class), true);
     }
 
     /**
