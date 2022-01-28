@@ -12,11 +12,6 @@ return [
      */
     'general' => [
         /**
-         * Template Manager
-         */
-        DoWStarterTheme\Template\Manager::class,
-
-        /**
          * Features
          */
         DoWStarterTheme\Features\SVGSupport::class,
