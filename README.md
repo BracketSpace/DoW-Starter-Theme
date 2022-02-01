@@ -67,6 +67,14 @@ $ npm run build:production
 
 Migrate the files according to `.git-ftp-ignore` file or use automated Github workflow.
 
+## Assets
+
+All files placed directly inside the `src/assets/js` or `src/assets/scss` will be automatically used as entry points for webpack. Each of these files will result in creating the corresponding build file in `build/js` and `build/css` folders. Also, for JS files the `*.asset.php` fiel will be created containing the automatically generated list of dependencies and the asset version. This
+
+### Configuration
+
+Asset files are configured in `config/assets.json`. The key is the name of the asset used to reference it inside the `DowStarterTheme\Core\Assets` class while the value can be either string containing the relative path of the asset or an array with two keys: `file` (the relative path) and `hook` - this allows to define the WordPress action in which the asset should be enqueued. 
+
 ## Tools
 
 To run the tools:
