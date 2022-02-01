@@ -6,8 +6,6 @@
 @use "sass:map";
 @use "scss/utils/functions/unit" as *;
 
-@error map.get($vars, 'colors');
-
 $typography: string.kebab-case-keys(map.get($vars, 'typography'), true);
 $breakpoints: string.kebab-case-keys(map.get($vars, "general.breakpoints"));
 $colors: string.kebab-case-keys(map.get($vars, 'colors'));
