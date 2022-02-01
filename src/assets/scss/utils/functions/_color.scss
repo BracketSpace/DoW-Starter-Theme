@@ -7,7 +7,7 @@
 @use "sass:string";
 
 @function get($colorName, $index: 1) {
-	$colorName: string.quote(#{ $colorName });
+	$colorName: string.quote(#{$colorName});
 
 	@if map.has-key($colors, $colorName) {
 		$color: map.get($colors, $colorName);

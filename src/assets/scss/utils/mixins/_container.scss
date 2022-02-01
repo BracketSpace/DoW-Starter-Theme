@@ -4,7 +4,11 @@
 @use "../variables" as v;
 @use "breakpoint" as bp;
 
-@mixin container($width: v.$container-width, $p: v.$padding, $pm: v.$padding-mobile) {
+@mixin container(
+	$width: v.$container-width,
+	$p: v.$padding,
+	$pm: v.$padding-mobile
+) {
 	margin: auto;
 	padding-left: $p;
 	padding-right: $p;

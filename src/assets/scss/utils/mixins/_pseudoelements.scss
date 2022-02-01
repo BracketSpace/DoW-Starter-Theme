@@ -3,7 +3,13 @@
  */
 @use "sass:string";
 
-@mixin pseudoelement($content: "", $width: null, $height: null, $top: null, $left: null) {
+@mixin pseudoelement(
+	$content: "",
+	$width: null,
+	$height: null,
+	$top: null,
+	$left: null
+) {
 	@if (is-number($width) and 0 == string.length(unit($width))) {
 		$width: rem-calc($width);
 	}
@@ -31,7 +37,13 @@
 	@content;
 }
 
-@mixin before($content: "", $width: null, $height: null, $top: null, $left: null) {
+@mixin before(
+	$content: "",
+	$width: null,
+	$height: null,
+	$top: null,
+	$left: null
+) {
 	&::before {
 		@include pseudoelement($content, $width, $height, $top, $left) {
 			@content;
@@ -39,7 +51,13 @@
 	}
 }
 
-@mixin after($content: "", $width: null, $height: null, $top: null, $left: null) {
+@mixin after(
+	$content: "",
+	$width: null,
+	$height: null,
+	$top: null,
+	$left: null
+) {
 	&::after {
 		@include pseudoelement($content, $width, $height, $top, $left) {
 			@content;

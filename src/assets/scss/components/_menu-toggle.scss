@@ -2,12 +2,12 @@
 @use "../utils/functions/unit" as u;
 @use "../utils/mixins" as m;
 
-$menu-toggle-color:             color.get(white) !default;
-$menu-toggle-width:             u.rem-calc(34) !default;
-$menu-toggle-height:            $menu-toggle-width !default;
-$menu-toggle-bar-height:        u.rem-calc(2) !default;
+$menu-toggle-color: color.get(white) !default;
+$menu-toggle-width: u.rem-calc(34) !default;
+$menu-toggle-height: $menu-toggle-width !default;
+$menu-toggle-bar-height: u.rem-calc(2) !default;
 $menu-toggle-active-bar-height: $menu-toggle-bar-height !default;
-$menu-toggle-bar-spacing:       u.rem-calc(9) !default;
+$menu-toggle-bar-spacing: u.rem-calc(9) !default;
 
 $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 

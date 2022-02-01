@@ -14,8 +14,8 @@
 		.admin-bar & {
 			@media (min-width: 783px) {
 				@if ($offset) {
-					height: calc(#{ $offset } + 32px);
-					margin-top: calc(#{ -$offset } - 32px);
+					height: calc(#{$offset} + 32px);
+					margin-top: calc(#{-$offset} - 32px);
 				} @else {
 					content: "";
 					display: block;

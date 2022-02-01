@@ -34,16 +34,15 @@
 @use "blocks/**/*" as *;
 
 .editor-post-title textarea {
-    font-family: font(header) !important;
+	font-family: font(header) !important;
 }
 
 .wp-block {
+	&:not([data-align="full"]) {
+		max-width: $content-width;
+	}
 
-    &:not([data-align="full"]) {
-        max-width: $content-width;
-    }
-
-    &[data-align="wide"] {
-        max-width: $alignwide-width;
-    }
+	&[data-align="wide"] {
+		max-width: $alignwide-width;
+	}
 }

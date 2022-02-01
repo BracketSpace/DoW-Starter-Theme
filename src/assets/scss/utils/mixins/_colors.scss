@@ -5,9 +5,9 @@
 
 @mixin colors($text-color: true, $background-color: true) {
 	@each $name, $color in v.$colors {
-		$current-color-name:                $name !global;
-		$current-color:                     color($name) !global;
-		$current-color-selector:            ".has-#{ $name }-color" !global;
+		$current-color-name: $name !global;
+		$current-color: color($name) !global;
+		$current-color-selector: ".has-#{ $name }-color" !global;
 		$current-background-color-selector: ".has-#{ $name }-background-color" !global;
 
 		@if ($text-color) {

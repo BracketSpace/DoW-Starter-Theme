@@ -1,14 +1,13 @@
 /**
  * Breakpoint mixins
  */
-@use '../functions/bp' as *;
-@use '../functions/unit' as *;
+@use "../functions/bp" as *;
+@use "../functions/unit" as *;
 
 @mixin up($breakpoint, $use-em: true) {
 	$breakpoint-value: bp($breakpoint, $use-em);
 
 	@if ($breakpoint-value) {
-
 		@media (min-width: $breakpoint-value) {
 			@content;
 		}
@@ -24,7 +23,6 @@
 	}
 
 	@if ($breakpoint-value) {
-
 		@media (max-width: ($breakpoint-value - $diff)) {
 			@content;
 		}
@@ -41,7 +39,6 @@
 	}
 
 	@if ($low-value and $high-value) {
-
 		@media (min-width: $low-value) and (max-width: ($high-value - $diff)) {
 			@content;
 		}

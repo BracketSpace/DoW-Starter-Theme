@@ -5,7 +5,10 @@
 
 	$value: rem-to-val($value);
 
-	@return max(min($max-responsive-margin, round($value * 0.5)), $min-responsive-margin);
+	@return max(
+		min($max-responsive-margin, round($value * 0.5)),
+		$min-responsive-margin
+	);
 }
 
 @function calc-responsive-md-value($value, $value-sm: null) {

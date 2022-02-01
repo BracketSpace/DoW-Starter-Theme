@@ -8,21 +8,17 @@
 }
 
 .acf-pull-left {
-
 	@extend %acf-pull;
 	float: left !important;
 }
 
 .acf-pull-right {
-
 	@extend %acf-pull;
 	float: right !important;
 }
 
 .acf-repeater-horizontal {
-
 	.acf-repeater {
-
 		tbody {
 			display: flex;
 			flex-direction: row;
@@ -47,14 +43,12 @@
 	}
 
 	&.two-col {
-
 		.acf-repeater tr.acf-row:not(.acf-clone) {
 			width: 50%;
 		}
 	}
 
 	&.three-col {
-
 		.acf-repeater tr.acf-row:not(.acf-clone) {
 			width: 33.333333333333%;
 		}

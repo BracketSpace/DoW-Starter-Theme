@@ -5,10 +5,10 @@
 @use "../utils/mixins/props";
 @use "sass:map";
 
-$headings:      map.get(v.$typography, headings);
-$text-styles:   map.get(v.$typography, text-styles);
+$headings: map.get(v.$typography, headings);
+$text-styles: map.get(v.$typography, text-styles);
 $default-style: map.get(v.$typography, default-style);
-$heading-tags:  (h1, h2, h3, h4, h5, h6);
+$heading-tags: (h1, h2, h3, h4, h5, h6);
 
 @if $headings {
 	%heading {
@@ -26,13 +26,13 @@ $heading-tags:  (h1, h2, h3, h4, h5, h6);
 			@include props.from-map($styles, true);
 		}
 
-        .is-style-#{ $tag } {
-            @extend %is-style-#{ $tag };
-        }
+		.is-style-#{ $tag } {
+			@extend %is-style-#{ $tag };
+		}
 
 		@if contain($heading-tags, $tag) {
 			#{ $tag } {
-                @extend %is-style-#{ $tag };
+				@extend %is-style-#{ $tag };
 			}
 		}
 	}

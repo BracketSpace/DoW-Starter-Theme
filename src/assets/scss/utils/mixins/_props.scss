@@ -22,7 +22,9 @@
 					&:not(.has-text-color) {
 						#{ $prop }: $value;
 					}
-				} @else if (background-color == $prop and true == $conditional-color) {
+				} @else if
+					(background-color == $prop and true == $conditional-color)
+				{
 					&:not(.has-background) {
 						#{ $prop }: $value;
 					}
