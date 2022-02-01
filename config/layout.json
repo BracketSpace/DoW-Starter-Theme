@@ -1,5 +1,8 @@
 {
-	"contentSize": 730,
-	"wideSize": 900,
-	"containerSize": 1100
+  "contentSize": 730,
+  "wideSize": 900,
+  "containerSize": 1100,
+  "padding": 40,
+  "paddingMobile": 24,
+  "paddingBreakpoint": "sm"
 }
