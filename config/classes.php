@@ -14,6 +14,7 @@ return [
         /**
          * Core
          */
+        DoWStarterTheme\Core\Assets::class,
         DoWStarterTheme\Core\Layout::class,
         DoWStarterTheme\Core\TemplateFilters::class,
 
