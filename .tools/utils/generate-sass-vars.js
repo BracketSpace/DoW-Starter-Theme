@@ -14,16 +14,18 @@ export default async () => {
     let defaultConfig;
     const errors = [];
 
-    const [colors, general, typography] = await Promise.allSettled([
+    const [colors, general, layout, typography] = await Promise.allSettled([
         loadConfig('colors'),
         loadConfig('general'),
+        loadConfig('layout'),
         loadConfig('typography'),
     ]);
 
     const data = mapValues({
         colors,
         general,
-        typography
+        layout,
+        typography,
     }, item => {
         if (item.status === 'fulfilled') {
             return item.value;
