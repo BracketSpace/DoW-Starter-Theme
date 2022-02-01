@@ -7,7 +7,7 @@
 @use "scss/utils/functions/unit" as *;
 
 $typography: string.kebab-case-keys(map.get($vars, 'typography'), true);
-$breakpoints: string.kebab-case-keys(map.get($vars, "general.breakpoints"));
+$breakpoints: string.kebab-case-keys(map.get($vars, 'general', 'breakpoints'));
 $colors: string.kebab-case-keys(map.get($vars, 'colors'));
 
 $font-primary: "Arial", sans-serif;
