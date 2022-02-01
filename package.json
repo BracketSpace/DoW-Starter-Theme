@@ -19,7 +19,7 @@
   "devDependencies": {
     "@babel/runtime": "^7.16.7",
     "@micropackage/responsive-embeds": "^1.0.0",
-    "@micropackage/scripts": "^1.2.0",
+    "@micropackage/scripts": "^1.2.1",
     "@micropackage/vw": "^1.1.0",
     "@wordpress/icons": "^6.1.1",
     "classnames": "^2.3.1",
