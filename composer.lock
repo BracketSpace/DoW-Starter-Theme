@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c5aaf3e5f552e65c5ff809fe14e518d",
+    "content-hash": "d3ad411aa71250b902029cc0153bef77",
     "packages": [
         {
             "name": "amphp/amp",
@@ -858,6 +858,52 @@
                 "source": "https://github.com/micropackage/block-loader/tree/1.0.4"
             },
             "time": "2021-04-12T09:14:27+00:00"
+        },
+        {
+            "name": "micropackage/classnames",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/micropackage/classnames.git",
+                "reference": "cc637abe02edc8df84c92f815df9ba22abded5fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/micropackage/classnames/zipball/cc637abe02edc8df84c92f815df9ba22abded5fc",
+                "reference": "cc637abe02edc8df84c92f815df9ba22abded5fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "phpcompatibility/php-compatibility": "^9.1",
+                "phpunit/phpunit": "^9.5",
+                "wp-coding-standards/wpcs": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Micropackage\\ClassNames\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Wojtek Szałkiewicz",
+                    "email": "wojtek@szalkiewicz.pl"
+                }
+            ],
+            "description": "Simple PHP utility class for conditionally joining class names together.",
+            "support": {
+                "issues": "https://github.com/micropackage/classnames/issues",
+                "source": "https://github.com/micropackage/classnames/tree/1.0.0"
+            },
+            "time": "2021-04-12T09:42:22+00:00"
         },
         {
             "name": "micropackage/dochooks",
