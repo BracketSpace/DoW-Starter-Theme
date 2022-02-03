@@ -29,7 +29,11 @@
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
 
         <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
+
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent" />
     </rule>
+
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
 
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>

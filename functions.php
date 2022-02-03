@@ -21,12 +21,12 @@ use Micropackage\Requirements\Requirements;
 $dowstAutoloader = __DIR__ . '/vendor/autoload.php';
 
 if (!file_exists($dowstAutoloader)) {
-    // Composer autoload file does not exist.
-    $dowstTitle = __('Autoloader not found.', 'dow-starter-theme');
-    $dowstDescription = __('You must run <code>composer install</code> from the theme directory.', 'dow-starter-theme');
-    $dowstMessage = "<h1>{$dowstTitle}</h1><p>{$dowstDescription}</p>";
+	// Composer autoload file does not exist.
+	$dowstTitle = __('Autoloader not found.', 'dow-starter-theme');
+	$dowstDescription = __('You must run <code>composer install</code> from the theme directory.', 'dow-starter-theme');
+	$dowstMessage = "<h1>{$dowstTitle}</h1><p>{$dowstDescription}</p>";
 
-    wp_die($dowstMessage, $dowstTitle);
+	wp_die($dowstMessage, $dowstTitle);
 }
 
 // Require autoloader.
@@ -34,38 +34,38 @@ require_once $dowstAutoloader;
 
 // Create Requirements instance.
 $dowstRequirements = new Requirements(
-    'DoW Starter Theme',
-    [
-        'assets' => true,
-        'dochooks' => true,
-        'php' => '7.4',
-        'php_extensions' => ['SimpleXML'],
-        'plugins' => [
-            [
-                'file' => 'advanced-custom-fields-pro/acf.php',
-                'name' => 'Advanced Custom Fields Pro',
-            ],
-        ],
-        'wp' => '5.8',
-    ]
+	'DoW Starter Theme',
+	[
+		'assets' => true,
+		'dochooks' => true,
+		'php' => '7.4',
+		'php_extensions' => ['SimpleXML'],
+		'plugins' => [
+			[
+				'file' => 'advanced-custom-fields-pro/acf.php',
+				'name' => 'Advanced Custom Fields Pro',
+			],
+		],
+		'wp' => '5.8',
+	]
 );
 
 $dowstRequirements->register_checker(AssetsChecker::class);
 
 if (!$dowstRequirements->satisfied()) {
-    $dowstMessage = sprintf(
-        /* Translators: %s is a theme name. */
-        __('The theme: %s cannot be activated.', 'dow-starter-theme'),
-        '<strong>DoW Starter Theme</strong>'
-    );
+	$dowstMessage = sprintf(
+		/* Translators: %s is a theme name. */
+		__('The theme: %s cannot be activated.', 'dow-starter-theme'),
+		'<strong>DoW Starter Theme</strong>'
+	);
 
-    if (is_admin()) {
-        $dowstRequirements->print_notice($dowstMessage);
-    } else {
-        $dowstRequirements->kill($dowstMessage);
-    }
+	if (is_admin()) {
+		$dowstRequirements->print_notice($dowstMessage);
+	} else {
+		$dowstRequirements->kill($dowstMessage);
+	}
 
-    return;
+	return;
 }
 
 // Create root Filesystem instance.

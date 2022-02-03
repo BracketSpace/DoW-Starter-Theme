@@ -7,21 +7,21 @@
 declare(strict_types=1);
 
 return [
-    /**
-     * Views location
-     */
-    'location' => 'src/views',
+	/**
+	 * Views location
+	 */
+	'location' => 'src/views',
 
-    /**
-     * Views file's extension
-     */
-    'extension' => '.php',
+	/**
+	 * Views file's extension
+	 */
+	'extension' => '.php',
 
-    /**
-     * Composers
-     */
-    'composers' => [
-        DoWStarterTheme\View\Composers\Partials\ExampleComposer::class,
-        DoWStarterTheme\View\Composers\Single::class,
-    ],
+	/**
+	 * Composers
+	 */
+	'composers' => [
+		DoWStarterTheme\View\Composers\Partials\ExampleComposer::class,
+		DoWStarterTheme\View\Composers\Single::class,
+	],
 ];

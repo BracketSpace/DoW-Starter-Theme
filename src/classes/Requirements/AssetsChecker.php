@@ -11,34 +11,34 @@ use Micropackage\Requirements\Abstracts\Checker;
  */
 class AssetsChecker extends Checker
 {
-    /**
-     * Checker name
-     *
-     * @var string
-     */
-    protected $name = 'assets';
+	/**
+	 * Checker name
+	 *
+	 * @var string
+	 */
+	protected $name = 'assets';
 
-    /**
-     * Checks if assest are built.
-     *
-     * @param  mixed $enabled Whether the assets should be built.
-     * @return void
-     */
-    public function check($enabled)
-    {
-        if ($enabled !== true) {
-            return;
-        }
+	/**
+	 * Checks if assest are built.
+	 *
+	 * @param  mixed $enabled Whether the assets should be built.
+	 * @return void
+	 */
+	public function check($enabled)
+	{
+		if ($enabled !== true) {
+			return;
+		}
 
-        if (file_exists(get_stylesheet_directory() . '/build/css/style.css')) {
-            return;
-        }
+		if (file_exists(get_stylesheet_directory() . '/build/css/style.css')) {
+			return;
+		}
 
-        $this->add_error(
-            __(
-                'Assets build directory not found. You must run `yarn install & yarn build` from the theme directory.',
-                'dow-starter-theme'
-            )
-        );
-    }
+		$this->add_error(
+			__(
+				'Assets build directory not found. You must run `yarn install & yarn build` from the theme directory.',
+				'dow-starter-theme'
+			)
+		);
+	}
 }

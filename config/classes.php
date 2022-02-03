@@ -7,44 +7,44 @@
 declare(strict_types=1);
 
 return [
-    /**
-     * General classes instantiated at startup
-     */
-    'general' => [
-        /**
-         * Core
-         */
-        DoWStarterTheme\Core\Assets::class,
-        DoWStarterTheme\Core\Layout::class,
-        DoWStarterTheme\Core\TemplateFilters::class,
+	/**
+	 * General classes instantiated at startup
+	 */
+	'general' => [
+		/**
+		 * Core
+		 */
+		DoWStarterTheme\Core\Assets::class,
+		DoWStarterTheme\Core\Layout::class,
+		DoWStarterTheme\Core\TemplateFilters::class,
 
-        /**
-         * Features
-         */
-        DoWStarterTheme\Features\SVGSupport::class,
+		/**
+		 * Features
+		 */
+		DoWStarterTheme\Features\SVGSupport::class,
 
-        /**
-         * Integration
-         */
-        DoWStarterTheme\Integration\ACF::class,
+		/**
+		 * Integration
+		 */
+		DoWStarterTheme\Integration\ACF::class,
 
-        /**
-         * Shortcodes
-         */
-        DoWStarterTheme\Shortcodes\DateShortcode::class,
+		/**
+		 * Shortcodes
+		 */
+		DoWStarterTheme\Shortcodes\DateShortcode::class,
 
-        /**
-         * View
-         */
-        DoWStarterTheme\View\Factory::class,
-        DoWStarterTheme\View\Finder::class,
-    ],
+		/**
+		 * View
+		 */
+		DoWStarterTheme\View\Factory::class,
+		DoWStarterTheme\View\Finder::class,
+	],
 
-    /**
-     * Widget classes passed to `register_widget`
-     * @see https://developer.wordpress.org/reference/functions/register_widget/
-     */
-    'widgets' => [
-        DoWStarterTheme\Widgets\SocialLinksWidget::class,
-    ],
+	/**
+	 * Widget classes passed to `register_widget`
+	 * @see https://developer.wordpress.org/reference/functions/register_widget/
+	 */
+	'widgets' => [
+		DoWStarterTheme\Widgets\SocialLinksWidget::class,
+	],
 ];

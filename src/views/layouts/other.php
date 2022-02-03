@@ -10,5 +10,5 @@ declare(strict_types=1);
 <p>Other layout</p>
 
 <div class="content">
-    <?php $this->raw('content'); ?>
+	<?php $this->raw('content'); ?>
 </div>
