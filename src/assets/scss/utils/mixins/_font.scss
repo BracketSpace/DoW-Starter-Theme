@@ -1,5 +1,5 @@
 /**
- * Font mixins
+ * Text mixins
  */
 @use "../functions/unit" as u;
 @use "sass:math";
@@ -9,14 +9,18 @@
 	font-size: u.rem-calc($size);
 
 	@if (meta.type-of($line-height) == "number") {
-		$calculated: math.div($line-height, $size);
-		$round: math.div(math.round($calculated * 10000), 10000);
+		@if (u.is-unitless($line-height)) {
+			$calculated: math.div($line-height, $size);
+			$round: math.div(math.round($calculated * 10000), 10000);
 
-		@if ($calculated != $round) {
-			/* stylelint-disable-next-line */
-			$calculated: calc(#{$line-height}em / #{$size});
+			@if ($calculated != $round) {
+				/* stylelint-disable-next-line */
+				$calculated: calc(#{$line-height}em / #{$size});
+			}
+
+			line-height: $calculated;
+		} @else {
+			line-height: $line-height;
 		}
-
-		line-height: $calculated;
 	}
 }
