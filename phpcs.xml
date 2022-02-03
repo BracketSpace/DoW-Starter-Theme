@@ -42,6 +42,8 @@
                 <element value="DoWStarterTheme"/>
             </property>
         </properties>
+
+	    <exclude-pattern>/src/views</exclude-pattern>
     </rule>
 
     <!-- Check for correct text domain on all translatable strings. -->
