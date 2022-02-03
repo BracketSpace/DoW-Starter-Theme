@@ -2,6 +2,6 @@
  * Helper functions
  */
 
-@function contain($list, $value) {
+@function contains($list, $value) {
 	@return not not index($list, $value);
 }

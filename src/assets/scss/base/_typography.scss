@@ -1,8 +1,9 @@
 /**
  * Typography
  */
-@use "../utils/variables" as v;
+@use "../utils/functions/helpers" as h;
 @use "../utils/mixins/props";
+@use "../utils/variables" as v;
 @use "sass:map";
 
 $headings: map.get(v.$typography, headings);
@@ -19,7 +20,7 @@ $heading-tags: (h1, h2, h3, h4, h5, h6);
 @each $tag, $styles in $text-styles {
 	@if $tag {
 		%is-style-#{ $tag } {
-			@if contain($heading-tags, $tag) {
+			@if h.contains($heading-tags, $tag) {
 				@extend %heading !optional;
 			}
 
@@ -30,7 +31,8 @@ $heading-tags: (h1, h2, h3, h4, h5, h6);
 			@extend %is-style-#{ $tag };
 		}
 
-		@if contain($heading-tags, $tag) {
+		@if h.contains($heading-tags, $tag) {
+
 			#{ $tag } {
 				@extend %is-style-#{ $tag };
 			}

@@ -1,6 +1,7 @@
 /**
  * String functions
  */
+@use "./helpers" as h;
 @use "sass:list";
 @use "sass:map";
 @use "sass:string";
@@ -24,9 +25,9 @@
 		$char: string.slice($string, 1, 1);
 
 		@if not
-			contain($exclude, $char) and
+			h.contains($exclude, $char) and
 			string.to-upper-case($char) == $char and
-			(not contain($numbers, $char) or not contain($numbers, $prev-char))
+			(not h.contains($numbers, $char) or not h.contains($numbers, $prev-char))
 		{
 			$result: $result + "-" + string.to-lower-case($char);
 		} @else {
