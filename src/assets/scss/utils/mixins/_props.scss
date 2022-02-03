@@ -1,10 +1,11 @@
 /**
  * Props from map mixin
  */
-@use "sass:meta";
-@use "sass:map";
 @use "../functions" as *;
 @use "breakpoint" as bp;
+@use "font";
+@use "sass:map";
+@use "sass:meta";
 
 @mixin from-map($map, $conditional-color: false) {
 	@each $prop, $value in $map {
@@ -14,7 +15,7 @@
 			} @else if color == $prop {
 				$value: color-get($value);
 			} @else if font-size == $prop {
-				@include font-size($value, map.get($map, line-height));
+				@include font.size($value, map.get($map, line-height));
 			}
 
 			@if not contain((font-size, line-height, label), $prop) {
