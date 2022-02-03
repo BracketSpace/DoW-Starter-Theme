@@ -1,16 +1,17 @@
 {
-    "align-wide": true,
-    "custom-logo": {
-        "flex-height": true,
-        "flex-width": true,
-        "height": 60,
-        "width": 120
-    },
-    "html5": [
-        "search-form",
-        "comment-form",
-        "comment-list",
-        "gallery",
-        "caption"
-    ]
+  "align-wide": true,
+  "custom-logo": {
+    "flex-height": true,
+    "flex-width": true,
+    "height": 60,
+    "width": 120
+  },
+  "html5": [
+    "search-form",
+    "comment-form",
+    "comment-list",
+    "gallery",
+    "caption"
+  ],
+  "post-thumbnails": ["post"]
 }
