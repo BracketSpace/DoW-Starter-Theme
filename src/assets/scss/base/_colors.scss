@@ -1,0 +1,11 @@
+@use "../utils/variables" as v;
+
+@each $name, $color in v.$colors {
+	.color\:#{$name} {
+		color: $color;
+	}
+
+	.bgcolor\:#{$name} {
+		background-color: $color;
+	}
+}
