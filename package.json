@@ -14,7 +14,9 @@
     "fix:js": "mp-scripts lint-js --fix",
     "fix:scss": "mp-scripts lint-style --fix",
     "lint": "run-p \"lint:*\"",
-    "fix": "run-p \"fix:*\""
+    "fix": "run-p \"fix:*\"",
+    "sass-vars": "tools generate sass-vars",
+    "theme-json": "tools generate theme-json"
   },
   "devDependencies": {
     "@babel/runtime": "^7.16.7",
