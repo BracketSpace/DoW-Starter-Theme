@@ -39,3 +39,11 @@ $heading-tags: (h1, h2, h3, h4, h5, h6);
 		}
 	}
 }
+
+$weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
+
+@each $w in $weights {
+	.weight\:#{$w} {
+		font-weight: $w;
+	}
+}
