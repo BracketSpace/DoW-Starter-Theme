@@ -62,7 +62,7 @@ class CSSGenerator
 	 */
 	private function getSmValue(int $value): int
 	{
-		return max(
+		return (int)max(
 			min(Config::get('general.max-responsive-spacing'), round($value / 2)),
 			Config::get('general.min-responsive-spacing')
 		);
