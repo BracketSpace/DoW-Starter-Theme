@@ -1,11 +1,16 @@
 @use "../placeholders/layout";
+@use "scss/utils/functions/unit" as u;
 
 .wp-block-group {
-	&.alignfull > .wp-block-group__inner-container {
+	&.alignfull {
 		@extend %container-full;
 
 		> * {
 			@extend %content-width;
 		}
+	}
+
+	[data-align="full"] > & > * {
+		@extend %content-width;
 	}
 }
