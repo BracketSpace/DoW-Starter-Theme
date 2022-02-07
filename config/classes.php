@@ -21,6 +21,7 @@ return [
 		/**
 		 * Features
 		 */
+		DoWStarterTheme\Features\BlockSpacing::class,
 		DoWStarterTheme\Features\SVGSupport::class,
 
 		/**
