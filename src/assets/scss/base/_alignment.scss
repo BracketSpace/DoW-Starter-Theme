@@ -2,14 +2,18 @@
  * Internal dependencies
  */
 @use "../utils/mixins/alignment";
-@use "../utils/variables" as *;
+@use "../utils/mixins/layout";
+@use "../utils/variables" as v;
+@use "sass:map";
 
 .alignfull {
 	@include alignment.full;
 }
 
 .alignwide {
-	max-width: $alignwide-width !important;
+	max-width: v.$alignwide-width;
+
+	@include layout.variants('wideSize');
 }
 
 .aligncenter {

@@ -1,0 +1,36 @@
+/**
+ * Internal dependencies
+ */
+@use "scss/utils/functions/helpers" as h;
+@use "scss/utils/functions/unit" as u;
+@use "scss/utils/variables" as v;
+@use "sass:map";
+
+$layout-values: (
+	contentSize,
+	wideSize,
+	containerSize,
+	padding,
+	paddingMobile,
+	paddingBreakpoint,
+);
+
+@mixin variants($key: 'contentSize') {
+	@each $type, $config in v.$layout {
+		@if not h.contains($layout-values, $type) and
+			type-of($config) == "map" and
+			map.has-key($config, $key) and
+			u.is-number(map.get($config, $key))
+		{
+			$class: #{$type};
+
+			@if $type != 'page' {
+				$class: single-#{$type};
+			}
+
+			.#{$class} & {
+				max-width: u.rem-calc(map.get($config, $key));
+			}
+		}
+	}
+}
