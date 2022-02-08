@@ -28,6 +28,7 @@ return [
 		 * Integration
 		 */
 		DoWStarterTheme\Integration\ACF::class,
+		DoWStarterTheme\Integration\Editor::class,
 
 		/**
 		 * Shortcodes
