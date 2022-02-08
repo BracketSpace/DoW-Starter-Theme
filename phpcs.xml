@@ -35,22 +35,30 @@
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
 
+	<rule ref="WordPress.WP.GlobalVariablesOverride.Prohibited">
+		<exclude-pattern>/src/views</exclude-pattern>
+	</rule>
+
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
-                <element value="dowst"/>
-                <element value="DoWStarterTheme"/>
+                <element value="mograph"/>
+                <element value="Mograph"/>
             </property>
         </properties>
 
 	    <exclude-pattern>/src/views</exclude-pattern>
     </rule>
 
+	<rule ref="Generic.Files.LineLength.TooLong">
+		<exclude-pattern>/src/views</exclude-pattern>
+	</rule>
+
     <!-- Check for correct text domain on all translatable strings. -->
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="dow-starter-theme"/>
+                <element value="mograph"/>
             </property>
         </properties>
     </rule>
