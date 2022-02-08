@@ -42,8 +42,8 @@
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array">
-                <element value="mograph"/>
-                <element value="Mograph"/>
+				<element value="dowst"/>
+                <element value="DoWStarterTheme"/>
             </property>
         </properties>
 
@@ -58,7 +58,7 @@
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array">
-                <element value="mograph"/>
+                <element value="dow-starter-theme"/>
             </property>
         </properties>
     </rule>
