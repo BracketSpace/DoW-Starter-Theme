@@ -18,9 +18,7 @@
 		max-width: $width + ($p * 2);
 	}
 
-	$padding-breakpoint: sm !default;
-
-	@include bp.down($padding-breakpoint) {
+	@include bp.down(v.$padding-breakpoint) {
 		padding-left: $pm;
 		padding-right: $pm;
 
