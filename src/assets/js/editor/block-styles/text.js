@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import { kebabCase, startCase } from 'lodash';
 import { registerBlockStyle } from '@wordpress/blocks';
 
 /**
@@ -10,10 +11,12 @@ import typography from 'config/typography.json';
 
 export default () => {
 	if (typography.textStyles) {
-		for (const name in typography.textStyles) {
+		for (const key in typography.textStyles) {
+			const name = kebabCase(key).replace(/\-([0-9]+)/, '$1');
+
 			const label =
-				typography.textStyles[name].label ||
-				`Styled as ${name.charAt(0).toUpperCase() + name.slice(1)}`;
+				typography.textStyles[key].label ||
+				`Styled as ${startCase(name).replace(/\s([0-9]+)/, '$1')}`;
 
 			registerBlockStyle('core/paragraph', {
 				name,
