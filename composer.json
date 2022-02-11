@@ -46,7 +46,7 @@
             "@syntax",
             "@phpcompat",
             "@phpstan",
-            "@cs"
+            "@phpcs"
         ],
         "lint": [
             "@syntax",
