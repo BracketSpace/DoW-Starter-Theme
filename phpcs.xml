@@ -47,6 +47,8 @@
             </property>
         </properties>
 
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
+
 	    <exclude-pattern>/src/views</exclude-pattern>
     </rule>
 
