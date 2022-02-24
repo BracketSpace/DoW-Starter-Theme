@@ -2,6 +2,7 @@
  * Breakpoint function
  */
 @use "../variables" as *;
+@use "unit" as u;
 @use "sass:map";
 
 @function bp($breakpoint, $use-em: true) {
@@ -17,7 +18,7 @@
 
 	@if (is-unitless($breakpoint-value)) {
 		@if ($use-em == true) {
-			$breakpoint-value: em-calc($breakpoint-value);
+			$breakpoint-value: u.em-calc($breakpoint-value);
 		} @else {
 			$breakpoint-value: $breakpoint-value * 1px;
 		}
