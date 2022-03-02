@@ -6,9 +6,9 @@
   "scripts": {
     "start": "mp-scripts start --mode=development",
     "prebuild": "tools generate sass-vars",
-    "build": "mp-scripts build --mode=development",
+    "build": "mp-scripts build --mode=production",
     "postbuild": "tools generate theme-json",
-    "build:production": "mp-scripts build --mode=production",
+    "build:dev": "mp-scripts build --mode=development",
     "lint:js": "mp-scripts lint-js",
     "lint:scss": "mp-scripts lint-style",
     "fix:js": "mp-scripts lint-js --fix",
