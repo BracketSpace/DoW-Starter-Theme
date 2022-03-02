@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features;
 
-use Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
 
 /**
  * SVG Support class

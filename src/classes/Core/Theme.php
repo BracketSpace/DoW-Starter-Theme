@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Core;
 
-use Micropackage\DocHooks\HookTrait;
-use Micropackage\Filesystem\Filesystem;
-use Micropackage\Singleton\Singleton;
+use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Dependencies\Micropackage\Filesystem\Filesystem;
+use DoWStarterTheme\Dependencies\Micropackage\Singleton\Singleton;
 
 /**
  * Core Theme class
@@ -22,7 +22,7 @@ class Theme extends Singleton
 	/**
 	 * Filesystem instance.
 	 *
-	 * @var \Micropackage\Filesystem\Filesystem
+	 * @var \DoWStarterTheme\Dependencies\Micropackage\Filesystem\Filesystem
 	 */
 	protected static $fs;
 
@@ -49,7 +49,7 @@ class Theme extends Singleton
 	/**
 	 * Constructor.
 	 *
-	 * @param \Micropackage\Filesystem\Filesystem $fs Filesystem instance
+	 * @param \DoWStarterTheme\Dependencies\Micropackage\Filesystem\Filesystem $fs Filesystem instance
 	 */
 	protected function __construct(Filesystem $fs)
 	{

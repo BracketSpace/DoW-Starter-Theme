@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\View;
 
-use Illuminate\Support\Str;
+use DoWStarterTheme\Dependencies\Illuminate\Support\Str;
 
 /**
  * View Composer abstract class
