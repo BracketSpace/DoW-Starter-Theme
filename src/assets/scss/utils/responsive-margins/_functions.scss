@@ -1,13 +1,17 @@
+@use "sass:math";
+@use "scss/utils/functions/unit";
+@use "scss/utils/variables" as vars;
+
 @function calc-responsive-sm-value($value) {
-	@if (false == is-number($value)) {
+	@if (false == unit.is-number($value)) {
 		@return null;
 	}
 
-	$value: rem-to-val($value);
+	$value: unit.rem-to-val($value);
 
-	@return max(
-		min($max-responsive-margin, round($value * 0.5)),
-		$min-responsive-margin
+	@return math.max(
+		math.min(vars.$max-responsive-spacing, math.round($value * 0.5)),
+		vars.$min-responsive-spacing
 	);
 }
 
@@ -16,5 +20,5 @@
 		$value-sm: calc-responsive-sm-value($value);
 	}
 
-	@return round(($value - $value-sm) * 0.5) + $value-sm;
+	@return math.round(($value - $value-sm) * 0.5) + $value-sm;
 }

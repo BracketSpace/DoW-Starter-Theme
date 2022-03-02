@@ -1,26 +1,31 @@
+@use "./functions" as fn;
+@use "sass:math";
+@use "scss/utils/functions/unit";
+@use "scss/utils/mixins/breakpoint" as bp;
+
 @mixin responsive-value($value, $type: "margin", $position: "top") {
-	$value-sm: calc-responsive-sm-value($value);
-	$value-md: calc-responsive-md-value($value, $value-sm);
+	$value-sm: fn.calc-responsive-sm-value($value);
+	$value-md: fn.calc-responsive-md-value($value, $value-sm);
 
-	@if (unitless($value)) {
-		$value: rem-calc($value);
+	@if (math.is-unitless($value)) {
+		$value: unit.rem-calc($value);
 	}
 
-	@if (unitless($value-sm)) {
-		$value-sm: rem-calc($value-sm);
+	@if (math.is-unitless($value-sm)) {
+		$value-sm: unit.rem-calc($value-sm);
 	}
 
-	@if (unitless($value-md)) {
-		$value-md: rem-calc($value-md);
+	@if (math.is-unitless($value-md)) {
+		$value-md: unit.rem-calc($value-md);
 	}
 
 	#{ $type }-#{$position}: $value;
 
-	@include bp-down(md) {
+	@include bp.down(lg) {
 		#{ $type }-#{$position}: $value-md;
 	}
 
-	@include bp-down(sm) {
+	@include bp.down(sm) {
 		#{ $type }-#{$position}: $value-sm;
 	}
 }
