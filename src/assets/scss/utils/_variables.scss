@@ -10,14 +10,12 @@ $typography: string.kebab-case-keys(map.get($vars, "typography"), true);
 $breakpoints: string.kebab-case-keys(map.get($vars, "general", "breakpoints"));
 $colors: string.kebab-case-keys(map.get($vars, "colors"));
 
-$font-primary: "Oswald", sans-serif;
-$roboto: "Roboto", sans-serif;
-$roboto-slab: "Roboto Slab", serif;
+$font-primary: "Arial", sans-serif;
+$font-secondary: "Times New Roman", serif;
 
 $fonts: (
 	primary: $font-primary,
-	roboto: $roboto,
-	roboto-slab: $roboto-slab,
+	secondary: $font-secondary,
 );
 
 $layout: map.get($vars, "layout");
