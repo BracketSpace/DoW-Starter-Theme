@@ -28,7 +28,7 @@
 
 		@return $return;
 	} @else {
-		@warn "Invalid color: #{$colorName}.";
+		@error "Invalid color: #{$colorName}.";
 	}
 
 	@return null;
