@@ -52,12 +52,9 @@
           "dep_namespace": "DoWStarterTheme\\Dependencies\\",
           "dep_directory": "/src/dependencies/",
           "classmap_directory": "/src/dependencies/classes/",
-          "classmap_prefix": "BRSET_",
+          "classmap_prefix": "dowst_",
           "delete_vendor_directories": false,
-          "skip_duplicates": true,
-          "excluded_packages": [
-              "phpro/grumphp"
-          ]
+          "skip_duplicates": true
       }
     },
     "scripts": {
