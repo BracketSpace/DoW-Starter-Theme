@@ -7,7 +7,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\View;
 
-use DoWStarterTheme\Helpers\Str;
+use Illuminate\Support\Str;
 
 /**
  * View Composer abstract class
@@ -42,7 +42,7 @@ abstract class Composer
 			implode(
 				'.',
 				array_map(
-					[Str::class, 'kebabCase'],
+					[Str::class, 'kebab'],
 					array_slice(explode('\\', $name), 3)
 				)
 			),
