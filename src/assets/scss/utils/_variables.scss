@@ -6,9 +6,12 @@
 @use "sass:map";
 @use "scss/utils/functions/unit" as *;
 
-$typography: string.kebab-case-keys(map.get($vars, "typography"), true);
-$breakpoints: string.kebab-case-keys(map.get($vars, "general", "breakpoints"));
+$general: string.kebab-case-keys(map.get($vars, "general"));
+$layout: string.kebab-case-keys(map.get($vars, "layout"));
+
+$breakpoints: map.get($general, "breakpoints");
 $colors: string.kebab-case-keys(map.get($vars, "colors"));
+$typography: string.kebab-case-keys(map.get($vars, "typography"), true);
 
 $font-primary: "Arial", sans-serif;
 $font-secondary: "Times New Roman", serif;
@@ -18,14 +21,15 @@ $fonts: (
 	secondary: $font-secondary,
 );
 
-$layout: map.get($vars, "layout");
-
-$content-width: rem-calc(map.get($layout, "contentSize"));
-$alignwide-width: rem-calc(map.get($layout, "wideSize"));
-$container-width: rem-calc(map.get($layout, "containerSize"));
+$content-width: rem-calc(map.get($layout, "content-size"));
+$alignwide-width: rem-calc(map.get($layout, "wide-size"));
+$container-width: rem-calc(map.get($layout, "container-size"));
 $padding: rem-calc(map.get($layout, "padding"));
-$padding-mobile: rem-calc(map.get($layout, "paddingMobile"));
+$padding-mobile: rem-calc(map.get($layout, "padding-mobile"));
+$padding-breakpoint: map.get($layout, "padding-breakpoint");
 
-$padding-breakpoint: map.get($layout, "paddingBreakpoint");
+$min-responsive-spacing: map.get($general, "min-responsive-spacing");
+$max-responsive-spacing: map.get($general, "max-responsive-spacing");
+$rem-base: map.get($general, "rem-base");
 
 $heading-tags: (h1, h2, h3, h4, h5, h6);
