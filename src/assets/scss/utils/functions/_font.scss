@@ -8,6 +8,8 @@
 	@if map.has-key($fonts, $font) {
 		@return map.get($fonts, $font);
 	} @else {
-		@warn "Invalid font: #{$font}.";
+		@error "Invalid font: #{$font}.";
 	}
+
+	@return null;
 }
