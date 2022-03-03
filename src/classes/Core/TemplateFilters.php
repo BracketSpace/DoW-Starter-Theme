@@ -84,7 +84,7 @@ class TemplateFilters
 	 */
 	public function filterTemplateHierarchy(array $files): array
 	{
-		$location = trim(Config::get('view.location'), '/');
+		$location = trim(Config::get('view.location'), '');
 
 		foreach ($files as &$file) {
 			// Prefix each file with views location path.
@@ -92,5 +92,109 @@ class TemplateFilters
 		}
 
 		return $files;
+	}
+
+	/**
+	 *
+	 * Adds support for page templates inside `src/views` directory.
+	 *
+	 * @filter theme_templates
+	 *
+	 * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter
+	 *
+	 * @param  array<string, string> $templates List of page templates.
+	 * @param  \WP_Theme             $theme     WP_Theme instance.
+	 * @param  \WP_Post              $post      WP_POst instance.
+	 * @param  string                $postType  Post type.
+	 * @return array<string, string>
+	 */
+	public function filterThemeTemplates(array $templates, \WP_Theme $theme, \WP_Post $post, string $postType)
+	{
+		return array_unique(
+			array_merge(
+				$templates,
+				$this->getTemplates($postType)
+			)
+		);
+	}
+
+	/**
+	 * Gets page templates for given post type.
+	 *
+	 * @param  string $postType Optional post type.
+	 * @return array<string, string> List of page templates.
+	 */
+	protected function getTemplates(?string $postType = null): array
+	{
+		$templates = wp_cache_get('mograph/post-templates', 'themes');
+
+		if (is_array($templates)) {
+			return $templates[$postType] ?? [];
+		}
+
+		$fs = Filesystem::get('views');
+		$paths = $this->listFiles();
+		$templates = [];
+
+		foreach ($paths as $path) {
+			$content = $fs->get_contents($path);
+
+			if (!is_string($content)) {
+				continue;
+			}
+
+			if (preg_match('|Template Name:(.*)$|mi', $content, $header) !== 1) {
+				continue;
+			}
+
+			$types = preg_match('|Template Post Type:(.*)$|mi', $content, $types) === 1
+				? explode(',', _cleanup_header_comment($types[1]))
+				: ['page'];
+
+			foreach ($types as $type) {
+				$type = sanitize_key($type);
+
+				if (!isset($templates[$postType])) {
+					$templates[$type] = [];
+				}
+
+				$templates[$type][$path] = _cleanup_header_comment($header[1]);
+			}
+		}
+
+		wp_cache_add('mograph/post-templates', $templates, 'themes');
+
+		return $templates[$postType] ?? [];
+	}
+
+	/**
+	 * Recursively lists all files inside `src/views` directory.
+	 *
+	 * @param  string $path Current path.
+	 * @return array<string> List of files.
+	 */
+	protected function listFiles(string $path = ''): array
+	{
+		$fs = Filesystem::get('views');
+		$paths = [];
+
+		foreach ((array)$fs->dirlist($path) as $data) {
+			if ($data['type'] === 'd') {
+				$paths = [
+					...$paths,
+					...$this->listFiles("{$path}/{$data['name']}"),
+				];
+
+				continue;
+			}
+
+			if (pathinfo($data['name'], PATHINFO_EXTENSION) !== 'php') {
+				continue;
+			}
+
+			$paths[] = trim("{$path}/{$data['name']}", '/');
+		}
+
+		return $paths;
 	}
 }
