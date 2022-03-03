@@ -13,12 +13,12 @@
 }
 
 @mixin full($bp: null) {
-	$bp-mobile: sm;
+	$bp-mobile: md;
 
 	@if (null == $bp) {
 		@include props($padding);
-		$bp-mobile: sm;
-	} @else if (bp($bp) > bp(sm)) {
+		$bp-mobile: md;
+	} @else if (bp($bp) > bp(md)) {
 		@include bp.down($bp) {
 			@include props($padding);
 		}
