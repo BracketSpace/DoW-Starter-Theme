@@ -11,21 +11,10 @@
 	$top: null,
 	$left: null
 ) {
-	@if (u.is-number($width) and 0 == string.length(unit($width))) {
-		$width: u.rem-calc($width);
-	}
-
-	@if (u.is-number($height) and 0 == string.length(unit($height))) {
-		$height: u.rem-calc($height);
-	}
-
-	@if (u.is-number($top) and 0 == string.length(unit($top))) {
-		$top: u.rem-calc($top);
-	}
-
-	@if (u.is-number($left) and 0 == string.length(unit($left))) {
-		$left: u.rem-calc($left);
-	}
+	$width: u.maybe-rem-calc($width);
+	$height: u.maybe-rem-calc($height);
+	$top: u.maybe-rem-calc($top);
+	$left: u.maybe-rem-calc($left);
 
 	content: $content;
 	display: block;
