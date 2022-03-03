@@ -2,6 +2,7 @@
  * Helper Functions
  */
 @use "sass:math";
+@use "sass:string";
 
 $rem-base: 16 !default;
 
@@ -10,7 +11,7 @@ $rem-base: 16 !default;
 }
 
 @function is-unitless($value) {
-	@return 0 == str-length(unit($value));
+	@return 0 == string.length(math.unit($value));
 }
 
 @function is-number($value) {
@@ -31,4 +32,12 @@ $rem-base: 16 !default;
 
 @function em-calc($value, $base: 16) {
 	@return math.div($value, $base) * 1em;
+}
+
+@function maybe-rem-calc($value) {
+	@if (is-number($value) and 0 == string.length(unit($value))) {
+		@return rem-calc($value);
+	}
+
+	@return $value;
 }
