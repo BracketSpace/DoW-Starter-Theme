@@ -1,49 +1,6 @@
 /**
  * Typography
  */
-@use "../utils/functions/helpers" as h;
-@use "../utils/mixins/props";
-@use "../utils/variables" as v;
-@use "sass:map";
+@use "scss/utils/mixins/typography" as t;
 
-$headings: map.get(v.$typography, headings);
-$text-styles: map.get(v.$typography, text-styles);
-$default-style: map.get(v.$typography, default-style);
-$heading-tags: (h1, h2, h3, h4, h5, h6);
-
-@if $headings {
-	%heading {
-		@include props.from-map($headings);
-	}
-}
-
-@each $tag, $styles in $text-styles {
-	@if $tag {
-		%is-style-#{ $tag } {
-			@if h.contains($heading-tags, $tag) {
-				@extend %heading !optional;
-			}
-
-			@include props.from-map($styles, true);
-		}
-
-		.is-style-#{ $tag } {
-			@extend %is-style-#{ $tag };
-		}
-
-		@if h.contains($heading-tags, $tag) {
-
-			#{ $tag } {
-				@extend %is-style-#{ $tag };
-			}
-		}
-	}
-}
-
-$weights: 100, 200, 300, 400, 500, 600, 700, 800, 900;
-
-@each $w in $weights {
-	.weight\:#{$w} {
-		font-weight: $w;
-	}
-}
+@include t.typography();
