@@ -1,5 +1,8 @@
-import Player from './player';
+/**
+ * Internal depdependencies
+ */
 import { loadScript } from './utils';
+import Player from './player';
 
 export class WistiaPlayer extends Player {
 	async apiLoadMethod() {

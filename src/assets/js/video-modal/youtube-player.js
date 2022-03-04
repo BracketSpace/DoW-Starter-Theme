@@ -1,10 +1,24 @@
-import Player from './player';
+/**
+ * Internal depdependencies
+ */
 import { loadScript } from './utils';
+import Player from './player';
 
-/* global YT */
-
+/**
+ * YouTube player class
+ */
 export class YouTubePlayer extends Player {
 	ready = false;
+
+	/**
+	 * Checks if the API is loaded already. This is needed in case of presence of other scripts using the same API (e.g.
+	 * youtube-embed-plus-pro WordPress plugin, which loads YouTube API at boot).
+	 *
+	 * @return {boolean} If the API is available.
+	 */
+	checkApiLoaded() {
+		return !!window.YT;
+	}
 
 	async apiLoadMethod() {
 		return new Promise(async (resolve, reject) => {
@@ -45,7 +59,7 @@ export class YouTubePlayer extends Player {
 	}
 
 	createPlayer(videoId) {
-		this.player = new YT.Player(this.modal.playerWrap, {
+		this.player = new window.YT.Player(this.modal.playerWrap, {
 			width: '100%',
 			height: '100%',
 			events: {

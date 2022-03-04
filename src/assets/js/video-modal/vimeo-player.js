@@ -1,9 +1,23 @@
-/* global Vimeo */
-
-import Player from './player';
+/**
+ * Internal depdependencies
+ */
 import { loadScript } from './utils';
+import Player from './player';
 
+/**
+ * Vimeo player class
+ */
 export class VimeoPlayer extends Player {
+	/**
+	 * Checks if the API is loaded already. This is needed in case of presence of other scripts using the same API (e.g.
+	 * youtube-embed-plus-pro WordPress plugin, which loads YouTube API at boot).
+	 *
+	 * @return {boolean} If the API is available.
+	 */
+	checkApiLoaded() {
+		return !!window.Vimeo;
+	}
+
 	async apiLoadMethod() {
 		await loadScript('//player.vimeo.com/api/player.js');
 	}
@@ -23,7 +37,7 @@ export class VimeoPlayer extends Player {
 	}
 
 	createPlayer(videoId) {
-		this.player = new Vimeo.Player(this.modal.playerWrap, {
+		this.player = new window.Vimeo.Player(this.modal.playerWrap, {
 			id: videoId,
 			width: '100%',
 		});
