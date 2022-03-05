@@ -1,14 +1,12 @@
 <?php
-/**
- * @var \DoWStarterTheme\View\View $this
- */
 
 declare(strict_types=1);
 
-$this->layout('other');
+use DoWStarterTheme\Helpers\View as v;
 
+v::layout('other');
 ?>
 
 <h1>Single</h1>
 
-<?php $this->partial('example'); ?>
+<?php v::partial('example'); ?>

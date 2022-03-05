@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Widgets;
 
-use DoWStarterTheme\View\View;
+use DoWStarterTheme\View\Factory;
+use DoWStarterTheme\Core\Theme;
 use Illuminate\Support\Str;
 
 /**
@@ -73,7 +74,8 @@ abstract class Widget extends \WP_Widget
 			echo $args['before_title'] . get_field('title', $widgetId) . $args['after_title'];
 		}
 
-		View::print("widgets.{$this->viewName}", $this->getData($widgetId, $args));
+		$factory = Theme::getService(Factory::class);
+		$factory->get("widgets.{$this->viewName}", $this->getData($widgetId, $args))->render();
 
 		echo $args['after_widget'];
 	}

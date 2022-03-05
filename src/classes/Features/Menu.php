@@ -6,7 +6,8 @@ namespace DoWStarterTheme\Features;
 
 use Micropackage\DocHooks\HookTrait;
 use DoWStarterTheme\Core\Config;
-use DoWStarterTheme\View\View;
+use DoWStarterTheme\Core\Theme;
+use DoWStarterTheme\View\Factory;
 
 /**
  * Menu class
@@ -49,12 +50,13 @@ class Menu
 			]
 		);
 
-		View::print(
+		$factory = Theme::getService(Factory::class);
+		$factory->get(
 			'partials.nav-menu',
 			[
 				'class' => "nav-{$id}",
 				'menu' => $menu,
 			]
-		);
+		)->render();
 	}
 }

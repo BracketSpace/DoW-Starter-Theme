@@ -1,11 +1,10 @@
 <?php
-/**
- * @var \DoWStarterTheme\View\View $this
- */
 
 declare(strict_types=1);
 
-$items = $this->get('items');
+use DoWStarterTheme\Helpers\View as v;
+
+$items = v::get('items');
 ?>
 
 <?php if (count($items) > 1) : ?>
