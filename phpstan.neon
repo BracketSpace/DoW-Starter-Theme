@@ -11,6 +11,7 @@ parameters:
         - ./
     excludePaths:
         - */vendor/*
+        - */dependencies/*
         - */node_modules/*
     ignoreErrors:
         -

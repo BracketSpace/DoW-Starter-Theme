@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features;
 
-use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 use WP_Post;
 
 /**

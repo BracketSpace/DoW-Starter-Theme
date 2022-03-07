@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Requirements;
 
-use DoWStarterTheme\Dependencies\Micropackage\Requirements\Abstracts\Checker;
+use DoWStarterTheme\Deps\Micropackage\Requirements\Abstracts\Checker;
 
 /**
  * Assets checker class

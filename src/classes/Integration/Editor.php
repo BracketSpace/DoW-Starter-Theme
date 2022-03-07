@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Integration;
 
-use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 use DoWStarterTheme\Core\Config;
 use WP_Block_Editor_Context;
 

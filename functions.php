@@ -13,7 +13,7 @@ use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
 use DoWStarterTheme\Factories\Filesystem;
 use DoWStarterTheme\Requirements\AssetsChecker;
-use DoWStarterTheme\Dependencies\Micropackage\Requirements\Requirements;
+use DoWStarterTheme\Deps\Micropackage\Requirements\Requirements;
 
 /**
  * Composer autoload file

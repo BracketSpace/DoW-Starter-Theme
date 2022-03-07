@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Core;
 
 use DoWStarterTheme\Factories\Filesystem;
-use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * Assets class
