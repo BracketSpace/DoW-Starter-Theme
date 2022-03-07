@@ -6,8 +6,8 @@ namespace DoWStarterTheme\Integration;
 
 use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Factories\Filesystem;
-use DoWStarterTheme\Dependencies\Micropackage\BlockLoader\BlockLoader;
-use DoWStarterTheme\Dependencies\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\BlockLoader\BlockLoader;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * ACF class
@@ -36,7 +36,7 @@ class ACF
 	/**
 	 * Filesystem instance.
 	 *
-	 * @var \DoWStarterTheme\Dependencies\Micropackage\Filesystem\Filesystem
+	 * @var \DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem
 	 */
 	protected $fs;
 

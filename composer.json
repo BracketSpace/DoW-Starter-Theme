@@ -38,7 +38,7 @@
     "autoload": {
         "psr-4": {
             "DoWStarterTheme\\": "src/classes",
-            "DoWStarterTheme\\Dependencies\\": "src/dependencies"
+            "DoWStarterTheme\\Deps\\": "dependencies/"
         }
     },
     "extra": {
@@ -49,9 +49,9 @@
           }
       },
       "mozart": {
-          "dep_namespace": "DoWStarterTheme\\Dependencies\\",
-          "dep_directory": "/src/dependencies/",
-          "classmap_directory": "/src/dependencies/classes/",
+          "dep_namespace": "DoWStarterTheme\\Deps\\",
+          "dep_directory": "/dependencies/",
+          "classmap_directory": "/dependencies/classes/",
           "classmap_prefix": "dowst_",
           "delete_vendor_directories": false,
           "skip_duplicates": true
@@ -59,11 +59,11 @@
     },
     "scripts": {
         "compose": "vendor/bin/mozart compose",
-        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/src/dependencies/* --extensions=php --colors .",
-        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/src/dependencies/* --extensions=php --colors .",
-        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/src/dependencies/* --extensions=php --colors .",
+        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
+        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
+        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
         "phpstan": "phpstan analyze",
-        "syntax": "parallel-lint --exclude node_modules --exclude vendor --exclude src/dependencies .",
+        "syntax": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
         "test": [
             "@syntax",
             "@phpcompat",
