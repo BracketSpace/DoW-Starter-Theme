@@ -104,11 +104,11 @@ class TemplateFilters
 	 *
 	 * @param  array<string, string> $templates List of page templates.
 	 * @param  \WP_Theme             $theme     WP_Theme instance.
-	 * @param  \WP_Post              $post      WP_POst instance.
+	 * @param  \WP_Post|null         $post      WP_POst instance.
 	 * @param  string                $postType  Post type.
 	 * @return array<string, string>
 	 */
-	public function filterThemeTemplates(array $templates, \WP_Theme $theme, \WP_Post $post, string $postType)
+	public function filterThemeTemplates(array $templates, \WP_Theme $theme, ?\WP_Post $post, string $postType): array
 	{
 		return array_unique(
 			array_merge(
