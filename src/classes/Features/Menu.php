@@ -36,16 +36,18 @@ class Menu
 	/**
 	 * Displays nav menu.
 	 *
-	 * @param string $id Menu ID (location).
+	 * @param string        $id       Menu ID (location).
+	 * @param bool|Callable $fallback Fallback to be called if the menu doesn't exist.
 	 * @return void
 	 */
-	public static function display(string $id): void
+	public static function display(string $id, $fallback = false): void
 	{
 		$menu = wp_nav_menu(
 			[
-				'theme_location' => $id,
 				'container' => '',
 				'echo' => false,
+				'falback_cb' => $fallback,
+				'theme_location' => $id,
 			]
 		);
 
