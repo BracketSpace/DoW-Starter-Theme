@@ -13,5 +13,5 @@
     "gallery",
     "caption"
   ],
-  "post-thumbnails": ["post"]
+  "post-thumbnails": true
 }
