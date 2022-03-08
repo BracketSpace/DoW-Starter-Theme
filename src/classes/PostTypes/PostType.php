@@ -161,7 +161,7 @@ abstract class PostType
 	 */
 	protected static function getFeaturedImageLabels(): array
 	{
-		$featuredImageName = static::$featuredImageName ?? __('Featured image', 'dow-starter-theme');
+		$featuredImageName = static::$featuredImageName ?? __('featured image', 'dow-starter-theme');
 
 		return array_map(
 			static fn ($value) => Str::ucfirst(sprintf($value, $featuredImageName)),
