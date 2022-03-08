@@ -32,6 +32,11 @@ return [
 		DoWStarterTheme\Integration\Editor::class,
 
 		/**
+		 * Post types
+		 */
+		DoWStarterTheme\PostTypes\ExamplePostType::class,
+
+		/**
 		 * Shortcodes
 		 */
 		DoWStarterTheme\Shortcodes\DateShortcode::class,
