@@ -171,7 +171,13 @@ class Theme extends Singleton
 				continue;
 			}
 
-			add_theme_support($key, $value);
+			$args = [$key];
+
+			if ($value !== true) {
+				$args[] = $value;
+			}
+
+			add_theme_support(...$args);
 		}
 
 		// Disable admin bar styles.
