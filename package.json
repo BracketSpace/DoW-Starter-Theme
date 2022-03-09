@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
-    "@micropackage/responsive-embeds": "^1.0.1",
+    "@micropackage/responsive-embeds": "^1.0.2",
     "@micropackage/scripts": "^1.2.3",
     "@micropackage/vw": "^1.1.0",
     "@types/object-fit-images": "^3.2.2",
