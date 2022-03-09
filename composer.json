@@ -19,6 +19,8 @@
         "phpro/grumphp": "^1.5"
     },
     "require-dev": {
+        "coenjacobs/mozart": "^0.7.1",
+        "cweagans/composer-patches": "^1.7",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "php-stubs/acf-pro-stubs": "^5.10",
@@ -35,15 +37,33 @@
     },
     "autoload": {
         "psr-4": {
-            "DoWStarterTheme\\": "src/classes"
+            "DoWStarterTheme\\": "src/classes",
+            "DoWStarterTheme\\Deps\\": "dependencies/"
         }
     },
+    "extra": {
+      "patches": {
+          "coenjacobs/mozart": {
+              "Skip file duplicates": "https://github.com/coenjacobs/mozart/pull/136.patch",
+              "Prevent prepending classmap prefix multiple times": "https://github.com/coenjacobs/mozart/pull/137.patch"
+          }
+      },
+      "mozart": {
+          "dep_namespace": "DoWStarterTheme\\Deps\\",
+          "dep_directory": "/dependencies/",
+          "classmap_directory": "/dependencies/classes/",
+          "classmap_prefix": "dowst_",
+          "delete_vendor_directories": false,
+          "skip_duplicates": true
+      }
+    },
     "scripts": {
-        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
-        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
-        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/* --extensions=php --colors .",
+        "compose": "vendor/bin/mozart compose",
+        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
+        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
+        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
         "phpstan": "phpstan analyze",
-        "syntax": "parallel-lint --exclude node_modules --exclude vendor .",
+        "syntax": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
         "test": [
             "@syntax",
             "@phpcompat",
@@ -53,6 +73,14 @@
         "lint": [
             "@syntax",
             "@phpcompat"
+        ],
+        "post-install-cmd": [
+            "@compose",
+            "composer dump-autoload"
+        ],
+        "post-update-cmd": [
+            "@compose",
+            "composer dump-autoload"
         ]
     }
 }

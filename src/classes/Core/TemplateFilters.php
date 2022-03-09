@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Core;
 
 use DoWStarterTheme\Factories\Filesystem;
-use Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * TemplateFilters trait
