@@ -1,0 +1,13 @@
+@use "alignment";
+@use "colors";
+@use "global";
+@use "layout";
+@use "typography";
+
+.editor-styles-wrapper {
+	@include alignment.selectors;
+	@include colors.selectors;
+	@include global.selectors;
+	@include layout.selectors;
+	@include typography.selectors;
+}

@@ -1,17 +1,17 @@
 /**
  * Vendor
  */
-@use "~normalize.css" as *;
+@use "vendor";
 
 /**
  * Base
  */
-@use "base/**/*" as *;
+@use "base";
 
 /**
  * Components
  */
-@use "components/**/*" as *;
+@use "components";
 
 /**
  * Sections

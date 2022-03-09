@@ -1,15 +1,17 @@
-.spacing-settings-row {
-	display: flex;
+@mixin selectors {
+	.spacing-settings-row {
+		display: flex;
 
-	&:not(:first-child) {
-		margin-top: rem-calc(16);
-	}
+		&:not(:first-child) {
+			margin-top: rem-calc(16);
+		}
 
-	> * {
-		flex-basis: 50%;
+		> * {
+			flex-basis: 50%;
 
-		&:first-child {
-			margin-right: rem-calc(8);
+			&:first-child {
+				margin-right: rem-calc(8);
+			}
 		}
 	}
 }

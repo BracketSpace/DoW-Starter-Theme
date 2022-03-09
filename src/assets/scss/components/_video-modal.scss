@@ -1,8 +1,13 @@
 @use "scss/utils/functions/unit" as u;
 @use "scss/utils/variables" as vars;
 
-@keyframes video-modal-loader {
+@mixin selectors {
+	.video-modal {
+		@extend %video-modal;
+	}
+}
 
+@keyframes video-modal-loader {
 	0% {
 		transform: translate(-50%, -50%) rotate(0);
 	}
@@ -19,7 +24,7 @@
 	top: 0;
 }
 
-.video-modal {
+%video-modal {
 	align-items: center;
 	display: flex;
 	justify-content: center;

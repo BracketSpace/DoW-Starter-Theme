@@ -1,43 +1,45 @@
 /**
  * Internal dependencies
  */
-@use "../utils/mixins/alignment";
-@use "../utils/mixins/layout";
-@use "../utils/variables" as v;
+@use "scss/utils/mixins/alignment";
+@use "scss/utils/mixins/layout";
+@use "scss/utils/variables" as v;
 @use "sass:map";
 
-.alignfull {
-	@include alignment.full;
-}
+@mixin selectors {
+	.alignfull {
+		@include alignment.full;
+	}
 
-.alignwide {
-	max-width: v.$alignwide-width;
+	.alignwide {
+		max-width: v.$alignwide-width;
 
-	@include layout.variants('wideSize');
-}
+		@include layout.variants('wideSize');
+	}
 
-.aligncenter {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-}
+	.aligncenter {
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
 
-.alignleft {
-	float: left;
-	margin-bottom: rem-calc(20);
-	margin-right: rem-calc(20);
-	text-align: left;
-}
+	.alignleft {
+		float: left;
+		margin-bottom: rem-calc(20);
+		margin-right: rem-calc(20);
+		text-align: left;
+	}
 
-.alignright {
-	float: right;
-	margin-bottom: rem-calc(20);
-	margin-left: rem-calc(20);
-	text-align: right;
-}
+	.alignright {
+		float: right;
+		margin-bottom: rem-calc(20);
+		margin-left: rem-calc(20);
+		text-align: right;
+	}
 
-.clearfix::after {
-	clear: both;
-	content: "";
-	display: block;
+	.clearfix::after {
+		clear: both;
+		content: "";
+		display: block;
+	}
 }
