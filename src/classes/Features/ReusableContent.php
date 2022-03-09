@@ -6,7 +6,7 @@ namespace DoWStarterTheme\Features;
 
 use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
-use Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * Reusable Content feature class

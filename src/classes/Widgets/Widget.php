@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Widgets;
 
+use DoWStarterTheme\Deps\Illuminate\Support\Str;
 use DoWStarterTheme\View\View;
-use Illuminate\Support\Str;
 
 /**
  * Widget class

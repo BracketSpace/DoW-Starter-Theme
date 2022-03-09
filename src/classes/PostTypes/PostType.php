@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\PostTypes;
 
-use Illuminate\Support\Str;
-use Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Illuminate\Support\Str;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * Post type abstract class
