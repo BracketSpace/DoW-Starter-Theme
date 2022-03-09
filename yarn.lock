@@ -1069,10 +1069,10 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@micropackage/responsive-embeds@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@micropackage/responsive-embeds/-/responsive-embeds-1.0.0.tgz#83c24d7b76cd9ee4751f7612ed29e02ec6cbbafc"
-  integrity sha512-5evppltmiGjvHji6PEy635Yclc9BOXtuyjrrul3dtQD3LHOrFfUugzOCCbMC9uksAtuju9NjWIz6aydgmWAb+w==
+"@micropackage/responsive-embeds@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@micropackage/responsive-embeds/-/responsive-embeds-1.0.1.tgz#24a6b17358806bf8f4691bbbafe3bd3611cc339e"
+  integrity sha512-qfPqkOXuD6EsdTHXyCnX8F9445BWFWUqGAuawoYfzGb5OHCB21wjc8zQDcAq4TozdGyICBe69zBCh6tZSCwZng==
 
 "@micropackage/scripts@^1.2.3":
   version "1.2.3"
@@ -1309,6 +1309,11 @@
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz#d3357479a0fdfdd5907fe67e17e0a85c906e1301"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
+
+"@types/object-fit-images@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@types/object-fit-images/-/object-fit-images-3.2.2.tgz#b2874e5408a4f31b2834b5425456ccd04d280988"
+  integrity sha512-49ZQlRQqU8sojbAUW7mlh9zSOnCectxxeq8VXmDpuUy3oVhe49OIkuxm0XLXdoc04uiqguYJ11/nf7nXmkOY/A==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
