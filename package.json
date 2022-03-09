@@ -19,9 +19,9 @@
     "theme-json": "tools generate theme-json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.16.7",
+    "@babel/runtime": "^7.17.2",
     "@micropackage/responsive-embeds": "^1.0.0",
-    "@micropackage/scripts": "^1.2.1",
+    "@micropackage/scripts": "^1.2.3",
     "@micropackage/vw": "^1.1.0",
     "@wordpress/icons": "^6.1.1",
     "autoprefixer": "^10.4.2",
