@@ -342,6 +342,6 @@ class ACF
 	 */
 	public function styleFile(): string
 	{
-		return Config::get('blocks.styleFilename', 'style.scss');
+		return Config::get('blocks.styleFilename', 'index.scss');
 	}
 }
