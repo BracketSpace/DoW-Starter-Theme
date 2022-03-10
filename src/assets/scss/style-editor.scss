@@ -1,12 +1,12 @@
 /**
- * Internal dependencies
- */
-@use "utils/variables" as *;
-
-/**
  * Base
  */
 @use "base/editor" as base;
+
+/**
+ * Blocks
+ */
+@use "blocks";
 
 /**
  * Components
@@ -17,8 +17,3 @@
  * Editor-specific styles
  */
 @use "editor";
-
-/**
- * Blocks
- */
-@use "blocks/**/*" as *;

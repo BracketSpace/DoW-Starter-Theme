@@ -1,0 +1,13 @@
+/**
+ * External blocks styles
+ */
+@use "responsive-spacer";
+@use "wp-block-button";
+@use "wp-block-file";
+@use "wp-block-group";
+@use "wp-block-image";
+
+/**
+ * ACF blocks
+ */
+@use "acf-blocks/test-block";

@@ -1,12 +1,12 @@
 /**
- * Vendor
- */
-@use "vendor";
-
-/**
  * Base
  */
 @use "base";
+
+/**
+ * Blocks
+ */
+@use "blocks";
 
 /**
  * Components
@@ -16,19 +16,19 @@
 /**
  * Sections
  */
-@use "sections/**/*" as *;
-
-/**
- * Blocks
- */
-@use "blocks/**/*" as *;
+@use "sections";
 
 /**
  * Templates
  */
-@use "templates/**/*" as *;
+@use "templates";
+
+/**
+ * Vendor
+ */
+@use "vendor";
 
 /**
  * Widgets
  */
-@use "widgets/**/*" as *;
+@use "widgets";
