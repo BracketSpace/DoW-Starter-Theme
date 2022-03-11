@@ -11,36 +11,38 @@ import exec from 'node-async-exec';
 import { loadConfig, saveConfig } from './config.js';
 
 export default async () => {
-    let defaultConfig;
-    const errors = [];
+	let defaultConfig;
+	const errors = [];
 
-    const [colors, general, layout, typography] = await Promise.allSettled([
-        loadConfig('colors'),
-        loadConfig('general'),
-        loadConfig('layout'),
-        loadConfig('typography'),
-    ]);
+	const [colors, general, layout, typography] = await Promise.allSettled([
+		loadConfig('colors'),
+		loadConfig('general'),
+		loadConfig('layout'),
+		loadConfig('typography'),
+	]);
 
-    const data = mapValues({
-        colors,
-        general,
-        layout,
-        typography,
-    }, item => {
-        if (item.status === 'fulfilled') {
-            return item.value;
-        } else {
-            errors.push(item.reason.message);
-        }
-    });
+	const data = mapValues(
+		{
+			colors,
+			general,
+			layout,
+			typography,
+		},
+		(item) => {
+			if (item.status === 'fulfilled') {
+				return item.value;
+			}
+			errors.push(item.reason.message);
+		}
+	);
 
-    if (errors.length) {
-        throw new Error(errors.join('|'));
-    }
+	if (errors.length) {
+		throw new Error(errors.join('|'));
+	}
 
-    await saveConfig('.tmp/json/sass-vars', data);
+	await saveConfig('.tmp/json/sass-vars', data);
 
-    await exec({
-        cmd: 'npx json-to-scss .tmp/json/sass-vars.json .tmp/scss/vars.scss',
-    });
-}
+	await exec({
+		cmd: 'npx json-to-scss .tmp/json/sass-vars.json .tmp/scss/vars.scss',
+	});
+};
