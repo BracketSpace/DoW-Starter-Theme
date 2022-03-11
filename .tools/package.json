@@ -10,12 +10,16 @@
     "tools": "./index.js"
   },
   "dependencies": {
+    "abbreviate": "0.0.3",
     "chalk": "^5.0.0",
     "chokidar": "^3.5.3",
-    "inquirer": "^8.2.0",
+    "cli-progress": "^3.10.0",
+    "ignore": "^5.2.0",
+    "inquirer": "^8.2.1",
     "lodash-es": "^4.17.21",
     "node-async-exec": "^1.2.0",
     "ora": "^6.0.1",
+    "replace-in-file": "^6.3.2",
     "signale": "^1.4.0",
     "yargs": "^17.3.1"
   }
