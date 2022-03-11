@@ -21,8 +21,7 @@ export const loadScript = (src) =>
  * @type {Object}
  */
 export const patterns = {
-	youtube:
-		/(?:http(?:s)??:\/\/)?(?:www\.)?(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))([a-z0-9-_]+)/i,
+	youtube: /(?:http(?:s)??:\/\/)?(?:www\.)?(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))([a-z0-9-_]+)/i,
 	wistia: /(?:https?:\/\/(?:.+)?(?:wistia\.com|wi\.st)\/(?:medias|embed)\/)(.*)/i,
 	vimeo: /(?:https?:\/\/(?:[w]+\.)*vimeo\.com(?:[/w:]*(?:\/videos)?)?\/([0-9]+)[^s]*)/i,
 };
