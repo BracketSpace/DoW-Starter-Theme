@@ -2,14 +2,16 @@
  * External dependencies
  */
 import { chain, filter, kebabCase, startCase } from 'lodash-es';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync, rmSync } from 'fs';
 import abbreviate from 'abbreviate';
 import chalk from 'chalk';
+import exec from 'node-async-exec';
 import inquirer from 'inquirer';
 import ora from 'ora';
 import path from 'path';
 import replaceInFile from 'replace-in-file';
 import signale from 'signale';
+import validUrl from 'valid-url';
 import yargs from 'yargs';
 
 /**
@@ -215,6 +217,7 @@ const replace = async (data) => {
 
 	try {
 		const results = await replaceInFile({
+			dry: true,
 			files,
 			from: searchReplaceData.map((item) => new RegExp(item.search, 'g')),
 			to: searchReplaceData.map((item) => item.replace),
@@ -255,8 +258,88 @@ const handleReplace = async () => {
  *
  * @return {Promise}
  */
-const handleGitInit = async () => {
-	console.log('init git.');
+const handleGitInit = async (force) => {
+	const { initGit, repoUrl, createBranch, initGitFlow } = await inquirer.prompt([
+		...(!force ? [
+			{
+				type: 'confirm',
+				name: 'initGit',
+				message: 'Initialize Git repository?',
+				default: true,
+			}
+		] : []),
+		{
+			type: 'input',
+			name: 'repoUrl',
+			message: 'Enter git reposoitory URL:',
+			validate: (value) => !!value || 'Please enter a valid http(s) URL.',
+			when: ({ initGit }) => force || initGit,
+		},
+		{
+			type: 'confirm',
+			name: 'createBranch',
+			message: 'Create develop branch?',
+			default: true,
+			when: ({ initGit }) => force || initGit,
+		},
+		{
+			type: 'confirm',
+			name: 'initGitFlow',
+			message: 'Initialize git flow with default settings?',
+			default: true,
+			when: ({ createBranch }) => !!createBranch,
+		},
+	]);
+
+	if (!force && !initGit) {
+		signale.note('You can initialize Git repositiory later using --git flag.');
+		process.exit(0);
+	}
+
+	const gitPath = path.resolve('.git');
+
+	if (existsSync(gitPath)) {
+		rmSync(path.resolve('.git'), { recursive: true, force: true });
+		signale.success('Git directory removed.');
+	}
+
+	const spinner = ora(`Initializing Git repository...`).start();
+
+	const commands = filter(
+		[
+			'git init',
+			`git remote add origin ${repoUrl}`,
+			...(createBranch ? [
+				'git checkout -b develop',
+				'git add .',
+				initGitFlow ? 'git flow init -fd' : 'git commit -m "Initial commit"',
+			] : []),
+		]
+	);
+
+	try {
+		await exec({
+			cmd: commands,
+		});
+
+		spinner.succeed('Git repository initialized.');
+	} catch (e) {
+		spinner.fail('Could not initialize Git repository.');
+		throw e;
+	}
+
+	const pushSpinner = ora('Pushing to remote...').start();
+
+	try {
+		await exec({
+			cmd: 'git push -u origin develop',
+		});
+
+		pushSpinner.succeed('Initial commit pushed to remote.');
+	} catch (e) {
+		pushSpinner.fail('Could not push to remote.');
+		throw e;
+	}
 };
 
 /**
@@ -272,7 +355,7 @@ export const handler = async ({ git }) => {
 			await handleReplace();
 		}
 
-		await handleGitInit();
+		await handleGitInit(git);
 	} catch (e) {
 		if (e.isTtyError) {
 			signale.error(
