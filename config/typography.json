@@ -1,36 +1,36 @@
 {
-	"defaultStyle": "p1",
-	"headings": {
-		"fontWeight": 500,
-		"fontFamily": "secondary"
-	},
-	"textStyles": {
-		"h1": {
-			"fontSize": 40,
-			"lineHeight": 50,
-			"fontWeight": 700
-		},
-		"h2": {
-			"fontSize": 36,
-			"lineHeight": 42,
-			"sm": {
-				"fontSize": 32,
-				"lineHeight": 36
-			}
-		},
-		"p1": {
-			"fontSize": 22,
-			"lineHeight": 28
-		},
-		"p2": {
-			"fontSize": 18,
-			"lineHeight": 24,
-			"fontWeight": 600
-		},
-		"tag": {
-			"fontSize": 16,
-			"lineHeight": 24,
-			"textTransform": "uppercase"
-		}
-	}
+  "defaultStyle": "p1",
+  "headings": {
+    "fontWeight": 500,
+    "fontFamily": "secondary"
+  },
+  "textStyles": {
+    "h1": {
+      "fontSize": 40,
+      "lineHeight": 50,
+      "fontWeight": 700
+    },
+    "h2": {
+      "fontSize": 36,
+      "lineHeight": 42,
+      "sm": {
+        "fontSize": 32,
+        "lineHeight": 36
+      }
+    },
+    "p1": {
+      "fontSize": 22,
+      "lineHeight": 28
+    },
+    "p2": {
+      "fontSize": 18,
+      "lineHeight": 24,
+      "fontWeight": 600
+    },
+    "tag": {
+      "fontSize": 16,
+      "lineHeight": 24,
+      "textTransform": "uppercase"
+    }
+  }
 }

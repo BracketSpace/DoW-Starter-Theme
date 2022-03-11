@@ -1,18 +1,18 @@
 {
-    "front-style": {
-        "file": "css/style.css",
-        "hook": "wp_enqueue_scripts"
-    },
-    "front-script": {
-        "file": "js/main.js",
-        "hook": "wp_enqueue_scripts"
-    },
-    "editor-style": {
-        "file": "css/style-editor.css",
-        "hook": "enqueue_block_editor_assets"
-    },
-    "editor-script": {
-        "file": "js/editor.js",
-        "hook": "enqueue_block_editor_assets"
-    }
+  "front-style": {
+    "file": "css/style.css",
+    "hook": "wp_enqueue_scripts"
+  },
+  "front-script": {
+    "file": "js/main.js",
+    "hook": "wp_enqueue_scripts"
+  },
+  "editor-style": {
+    "file": "css/style-editor.css",
+    "hook": "enqueue_block_editor_assets"
+  },
+  "editor-script": {
+    "file": "js/editor.js",
+    "hook": "enqueue_block_editor_assets"
+  }
 }
