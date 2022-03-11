@@ -73,6 +73,13 @@ class Theme extends Singleton
 	protected $widgets = [];
 
 	/**
+	 * Widget areas
+	 *
+	 * @var array<array<string, mixed>>
+	 */
+	protected $widgetAreas = [];
+
+	/**
 	 * Theme support features to be removed
 	 *
 	 * @var array<string>
@@ -224,6 +231,43 @@ class Theme extends Singleton
 			}
 
 			register_widget($widget);
+		}
+	}
+
+	/**
+	* Adds widget areas for future registration in `widgets_init` action.
+	 *
+	 * @param array<array<string, mixed>> $widgetAreas Widget areas to be registered.
+	 * @return void
+	 */
+	public function addWidgetAreas(array $widgetAreas): void
+	{
+		$this->widgetAreas = $widgetAreas;
+	}
+
+	/**
+	 * Regsiters widget areas.
+	 *
+	 * @action widgets_init
+	 *
+	 * @return void
+	 */
+	public function registerWidgetAreas(): void
+	{
+		foreach ($this->widgetAreas as $widgetArea) {
+			$id = $widgetArea['id'] ?? sanitize_title($widgetArea['name']);
+
+			register_sidebar(
+				[
+					'id' => $id,
+					'name' => $widgetArea['name'],
+					'description' => $widgetArea['description'] ?? '',
+					'before_widget' => sprintf('<div class="widget-area-%s">', $id),
+					'after_widget' => '</div>',
+					'before_title' => sprintf('<h2 class="widget-area-%s-title">', $id),
+					'after_title' => '</h2>',
+				]
+			);
 		}
 	}
 

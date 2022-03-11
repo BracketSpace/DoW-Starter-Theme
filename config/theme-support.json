@@ -13,5 +13,6 @@
     "gallery",
     "caption"
   ],
-  "post-thumbnails": true
+  "post-thumbnails": true,
+  "widgets": true
 }

@@ -83,6 +83,9 @@ $dowstTheme->bootstrap(Config::get('classes.general'));
 // Add widgets to be registered.
 $dowstTheme->addWidgets(Config::get('classes.widgets'));
 
+// Add widget areas to be registered.
+$dowstTheme->addWidgetAreas(Config::get('widget-areas'));
+
 // Add theme support.
 $dowstTheme->addThemeSupport(Config::get('theme-support'));
 
