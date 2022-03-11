@@ -1,0 +1,39 @@
+[
+  {
+		"name": "name",
+		"message": "Enter the theme name",
+		"label": "Theme name",
+    "searchValue": "DoW Starter Theme"
+	},
+  {
+		"name": "vendor",
+		"message": "Enter the theme vendor",
+		"label": "Theme vendor",
+    "searchValue": "bracketspace",
+    "default": "bracketspace"
+	},
+  {
+		"name": "slug",
+		"message": "Enter the slug",
+		"label": "Theme slug",
+    "searchValue": "dow-starter-theme"
+	},
+  {
+    "name": "composerName",
+    "message": "Enter the Composer name",
+    "label": "Composer name",
+    "searchValue": "dow/starter-theme"
+  },
+  {
+    "name": "namespace",
+    "message": "Enter the PHP namespace",
+    "label": "PHP namespace",
+    "searchValue": "DoWStarterTheme"
+  },
+  {
+    "name": "prefix",
+    "message": "Enter the short prefix used in hooks, shortcodes",
+    "label": "Short prefix",
+    "searchValue": "dowst"
+  }
+]
