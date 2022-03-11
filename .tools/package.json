@@ -21,6 +21,7 @@
     "ora": "^6.0.1",
     "replace-in-file": "^6.3.2",
     "signale": "^1.4.0",
+    "valid-url": "^1.0.9",
     "yargs": "^17.3.1"
   }
 }
