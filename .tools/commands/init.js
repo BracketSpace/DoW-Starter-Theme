@@ -125,8 +125,9 @@ const inquireBaseInfo = async (data = {}) => {
 	const name = startCase(answers.name);
 	const isSingleWord = name.split(' ').length === 1;
 	const isLong = name.length > 17;
-	const prefix = (
-		isSingleWord ? name : abbreviate(name, { length: 5, strict: false })
+	const prefix = (isSingleWord
+		? name
+		: abbreviate(name, { length: 5, strict: false })
 	).toLowerCase();
 	const slug = isLong ? prefix : kebabCase(name);
 	const composerName = `${vendor}/${slug}`;
@@ -256,18 +257,26 @@ const handleReplace = async () => {
 /**
  * Handles Git repository initialization process.
  *
+ * @param  force
  * @return {Promise}
  */
 const handleGitInit = async (force) => {
-	const { initGit, repoUrl, createBranch, initGitFlow } = await inquirer.prompt([
-		...(!force ? [
-			{
-				type: 'confirm',
-				name: 'initGit',
-				message: 'Initialize Git repository?',
-				default: true,
-			}
-		] : []),
+	const {
+		initGit,
+		repoUrl,
+		createBranch,
+		initGitFlow,
+	} = await inquirer.prompt([
+		...(!force
+			? [
+					{
+						type: 'confirm',
+						name: 'initGit',
+						message: 'Initialize Git repository?',
+						default: true,
+					},
+			  ]
+			: []),
 		{
 			type: 'input',
 			name: 'repoUrl',
@@ -292,7 +301,9 @@ const handleGitInit = async (force) => {
 	]);
 
 	if (!force && !initGit) {
-		signale.note('You can initialize Git repositiory later using --git flag.');
+		signale.note(
+			'You can initialize Git repositiory later using --git flag.'
+		);
 		process.exit(0);
 	}
 
@@ -305,17 +316,19 @@ const handleGitInit = async (force) => {
 
 	const spinner = ora(`Initializing Git repository...`).start();
 
-	const commands = filter(
-		[
-			'git init',
-			`git remote add origin ${repoUrl}`,
-			...(createBranch ? [
-				'git checkout -b develop',
-				'git add .',
-				initGitFlow ? 'git flow init -fd' : 'git commit -m "Initial commit"',
-			] : []),
-		]
-	);
+	const commands = filter([
+		'git init',
+		`git remote add origin ${repoUrl}`,
+		...(createBranch
+			? [
+					'git checkout -b develop',
+					'git add .',
+					initGitFlow
+						? 'git flow init -fd'
+						: 'git commit -m "Initial commit"',
+			  ]
+			: []),
+	]);
 
 	try {
 		await exec({
@@ -345,8 +358,8 @@ const handleGitInit = async (force) => {
 /**
  * Handles the commant. This is the entry point run by `yargs`.
  *
- * @param  {Object}  params     CLI params.
- * @param  {boolean} params.git Whether to only initialize the git repo.
+ * @param {Object}  params     CLI params.
+ * @param {boolean} params.git Whether to only initialize the git repo.
  * @return {Promise}
  */
 export const handler = async ({ git }) => {
