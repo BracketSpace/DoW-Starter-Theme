@@ -14,7 +14,7 @@ return [
 		Sections\ExampleSection::class => [
 			'example-field' => [
 				'type' => 'checkbox',
-				'name' => 'Example Field',
+				'label' => 'Example Field',
 			],
 		],
 	],
