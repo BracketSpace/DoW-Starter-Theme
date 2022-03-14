@@ -25,6 +25,7 @@ return [
 		DoWStarterTheme\Features\Menu::class,
 		DoWStarterTheme\Features\ReusableContent::class,
 		DoWStarterTheme\Features\SVGSupport::class,
+		DoWStarterTheme\Features\Widgets::class,
 
 		/**
 		 * Integration
