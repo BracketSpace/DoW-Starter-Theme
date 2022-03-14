@@ -1,7 +1,7 @@
 {
   "name": "dow-starter-theme",
   "version": "1.0.0",
-  "repository": "https://github.com/BracketSpace/DoW-Starter-Theme",
+  "repository": "https://github.com/BracketSpace/DoW-Starter-Theme.git",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "mp-scripts start --mode=development",

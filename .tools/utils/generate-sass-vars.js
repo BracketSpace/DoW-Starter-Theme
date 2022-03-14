@@ -1,8 +1,7 @@
 /**
  * External dependencies
  */
-import chalk from 'chalk';
-import { mapValues, pick, startCase } from 'lodash-es';
+import { mapValues } from 'lodash-es';
 import exec from 'node-async-exec';
 
 /**
@@ -11,7 +10,6 @@ import exec from 'node-async-exec';
 import { loadConfig, saveConfig } from './config.js';
 
 export default async () => {
-	let defaultConfig;
 	const errors = [];
 
 	const [colors, general, layout, typography] = await Promise.allSettled([

@@ -11,14 +11,17 @@ import ora from 'ora';
 import path from 'path';
 import replaceInFile from 'replace-in-file';
 import signale from 'signale';
-import validUrl from 'valid-url';
-import yargs from 'yargs';
 
 /**
  * Internal dependencies
  */
+import {
+	getRepoUrls,
+	isSshUrl,
+	isValidRepoUrl,
+	testRepoUrls,
+} from '../utils/git.js';
 import { listFiles } from '../utils/files.js';
-import { progressBar } from '../utils/progress-bar.js';
 
 export const command = ['init'];
 
@@ -40,14 +43,14 @@ const replaceData = JSON.parse(
 /**
  * Maps data to question params.
  *
- * @param {Object}           data             - Field data from json config.
- * @param {string|undefined} data.default     - Default value.
- * @param {string}           data.message     - Question message.
- * @param {string}           data.name        - Field name.
- * @param {[type]}           data.searchValue - Value to search/replace, used as example.
- * @param                    data.label
- * @param {string}           newDefault       - Field type.
- * @param {boolean}          addExample       - Whether to add example to question message.
+ * @param {Object}           data             Field data from json config.
+ * @param {string|undefined} data.default     Default value.
+ * @param {string}           data.message     Question message.
+ * @param {string}           data.name        Field name.
+ * @param {string}           data.searchValue Value to search/replace, used as example.
+ * @param {string}           data.label       Label.
+ * @param {string}           newDefault       Field type.
+ * @param {boolean}          addExample       Whether to add example to question message.
  * @return {Object} Question params.
  */
 const dataToQuestion = (
@@ -189,7 +192,7 @@ const confirmThemInfo = async (data) => {
  * Replaces the given strings in each file of the project.
  *
  * @param {Object} data Values to be used as replacements.
- * @return {Promise}
+ * @return {Promise} Resolves when the theme info gets replaced, rejects on failure.
  */
 const replace = async (data) => {
 	let files;
@@ -218,7 +221,6 @@ const replace = async (data) => {
 
 	try {
 		const results = await replaceInFile({
-			dry: true,
 			files,
 			from: searchReplaceData.map((item) => new RegExp(item.search, 'g')),
 			to: searchReplaceData.map((item) => item.replace),
@@ -236,11 +238,12 @@ const replace = async (data) => {
 /**
  * Handles the process of gathering the theme info and replacing strings in project files.
  *
- * @return {Promise}
+ * @return {Promise} Resolves when the theme info is replaced.
  */
 const handleReplace = async () => {
 	const data = await inquireBaseInfo();
 
+	// eslint-disable-next-line no-console
 	console.log(
 		[
 			chalk.bold('\nTheme informations:\n'),
@@ -251,74 +254,111 @@ const handleReplace = async () => {
 
 	const confirmedData = await confirmThemInfo(data);
 
-	await replace(data);
+	await replace(confirmedData);
 };
 
 /**
- * Handles Git repository initialization process.
+ * Validates repository url.
  *
- * @param  force
- * @return {Promise}
+ * @param {string} url Repository url.
+ * @return {Promise} Resolves with object containing urls prepared to use in git and to replace in package.json.
  */
-const handleGitInit = async (force) => {
-	const {
-		initGit,
-		repoUrl,
-		createBranch,
-		initGitFlow,
-	} = await inquirer.prompt([
-		...(!force
-			? [
-					{
-						type: 'confirm',
-						name: 'initGit',
-						message: 'Initialize Git repository?',
-						default: true,
-					},
-			  ]
-			: []),
+const validateRepoUrl = async (url) => {
+	const checkSpinner = ora(`Checking the repository...`).start();
+	const urls = getRepoUrls(url);
+	const valid = await testRepoUrls(urls);
+	const isSsh = isSshUrl(url);
+
+	if ((isSsh && valid.ssh) || (!isSsh && valid.http)) {
+		checkSpinner.succeed('Repository found.');
+
+		if (!isSsh && valid.ssh) {
+			signale.note(
+				'You entered a http(s) URL, but SSH URL could be used.'
+			);
+
+			const { useSsh } = await inquirer.prompt([
+				{
+					type: 'confirm',
+					name: 'useSsh',
+					message: 'Do you wish to use SSH URL instead?',
+				},
+			]);
+
+			return {
+				repoUrl: useSsh ? urls.ssh : urls.http,
+				packageJsonUrl: urls.http,
+			};
+		}
+
+		return {
+			repoUrl: isSsh ? urls.ssh : urls.http,
+			packageJsonUrl: valid.http ? urls.http : urls.ssh,
+		};
+	}
+
+	checkSpinner.fail('Could not connect to the remote repository.');
+
+	const { what, newUrl } = await inquirer.prompt([
 		{
+			type: 'list',
+			name: 'what',
+			message: 'What to do?',
+			choices: [
+				'proceed',
+				{
+					name: 'edit the url',
+					value: 'edit',
+				},
+			],
+		},
+		{
+			default: url,
+			message: 'Enter git reposoitory URL:',
+			name: 'newUrl',
 			type: 'input',
-			name: 'repoUrl',
-			message: 'Enter git repository URL:',
-			validate: (value) => !!value || 'Please enter a valid http(s) URL.',
-			when: ({ initGit }) => force || initGit,
-		},
-		{
-			type: 'confirm',
-			name: 'createBranch',
-			message: 'Create develop branch?',
-			default: true,
-			when: ({ initGit }) => force || initGit,
-		},
-		{
-			type: 'confirm',
-			name: 'initGitFlow',
-			message: 'Initialize git flow with default settings?',
-			default: true,
-			when: ({ createBranch }) => !!createBranch,
+			validate: (value) =>
+				isValidRepoUrl(value) || 'Please enter a valid git URL.',
+			when: (answers) => answers.what === 'edit',
 		},
 	]);
 
-	if (!force && !initGit) {
-		signale.note(
-			'You can initialize Git repositiory later using --git flag.'
-		);
-		process.exit(0);
+	if (what === 'proceed') {
+		return url;
 	}
 
-	const gitPath = path.resolve('.git');
+	return await validateRepoUrl(newUrl);
+};
 
-	if (existsSync(gitPath)) {
-		rmSync(path.resolve('.git'), { recursive: true, force: true });
-		signale.success('Git directory removed.');
+/**
+ * Replaces repository url in package.json.
+ *
+ * @param {string} url Repository url.
+ * @return {Promise} Resolves when the repo url gets replaced in package.json, rejects on failure.
+ */
+const replaceRepoUrlPackageJson = async (url) => {
+	const spinner = ora(`Replacing repository url in package.json...`).start();
+
+	try {
+		await replaceInFile({
+			files: path.resolve('package.json'),
+			from: 'https://github.com/BracketSpace/DoW-Starter-Theme.git',
+			to: url,
+		});
+
+		spinner.succeed('Repository url replaced in package.json');
+	} catch (e) {
+		spinner.fail('Could not replace repostory url in package.json');
+		throw e;
 	}
+};
 
+const initGitRepo = async (url, createBranch, initGitFlow) => {
 	const spinner = ora(`Initializing Git repository...`).start();
 
 	const commands = filter([
 		'git init',
-		`git remote add origin ${repoUrl}`,
+		`git remote add origin ${url}`,
 		...(createBranch
 			? [
 					'git checkout -b develop',
@@ -340,19 +380,106 @@ const handleGitInit = async (force) => {
 		spinner.fail('Could not initialize Git repository.');
 		throw e;
 	}
+};
 
-	const pushSpinner = ora('Pushing to remote...').start();
+/**
+ * Pushes to the remote.
+ *
+ * @return {Promise} Resolves when pushing completes, rejects on failure.
+ */
+const pushToRemote = async () => {
+	const spinner = ora('Pushing to remote...').start();
 
 	try {
 		await exec({
 			cmd: 'git push -u origin develop',
 		});
 
-		pushSpinner.succeed('Initial commit pushed to remote.');
+		spinner.succeed('Initial commit pushed to remote.');
 	} catch (e) {
-		pushSpinner.fail('Could not push to remote.');
+		spinner.fail('Could not push to remote.');
 		throw e;
 	}
+};
+
+/**
+ * Removes existing .git directory.
+ *
+ * @return {Promise} Resolves when git dir is removed, rejects on failure.
+ */
+const removeGitDir = async () => {
+	const spinner = ora('Removing .git directory...').start();
+	const gitPath = path.resolve('.git');
+
+	if (!existsSync(gitPath)) {
+		spinner.succeed('Git directory does not exist, nothing to be removed.');
+		return;
+	}
+
+	try {
+		rmSync(gitPath, { recursive: true, force: true });
+		spinner.succeed('Git directory removed.');
+	} catch (e) {
+		spinner.fail('Could not remove .git directory.');
+		throw e;
+	}
+};
+
+/**
+ * Handles Git repository initialization process.
+ *
+ * @param {boolean} force Whether this task is forced by the `--git` param.
+ * @return {Promise} Resolves when git initializationis complete.
+ */
+const handleGitInit = async (force) => {
+	const { initGit, url, createBranch, initGitFlow } = await inquirer.prompt([
+		...(!force
+			? [
+					{
+						type: 'confirm',
+						name: 'initGit',
+						message: 'Initialize Git repository?',
+						default: true,
+					},
+			  ]
+			: []),
+		{
+			type: 'input',
+			name: 'url',
+			message: 'Enter git reposoitory URL:',
+			validate: (value) =>
+				isValidRepoUrl(value) || 'Please enter a valid git URL.',
+			when: (answers) => force || answers.initGit,
+		},
+		{
+			type: 'confirm',
+			name: 'createBranch',
+			message: 'Create develop branch?',
+			default: true,
+			when: (answers) => force || answers.initGit,
+		},
+		{
+			type: 'confirm',
+			name: 'initGitFlow',
+			message: 'Initialize git flow with default settings?',
+			default: true,
+			when: (answers) => !!answers.createBranch,
+		},
+	]);
+
+	if (!force && !initGit) {
+		signale.note(
+			'You can initialize Git repositiory later using --git flag.'
+		);
+		process.exit(0);
+	}
+
+	const { repoUrl, packageJsonUrl } = await validateRepoUrl(url);
+
+	await replaceRepoUrlPackageJson(packageJsonUrl);
+	await removeGitDir();
+	await initGitRepo(repoUrl, createBranch, initGitFlow);
+	await pushToRemote();
 };
 
 /**
@@ -360,7 +487,7 @@ const handleGitInit = async (force) => {
  *
  * @param {Object}  params     CLI params.
  * @param {boolean} params.git Whether to only initialize the git repo.
- * @return {Promise}
+ * @return {Promise} Resolves when the command process ends.
  */
 export const handler = async ({ git }) => {
 	try {
