@@ -20,6 +20,6 @@ class Title
 	 */
 	public static function fromClass(string $class): string
 	{
-		return str_replace('_', ' ', Str::title(Str::snake(class_basename($class))));
+		return Str::headline(class_basename($class));
 	}
 }
