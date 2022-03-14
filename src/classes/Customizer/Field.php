@@ -64,7 +64,7 @@ final class Field
 	 * Converts field type to Kirki class name.
 	 *
 	 * @example checkbox -> Kirki\Field\Checkbox::class
-	 * @example radio_image ->: Kirki\Field\Radio_Image::class
+	 * @example radio_image -> Kirki\Field\Radio_Image::class
 	 *
 	 * @param   string $type Type to convert.
 	 *
