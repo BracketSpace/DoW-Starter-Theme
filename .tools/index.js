@@ -11,6 +11,7 @@ import { hideBin } from 'yargs/helpers';
  */
 import commands from './commands/index.js';
 
+// eslint-disable-next-line no-unused-expressions
 yargs(hideBin(process.argv))
 	.scriptName('tools')
 	.usage('$0 <cmd> [args]')

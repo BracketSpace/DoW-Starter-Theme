@@ -79,12 +79,13 @@ const internalHandler = async (what) => {
 
 export const handler = async ({ what, watch }) => {
 	if (watch) {
+		// eslint-disable-next-line no-console
 		console.log('Watching config files...');
 
 		// Initial build.
 		internalHandler(what);
 
-		const callback = (path, event) => internalHandler(what);
+		const callback = () => internalHandler(what);
 
 		chokidar
 			.watch('./config/*.json', {

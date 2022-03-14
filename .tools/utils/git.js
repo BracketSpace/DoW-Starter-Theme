@@ -3,10 +3,8 @@
  */
 import spawn from 'cross-spawn';
 
-const gitUrlPattern =
-	/^(([A-Za-z0-9]+@|http(|s)\:\/\/)|(http(|s)\:\/\/[A-Za-z0-9]+@))([A-Za-z0-9.]+(:\d+)?)(?::|\/)([\d\/\w.-]+?)(\.git){1}$/;
-const httpUrlPattern =
-	/^(http(|s)\:\/\/)(([A-Za-z0-9]+)@)?([A-Za-z0-9.]+(:\d+)?)\//;
+const gitUrlPattern = /^(([A-Za-z0-9]+@|http(|s)\:\/\/)|(http(|s)\:\/\/[A-Za-z0-9]+@))([A-Za-z0-9.]+(:\d+)?)(?::|\/)([\d\/\w.-]+?)(\.git){1}$/;
+const httpUrlPattern = /^(http(|s)\:\/\/)(([A-Za-z0-9]+)@)?([A-Za-z0-9.]+(:\d+)?)\//;
 const sshUrlPattern = /^([A-Za-z0-9]+)@([A-Za-z0-9.]+(:\d+)?)(:|\/)?/;
 
 export const isValidRepoUrl = (url) => !!url.match(gitUrlPattern);
