@@ -11,12 +11,19 @@ import ora from 'ora';
 import path from 'path';
 import replaceInFile from 'replace-in-file';
 import signale from 'signale';
+import spawn from 'cross-spawn';
 import validUrl from 'valid-url';
 import yargs from 'yargs';
 
 /**
  * Internal dependencies
  */
+import {
+	getRepoUrls,
+	isSshUrl,
+	isValidRepoUrl,
+	testRepoUrls,
+} from '../utils/git.js';
 import { listFiles } from '../utils/files.js';
 import { progressBar } from '../utils/progress-bar.js';
 
@@ -125,9 +132,8 @@ const inquireBaseInfo = async (data = {}) => {
 	const name = startCase(answers.name);
 	const isSingleWord = name.split(' ').length === 1;
 	const isLong = name.length > 17;
-	const prefix = (isSingleWord
-		? name
-		: abbreviate(name, { length: 5, strict: false })
+	const prefix = (
+		isSingleWord ? name : abbreviate(name, { length: 5, strict: false })
 	).toLowerCase();
 	const slug = isLong ? prefix : kebabCase(name);
 	const composerName = `${vendor}/${slug}`;
@@ -218,7 +224,6 @@ const replace = async (data) => {
 
 	try {
 		const results = await replaceInFile({
-			dry: true,
 			files,
 			from: searchReplaceData.map((item) => new RegExp(item.search, 'g')),
 			to: searchReplaceData.map((item) => item.replace),
@@ -255,18 +260,183 @@ const handleReplace = async () => {
 };
 
 /**
+ * Validates repository url.
+ *
+ * @param {string} url Repository url.
+ * @return {Promise}
+ */
+const validateRepoUrl = async (url) => {
+	const checkSpinner = ora(`Checking the repository...`).start();
+	const urls = getRepoUrls(url);
+	const valid = await testRepoUrls(urls);
+	const isSsh = isSshUrl(url);
+
+	if ((isSsh && valid.ssh) || (!isSsh && valid.http)) {
+		checkSpinner.succeed('Repository found.');
+
+		if (!isSsh && valid.ssh) {
+			signale.note(
+				'You entered a http(s) URL, but SSH URL could be used.'
+			);
+
+			const { useSsh } = await inquirer.prompt([
+				{
+					type: 'confirm',
+					name: 'useSsh',
+					message: 'Do you wish to use SSH URL instead?',
+				},
+			]);
+
+			return {
+				repoUrl: useSsh ? urls.ssh : urls.http,
+				packageJsonUrl: urls.http,
+			};
+		}
+
+		return {
+			repoUrl: isSsh ? urls.ssh : urls.http,
+			packageJsonUrl: valid.http ? urls.http : urls.ssh,
+		};
+	}
+
+	checkSpinner.fail('Could not connect to the remote repository.');
+
+	const { what, newUrl } = await inquirer.prompt([
+		{
+			type: 'list',
+			name: 'what',
+			message: 'What to do?',
+			choices: [
+				'proceed',
+				{
+					name: 'edit the url',
+					value: 'edit',
+				},
+			],
+		},
+		{
+			default: url,
+			message: 'Enter git reposoitory URL:',
+			name: 'newUrl',
+			type: 'input',
+			validate: (value) =>
+				isValidRepoUrl(value) || 'Please enter a valid git URL.',
+			when: ({ what }) => what === 'edit',
+		},
+	]);
+
+	if (what === 'proceed') {
+		return url;
+	}
+
+	return await validateRepoUrl(newUrl);
+};
+
+/**
+ * Replaces repository url in package.json.
+ *
+ * @param {string} url Repository url.
+ * @return {Promise}
+ */
+const replaceRepoUrlPackageJson = async (url) => {
+	try {
+		const spinner = ora(
+			`Replacing repository url in package.json...`
+		).start();
+
+		const results = await replaceInFile({
+			files: path.resolve('package.json'),
+			from: 'https://github.com/BracketSpace/DoW-Starter-Theme.git',
+			to: url,
+		});
+
+		spinner.succeed('Repository url replaced in package.json');
+	} catch (e) {
+		spinner.fail('Could not replace repostory url in package.json');
+		throw e;
+	}
+};
+
+const initGitRepo = async (url, createBranch, initGitFlow) => {
+	const spinner = ora(`Initializing Git repository...`).start();
+
+	const commands = filter([
+		'git init',
+		`git remote add origin ${url}`,
+		...(createBranch
+			? [
+					'git checkout -b develop',
+					'git add .',
+					initGitFlow
+						? 'git flow init -fd'
+						: 'git commit -m "Initial commit"',
+			  ]
+			: []),
+	]);
+
+	try {
+		await exec({
+			cmd: commands,
+		});
+
+		spinner.succeed('Git repository initialized.');
+	} catch (e) {
+		spinner.fail('Could not initialize Git repository.');
+		throw e;
+	}
+};
+
+/**
+ * Pushes to the remote.
+ *
+ * @return {Promise}
+ */
+const pushToRemote = async () => {
+	const spinner = ora('Pushing to remote...').start();
+
+	try {
+		await exec({
+			cmd: 'git push -u origin develop',
+		});
+
+		spinner.succeed('Initial commit pushed to remote.');
+	} catch (e) {
+		spinner.fail('Could not push to remote.');
+		throw e;
+	}
+};
+
+/**
+ * Removes existing .git directory.
+ *
+ * @return {Promise}
+ */
+const removeGitDir = async () => {
+	const spinner = ora('Removing .git directory...').start();
+	const gitPath = path.resolve('.git');
+
+	if (!existsSync(gitPath)) {
+		spinner.succeed('Git directory does not exist, nothing to be removed.');
+		return;
+	}
+
+	try {
+		rmSync(gitPath, { recursive: true, force: true });
+		spinner.succeed('Git directory removed.');
+	} catch (e) {
+		spinner.fail('Could not remove .git directory.');
+		throw e;
+	}
+};
+
+/**
  * Handles Git repository initialization process.
  *
  * @param  force
  * @return {Promise}
  */
 const handleGitInit = async (force) => {
-	const {
-		initGit,
-		repoUrl,
-		createBranch,
-		initGitFlow,
-	} = await inquirer.prompt([
+	const { initGit, url, createBranch, initGitFlow } = await inquirer.prompt([
 		...(!force
 			? [
 					{
@@ -279,9 +449,10 @@ const handleGitInit = async (force) => {
 			: []),
 		{
 			type: 'input',
-			name: 'repoUrl',
+			name: 'url',
 			message: 'Enter git reposoitory URL:',
-			validate: (value) => !!value || 'Please enter a valid http(s) URL.',
+			validate: (value) =>
+				isValidRepoUrl(value) || 'Please enter a valid git URL.',
 			when: ({ initGit }) => force || initGit,
 		},
 		{
@@ -307,52 +478,12 @@ const handleGitInit = async (force) => {
 		process.exit(0);
 	}
 
-	const gitPath = path.resolve('.git');
+	const { repoUrl, packageJsonUrl } = await validateRepoUrl(url);
 
-	if (existsSync(gitPath)) {
-		rmSync(path.resolve('.git'), { recursive: true, force: true });
-		signale.success('Git directory removed.');
-	}
-
-	const spinner = ora(`Initializing Git repository...`).start();
-
-	const commands = filter([
-		'git init',
-		`git remote add origin ${repoUrl}`,
-		...(createBranch
-			? [
-					'git checkout -b develop',
-					'git add .',
-					initGitFlow
-						? 'git flow init -fd'
-						: 'git commit -m "Initial commit"',
-			  ]
-			: []),
-	]);
-
-	try {
-		await exec({
-			cmd: commands,
-		});
-
-		spinner.succeed('Git repository initialized.');
-	} catch (e) {
-		spinner.fail('Could not initialize Git repository.');
-		throw e;
-	}
-
-	const pushSpinner = ora('Pushing to remote...').start();
-
-	try {
-		await exec({
-			cmd: 'git push -u origin develop',
-		});
-
-		pushSpinner.succeed('Initial commit pushed to remote.');
-	} catch (e) {
-		pushSpinner.fail('Could not push to remote.');
-		throw e;
-	}
+	await replaceRepoUrlPackageJson(packageJsonUrl);
+	await removeGitDir();
+	await initGitRepo(repoUrl, createBranch, initGitFlow);
+	await pushToRemote();
 };
 
 /**
