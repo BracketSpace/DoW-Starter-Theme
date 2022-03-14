@@ -46,26 +46,6 @@ final class View
 	}
 
 	/**
-	 * Returns view factory.
-	 *
-	 * @return  Factory
-	 */
-	private static function getViewFactory(): Factory
-	{
-		return Theme::getService(Factory::class);
-	}
-
-	/**
-	 * Returns layout service.
-	 *
-	 * @return  Layout
-	 */
-	private static function getLayoutService(): Layout
-	{
-		return Theme::getService(Layout::class);
-	}
-
-	/**
 	 * Gets all view variables from stack.
 	 *
 	 * @return  array<string, mixed>
@@ -76,7 +56,7 @@ final class View
 			throw new \LogicException('There is no data in variables stack.');
 		}
 
-		return self::$variablesStack[count(self::$variablesStack) - 1];
+		return end(self::$variablesStack);
 	}
 
 	/**
@@ -167,7 +147,7 @@ final class View
 	 */
 	public static function layout(string $layout): void
 	{
-		self::getLayoutService()->setLayout($layout);
+		Theme::getService(Layout::class)->setLayout($layout);
 	}
 
 	/**
@@ -191,6 +171,6 @@ final class View
 	 */
 	public static function print(string $name, array $data = []): void
 	{
-		self::getViewFactory()->get($name, $data)->render(true);
+		Theme::getService(Factory::class)->get($name, $data)->render(true);
 	}
 }
