@@ -1,0 +1,17 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Instantiated class Kirki\\\\Panel not found\\.$#"
+			count: 1
+			path: src/classes/Customizer/Abstracts/Panel.php
+
+		-
+			message: "#^Instantiated class Kirki\\\\Section not found\\.$#"
+			count: 1
+			path: src/classes/Customizer/Abstracts/Section.php
+
+		-
+			message: "#^Class Kirki\\\\Field not found\\.$#"
+			count: 2
+			path: src/classes/Customizer/Field.php
+
