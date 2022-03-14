@@ -1,63 +1,65 @@
 /**
  * Layout
  */
-@use "../placeholders/layout";
-@use "../utils/mixins" as m;
+@use "scss/placeholders/layout";
+@use "scss/utils/mixins" as m;
 
 $header-height: false !default;
 $header-height-mobile: $header-height !default;
 
-.container {
-	@extend %container;
-}
-
-.container-full {
-	@extend %container-full;
-}
-
-.site-container {
-	align-items: stretch;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
-
-	@if $header-height {
-		padding-top: $header-height;
-
-		@include m.bp-down(sm) {
-			padding-top: $header-height-mobile;
-		}
+@mixin selectors {
+	.container {
+		@extend %container;
 	}
 
-	.admin-bar & {
+	.container-full {
+		@extend %container-full;
+	}
+
+	.site-container {
+		align-items: stretch;
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
+
 		@if $header-height {
-			padding-top: calc(32px + #{$header-height});
+			padding-top: $header-height;
 
 			@include m.bp-down(sm) {
-				padding-top: calc(46px + #{$header-height-mobile});
+				padding-top: $header-height-mobile;
 			}
-		} @else {
-			padding-top: 32px;
 		}
 
-		@media (max-width: 782px) {
+		.admin-bar & {
 			@if $header-height {
-				padding-top: calc(46px + #{$header-height});
+				padding-top: calc(32px + #{$header-height});
+
+				@include m.bp-down(sm) {
+					padding-top: calc(46px + #{$header-height-mobile});
+				}
 			} @else {
-				padding-top: 46px;
+				padding-top: 32px;
+			}
+
+			@media (max-width: 782px) {
+				@if $header-height {
+					padding-top: calc(46px + #{$header-height});
+				} @else {
+					padding-top: 46px;
+				}
 			}
 		}
 	}
-}
 
-.site-inner {
-	flex: 1 0 auto;
+	.site-inner {
+		flex: 1 0 auto;
 
-	@extend %container-full;
-}
+		@extend %container-full;
+	}
 
-.content-width,
-.entry-content > *,
-.reusable-content > * {
-	@extend %content-width;
+	.content-width,
+	.entry-content > *,
+	.reusable-content > * {
+		@extend %content-width;
+	}
 }

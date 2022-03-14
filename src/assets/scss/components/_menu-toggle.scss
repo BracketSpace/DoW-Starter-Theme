@@ -1,6 +1,6 @@
-@use "../utils/functions/color";
-@use "../utils/functions/unit" as u;
-@use "../utils/mixins" as m;
+@use "scss/utils/functions/color";
+@use "scss/utils/functions/unit" as u;
+@use "scss/utils/mixins" as m;
 
 $menu-toggle-color: color.get(white) !default;
 $menu-toggle-width: u.rem-calc(34) !default;
@@ -10,6 +10,12 @@ $menu-toggle-active-bar-height: $menu-toggle-bar-height !default;
 $menu-toggle-bar-spacing: u.rem-calc(9) !default;
 
 $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
+
+@mixin selectors {
+	.menu-toggle {
+		@extend %menu-toggle;
+	}
+}
 
 %menu-toggle-active {
 	span {
@@ -44,7 +50,7 @@ $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 	}
 }
 
-.menu-toggle {
+%menu-toggle {
 	appearance: none;
 	background-color: transparent;
 	border: 0;

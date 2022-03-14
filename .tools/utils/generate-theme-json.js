@@ -10,52 +10,60 @@ import { mapValues, pick, startCase } from 'lodash-es';
 import { loadConfig, saveConfig } from './config.js';
 
 const getColorPalette = async () =>
-    Object.entries(await loadConfig('colors')).map(([slug, color]) => ({
-        slug,
-        color,
-        name: startCase(slug)
-    }));
+	Object.entries(await loadConfig('colors')).map(([slug, color]) => ({
+		slug,
+		color,
+		name: startCase(slug),
+	}));
 
 const getLayoutSettings = async () =>
-    mapValues(
-        pick(await loadConfig('layout'), ['contentSize', 'wideSize']),
-        (value) => `${value}px`
-    );
+	mapValues(
+		pick(await loadConfig('layout'), ['contentSize', 'wideSize']),
+		(value) => `${value}px`
+	);
 
 export default async () => {
-    let defaultConfig;
-    let notes = [];
+	let defaultConfig;
+	const notes = [];
 
-    try {
-        defaultConfig = await loadConfig('theme');
+	try {
+		defaultConfig = await loadConfig('theme');
 
-        notes.push(`File created based on ${chalk.underline('theme.json')} from config dir.`);
-    } catch (err) {
-        defaultConfig = {
-            version: 1,
-        };
+		notes.push(
+			`File created based on ${chalk.underline(
+				'theme.json'
+			)} from config dir.`
+		);
+	} catch (err) {
+		defaultConfig = {
+			version: 1,
+		};
 
-        notes.push(`${chalk.underline('theme.json')} file not found in config dir. Empty config created instead.`);
-    }
+		notes.push(
+			`${chalk.underline(
+				'theme.json'
+			)} file not found in config dir. Empty config created instead.`
+		);
+	}
 
-    const [palette, layout] = await Promise.all([
-        getColorPalette(),
-        getLayoutSettings(),
-    ]);
+	const [palette, layout] = await Promise.all([
+		getColorPalette(),
+		getLayoutSettings(),
+	]);
 
-    const themeJson = {
-        ...defaultConfig,
-        settings: {
-            ...defaultConfig.settings,
-            color: {
-                ...defaultConfig.settings?.color,
-                palette,
-            },
-            layout
-        }
-    }
+	const themeJson = {
+		...defaultConfig,
+		settings: {
+			...defaultConfig.settings,
+			color: {
+				...defaultConfig.settings?.color,
+				palette,
+			},
+			layout,
+		},
+	};
 
-    await saveConfig('theme', themeJson);
+	await saveConfig('theme', themeJson);
 
-    return notes;
-}
+	return notes;
+};

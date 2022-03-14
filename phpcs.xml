@@ -7,30 +7,22 @@
         <exclude name="NeutronStandard.Functions.TypeHint.NoReturnType"/>
         <!-- https://github.com/sirbrillig/phpcs-import-detection/issues/45 -->
         <exclude name="ImportDetection.Imports.RequireImports"/>
-        <!-- We write Composer packages -->
+
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent" />
+        <exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
         <exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
+        <exclude name="PEAR.Commenting.FileComment.Missing"/>
         <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
         <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
         <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
-        <exclude name="PEAR.Commenting.FileComment.Missing"/>
-
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
-
-        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
-
-        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
-
-        <exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
-
         <exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction" />
-
-        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
-
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
         <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
-
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
         <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
-
-		<exclude name="Generic.WhiteSpace.DisallowTabIndent" />
+        <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma"/>
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
     </rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />

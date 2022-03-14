@@ -1,0 +1,7 @@
+@use "scss/components/buttons";
+
+.wp-block-file {
+	&__link {
+		@extend %button;
+	}
+}

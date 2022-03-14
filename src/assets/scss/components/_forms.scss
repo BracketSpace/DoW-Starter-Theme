@@ -1,6 +1,11 @@
-@use "../placeholders/forms";
-@use "../utils/mixins" as m;
+@use "scss/utils/mixins" as m;
 
-@include m.input {
-	@extend %form-field;
+%form-field {
+	/* add form field styles here */
+}
+
+@mixin selectors {
+	@include m.input {
+		@extend %form-field;
+	}
 }

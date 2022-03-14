@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Core;
 
-use Micropackage\DocHooks\HookTrait;
-use Micropackage\Filesystem\Filesystem;
-use Micropackage\Singleton\Singleton;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem;
+use DoWStarterTheme\Deps\Micropackage\Singleton\Singleton;
 
 /**
  * Core Theme class
@@ -22,7 +22,7 @@ class Theme extends Singleton
 	/**
 	 * Filesystem instance.
 	 *
-	 * @var \Micropackage\Filesystem\Filesystem
+	 * @var \DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem
 	 */
 	protected static $fs;
 
@@ -49,7 +49,7 @@ class Theme extends Singleton
 	/**
 	 * Constructor.
 	 *
-	 * @param \Micropackage\Filesystem\Filesystem $fs Filesystem instance
+	 * @param \DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem $fs Filesystem instance
 	 */
 	protected function __construct(Filesystem $fs)
 	{
@@ -82,7 +82,7 @@ class Theme extends Singleton
 	/**
 	 * Image sizes
 	 *
-     * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
+	 * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
 	 * @var array<string, ImageSize>
 	 */
 	protected $imageSizes = [];
@@ -100,10 +100,10 @@ class Theme extends Singleton
 				continue;
 			}
 
-            // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
+			// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
 			$this->services[$class] = new $class();
 
-            // phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
+			// phpcs:ignore SlevomatCodingStandard.ControlStructures.EarlyExit.EarlyExitNotUsed
 			if ($this->isClassHookable($class)) {
 				$this->services[$class]->add_hooks();
 			}
@@ -118,7 +118,43 @@ class Theme extends Singleton
 	 */
 	private function isClassHookable(string $class): bool
 	{
-		return in_array(HookTrait::class, (array)class_uses($class), true);
+		return in_array(HookTrait::class, $this->getClassTraits($class), true);
+	}
+
+	/**
+	 * Returns all traits used by the given class or any of it's parents.
+	 *
+	 * @param  string $class Class name.
+	 * @return array<string, string> List of used traits.
+	 */
+	public function getClassTraits(string $class): array
+	{
+		$traits = [];
+
+		$addUses = static function (string $classOrTrait) use (&$traits): void {
+			$uses = class_uses($classOrTrait, true);
+
+			if (!is_array($uses)) {
+				return;
+			}
+
+			$traits = array_merge($uses, $traits);
+		};
+
+		do {
+			// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
+			$addUses($class);
+			$class = get_parent_class($class);
+		} while (is_string($class));
+
+		$traits = array_filter($traits);
+
+		foreach ($traits as $trait) {
+			// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
+			$addUses($trait);
+		}
+
+		return array_unique($traits);
 	}
 
 	/**
@@ -135,7 +171,13 @@ class Theme extends Singleton
 				continue;
 			}
 
-			add_theme_support($key, $value);
+			$args = [$key];
+
+			if ($value !== true) {
+				$args[] = $value;
+			}
+
+			add_theme_support(...$args);
 		}
 
 		// Disable admin bar styles.
@@ -188,7 +230,7 @@ class Theme extends Singleton
 	/**
 	 * Adds image sizes from config file.
 	 *
-     * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
+	 * phpcs:ignore SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName
 	 * @param  array<string, ImageSize> $sizes Image sizes.
 	 * @return void
 	 */

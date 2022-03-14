@@ -1,9 +1,16 @@
-@use "../utils/mixins" as m;
+@use "scss/utils/mixins" as m;
 
-.btn,
-.wp-block-button__link,
-.wp-block-file .wp-block-file__button,
-input[type="submit"],
-input[type="button"] {
-	@include m.colors;
+%button {
+	/* add button styles here */
+}
+
+@mixin selectors {
+	.btn,
+	button,
+	input[type="submit"],
+	input[type="button"] {
+		@extend %button;
+
+		@include m.colors;
+	}
 }

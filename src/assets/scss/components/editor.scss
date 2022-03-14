@@ -1,0 +1,11 @@
+@use "buttons";
+@use "forms";
+@use "links";
+
+.editor-styles-wrapper {
+	.block :not(.acf-block-fields) {
+		@include buttons.selectors;
+		@include links.selectors;
+		@include forms.selectors;
+	}
+}

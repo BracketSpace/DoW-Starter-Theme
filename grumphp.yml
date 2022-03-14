@@ -13,7 +13,7 @@ grumphp:
       memory_limit: '4G'
     phpcs:
       standard: ./phpcs.xml
-      ignore_patterns: ['/vendor/']
+      ignore_patterns: ['/vendor/', /dependencies/]
       triggered_by: ['php']
     git_blacklist:
       keywords:

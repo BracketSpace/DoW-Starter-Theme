@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Core;
 
 use DoWStarterTheme\Factories\Filesystem;
-use Noodlehaus\Config as BaseConfig;
-use Noodlehaus\Parser;
+use DoWStarterTheme\Deps\Noodlehaus\Config as BaseConfig;
+use DoWStarterTheme\Deps\Noodlehaus\Parser;
 
 /**
  * Config class
@@ -31,7 +31,7 @@ class Config
 	/**
 	 * Array of Config instances.
 	 *
-	 * @var array<string, \Noodlehaus\Config|false>
+	 * @var array<string, \DoWStarterTheme\Deps\Noodlehaus\Config|false>
 	 */
 	protected static $config = [];
 

@@ -1,7 +1,9 @@
 import { kebabCase } from 'lodash';
 
 export default class Block {
-	constructor(block) {
+	block: Element;
+
+	constructor(block: Element) {
 		this.block = block;
 	}
 

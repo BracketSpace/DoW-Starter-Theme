@@ -1,11 +1,13 @@
-@use "../utils/variables" as v;
+@use "scss/utils/variables" as v;
 
-@each $name, $color in v.$colors {
-	.color\:#{$name} {
-		color: $color;
-	}
+@mixin selectors {
+	@each $name, $color in v.$colors {
+		.color\:#{$name} {
+			color: $color;
+		}
 
-	.bgcolor\:#{$name} {
-		background-color: $color;
+		.bgcolor\:#{$name} {
+			background-color: $color;
+		}
 	}
 }

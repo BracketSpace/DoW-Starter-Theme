@@ -1,48 +1,19 @@
 /**
- * Internal dependencies
- */
-@use "utils/variables" as *;
-
-/**
- * Block attributes
- */
-@use "editor/block-attributes";
-
-/**
  * Base
  */
-@use "base/alignment";
-@use "base/global";
-@use "base/typography";
-@use "base/layout";
-
-/**
- * Components
- */
-@use "components/buttons";
-@use "components/forms";
-@use "components/links";
-
-/**
- * Editor-specific styles
- */
-@use "editor/acf";
+@use "base/editor" as base;
 
 /**
  * Blocks
  */
-@use "blocks/**/*" as *;
+@use "blocks";
 
-.editor-post-title textarea {
-	font-family: font(header) !important;
-}
+/**
+ * Components
+ */
+@use "components/editor" as components;
 
-.wp-block {
-	&:not([data-align="full"]) {
-		max-width: $content-width;
-	}
-
-	&[data-align="wide"] {
-		max-width: $alignwide-width;
-	}
-}
+/**
+ * Editor-specific styles
+ */
+@use "editor";

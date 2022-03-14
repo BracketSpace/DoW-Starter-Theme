@@ -18,7 +18,7 @@ class Finder
 	/**
 	 * Filesystem instance.
 	 *
-	 * @var \Micropackage\Filesystem\Filesystem
+	 * @var \DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem
 	 */
 	protected $fs;
 

@@ -1,0 +1,53 @@
+{
+    "key": "group_603fa99f52100",
+    "title": "Content Slot",
+    "fields": [
+        {
+            "key": "field_603fa9ace47e4",
+            "label": "Content Slot",
+            "name": "content_slot",
+            "type": "select",
+            "instructions": "Select the content slot in which this page blocks will be inserted.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 1,
+            "ui": 1,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "reusable-content"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "create_gutenberg_block": 0,
+    "block_name": "",
+    "block_slug": "",
+    "block_category": "sgp",
+    "block_align": "full",
+    "block_container_class": "block-inner",
+    "inner_blocks": 0,
+    "modified": 1614785093
+}

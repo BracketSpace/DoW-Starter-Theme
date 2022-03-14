@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Core;
 
 use DoWStarterTheme\Factories\Filesystem;
-use Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 
 /**
  * TemplateFilters trait
@@ -104,11 +104,11 @@ class TemplateFilters
 	 *
 	 * @param  array<string, string> $templates List of page templates.
 	 * @param  \WP_Theme             $theme     WP_Theme instance.
-	 * @param  \WP_Post              $post      WP_POst instance.
+	 * @param  \WP_Post|null         $post      WP_POst instance.
 	 * @param  string                $postType  Post type.
 	 * @return array<string, string>
 	 */
-	public function filterThemeTemplates(array $templates, \WP_Theme $theme, \WP_Post $post, string $postType)
+	public function filterThemeTemplates(array $templates, \WP_Theme $theme, ?\WP_Post $post, string $postType): array
 	{
 		return array_unique(
 			array_merge(

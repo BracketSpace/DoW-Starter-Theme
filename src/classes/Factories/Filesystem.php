@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Factories;
 
-use Micropackage\Filesystem\Filesystem as FilesystemClass;
+use DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem as FilesystemClass;
 
 /**
  * Filesystem factory class
@@ -14,7 +14,7 @@ class Filesystem
 	/**
 	 * Filesystem instances
 	 *
-	 * @var array<\Micropackage\Filesystem\Filesystem>
+	 * @var array<\DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem>
 	 */
 	private static $instances = [];
 

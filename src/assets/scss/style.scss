@@ -1,34 +1,34 @@
 /**
- * Vendor
- */
-@use "~normalize.css" as *;
-
-/**
  * Base
  */
-@use "base/**/*" as *;
-
-/**
- * Components
- */
-@use "components/**/*" as *;
-
-/**
- * Sections
- */
-@use "sections/**/*" as *;
+@use "base";
 
 /**
  * Blocks
  */
-@use "blocks/**/*" as *;
+@use "blocks";
+
+/**
+ * Components
+ */
+@use "components";
+
+/**
+ * Sections
+ */
+@use "sections";
 
 /**
  * Templates
  */
-@use "templates/**/*" as *;
+@use "templates";
+
+/**
+ * Vendor
+ */
+@use "vendor";
 
 /**
  * Widgets
  */
-@use "widgets/**/*" as *;
+@use "widgets";

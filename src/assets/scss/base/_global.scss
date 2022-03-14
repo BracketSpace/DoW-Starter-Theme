@@ -2,50 +2,65 @@
  * Global
  */
 @use "sass:map";
-@use "../utils/variables" as v;
-@use "../utils/mixins/text";
+@use "scss/utils/functions/font";
+@use "scss/utils/mixins/text";
+@use "scss/utils/variables" as v;
 
-* {
-	box-sizing: border-box;
-}
-
-html,
-body {
+%root {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 }
 
-body {
-	font-family: font(primary);
+%body {
+	font-family: font.get(primary);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 
 	@include text.style(map.get(v.$typography, default-style));
 }
 
-img {
-	height: auto;
-	max-width: 100%;
-}
+@mixin selectors {
+	* {
+		box-sizing: border-box;
+	}
 
-figure {
-	margin-left: 0;
-	margin-right: 0;
-}
+	@if & {
+		@extend %body;
+	} @else {
+		html {
+			@extend %root;
+		}
 
-p:empty {
-	display: none;
-}
+		body {
+			@extend %root;
+			@extend %body;
+		}
+	}
 
-.screen-reader-text {
-	border: 0;
-	clip: rect(1px, 1px, 1px, 1px);
-	clip-path: inset(50%);
-	height: 1px;
-	margin: -1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	word-wrap: normal !important;
+	img {
+		height: auto;
+		max-width: 100%;
+	}
+
+	figure {
+		margin-left: 0;
+		margin-right: 0;
+	}
+
+	p:empty {
+		display: none;
+	}
+
+	.screen-reader-text {
+		border: 0;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+		word-wrap: normal !important;
+	}
 }

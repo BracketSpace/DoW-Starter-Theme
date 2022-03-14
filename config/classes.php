@@ -23,13 +23,20 @@ return [
 		 */
 		DoWStarterTheme\Features\BlockSpacing::class,
 		DoWStarterTheme\Features\Menu::class,
+		DoWStarterTheme\Features\ReusableContent::class,
 		DoWStarterTheme\Features\SVGSupport::class,
+		DoWStarterTheme\Features\Widgets::class,
 
 		/**
 		 * Integration
 		 */
 		DoWStarterTheme\Integration\ACF::class,
 		DoWStarterTheme\Integration\Editor::class,
+
+		/**
+		 * Post Types
+		 */
+		DoWStarterTheme\PostTypes\ReusableContentPostType::class,
 
 		/**
 		 * Shortcodes
