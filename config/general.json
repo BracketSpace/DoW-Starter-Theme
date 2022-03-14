@@ -1,12 +1,12 @@
 {
-	"breakpoints": {
-		"xs": 384,
-		"sm": 576,
-		"md": 768,
-		"lg": 960,
+  "breakpoints": {
+    "xs": 384,
+    "sm": 576,
+    "md": 768,
+    "lg": 960,
     "xl": 1152
-	},
-	"min-responsive-spacing": 24,
-	"max-responsive-spacing": 40,
-	"rem-base": 16
+  },
+  "min-responsive-spacing": 24,
+  "max-responsive-spacing": 40,
+  "rem-base": 16
 }
