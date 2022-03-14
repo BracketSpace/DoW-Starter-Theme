@@ -73,6 +73,13 @@ class Theme extends Singleton
 	protected $widgets = [];
 
 	/**
+	 * Customizer configuration.
+	 *
+	 * @var array<mixed>
+	 */
+	protected $customizer = [];
+
+	/**
 	 * Theme support features to be removed
 	 *
 	 * @var array<string>
@@ -260,6 +267,30 @@ class Theme extends Singleton
 
 			add_image_size(...$args);
 		}
+	}
+
+	/**
+	 * Adds customizer configuration.
+	 *
+	 * @param  array<mixed> $customizer Customizer configuration.
+	 *
+	 * @return void
+	 */
+	public function addCustomizer(array $customizer): void
+	{
+		$this->customizer = $customizer;
+	}
+
+	/**
+	 * Registers customizer panels, sections and field
+	 *
+	 * @action init
+	 *
+	 * @return void
+	 */
+	public function registerCustomizer(): void
+	{
+		(new Customizer($this->customizer))->initialize();
 	}
 
 	/**
