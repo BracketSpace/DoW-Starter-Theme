@@ -6,7 +6,7 @@ namespace DoWStarterTheme\Features;
 
 use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 use DoWStarterTheme\Core\Config;
-use DoWStarterTheme\View\View;
+use DoWStarterTheme\Helpers\View;
 
 /**
  * Widgets class
@@ -74,6 +74,6 @@ class Widgets
 			return;
 		}
 
-		View::print('partials.widget-area', ['id' => $id]);
+		View::partial('widget-area', ['id' => $id]);
 	}
 }

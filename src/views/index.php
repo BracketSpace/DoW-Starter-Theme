@@ -1,7 +1,4 @@
 <?php
-/**
- * @var \DoWStarterTheme\View\View $this
- */
 
 declare(strict_types=1);
 
