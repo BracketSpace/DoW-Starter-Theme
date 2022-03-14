@@ -13,6 +13,5 @@
     "gallery",
     "caption"
   ],
-  "post-thumbnails": true,
-  "widgets": true
+  "post-thumbnails": true
 }
