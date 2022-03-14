@@ -280,7 +280,7 @@ const handleGitInit = async (force) => {
 		{
 			type: 'input',
 			name: 'repoUrl',
-			message: 'Enter git reposoitory URL:',
+			message: 'Enter git repository URL:',
 			validate: (value) => !!value || 'Please enter a valid http(s) URL.',
 			when: ({ initGit }) => force || initGit,
 		},
