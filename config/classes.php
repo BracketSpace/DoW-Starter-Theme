@@ -22,6 +22,7 @@ return [
 		 * Features
 		 */
 		DoWStarterTheme\Features\BlockSpacing::class,
+		DoWStarterTheme\Features\Customizer::class,
 		DoWStarterTheme\Features\Menu::class,
 		DoWStarterTheme\Features\ReusableContent::class,
 		DoWStarterTheme\Features\SVGSupport::class,

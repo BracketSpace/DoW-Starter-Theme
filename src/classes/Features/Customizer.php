@@ -2,42 +2,33 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Core;
+namespace DoWStarterTheme\Features;
 
 use DoWStarterTheme\Customizer\Abstracts\Panel;
 use DoWStarterTheme\Customizer\Abstracts\Section;
 use DoWStarterTheme\Customizer\Field;
+use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
+use DoWStarterTheme\Core\Config;
 
 /**
  * Customizer registrar class
  */
 class Customizer
 {
-	/**
-	 * Customizer configuration.
-	 *
-	 * @var array<mixed>
-	 */
-	private array $customizer;
-
-	/**
-	 * Customizer constructor.
-	 *
-	 * @param  array<mixed> $customizer Customizer configuration.
-	 */
-	public function __construct(array $customizer)
-	{
-		$this->customizer = $customizer;
-	}
+	use HookTrait;
 
 	/**
 	 * Initializes customizer sections, panels and fields.
+	 *
+	 * @action init
 	 *
 	 * @return  void
 	 */
 	public function initialize(): void
 	{
-		$this->registerPanels($this->customizer);
+		$config = Config::get('customizer');
+
+		$this->registerPanels($config);
 	}
 
 	/**
@@ -98,11 +89,15 @@ class Customizer
 	protected function registerPanel(string $panel): Panel
 	{
 		if (!class_exists($panel)) {
-			throw new \InvalidArgumentException();
+			throw new \InvalidArgumentException(
+				sprintf('Class "%s" does not exists.', $panel)
+			);
 		}
 
 		if (!is_subclass_of($panel, Panel::class)) {
-			throw new \InvalidArgumentException();
+			throw new \InvalidArgumentException(
+				sprintf('Class "%s" is not subclass of "%s".', $panel, Panel::class)
+			);
 		}
 
 		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
@@ -123,11 +118,15 @@ class Customizer
 	protected function registerSection(Panel $panel, string $section): Section
 	{
 		if (!class_exists($section)) {
-			throw new \InvalidArgumentException();
+			throw new \InvalidArgumentException(
+				sprintf('Class "%s" does not exists.', $section)
+			);
 		}
 
 		if (!is_subclass_of($section, Section::class)) {
-			throw new \InvalidArgumentException();
+			throw new \InvalidArgumentException(
+				sprintf('Class "%s" is not subclass of "%s".', $section, Section::class)
+			);
 		}
 
 		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction

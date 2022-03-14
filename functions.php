@@ -88,6 +88,3 @@ $dowstTheme->addThemeSupport(Config::get('theme-support'));
 
 // Add image sizes.
 $dowstTheme->addImageSizes(Config::get('image-sizes'));
-
-// Add customizer configuration.
-$dowstTheme->addCustomizer(Config::get('customizer'));
