@@ -12,12 +12,9 @@ use DoWStarterTheme\Customizer\Abstracts\Section;
 final class ExampleSection extends Section
 {
 	/**
-	 * Returns priority of the section.
+	 * Priority of the section.
 	 *
-	 * @return  int
+	 * @var int $priority
 	 */
-	public function getPriority(): int
-	{
-		return 100;
-	}
+	protected int $priority = 100;
 }

@@ -14,6 +14,13 @@ use DoWStarterTheme\Deps\Illuminate\Support\Str;
 abstract class Panel
 {
 	/**
+	 * Priority of the panel.
+	 *
+	 * @var int $priority
+	 */
+	protected int $priority = 10;
+
+	/**
 	 * Returns ID of the panel.
 	 *
 	 * Default value is based on panel class name.
@@ -23,16 +30,6 @@ abstract class Panel
 	public function getId(): string
 	{
 		return Str::kebab(static::class);
-	}
-
-	/**
-	 * Returns priority of the panel.
-	 *
-	 * @return  int
-	 */
-	public function getPriority(): int
-	{
-		return 10;
 	}
 
 	/**
@@ -67,7 +64,7 @@ abstract class Panel
 		new Kirki\Panel(
 			$this->getId(),
 			[
-				'priority' => $this->getPriority(),
+				'priority' => $this->priority,
 				'title' => $this->getName(),
 				'description' => $this->getDescription(),
 			]

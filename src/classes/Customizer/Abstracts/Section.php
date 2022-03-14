@@ -21,6 +21,13 @@ abstract class Section
 	protected Panel $panel;
 
 	/**
+	 * Priority of the section.
+	 *
+	 * @var int $priority
+	 */
+	protected int $priority = 10;
+
+	/**
 	 * Constructor of the section.
 	 *
 	 * @param  Panel $panel Panel to which section belongs.
@@ -40,16 +47,6 @@ abstract class Section
 	public function getId(): string
 	{
 		return Str::kebab(static::class);
-	}
-
-	/**
-	 * Returns priority of the section.
-	 *
-	 * @return  int
-	 */
-	public function getPriority(): int
-	{
-		return 10;
 	}
 
 	/**
@@ -85,7 +82,7 @@ abstract class Section
 			$this->getId(),
 			[
 				'panel' => $this->panel->getId(),
-				'priority' => $this->getPriority(),
+				'priority' => $this->priority,
 				'title' => $this->getName(),
 				'description' => $this->getDescription(),
 			]

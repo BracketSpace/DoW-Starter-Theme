@@ -130,8 +130,8 @@ final class Field
 			array_merge(
 				$this->config,
 				[
-				'settings' => $this->getId(),
-				'section' => $this->section->getId(),
+					'settings' => $this->getId(),
+					'section' => $this->section->getId(),
 				]
 			)
 		);

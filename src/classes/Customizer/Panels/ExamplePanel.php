@@ -12,12 +12,9 @@ use DoWStarterTheme\Customizer\Abstracts\Panel;
 final class ExamplePanel extends Panel
 {
 	/**
-	 * Returns priority of the panel.
+	 * Priority of the panel.
 	 *
-	 * @return  int
+	 * @var int $priority
 	 */
-	public function getPriority(): int
-	{
-		return 100;
-	}
+	protected int $priority = 100;
 }
