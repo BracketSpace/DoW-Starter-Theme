@@ -1,8 +1,8 @@
 /**
  * External dependencies
  */
-import { dirname, join, relative, resolve } from 'path';
-import { readdir, readFile, stat } from 'fs/promises';
+import { join, relative, resolve } from 'path';
+import { readdir, stat } from 'fs/promises';
 import { readFileSync } from 'fs';
 import ignore from 'ignore';
 
@@ -29,7 +29,7 @@ const getIgnore = () => {
  * @param {string} dirPath - Start path.
  * @param {Array}  files   - List of files (this is used for the recursiveness).
  * @param {string} root    - Root file path.
- * @return {Promise}
+ * @return {Promise} Resolves with the list of files.
  */
 export const listFiles = async (dirPath = '.', files = [], root) => {
 	const items = await readdir(dirPath);

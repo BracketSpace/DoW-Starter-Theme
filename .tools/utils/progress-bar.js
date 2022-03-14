@@ -8,19 +8,19 @@ import cliProgress from 'cli-progress';
  *
  * @param {number}   total    - Total progress bar value.
  * @param {Function} callback - Async callback.
- * @return {Promise}
+ * @return {Promise} Resolves, when the process completes.
  */
 export const progressBar = async (total, callback) => {
-	const progressBar = new cliProgress.SingleBar(
+	const bar = new cliProgress.SingleBar(
 		{
 			clearOnComplete: true,
 		},
 		cliProgress.Presets.shades_classic
 	);
 
-	progressBar.start(total, 0);
+	bar.start(total, 0);
 
-	await callback(progressBar);
+	await callback(bar);
 
-	progressBar.stop();
+	bar.stop();
 };
