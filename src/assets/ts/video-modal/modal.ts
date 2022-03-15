@@ -10,16 +10,18 @@ import { YouTubePlayer, WistiaPlayer, VimeoPlayer } from '.';
 import { getVideoId } from './utils';
 
 export default class VideoModal {
+	activeProvider?: string;
+	contentRatio = 0;
 	isOpen = false;
 	isOpening = false;
-	contentRatio = 0;
-	activeProvider = null;
+	modal?: HTMLElement;
 	players = {};
 	playerClasses = {
 		youtube: YouTubePlayer,
 		wistia: WistiaPlayer,
 		vimeo: VimeoPlayer,
 	};
+	playerWrap?: HTMLElement;
 
 	constructor() {
 		on('click', '[data-video-provider]', this.handleClick.bind(this));
@@ -27,14 +29,16 @@ export default class VideoModal {
 		window.addEventListener('resize', this.adjust.bind(this));
 	}
 
-	handleClick(e) {
+	handleClick(e: MouseEvent) {
 		e.preventDefault();
 		e.stopPropagation();
 
+		const target = <HTMLElement>e.target;
+
 		const element =
-			undefined === e.target.dataset.videoProvider
-				? e.target.closest('[data-video-provider]')
-				: e.target;
+			undefined === target.dataset.videoProvider
+				? <HTMLElement>target.closest('[data-video-provider]')
+				: target;
 
 		if (!element) {
 			return;
@@ -42,7 +46,8 @@ export default class VideoModal {
 
 		const provider = element.dataset.videoProvider;
 		const videoId =
-			element.dataset.videoId || getVideoId(element.href, provider);
+			element.dataset.videoId ||
+			getVideoId(<string>element.getAttribute('href'), provider);
 
 		if (!videoId || !provider) {
 			return;
@@ -86,21 +91,15 @@ export default class VideoModal {
 		this.isOpen = true;
 		this.isOpening = true;
 
-		if (!this.modal) {
-			this.createModal();
+		const modal = this.getModal();
 
-			this.modal.classList.add('is-loading');
-
-			setTimeout(() => this.modal.classList.add('visible'), 30);
-		} else {
-			this.modal.classList.add('visible');
-		}
+		setTimeout(() => modal.classList.add('visible'), 0);
 
 		this.adjust();
 	}
 
 	setReady() {
-		this.modal.classList.remove('is-loading');
+		this.getModal().classList.remove('is-loading');
 	}
 
 	closeModal() {
@@ -124,57 +123,70 @@ export default class VideoModal {
 	}
 
 	hideModal() {
-		if (this.modal.classList.contains('hiding')) {
-			this.modal.classList.remove('hiding', 'visible');
+		const modal = this.getModal();
+
+		if (modal.classList.contains('hiding')) {
+			modal.classList.remove('hiding', 'visible');
 		}
 	}
 
-	createModal() {
-		this.modal = this.createElement('video-modal');
-		this.playerWrap = this.createElement('modal-player-wrap');
+	getModal() {
+		if (!this.modal) {
+			this.modal = this.createElement('video-modal');
+			this.playerWrap = this.createElement('modal-player-wrap');
 
-		const modalContent = this.createElement('video-modal-content');
-		const overlay = this.createElement('video-modal-overlay');
-		const closeButton = this.createElement('video-modal-close', 'button');
+			const modalContent = this.createElement('video-modal-content');
+			const overlay = this.createElement('video-modal-overlay');
+			const closeButton = this.createElement(
+				'video-modal-close',
+				'button'
+			);
 
-		modalContent.appendChild(this.playerWrap);
+			modalContent.appendChild(this.playerWrap);
 
-		this.modal.appendChild(overlay);
-		this.modal.appendChild(modalContent);
-		this.modal.appendChild(closeButton);
+			this.modal.appendChild(overlay);
+			this.modal.appendChild(modalContent);
+			this.modal.appendChild(closeButton);
 
-		modalContent.addEventListener('click', (e) => e.stopPropagation());
-		this.modal.addEventListener('transitionend', this.hideModal.bind(this));
+			modalContent.addEventListener('click', (e) => e.stopPropagation());
+			this.modal.addEventListener(
+				'transitionend',
+				this.hideModal.bind(this)
+			);
 
-		document.body.appendChild(this.modal);
+			document.body.appendChild(this.modal);
 
-		this.contentRatio =
-			modalContent.offsetHeight / modalContent.offsetWidth;
+			this.contentRatio =
+				modalContent.offsetHeight / modalContent.offsetWidth;
+
+			this.modal.classList.add('is-loading');
+		}
+
+		return this.modal;
 	}
 
-	loadVideo(videoId, provider) {
+	loadVideo(videoId: string, provider: string) {
 		if (this.activeProvider && provider !== this.activeProvider) {
 			this.players[this.activeProvider].destroy();
 		}
 
-		if (!this.players[provider]) {
-			if (!this.playerClasses[provider]) {
+		const key = provider as keyof typeof this.players;
+
+		if (!this.players[key]) {
+			if (!this.playerClasses[key]) {
 				console.log(`Invalid video provider: ${provider}`); // eslint-disable-line no-console
 				return;
 			}
 
-			this.players[provider] = new this.playerClasses[provider](
-				videoId,
-				this
-			);
+			this.players[key] = new this.playerClasses[key](videoId, this);
 		} else {
-			this.players[provider].loadVideo(videoId);
+			this.players[key].loadVideo(videoId);
 		}
 
 		this.activeProvider = provider;
 	}
 
-	createElement(context, tag = 'div') {
+	createElement(context: string, tag = 'div') {
 		const el = document.createElement(tag);
 
 		if (context) {

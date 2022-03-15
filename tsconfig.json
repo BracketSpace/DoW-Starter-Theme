@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": "src",
+		"baseUrl": ".",
     "downlevelIteration": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
@@ -19,8 +19,8 @@
 		"noEmit": true,
 		"noFallthroughCasesInSwitch": true,
     "paths": {
-      "js/*": ["assets/js/*"],
-      "acf-blocks/*": ["blocks/*"]
+      "js/*": ["src/assets/js/*"],
+      "acf-blocks/*": ["src/blocks/*"]
     },
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
@@ -31,6 +31,6 @@
 		]
 	},
 	"include": [
-    "src/**/*"
+    "."
 	]
 }

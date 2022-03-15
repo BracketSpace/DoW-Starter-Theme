@@ -1,10 +1,9 @@
 /**
  * Loads script. Returns Promise, which gets resolved in `onload` event callback and rejected in case of an error.
  *
- * @param {string} src Script source URL.
- * @return {Promise}   Promise resolving on success, rejecting in case of an error.
+ * @param  src Script source URL.
  */
-export const loadScript = (src) =>
+export const loadScript = (src: string) =>
 	new Promise((resolve, reject) => {
 		const script = document.createElement('script');
 		script.async = true;
@@ -17,11 +16,10 @@ export const loadScript = (src) =>
 
 /**
  * Video services regex patterns.
- *
- * @type {Object}
  */
 export const patterns = {
-	youtube: /(?:http(?:s)??:\/\/)?(?:www\.)?(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))([a-z0-9-_]+)/i,
+	youtube:
+		/(?:http(?:s)??:\/\/)?(?:www\.)?(?:(?:youtube\.com\/watch\?v=)|(?:youtu\.be\/))([a-z0-9-_]+)/i,
 	wistia: /(?:https?:\/\/(?:.+)?(?:wistia\.com|wi\.st)\/(?:medias|embed)\/)(.*)/i,
 	vimeo: /(?:https?:\/\/(?:[w]+\.)*vimeo\.com(?:[/w:]*(?:\/videos)?)?\/([0-9]+)[^s]*)/i,
 };
@@ -29,13 +27,13 @@ export const patterns = {
 /**
  * Gets video ID from given URL based on given provider name.
  *
- * @param {string} url      Video URL.
- * @param {string} provider Video provider name.
- * @return {string}         Video ID.
+ * @param  url      Video URL.
+ * @param  provider Video provider name.
+ * @return         Video ID.
  */
-export const getVideoId = (url, provider) => {
-	if (patterns[provider]) {
-		const matches = url.match(patterns[provider]);
+export const getVideoId = (url: string, provider?: string) => {
+	if (provider && patterns[provider as keyof typeof patterns]) {
+		const matches = url.match(patterns[provider as keyof typeof patterns]);
 
 		if (matches && matches[1]) {
 			return matches[1];

@@ -3,13 +3,23 @@
  */
 import { loadScript } from './utils';
 import Player from './player';
+import VideoModal from './modal';
+
+declare global {
+	interface Window {
+		_wq?: Array<Record<string, any>>;
+	}
+}
 
 export class WistiaPlayer extends Player {
+	video: any; // TODO: write types for Wistia video object.
+	playerElement?: HTMLDivElement;
+
 	async apiLoadMethod() {
 		await loadScript('//fast.wistia.net/assets/external/E-v1.js');
 	}
 
-	constructor(videoId, modal) {
+	constructor(videoId: string, modal: VideoModal) {
 		super(videoId, modal);
 
 		if (!window._wq) {
@@ -18,11 +28,11 @@ export class WistiaPlayer extends Player {
 
 		window._wq.push({
 			id: '_all',
-			onReady: (video) => this.onReady(video),
+			onReady: (video: any) => this.onReady(video),
 		});
 	}
 
-	async load(videoId) {
+	async load(videoId: string) {
 		try {
 			await this.loadApi();
 		} catch (e) {
@@ -44,18 +54,18 @@ export class WistiaPlayer extends Player {
 		}
 	}
 
-	onReady(video) {
+	onReady(video: any) {
 		this.video = video;
 
 		this.play();
 	}
 
-	createPlayer(id) {
+	createPlayer(id: string) {
 		this.playerElement = document.createElement('div');
 
 		this.playerElement.classList.add('wistia_embed', `wistia_async_${id}`);
 
-		this.modal.playerWrap.append(this.playerElement);
+		this.modal.playerWrap!.append(this.playerElement);
 	}
 
 	destroy() {
@@ -63,7 +73,10 @@ export class WistiaPlayer extends Player {
 
 		if (this.video) {
 			this.video.remove();
-			this.playerElement.remove();
+
+			if (this.playerElement) {
+				this.playerElement.remove();
+			}
 		}
 	}
 }

@@ -13,7 +13,19 @@ export const registerBlockStyles = () => {
 	registerTextStyles();
 };
 
-export const filterBlockSettings = (settings, name) => {
+type BlockStyle = {
+	name: string;
+	label: string;
+	isDefault?: boolean;
+};
+
+type Styles = Array<BlockStyle>;
+
+type Settings = {
+	styles: Styles;
+};
+
+export const filterBlockSettings = (settings: Settings, name: string) => {
 	if (!Object.keys(styles).includes(name)) {
 		return settings;
 	}
@@ -22,7 +34,7 @@ export const filterBlockSettings = (settings, name) => {
 		styles[name].includes(style.name)
 	);
 
-	const newStyles = map(
+	const newStyles: Styles = map(
 		filter(
 			styles[name],
 			(styleName) => !find(blockStyles, { name: styleName })

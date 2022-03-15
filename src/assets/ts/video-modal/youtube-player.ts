@@ -1,27 +1,39 @@
 /**
+ * Extednal dependencies
+ */
+import '@types/youtube'; // eslint-disable-line import/no-unresolved
+
+/**
  * Internal depdependencies
  */
 import { loadScript } from './utils';
 import Player from './player';
 
+declare global {
+	interface Window {
+		onYouTubeIframeAPIReady: () => void;
+	}
+}
+
 /**
  * YouTube player class
  */
 export class YouTubePlayer extends Player {
-	ready = false;
+	player?: YT.Player;
+	ready: boolean = false;
 
 	/**
 	 * Checks if the API is loaded already. This is needed in case of presence of other scripts using the same API (e.g.
 	 * youtube-embed-plus-pro WordPress plugin, which loads YouTube API at boot).
 	 *
-	 * @return {boolean} If the API is available.
+	 * @return If the API is available.
 	 */
 	checkApiLoaded() {
 		return !!window.YT;
 	}
 
 	async apiLoadMethod() {
-		return new Promise(async (resolve, reject) => {
+		return new Promise<void>(async (resolve, reject) => {
 			window.onYouTubeIframeAPIReady = resolve;
 
 			try {
@@ -32,7 +44,7 @@ export class YouTubePlayer extends Player {
 		});
 	}
 
-	async load(videoId) {
+	async load(videoId: string) {
 		try {
 			await this.loadApi();
 		} catch (e) {
@@ -47,19 +59,19 @@ export class YouTubePlayer extends Player {
 	}
 
 	play() {
-		if (this.ready) {
+		if (this.ready && this.player) {
 			this.player.playVideo();
 		}
 	}
 
 	pause() {
-		if (this.ready) {
+		if (this.ready && this.player) {
 			this.player.pauseVideo();
 		}
 	}
 
-	createPlayer(videoId) {
-		this.player = new window.YT.Player(this.modal.playerWrap, {
+	createPlayer(videoId: string) {
+		this.player = new window.YT.Player(this.modal.playerWrap!, {
 			width: '100%',
 			height: '100%',
 			events: {
@@ -80,7 +92,7 @@ export class YouTubePlayer extends Player {
 
 		if (this.player) {
 			this.player.destroy();
-			this.player = null;
+			this.player = undefined;
 		}
 	}
 }

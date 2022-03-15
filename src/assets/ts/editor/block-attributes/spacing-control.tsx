@@ -1,17 +1,31 @@
 /**
+ * External dependencies
+ */
+import { FC } from 'react';
+
+/**
  * WordPress dependencies
  */
 import { BaseControl, TextControl } from '@wordpress/components';
 
-export default ({
-	topLabel,
+type SpacingControlProps = {
+	bottomLabel: string;
+	bottomValue: string;
+	help: string;
+	onChange: (postion: string, value: string) => void;
+	topLabel: string;
+	topValue: string;
+};
+
+const SpacingControl: FC<SpacingControlProps> = ({
 	bottomLabel,
-	topValue,
 	bottomValue,
-	onChange,
 	help,
+	onChange,
+	topLabel,
+	topValue,
 }) => (
-	<BaseControl help={help}>
+	<BaseControl id="spacing-control" help={help}>
 		<div className="spacing-settings-row">
 			<TextControl
 				type="number"
@@ -28,3 +42,5 @@ export default ({
 		</div>
 	</BaseControl>
 );
+
+export default SpacingControl;

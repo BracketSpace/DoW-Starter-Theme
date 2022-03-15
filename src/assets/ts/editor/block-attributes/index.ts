@@ -12,19 +12,19 @@ import controls from './controls';
 export default () => {
 	addFilter(
 		'blocks.registerBlockType',
-		'starter-theme/custom-attributes',
+		'dow-starter-theme/custom-attributes',
 		addAttributes
 	);
 
 	addFilter(
 		'editor.BlockEdit',
-		'starter-theme/custom-advanced-control',
+		'dow-starter-theme/custom-advanced-control',
 		controls
 	);
 
 	addFilter(
 		'blocks.getSaveContent.extraProps',
-		'starter-theme/add-props',
+		'dow-starter-theme/add-props',
 		addProps
 	);
 };

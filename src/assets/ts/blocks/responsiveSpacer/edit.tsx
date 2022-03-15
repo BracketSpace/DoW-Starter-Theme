@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import { FC } from 'react';
 import classnames from 'classnames';
 
 /**
@@ -15,30 +16,38 @@ import {
 	ResizableBox,
 	ToggleControl,
 } from '@wordpress/components';
+import { BlockEditProps } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
 import { MAX_SPACER_HEIGHT, MIN_SPACER_HEIGHT } from './constants';
 import { calculateAutoHeight } from './utils';
+import { Attributes } from './types';
 
-export default ({
+type EditProps = BlockEditProps<Attributes> & {
+	toggleSelection?: (value: boolean) => void;
+};
+
+const Edit: FC<EditProps> = ({
 	className,
 	attributes: { auto, height, mobileHeight, tabletHeight, useRem, remSize },
 	setAttributes,
 	isSelected,
 	toggleSelection,
 }) => {
-	const updateTabletHeight = (value) =>
+	const updateTabletHeight = (value: number | undefined) =>
 		setAttributes({ tabletHeight: value });
-	const updateMobileHeight = (value) =>
+
+	const updateMobileHeight = (value: number | undefined) =>
 		setAttributes({ mobileHeight: value });
-	const updateHeight = (value, force = false) =>
+
+	const updateHeight = (value: number | undefined, force = false) =>
 		setAttributes(
 			auto || force ? calculateAutoHeight(value) : { height: value }
 		);
 
-	const toggleAutoCalculate = (checked) => {
+	const toggleAutoCalculate = (checked: boolean) => {
 		setAttributes({ auto: checked });
 
 		if (checked) {
@@ -58,6 +67,7 @@ export default ({
 				)}
 				size={{
 					height,
+					width: '100%',
 				}}
 				minHeight={MIN_SPACER_HEIGHT}
 				enable={{
@@ -141,3 +151,5 @@ export default ({
 		</>
 	);
 };
+
+export default Edit;
