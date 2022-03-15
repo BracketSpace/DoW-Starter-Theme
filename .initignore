@@ -14,7 +14,6 @@
 
 grumphp.yml
 package-lock.json
-phpstan.neon
 postcss.config.js
 
 *.png
