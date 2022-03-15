@@ -77,7 +77,9 @@ const Edit: FC<BlockEditProps> = ({
 				}}
 				onResizeStart={() => toggleSelection && toggleSelection(false)}
 				onResizeStop={(event, direction, elt, delta) => {
-					toggleSelection && toggleSelection(true);
+					if (toggleSelection) {
+						toggleSelection(true);
+					}
 
 					const spacerHeight = Math.min(
 						height + delta.height,
