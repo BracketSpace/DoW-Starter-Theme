@@ -1463,27 +1463,6 @@
     "@types/react" "*"
     redux "^4.0.1"
 
-"@types/wordpress__dom-ready@^2.9.0":
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__dom-ready/-/wordpress__dom-ready-2.9.0.tgz#497ef15a0c2c4c0beecd217e61c24c9bda0dcffb"
-  integrity sha512-cGTtbJOKXaN/r73/nJ5BxsQo5COU78Xo8jKKGLro6p5PKKVej9G7MHOsy+/0Q01WqQ5fedjmFyhrPoWuLrXY3w==
-  dependencies:
-    "@wordpress/dom-ready" "*"
-
-"@types/wordpress__hooks@^2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__hooks/-/wordpress__hooks-2.11.0.tgz#167d1316a9ebc2b8894e69b4347a93b3a5200cfa"
-  integrity sha512-1moZYhQaR9a4r5V8xHmYTHAlhPEryHaPPEcO/a358mXmMJw+RlJFU/7Sf9VkPwCjQLb5FhdgzfLT9Oc8XeAM7Q==
-  dependencies:
-    "@wordpress/hooks" "*"
-
-"@types/wordpress__i18n@^3.11.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@types/wordpress__i18n/-/wordpress__i18n-3.11.0.tgz#c79691535766b99966ea6bdc6f370ef1f1ed58f5"
-  integrity sha512-l4OXE1LQH7IBqRXY//NGBCsM0jPv8sdUEubPaAzPxKUxYGe+I2UTREjwB0ejuh2+J0p90EhW3mX5FYM8a8lf2w==
-  dependencies:
-    "@wordpress/i18n" "*"
-
 "@types/wordpress__keycodes@*":
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/@types/wordpress__keycodes/-/wordpress__keycodes-2.3.1.tgz#707bab639854eb5bf3ae5dda6e5b7f3507389ffa"
@@ -1771,7 +1750,7 @@
     json2php "^0.0.4"
     webpack-sources "^3.2.2"
 
-"@wordpress/dom-ready@*":
+"@wordpress/dom-ready@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@wordpress/dom-ready/-/dom-ready-3.4.1.tgz#e62a3bf1cf6f54f87ea68f9949fa688b0a28bbfd"
   integrity sha512-w6DVKKpNwX0XUp0Cuh1OyFyGXLabr47k/ecRHKmQkQh9LdjRew7QvxUHYDN1rejRvq5GqcDb7Gnkz4E6hWIo4Q==
@@ -1853,14 +1832,14 @@
     globals "^13.12.0"
     requireindex "^1.2.0"
 
-"@wordpress/hooks@*", "@wordpress/hooks@^3.4.1":
+"@wordpress/hooks@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@wordpress/hooks/-/hooks-3.4.1.tgz#4a0684f4ff7f51e19ae36a8a2434b77ba60adf58"
   integrity sha512-+RODEvxNsx3KW5nvk4KbnYMNFYvWA4Fduf784Ht7PJoL2L3z63Wm2blRh7a21hDEFHGPgWkne0f3Fgr/dqalHA==
   dependencies:
     "@babel/runtime" "^7.16.0"
 
-"@wordpress/i18n@*":
+"@wordpress/i18n@^4.4.1":
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/@wordpress/i18n/-/i18n-4.4.1.tgz#5e9bafdc70b7a677e5344eed43ed4d4760fa3e4e"
   integrity sha512-cDD3dxynq0P+HwB1dwUD2xpmjTr55oyuB0Mybcr8N4sTrbl/bDj5VRrh8bdps7KSqIdM4OuMtxJKLbg3y5CktA==
