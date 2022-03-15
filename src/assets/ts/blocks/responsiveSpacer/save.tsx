@@ -2,12 +2,18 @@
  * External dependencies
  */
 import classnames from 'classnames';
+import { FC } from 'react';
 
-export default ({
+/**
+ * Internal dependencies
+ */
+import { BlockSaveProps } from './types';
+
+const Save: FC<BlockSaveProps> = ({
 	className,
 	attributes: { height, mobileHeight, tabletHeight, useRem, remSize },
 }) => {
-	const calculateHeight = (value) =>
+	const calculateHeight = (value: number) =>
 		useRem
 			? `${Math.round((value / remSize) * 100000) / 100000}rem`
 			: `${value}px`;
@@ -29,3 +35,5 @@ export default ({
 		</div>
 	);
 };
+
+export default Save;

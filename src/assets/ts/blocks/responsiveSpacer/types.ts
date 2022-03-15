@@ -23,3 +23,17 @@ export type Attributes = {
  * Block with attributes type
  */
 export type Block = BaseBlock<Attributes>;
+
+/**
+ * Edit component props
+ */
+export type BlockEditProps = BaseBlockEditProps<Attributes> & {
+	toggleSelection?: (value: boolean) => void;
+};
+
+/**
+ * Save component props
+ */
+export type BlockSaveProps = BaseBlockSaveProps<Attributes> & {
+	className?: string;
+};

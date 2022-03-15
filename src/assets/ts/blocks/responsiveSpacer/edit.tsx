@@ -16,20 +16,15 @@ import {
 	ResizableBox,
 	ToggleControl,
 } from '@wordpress/components';
-import { BlockEditProps } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
-import { MAX_SPACER_HEIGHT, MIN_SPACER_HEIGHT } from './constants';
+import { BlockEditProps } from './types';
 import { calculateAutoHeight } from './utils';
-import { Attributes } from './types';
+import { MAX_SPACER_HEIGHT, MIN_SPACER_HEIGHT } from './constants';
 
-type EditProps = BlockEditProps<Attributes> & {
-	toggleSelection?: (value: boolean) => void;
-};
-
-const Edit: FC<EditProps> = ({
+const Edit: FC<BlockEditProps> = ({
 	className,
 	attributes: { auto, height, mobileHeight, tabletHeight, useRem, remSize },
 	setAttributes,
@@ -42,7 +37,7 @@ const Edit: FC<EditProps> = ({
 	const updateMobileHeight = (value: number | undefined) =>
 		setAttributes({ mobileHeight: value });
 
-	const updateHeight = (value: number | undefined, force = false) =>
+	const updateHeight = (value: number, force = false) =>
 		setAttributes(
 			auto || force ? calculateAutoHeight(value) : { height: value }
 		);
@@ -80,12 +75,12 @@ const Edit: FC<EditProps> = ({
 					bottomLeft: false,
 					topLeft: false,
 				}}
-				onResizeStart={() => toggleSelection(false)}
+				onResizeStart={() => toggleSelection && toggleSelection(false)}
 				onResizeStop={(event, direction, elt, delta) => {
-					toggleSelection(true);
+					toggleSelection && toggleSelection(true);
 
 					const spacerHeight = Math.min(
-						parseInt(height + delta.height, 10),
+						height + delta.height,
 						MAX_SPACER_HEIGHT
 					);
 					updateHeight(spacerHeight);
@@ -142,7 +137,7 @@ const Edit: FC<EditProps> = ({
 							label={__('Rem unit size in pixels', 'wsfirst')}
 							value={remSize}
 							onChange={(value) =>
-								setAttributes({ remSize: value })
+								setAttributes({ remSize: parseInt(value) })
 							}
 						/>
 					)}
