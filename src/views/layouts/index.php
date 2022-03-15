@@ -5,8 +5,6 @@ declare(strict_types=1);
 use DoWStarterTheme\Helpers\View as v;
 ?>
 
-<p>Main Layout</p>
-
-<div class="content">
+<div class="site-content">
 	<?php v::raw('content'); ?>
 </div>
