@@ -42,13 +42,47 @@ abstract class PostType
 	protected static string $featuredImageName;
 
 	/**
+	 * Post types data
+	 *
+	 * @var array<string, mixed>
+	 */
+	private static array $data = [];
+
+	/**
+	 * Gets post type data for given key.
+	 *
+	 * @param  string $key Key.
+	 * @return mixed Value for given key.
+	 */
+	protected static function getData(string $key)
+	{
+		if (isset(static::$$key)) {
+			return static::$$key;
+		}
+
+		return self::$data[static::class][$key] ?? false;
+	}
+
+	/**
+	 * Sets post type data for given key.
+	 *
+	 * @param string $key   Key.
+	 * @param mixed  $value Value for given key.
+	 * @return void
+	 */
+	private static function setData(string $key, $value)
+	{
+		self::$data[static::class][$key] = $value;
+	}
+
+	/**
 	 * Returns post type slug.
 	 *
 	 * @return string
 	 */
 	public static function getSlug(): string
 	{
-		if (!isset(static::$slug)) {
+		if (!(bool)self::getData('slug')) {
 			$name = (string)preg_replace(
 				'/PostType$/',
 				'',
@@ -56,10 +90,10 @@ abstract class PostType
 			);
 
 			$i = strrpos($name, '\\');
-			static::$slug = Str::kebab($i !== false ? substr($name, $i + 1) : $name);
+			self::setData('slug', Str::kebab($i !== false ? substr($name, $i + 1) : $name));
 		}
 
-		return static::$slug;
+		return self::getData('slug');
 	}
 
 	/**
@@ -69,11 +103,11 @@ abstract class PostType
 	 */
 	public static function getName(): string
 	{
-		if (!isset(static::$name)) {
-			static::$name = Str::singular(Str::title(str_replace('-', ' ', static::getSlug())));
+		if (!(bool)self::getData('name')) {
+			self::setData('name', Str::singular(Str::title(str_replace('-', ' ', static::getSlug()))));
 		}
 
-		return static::$name;
+		return self::getData('name');
 	}
 
 	/**
@@ -83,11 +117,11 @@ abstract class PostType
 	 */
 	public static function getPluralName(): string
 	{
-		if (!isset(static::$pluralName)) {
-			static::$pluralName = Str::plural(static::getName());
+		if (!(bool)self::getData('pluralName')) {
+			self::setData('pluralName', Str::plural(static::getName()));
 		}
 
-		return static::$pluralName;
+		return self::getData('pluralName');
 	}
 
 	/**
