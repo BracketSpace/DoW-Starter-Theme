@@ -66,8 +66,9 @@ abstract class PostType
 	/**
 	 * Sets post type data for given key.
 	 *
-	 * @param string $key    Key.
-	 * @param mixed $value  Value for given key.
+	 * @param string $key   Key.
+	 * @param mixed  $value Value for given key.
+	 * @return void
 	 */
 	private static function setData(string $key, $value)
 	{

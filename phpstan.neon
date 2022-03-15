@@ -13,3 +13,5 @@ parameters:
         - */vendor/*
         - */dependencies/*
         - */node_modules/*
+    ignoreErrors:
+        - '#Variable static property access on DoWStarterTheme\\PostTypes\\PostType\.#'
