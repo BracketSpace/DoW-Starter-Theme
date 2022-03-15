@@ -52,10 +52,9 @@
   },
   "mpScriptsConfig": {
     "paths": {
-      "src": "src/assets",
-      "scripts": "ts",
       "output": "build",
-      "fonts": "new-fonts"
+      "scripts": "ts",
+      "src": "src/assets"
     }
   }
 }
