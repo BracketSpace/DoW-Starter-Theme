@@ -25,32 +25,45 @@ class ReusableContent
 	 */
 	public static function display(string $slot, $wrap = true): void
 	{
-		$content = static::getContent($slot);
+		echo static::get($slot, $wrap);
+	}
+
+	/**
+	 * Gets content for given slot.
+	 *
+	 * @param string      $slot Slot name.
+	 * @param bool|string $wrap Whether to wrap the content in a div element. If a string is passed, it will be used as
+	 *                          a wrapper element's class name.
+	 * @return string|null
+	 */
+	public static function get(string $slot, $wrap = true): ?string
+	{
+		$content = static::getRawContent($slot);
 
 		if (!is_string($content)) {
-			return;
+			return null;
 		}
 
 		if ($wrap !== false) {
 			$class = is_string($wrap) ? $wrap : 'reusable-content';
 
-			printf(
+			return sprintf(
 				'<div class="%1$s">%2$s</div>',
 				$class,
 				$content
 			);
-		} else {
-			echo $content;
 		}
+
+		return $content;
 	}
 
 	/**
-	 * Get content for given slot
+	 * Gets raw content for given slot
 	 *
 	 * @param  string $slot Slot name.
 	 * @return string
 	 */
-	public static function getContent(string $slot): ?string
+	public static function getRawContent(string $slot): ?string
 	{
 		$slotPosts = get_option('content_slot_posts', []);
 
