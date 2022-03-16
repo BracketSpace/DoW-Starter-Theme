@@ -62,7 +62,8 @@ class Layout
 			->with(
 				[
 					'content' => $content,
-				]
+				],
+				false
 			)->render(true);
 	}
 }

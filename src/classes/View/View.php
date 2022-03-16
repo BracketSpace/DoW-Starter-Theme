@@ -53,12 +53,13 @@ class View
 	/**
 	 * Sets view data.
 	 *
-	 * @param array<string, mixed> $data Data.
+	 * @param array<string, mixed> $data     Data.
+	 * @param bool                 $override Whether to override the entire data array (default).
 	 * @return static
 	 */
-	public function with(array $data): View
+	public function with(array $data, bool $override = true): View
 	{
-		$this->data = $data;
+		$this->data = $override ? $data : array_merge($this->data, $data);
 
 		return $this;
 	}
