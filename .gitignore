@@ -1,7 +1,8 @@
+.env.local
 .tmp
 *.log
 /build
+/dependencies
+/theme.json
 /vendor
 node_modules
-/theme.json
-/dependencies
