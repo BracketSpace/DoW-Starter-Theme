@@ -65,16 +65,17 @@ class ACF
 
 		BlockLoader::init(
 			[
-				'dir' => $this->blocksLocation,
-				'blocks_dir' => $this->blocksLocation,
-				'scss_dir' => $this->blocksLocation,
-				'package' => 'DoW Starter Theme',
 				'categories' => [
 					[
 						'slug' => 'dow-starter-theme',
 						'title' => __('DoW Starter Theme', 'dow-starter-theme'),
 					],
 				],
+				'blocks_dir' => $this->blocksLocation,
+				'dir' => $this->blocksLocation,
+				'license' => false,
+				'package' => 'DoW Starter Theme',
+				'scss_dir' => $this->blocksLocation,
 			]
 		);
 	}
