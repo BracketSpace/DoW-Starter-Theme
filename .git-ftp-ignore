@@ -10,7 +10,6 @@
 .stylelintignore
 .stylelintrc.json
 .tools
-vendor
 composer.json
 composer.lock
 grumphp.yml
