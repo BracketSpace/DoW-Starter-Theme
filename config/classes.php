@@ -31,6 +31,7 @@ return [
 		 * Integration
 		 */
 		DoWStarterTheme\Integration\ACF::class,
+		DoWStarterTheme\Integration\ACFBlockCreator::class,
 		DoWStarterTheme\Integration\Editor::class,
 
 		/**
