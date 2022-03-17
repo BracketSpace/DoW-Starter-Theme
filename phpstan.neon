@@ -14,4 +14,4 @@ parameters:
         - */dependencies/*
         - */node_modules/*
     ignoreErrors:
-        - '#Variable static property access on DoWStarterTheme\\PostTypes\\PostType\.#'
+        - '#Variable static property access on DoWStarterTheme\\Abstracts\\Labelable\.#'
