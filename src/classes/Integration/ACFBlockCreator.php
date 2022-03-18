@@ -36,10 +36,14 @@ class ACFBlockCreator
 	 */
 	public function filterBlockMarkup(string $markup): string
 	{
-		return str_replace(
-			['( ', ' )'],
-			['(', ')'],
-			$markup
+		return (string)preg_replace(
+			'/if \((\$[^)]+)\)/',
+			'if (is_array($1))',
+			str_replace(
+				['( ', ' )'],
+				['(', ')'],
+				$markup
+			)
 		);
 	}
 }
