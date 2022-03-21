@@ -8594,9 +8594,6 @@ namespace {
 	function kirki_get_brightness($hex)
 	{
 	}
-	function Kirki()
-	{
-	}
 	\define('KIRKI_PLUGIN_FILE', __FILE__);
 	\define('KIRKI_VERSION', '4.0.22');
 	/**
