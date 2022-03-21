@@ -80,7 +80,7 @@ final class Field
 	 */
 	private function convertTypeToClass(string $type): string
 	{
-		$class = sprintf('Kirki\\Field\\%s', Str::title(Str::snake($type)));
+		$class = sprintf('Kirki\\Field\\%s', Str::of($type)->title()->snake());
 
 		if (!class_exists($class)) {
 			throw new \InvalidArgumentException("Type \"{$type}\" of Kirki Field does not exists.");
