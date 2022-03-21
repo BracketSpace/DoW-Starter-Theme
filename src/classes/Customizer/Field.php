@@ -4,18 +4,26 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Customizer;
 
-use Kirki;
-use DoWStarterTheme\Customizer\Abstracts\Section;
 use DoWStarterTheme\Deps\Illuminate\Support\Str;
 
 /**
- * Customizer field class
- *
- * TODO: refactor to handle creating separate instances of field for better
- * data managing.
+ * Customizer Field class
  */
 final class Field
 {
+	/**
+	 * Returns value of the field with given name.
+	 *
+	 * @param   string $id      ID of the field.
+	 * @param   mixed  $default Default value.
+	 *
+	 * @return  mixed
+	 */
+	public static function value(string $id, $default = null)
+	{
+		return get_theme_mod($id, $default);
+	}
+
 	/**
 	 * Unique ID of the field.
 	 *
@@ -82,19 +90,6 @@ final class Field
 	}
 
 	/**
-	 * Returns value of the field with given name.
-	 *
-	 * @param   string $id      ID of the field.
-	 * @param   mixed  $default Default value.
-	 *
-	 * @return  mixed
-	 */
-	public static function value(string $id, $default = null)
-	{
-		return get_theme_mod($id, $default);
-	}
-
-	/**
 	 * Returns unique ID of field.
 	 *
 	 * @return  string
@@ -117,16 +112,16 @@ final class Field
 			);
 		}
 
-		if (!is_subclass_of($this->fieldClass, Kirki\Field::class)) {
+		if (!is_subclass_of($this->fieldClass, \Kirki\Field::class)) {
 			throw new \InvalidArgumentException(
-				sprintf('Class "%s" is not subclass of "%s".', $this->fieldClass, Kirki\Field::class)
+				sprintf('Class "%s" is not subclass of "%s".', $this->fieldClass, \Kirki\Field::class)
 			);
 		}
 
 		$class = $this->fieldClass;
 
 		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
-		new $class(
+		$field = new $class(
 			array_merge(
 				$this->config,
 				[
@@ -135,5 +130,20 @@ final class Field
 				]
 			)
 		);
+
+		// Remove default Kirki actions from constructor, because of they high
+		// priority (higher than our customizer registrar).
+		remove_action('customize_register', [$field, 'register_control_type']);
+		remove_action('customize_register', [$field, 'add_setting']);
+		remove_action('customize_register', [$field, 'add_control']);
+
+		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+		global $wp_customize;
+
+		// Execute manually Kirki actions.
+		$field->register_control_type($wp_customize);
+		$field->add_setting($wp_customize);
+		$field->add_control($wp_customize);
+		// phpcs:enable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 	}
 }

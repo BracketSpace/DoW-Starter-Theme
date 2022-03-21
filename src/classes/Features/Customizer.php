@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features;
 
-use DoWStarterTheme\Customizer\Abstracts\Panel;
-use DoWStarterTheme\Customizer\Abstracts\Section;
+use DoWStarterTheme\Customizer\Panel;
+use DoWStarterTheme\Customizer\Section;
 use DoWStarterTheme\Customizer\Field;
 use DoWStarterTheme\Deps\Micropackage\DocHooks\HookTrait;
 use DoWStarterTheme\Core\Config;
@@ -17,10 +17,13 @@ class Customizer
 {
 	use HookTrait;
 
+	protected const TYPE_PANEL = 'panel';
+	protected const TYPE_SECTION = 'section';
+
 	/**
-	 * Initializes customizer sections, panels and fields.
+	 * Initializes customizer Panels, Sections and Fields.
 	 *
-	 * @action init
+	 * @action customize_register 100
 	 *
 	 * @return  void
 	 */
@@ -28,127 +31,94 @@ class Customizer
 	{
 		$config = Config::get('customizer');
 
-		$this->registerPanels($config);
+		if (!is_array($config)) {
+			return;
+		}
+
+		foreach ($config as $key => $data) {
+			['type' => $type, 'id' => $id] = $this->parseKey($key);
+
+			if ($type === self::TYPE_PANEL) {
+				$this->registerPanel($id, $data);
+			} elseif ($type === self::TYPE_SECTION) {
+				$this->registerSection($id, $data);
+			}
+		}
 	}
 
 	/**
-	 * Registers customizer panels.
+	 * Parses Panel or Section configuration key.
 	 *
-	 * @param   array<mixed> $panels List of panels.
+	 * @param   string $key Panel or section configuration key.
+	 * @return  array<string, string>
+	 */
+	protected function parseKey(string $key): array
+	{
+		$result = preg_match('/^(?P<type>.+?):(?P<id>.+)$/', $key, $matches);
+
+		return !$result
+			? ['type' => self::TYPE_SECTION, 'id' => $key]
+			: ['type' => $matches['type'], 'id' => $matches['id']];
+	}
+
+	/**
+	 * Registers Panel in Customizer.
 	 *
+	 * @param   string       $id   ID of the Panel.
+	 * @param   array<mixed> $data Configuration of the Panel, compatible with Kirki.
 	 * @return  void
 	 */
-	protected function registerPanels(array $panels): void
+	protected function registerPanel(string $id, array $data): void
 	{
-		foreach ($panels as $panel => $sections) {
-			$panel = $this->registerPanel($panel);
+		$panel = new Panel($id, $data);
 
-			$this->registerSections($panel, $sections);
+		if (!$panel->isRegistered()) {
+			$panel->register();
+		}
+
+		foreach ($data['children'] as $key => $sectionData) {
+			['id' => $sectionId] = $this->parseKey($key);
+
+			$this->registerSection($sectionId, $sectionData, $panel);
 		}
 	}
 
 	/**
-	 * Registers customizer sections.
+	 * Registers Section in Customizer.
 	 *
-	 * @param   Panel        $panel    Panel in which sections should be registered.
-	 * @param   array<mixed> $sections List of sections.
-	 *
+	 * @param   string       $id    ID of the Section.
+	 * @param   array<mixed> $data  Configuration of the Section, compatible with Kirki.
+	 * @param   Panel|null   $panel Parent Panel of the Section.
 	 * @return  void
 	 */
-	protected function registerSections(Panel $panel, array $sections): void
+	protected function registerSection(string $id, array $data, ?Panel $panel = null): void
 	{
-		foreach ($sections as $section => $fields) {
-			$section = $this->registerSection($panel, $section);
+		$section = new Section($id, $data);
 
-			$this->registerFields($section, $fields);
+		if ($panel) {
+			$section->setPanel($panel);
+		}
+
+		if (!$section->isRegistered()) {
+			$section->register();
+		}
+
+		foreach ($data['children'] as $fieldId => $fieldData) {
+			$this->registerField($fieldId, $fieldData, $section);
 		}
 	}
 
 	/**
-	 * Registers customizer fields.
+	 * Registers Field in Customizer.
 	 *
-	 * @param   Section      $section Section in which fields should be registered.
-	 * @param   array<mixed> $fields  List of fields.
-	 *
+	 * @param   string       $id      ID of the Field.
+	 * @param   array<mixed> $data    Configuration of the Field, compatible with Kirki.
+	 * @param   Section|null $section Parent Section of the Field.
 	 * @return  void
 	 */
-	protected function registerFields(Section $section, array $fields): void
+	protected function registerField(string $id, array $data, Section $section): void
 	{
-		foreach ($fields as $id => $config) {
-			$this->registerField($id, $section, $config);
-		}
-	}
-
-	/**
-	 * Registers single panel.
-	 *
-	 * @param   string $panel Name of the panel class.
-	 * @return  Panel
-	 * @throws  \InvalidArgumentException if the given class name does not exists
-	 */
-	protected function registerPanel(string $panel): Panel
-	{
-		if (!class_exists($panel)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" does not exists.', $panel)
-			);
-		}
-
-		if (!is_subclass_of($panel, Panel::class)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" is not subclass of "%s".', $panel, Panel::class)
-			);
-		}
-
-		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
-		$panel = new $panel();
-		$panel->register();
-
-		return $panel;
-	}
-
-	/**
-	 * Registers single section in given panel.
-	 *
-	 * @param   Panel  $panel   Instance of panel in which .
-	 * @param   string $section Name of the section class.
-	 * @return  Section
-	 * @throws  \InvalidArgumentException if the given class name does not exists
-	 */
-	protected function registerSection(Panel $panel, string $section): Section
-	{
-		if (!class_exists($section)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" does not exists.', $section)
-			);
-		}
-
-		if (!is_subclass_of($section, Section::class)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" is not subclass of "%s".', $section, Section::class)
-			);
-		}
-
-		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
-		$section = new $section($panel);
-		$section->register();
-
-		return $section;
-	}
-
-	/**
-	 * Registers single field in given section.
-	 *
-	 * @param   string               $id      ID of the field.
-	 * @param   Section              $section Instance of section.
-	 * @param   array<string, mixed> $config  Config of the field.
-	 * @return  Field
-	 */
-	protected function registerField(string $id, Section $section, array $config): Field
-	{
-		$field = new Field($id, $section, $config);
+		$field = new Field($id, $section, $data);
 		$field->register();
-
-		return $field;
 	}
 }
