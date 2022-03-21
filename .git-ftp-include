@@ -1,3 +1,5 @@
 !build/
-!vendor/
+!vendor/composer/
+!vendor/autoload.php
 !dependencies/
+!theme.json
