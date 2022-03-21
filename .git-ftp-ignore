@@ -1,11 +1,12 @@
 .editorconfig
 .eslintignore
-.eslintrc.json
+.eslintrc.js
 .git-ftp-ignore
 .git-ftp-include
 .git-ftp.log
 .github/*
 .gitignore
+.initignore
 .prettierrc.json
 .stylelintignore
 .stylelintrc.json
@@ -18,5 +19,6 @@ package.json
 phpcs.xml
 phpstan.neon
 postcss.config.js
+tsconfig.json
 webpack.config.js
 yarn.lock
