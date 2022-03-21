@@ -1,38 +1,3 @@
 {
-  "extends": "@micropackage/scripts/stylelint-config",
-  "rules": {
-    "color-named": [
-      "never",
-      {
-        "ignore": [
-          "inside-function"
-        ]
-      }
-    ],
-    "function-url-quotes": "always",
-    "at-rule-empty-line-before": [
-      "always",
-      {
-        "ignore": [
-          "after-comment",
-          "first-nested"
-        ],
-        "except": [
-          "blockless-after-same-name-blockless"
-        ],
-        "ignoreAtRules": [
-          "else"
-        ]
-      }
-    ],
-    "rule-empty-line-before": [
-      "always",
-      {
-        "ignore": [
-          "after-comment",
-          "first-nested"
-        ]
-      }
-    ]
-  }
+  "extends": "@micropackage/scripts/stylelint-config"
 }

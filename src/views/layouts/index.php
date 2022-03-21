@@ -1,14 +1,16 @@
 <?php
-/**
- * @var \DoWStarterTheme\View\View $this
- */
 
 declare(strict_types=1);
 
+use DoWStarterTheme\Helpers\View as v;
+
+v::partial('header');
 ?>
 
-<p>Main Layout</p>
-
-<div class="content">
-	<?php $this->raw('content'); ?>
+<div class="site-inner container-full">
+	<main class="content">
+		<?php v::raw('content'); ?>
+	</main>
 </div>
+
+<?php v::partial('footer'); ?>

@@ -1,12 +1,10 @@
 <?php
-/**
- * @var \DoWStarterTheme\View\View $this
- */
 
 declare(strict_types=1);
 
+use DoWStarterTheme\Helpers\View as v;
 ?>
 
-<div class="widget-area" id="<?php $this->attr('id'); ?>">
-	<?php dynamic_sidebar($this->get('id')); ?>
+<div class="widget-area" id="<?php v::attr('id'); ?>">
+	<?php dynamic_sidebar(v::get('id')); ?>
 </div>

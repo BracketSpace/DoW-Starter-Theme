@@ -19,14 +19,22 @@
     "theme-json": "tools generate theme-json"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@micropackage/responsive-embeds": "^1.0.2",
-    "@micropackage/scripts": "^1.2.3",
+    "@babel/runtime": "^7.17.7",
+    "@micropackage/responsive-embeds": "^1.0.3",
+    "@micropackage/scripts": "^1.2.5",
     "@micropackage/vw": "^1.1.0",
-    "@types/lodash": "^4.14.179",
+    "@types/lodash": "^4.14.180",
     "@types/object-fit-images": "^3.2.2",
+    "@types/vimeo__player": "^2.16.2",
+    "@types/wordpress__block-editor": "^6.0.5",
+    "@types/wordpress__blocks": "^9.1.1",
+    "@types/wordpress__compose": "^4.0.1",
+    "@types/youtube": "^0.0.46",
+    "@wordpress/dom-ready": "^3.4.1",
+    "@wordpress/hooks": "^3.4.1",
+    "@wordpress/i18n": "^4.4.1",
     "@wordpress/icons": "^6.1.1",
-    "autoprefixer": "^10.4.2",
+    "autoprefixer": "^10.4.4",
     "classnames": "^2.3.1",
     "delegated-events": "^1.1.2",
     "fast-glob": "^3.2.11",
@@ -37,15 +45,16 @@
     "object-fit-images": "^3.2.4",
     "postcss-object-fit-images": "^1.1.2",
     "postcss-prepend-selector": "^0.3.1",
+    "react": "^17.0.2",
     "terser-webpack-plugin": "^5.3.1",
     "tools": "file:./.tools",
     "typescript": "^4.6.2"
   },
   "mpScriptsConfig": {
     "paths": {
-      "src": "src/assets",
       "output": "build",
-      "fonts": "new-fonts"
+      "scripts": "ts",
+      "src": "src/assets"
     }
   }
 }

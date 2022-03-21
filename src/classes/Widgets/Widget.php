@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Widgets;
 
 use DoWStarterTheme\Deps\Illuminate\Support\Str;
-use DoWStarterTheme\View\View;
+use DoWStarterTheme\Helpers\View;
 
 /**
  * Widget class
@@ -73,7 +73,10 @@ abstract class Widget extends \WP_Widget
 			echo $args['before_title'] . get_field('title', $widgetId) . $args['after_title'];
 		}
 
-		View::print("widgets.{$this->viewName}", $this->getData($widgetId, $args));
+		View::print(
+			"widgets.{$this->viewName}",
+			$this->getData($widgetId, $args)
+		);
 
 		echo $args['after_widget'];
 	}

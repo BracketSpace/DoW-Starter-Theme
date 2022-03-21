@@ -3,6 +3,7 @@
  */
 @use "../functions/bp" as *;
 @use "../variables" as *;
+@use "../variables" as v;
 @use "breakpoint" as bp;
 
 @mixin props($padding) {
@@ -13,7 +14,7 @@
 }
 
 @mixin full($bp: null) {
-	$bp-mobile: md;
+	$bp-mobile: v.$padding-breakpoint;
 
 	@if (null == $bp) {
 		@include props($padding);

@@ -15,6 +15,4 @@ parameters:
         - */dependencies/*
         - */node_modules/*
     ignoreErrors:
-        -
-            message: '#Call to protected method [a-zA-Z0-9\\_]+\(\) of class DoWStarterTheme\\View\\View#'
-            path: src/views/*
+        - '#Variable static property access on DoWStarterTheme\\Abstracts\\Labelable\.#'

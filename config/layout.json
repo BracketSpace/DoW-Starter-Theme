@@ -4,5 +4,5 @@
   "containerSize": 1100,
   "padding": 40,
   "paddingMobile": 24,
-  "paddingBreakpoint": "sm"
+  "paddingBreakpoint": "md"
 }
