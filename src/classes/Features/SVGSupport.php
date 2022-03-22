@@ -39,7 +39,7 @@ class SVGSupport
 	 */
 	public function prepareAttachmentForJs($response, $attachment): array
 	{
-		if ($response['mime'] !== 'image/svg+xml' || count($response['sizes']) === 0) {
+		if ($response['mime'] !== 'image/svg+xml' || count($response['sizes'] ?? []) === 0) {
 			return $response;
 		}
 
