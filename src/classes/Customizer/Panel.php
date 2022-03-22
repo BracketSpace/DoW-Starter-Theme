@@ -7,7 +7,7 @@ namespace DoWStarterTheme\Customizer;
 /**
  * Customizer Panel class
  */
-class Panel extends \Kirki\Panel
+final class Panel extends \Kirki\Panel
 {
 	/**
 	 * Panel constructor.
@@ -20,6 +20,12 @@ class Panel extends \Kirki\Panel
 		parent::__construct($id);
 
 		$this->args = $args;
+
+		if ($this->isRegistered()) {
+			return;
+		}
+
+		$this->register();
 	}
 
 	/**
@@ -37,7 +43,7 @@ class Panel extends \Kirki\Panel
 	 *
 	 * @return  bool
 	 */
-	public function isRegistered(): bool
+	private function isRegistered(): bool
 	{
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;
@@ -51,7 +57,7 @@ class Panel extends \Kirki\Panel
 	 *
 	 * @return  void
 	 */
-	public function register(): void
+	private function register(): void
 	{
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;

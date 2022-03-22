@@ -7,37 +7,37 @@ namespace DoWStarterTheme\Customizer;
 /**
  * Customizer Section class
  */
-class Section extends \Kirki\Section
+final class Section extends \Kirki\Section
 {
 	/**
 	 * Parent Panel of the Section.
 	 *
 	 * @var  Panel|null
 	 */
-	protected ?Panel $panel = null;
+	private ?Panel $panel = null;
 
 	/**
 	 * Section constructor.
 	 *
-	 * @param  string       $id   ID of the Section.
-	 * @param  array<mixed> $args Configuration of the Section, compatible with Kirki.
+	 * @param  string       $id    ID of the Section.
+	 * @param  array<mixed> $args  Configuration of the Section, compatible with Kirki.
+	 * @param  Panel|null   $panel Parent Panel of the Section.
 	 */
-	public function __construct(string $id, array $args)
+	public function __construct(string $id, array $args, ?Panel $panel = null)
 	{
 		parent::__construct($id);
 
 		$this->args = $args;
-	}
 
-	/**
-	 * Sets the panel to which section belongs to.
-	 *
-	 * @param  Panel $panel Parent Panel of the Section.
-	 * @return void
-	 */
-	public function setPanel(Panel $panel): void
-	{
-		$this->args['panel'] = $panel->getId();
+		if ($panel !== null) {
+			$this->args['panel'] = $panel->getId();
+		}
+
+		if ($this->isRegistered()) {
+			return;
+		}
+
+		$this->register();
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Section extends \Kirki\Section
 	 *
 	 * @return  bool
 	 */
-	public function isRegistered(): bool
+	private function isRegistered(): bool
 	{
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;
@@ -69,7 +69,7 @@ class Section extends \Kirki\Section
 	 *
 	 * @return  void
 	 */
-	public function register(): void
+	private function register(): void
 	{
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;

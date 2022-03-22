@@ -29,28 +29,28 @@ final class Field
 	 *
 	 * @var string $id
 	 */
-	protected string $id;
+	private string $id;
 
 	/**
 	 * Section of thr field.
 	 *
 	 * @var Section $section
 	 */
-	protected Section $section;
+	private Section $section;
 
 	/**
 	 * Config of the field.
 	 *
 	 * @var array<string, mixed> $config
 	 */
-	protected array $config;
+	private array $config;
 
 	/**
 	 * Customizer class of field.
 	 *
 	 * @var string $fieldsClass
 	 */
-	protected string $fieldClass;
+	private string $fieldClass;
 
 	/**
 	 * Constructor of the field.
@@ -65,7 +65,9 @@ final class Field
 		$this->section = $section;
 		$this->config = $config;
 
-		$this->fieldClass = $this->convertTypeToClass($this->config['type']);
+		$this->fieldClass = $this->getClassFromType($this->config['type']);
+
+		$this->register();
 	}
 
 	/**
@@ -78,12 +80,18 @@ final class Field
 	 *
 	 * @return  string
 	 */
-	private function convertTypeToClass(string $type): string
+	private function getClassFromType(string $type): string
 	{
 		$class = sprintf('Kirki\\Field\\%s', Str::of($type)->title()->snake());
 
 		if (!class_exists($class)) {
 			throw new \InvalidArgumentException("Type \"{$type}\" of Kirki Field does not exists.");
+		}
+
+		if (!is_subclass_of($class, \Kirki\Field::class)) {
+			throw new \InvalidArgumentException(
+				sprintf('Class "%s" is not subclass of "%s".', $class, \Kirki\Field::class)
+			);
 		}
 
 		return $class;
@@ -104,20 +112,8 @@ final class Field
 	 *
 	 * @return  void
 	 */
-	public function register(): void
+	private function register(): void
 	{
-		if (!class_exists($this->fieldClass)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" does not exists.', $this->fieldClass)
-			);
-		}
-
-		if (!is_subclass_of($this->fieldClass, \Kirki\Field::class)) {
-			throw new \InvalidArgumentException(
-				sprintf('Class "%s" is not subclass of "%s".', $this->fieldClass, \Kirki\Field::class)
-			);
-		}
-
 		$class = $this->fieldClass;
 
 		// phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
@@ -140,7 +136,15 @@ final class Field
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;
 
-		// Execute manually Kirki actions.
+		/**
+		 * Kirki by default registers fields in `customize_register` action with
+		 * priority 10. Our Customizer feature uses the same action, but with
+		 * priority 100, to be sure that all default Customizer options are
+		 * registered. Because of that we need to manually execute Kirki
+		 * methods which registers field.
+		 *
+		 * @see \Kirki\Field@__constructor
+		 */
 		$field->register_control_type($wp_customize);
 		$field->add_setting($wp_customize);
 		$field->add_control($wp_customize);
