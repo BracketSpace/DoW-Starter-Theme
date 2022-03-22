@@ -56,9 +56,9 @@ class Customizer
 	{
 		$result = preg_match('/^(?P<type>.+?):(?P<id>.+)$/', $key, $matches);
 
-		return !$result
-			? ['type' => self::TYPE_SECTION, 'id' => $key]
-			: ['type' => $matches['type'], 'id' => $matches['id']];
+		return $result === 1
+			? ['type' => $matches['type'], 'id' => $matches['id']]
+			: ['type' => self::TYPE_SECTION, 'id' => $key];
 	}
 
 	/**
@@ -95,7 +95,7 @@ class Customizer
 	{
 		$section = new Section($id, $data);
 
-		if ($panel) {
+		if ($panel !== null) {
 			$section->setPanel($panel);
 		}
 
@@ -113,7 +113,7 @@ class Customizer
 	 *
 	 * @param   string       $id      ID of the Field.
 	 * @param   array<mixed> $data    Configuration of the Field, compatible with Kirki.
-	 * @param   Section|null $section Parent Section of the Field.
+	 * @param   Section      $section Parent Section of the Field.
 	 * @return  void
 	 */
 	protected function registerField(string $id, array $data, Section $section): void
