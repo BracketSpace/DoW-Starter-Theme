@@ -2,11 +2,12 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
+    bootstrapFiles:
+        - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
+        - stubs/kirki.stub
     level: max
     phpVersion: 74000
     inferPrivatePropertyTypeFromConstructor: true
-    scanFiles:
-        - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
     paths:
         - ./
     excludePaths:

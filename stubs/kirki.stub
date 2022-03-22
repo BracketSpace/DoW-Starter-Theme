@@ -1,0 +1,8605 @@
+<?php
+namespace Kirki\Compatibility {
+	/**
+	 * Initialize Kirki
+	 */
+	class Init
+	{
+		/**
+		 * Control types.
+		 *
+		 * @access private
+		 * @since 3.0.0
+		 * @var array
+		 */
+		private $control_types = [];
+		/**
+		 * Should we show a nag for the deprecated fontawesome field?
+		 *
+		 * @static
+		 * @access private
+		 * @since 3.0.42
+		 * @var bool
+		 */
+		private static $show_fa_nag = false;
+		/**
+		 * The class constructor.
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Add the default Kirki control types.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @param array $control_types The control types array.
+		 * @return array
+		 */
+		public function default_control_types($control_types = [])
+		{
+		}
+		/**
+		 * Helper function that adds the fields to the customizer.
+		 */
+		public function add_to_customizer()
+		{
+		}
+		/**
+		 * Register control types
+		 */
+		public function register_control_types()
+		{
+		}
+		/**
+		 * Create the settings and controls from the $fields array and register them.
+		 *
+		 * @var object The WordPress Customizer object.
+		 */
+		public function add_fields()
+		{
+		}
+		/**
+		 * Process fields added using the 'kirki_fields' and 'kirki_controls' filter.
+		 * These filters are no longer used, this is simply for backwards-compatibility.
+		 *
+		 * @access private
+		 * @since 2.0.0
+		 */
+		private function fields_from_filters()
+		{
+		}
+		/**
+		 * Alias for the is_plugin static method in the Kirki\Util\Util class.
+		 * This is here for backwards-compatibility purposes.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.0
+		 * @return bool
+		 */
+		public static function is_plugin()
+		{
+		}
+		/**
+		 * Alias for the get_variables static method in the Kirki\Util\Util class.
+		 * This is here for backwards-compatibility purposes.
+		 *
+		 * @static
+		 * @access public
+		 * @since 2.0.0
+		 * @return array Formatted as array( 'variable-name' => value ).
+		 */
+		public static function get_variables()
+		{
+		}
+		/**
+		 * Remove controls.
+		 *
+		 * @since 3.0.17
+		 * @param object $wp_customize The customizer object.
+		 * @return void
+		 */
+		public function remove_controls($wp_customize)
+		{
+		}
+		/**
+		 * Shows an admin notice.
+		 *
+		 * @access public
+		 * @since 3.0.42
+		 * @return void
+		 */
+		public function admin_notices()
+		{
+		}
+		/**
+		 * Dismisses the nag.
+		 *
+		 * @access public
+		 * @since 3.0.42
+		 * @return void
+		 */
+		public function dismiss_nag()
+		{
+		}
+		/**
+		 * Handles showing a nag if the theme is using the deprecated fontawesome field
+		 *
+		 * @static
+		 * @access protected
+		 * @since 3.0.42
+		 * @param array $args The field arguments.
+		 * @return void
+		 */
+		protected static function maybe_show_fontawesome_nag($args)
+		{
+		}
+	}
+	/**
+	 * Each setting is a separate instance
+	 */
+	class Settings
+	{
+		/**
+		 * The global $wp_customize object.
+		 *
+		 * @access protected
+		 * @var WP_Customize_Manager
+		 */
+		protected $wp_customize;
+		/**
+		 * The setting-stypes we're using.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $setting_types = [];
+		/**
+		 * Creates a new Settings object.
+		 * Class constructor.
+		 *
+		 * @access public
+		 * @param array $args The field definition as sanitized in Kirki\Compatibility\Field.
+		 */
+		public function __construct($args = [])
+		{
+		}
+		/**
+		 * Adds the settings for this field.
+		 * If settings are defined as an array, then it goes through them
+		 * and calls the add_setting method.
+		 * If not an array, then it just calls add_setting
+		 *
+		 * @access private
+		 * @param array $args The field definition as sanitized in Kirki\Compatibility\Field.
+		 */
+		final function add_settings($args = [])
+		{
+		}
+		/**
+		 * This is where we're finally adding the setting to the Customizer.
+		 *
+		 * @access private
+		 * @param string       $classname           The name of the class that will be used to create this setting.
+		 *                                          We're getting this from $this->setting_types.
+		 * @param string       $setting             The setting-name.
+		 *                                          If settings is an array, then this method is called per-setting.
+		 * @param string|array $default             Default value for this setting.
+		 * @param string       $type                The data type we're using. Valid options: theme_mod|option.
+		 * @param string       $capability          @see https://codex.wordpress.org/Roles_and_Capabilities.
+		 * @param string       $transport           Use refresh|postMessage.
+		 * @param string|array $sanitize_callback   A callable sanitization function or method.
+		 */
+		final function add_setting($classname, $setting, $default, $type, $capability, $transport, $sanitize_callback)
+		{
+		}
+		/**
+		 * Sets the $this->setting_types property.
+		 * Makes sure the kirki_setting_types filter is applied
+		 * and that the defined classes actually exist.
+		 * If a defined class does not exist, it is removed.
+		 */
+		final function set_setting_types()
+		{
+		}
+	}
+	/**
+	 * Wrapper class for static methods.
+	 */
+	class Values
+	{
+		/**
+		 * Get the value of a field.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $config_id The configuration ID. @see Kirki\Compatibility\Config.
+		 * @param string $field_id  The field ID.
+		 * @return string|array
+		 */
+		public static function get_value($config_id = '', $field_id = '')
+		{
+		}
+		/**
+		 * Gets the value or fallsback to default.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $field The field aruments.
+		 * @return string|array
+		 */
+		public static function get_sanitized_field_value($field)
+		{
+		}
+	}
+	/**
+	 * Adds scripts for backwards-compatibility
+	 *
+	 * @since 0.1
+	 */
+	class Scripts
+	{
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 0.1
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Enqueue missing WP scripts.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @return void
+		 */
+		public function register_scripts()
+		{
+		}
+	}
+	/**
+	 * Our main Kirki\Control object
+	 */
+	class Control
+	{
+		/**
+		 * The $wp_customize WordPress global.
+		 *
+		 * @access protected
+		 * @var WP_Customize_Manager
+		 */
+		protected $wp_customize;
+		/**
+		 * An array of all available control types.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected static $control_types = [];
+		/**
+		 * The class constructor.
+		 * Creates the actual controls in the customizer.
+		 *
+		 * @access public
+		 * @param array $args The field definition as sanitized in Kirki\Field.
+		 */
+		public function __construct($args)
+		{
+		}
+		/**
+		 * Get the class name of the class needed to create tis control.
+		 *
+		 * @access private
+		 * @param array $args The field definition as sanitized in Kirki\Field.
+		 *
+		 * @return         string   the name of the class that will be used to create this control.
+		 */
+		final function get_control_class_name($args)
+		{
+		}
+		/**
+		 * Adds the control.
+		 *
+		 * @access protected
+		 * @param array $args The field definition as sanitized in Kirki\Field.
+		 */
+		protected final function add_control($args)
+		{
+		}
+		/**
+		 * Sets the $control_types property.
+		 * Makes sure the kirki_control_types filter is applied
+		 * and that the defined classes actually exist.
+		 * If a defined class does not exist, it is removed.
+		 *
+		 * @access private
+		 */
+		final function set_control_types()
+		{
+		}
+	}
+	/**
+	 * Please do not use this class directly.
+	 * You should instead extend it per-field-type.
+	 */
+	class Field
+	{
+		/**
+		 * An array of the field arguments.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $args = [];
+		/**
+		 * The ID of the kirki_config we're using.
+		 *
+		 * @see Kirki\Compatibility\Config
+		 * @access protected
+		 * @var string
+		 */
+		protected $kirki_config = 'global';
+		/**
+		 * The capability required so that users can edit this field.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $capability = 'edit_theme_options';
+		/**
+		 * If we're using options instead of theme_mods
+		 * and we want them serialized, this is the option that
+		 * will saved in the db.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $option_name = '';
+		/**
+		 * Custom input attributes (defined as an array).
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $input_attrs = [];
+		/**
+		 * Preset choices.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $preset = [];
+		/**
+		 * CSS Variables.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $css_vars = [];
+		/**
+		 * Use "theme_mod" or "option".
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $option_type = 'theme_mod';
+		/**
+		 * The name of this setting (id for the db).
+		 *
+		 * @access protected
+		 * @var string|array
+		 */
+		protected $settings = '';
+		/**
+		 * Set to true if you want to disable all CSS output for this field.
+		 *
+		 * @access protected
+		 * @var bool
+		 */
+		protected $disable_output = false;
+		/**
+		 * The field type.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $type = 'kirki-generic';
+		/**
+		 * Some fields require options to be set.
+		 * We're whitelisting the property here
+		 * and suggest you validate this in a child class.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $choices = [];
+		/**
+		 * Assign this field to a section.
+		 * Fields not assigned to a section will not be displayed in the customizer.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $section = '';
+		/**
+		 * The default value for this field.
+		 *
+		 * @access protected
+		 * @var string|array|bool
+		 */
+		protected $default = '';
+		/**
+		 * Priority determines the position of a control inside a section.
+		 * Lower priority numbers move the control to the top.
+		 *
+		 * @access protected
+		 * @var int
+		 */
+		protected $priority = 10;
+		/**
+		 * Unique ID for this field.
+		 * This is auto-calculated from the $settings argument.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $id = '';
+		/**
+		 * Use if you want to automatically generate CSS from this field's value.
+		 *
+		 * @see https://kirki.org/docs/arguments/output
+		 * @access protected
+		 * @var array
+		 */
+		protected $output = [];
+		/**
+		 * Use to automatically generate postMessage scripts.
+		 * Not necessary to use if you use 'transport' => 'auto'
+		 * and have already set an array for the 'output' argument.
+		 *
+		 * @see https://kirki.org/docs/arguments/js_vars
+		 * @access protected
+		 * @var array
+		 */
+		protected $js_vars = [];
+		/**
+		 * If you want to use a CSS compiler, then use this to set the variable names.
+		 *
+		 * @see https://kirki.org/docs/arguments/variables
+		 * @access protected
+		 * @var array
+		 */
+		protected $variables = [];
+		/**
+		 * Text that will be used in a tooltip to provide extra info for this field.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $tooltip = '';
+		/**
+		 * A custom callback to determine if the field should be visible or not.
+		 *
+		 * @access protected
+		 * @var string|array
+		 */
+		protected $active_callback = '__return_true';
+		/**
+		 * A custom sanitize callback that will be used to properly save the values.
+		 *
+		 * @access protected
+		 * @var string|array
+		 */
+		protected $sanitize_callback = '';
+		/**
+		 * Use 'refresh', 'postMessage' or 'auto'.
+		 * 'auto' will automatically geberate any 'js_vars' from the 'output' argument.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $transport = 'refresh';
+		/**
+		 * Define dependencies to show/hide this field based on the values of other fields.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $required = [];
+		/**
+		 * Partial Refreshes array.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $partial_refresh = [];
+		/**
+		 * The class constructor.
+		 * Parses and sanitizes all field arguments.
+		 * Then it adds the field to Kirki::$fields.
+		 *
+		 * @access public
+		 * @param string $config_id    The ID of the config we want to use.
+		 *                             Defaults to "global".
+		 *                             Configs are handled by the Kirki\Compatibility\Config class.
+		 * @param array  $args         The arguments of the field.
+		 */
+		public function __construct($config_id = 'global', $args = [])
+		{
+		}
+		/**
+		 * Processes the field arguments
+		 *
+		 * @access protected
+		 */
+		protected function set_field()
+		{
+		}
+		/**
+		 * Escape the $section.
+		 *
+		 * @access protected
+		 */
+		protected function set_input_attrs()
+		{
+		}
+		/**
+		 * Make sure we're using the correct option_type
+		 *
+		 * @access protected
+		 */
+		protected function set_option_type()
+		{
+		}
+		/**
+		 * Modifications for partial refreshes.
+		 *
+		 * @access protected
+		 */
+		protected function set_partial_refresh()
+		{
+		}
+		/**
+		 * Sets the settings.
+		 * If we're using serialized options it makes sure that settings are properly formatted.
+		 * We'll also be escaping all setting names here for consistency.
+		 *
+		 * @access protected
+		 */
+		protected function set_settings()
+		{
+		}
+		/**
+		 * Sets the active_callback
+		 * If we're using the $required argument,
+		 * Then this is where the switch is made to our evaluation method.
+		 *
+		 * @access protected
+		 */
+		protected function set_active_callback()
+		{
+		}
+		/**
+		 * Sets the $id.
+		 * Setting the ID should happen after the 'settings' sanitization.
+		 * This way we can also properly handle cases where the option_type is set to 'option'
+		 * and we're using an array instead of individual options.
+		 *
+		 * @access protected
+		 */
+		protected function set_id()
+		{
+		}
+		/**
+		 * Sets the $choices.
+		 *
+		 * @access protected
+		 */
+		protected function set_choices()
+		{
+		}
+		/**
+		 * Escapes the $disable_output.
+		 *
+		 * @access protected
+		 */
+		protected function set_disable_output()
+		{
+		}
+		/**
+		 * Sets the $sanitize_callback
+		 *
+		 * @access protected
+		 */
+		protected function set_output()
+		{
+		}
+		/**
+		 * Sets the $js_vars
+		 *
+		 * @access protected
+		 */
+		protected function set_js_vars()
+		{
+		}
+		/**
+		 * Sets the $variables
+		 *
+		 * @access protected
+		 */
+		protected function set_variables()
+		{
+		}
+		/**
+		 * Sets the $transport
+		 *
+		 * @access protected
+		 */
+		protected function set_transport()
+		{
+		}
+		/**
+		 * Sets the $required
+		 *
+		 * @access protected
+		 */
+		protected function set_required()
+		{
+		}
+		/**
+		 * Sets the $priority
+		 *
+		 * @access protected
+		 */
+		protected function set_priority()
+		{
+		}
+		/**
+		 * Sets the $css_vars
+		 *
+		 * @access protected
+		 */
+		protected function set_css_vars()
+		{
+		}
+	}
+	/**
+	 * The Config object
+	 */
+	final class Config
+	{
+		/**
+		 * Each instance is stored separately in this array.
+		 *
+		 * @static
+		 * @access private
+		 * @var array
+		 */
+		private static $instances = [];
+		/**
+		 * The finalized configuration array.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $config_final = [];
+		/**
+		 * The configuration ID.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $id = 'global';
+		/**
+		 * Capability (fields will inherit this).
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $capability = 'edit_theme_options';
+		/**
+		 * The data-type we'll be using.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $option_type = 'theme_mod';
+		/**
+		 * If we're using serialized options, then this is the global option name.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $option_name = '';
+		/**
+		 * The compiler.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $compiler = [];
+		/**
+		 * Set to true if you want to completely disable any Kirki-generated CSS.
+		 *
+		 * @access protected
+		 * @var bool
+		 */
+		protected $disable_output = false;
+		/**
+		 * The class constructor.
+		 * Use the get_instance() static method to get the instance you need.
+		 *
+		 * @access private
+		 * @param string $config_id @see Kirki\Compatibility\Config::get_instance().
+		 * @param array  $args      @see Kirki\Compatibility\Config::get_instance().
+		 */
+		private function __construct($config_id = 'global', $args = [])
+		{
+		}
+		/**
+		 * Use this method to get an instance of your config.
+		 * Each config has its own instance of this object.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $id     Config ID.
+		 * @param array  $args   {
+		 * Optional. Arguments to override config defaults.
+		 *
+		 *    @type string      $capability       @see https://codex.wordpress.org/Roles_and_Capabilities
+		 *    @type string      $option_type      theme_mod or option.
+		 *    @type string      $option_name      If we want to used serialized options,
+		 *                                        this is where we'll be adding the option name.
+		 *                                        All fields using this config will be items in that array.
+		 *    @type array       $compiler         Not yet fully implemented
+		 *    @type bool        $disable_output   If set to true, no CSS will be generated
+		 *                                        from fields using this configuration.
+		 * }
+		 *
+		 * @return Kirki\Compatibility\Config
+		 */
+		public static function get_instance($id = 'global', $args = [])
+		{
+		}
+		/**
+		 * Get the IDs of all current configs.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.22
+		 * @return array
+		 */
+		public static function get_config_ids()
+		{
+		}
+		/**
+		 * Returns the $config_final property
+		 *
+		 * @access public
+		 * @return array
+		 */
+		public function get_config()
+		{
+		}
+	}
+	/**
+	 * Adds class aliases for backwards compatibility.
+	 *
+	 * @since 0.1
+	 */
+	class Aliases
+	{
+		/**
+		 * An array of class aliases.
+		 *
+		 * @access private
+		 * @since 0.1
+		 * @var array
+		 */
+		private $aliases = ['generic' => [
+			['Kirki\\Compatibility\\Kirki', 'Kirki'],
+			['Kirki\\Compatibility\\Config', 'Kirki_Config'],
+			['Kirki\\Compatibility\\Control', 'Kirki_Control'],
+			['Kirki\\Compatibility\\Field', 'Kirki_Field'],
+			['Kirki\\Util\\Helper', 'Kirki_Helper'],
+			['Kirki\\Compatibility\\Init', 'Kirki_Init'],
+			['Kirki\\L10n', 'Kirki_L10n'],
+			['Kirki\\Compatibility\\Modules', 'Kirki_Modules'],
+			['Kirki\\Compatibility\\Sanitize_Values', 'Kirki_Sanitize_Values'],
+			['Kirki\\Compatibility\\Section', 'Kirki_Section'],
+			['Kirki\\Compatibility\\Values', 'Kirki_Values'],
+			['Kirki\\Util\\Util', 'Kirki_Util'],
+			['Kirki\\Compatibility\\Framework', 'Kirki_Toolkit'],
+			['Kirki\\Module\\CSS', 'Kirki_Modules_CSS'],
+			['Kirki\\Module\\CSS\\Output', 'Kirki_Output'],
+			['Kirki\\Module\\CSS\\Generator', 'Kirki_Modules_CSS_Generator'],
+			['Kirki\\Module\\CSS\\Property', 'Kirki_Output_Property'],
+			['Kirki\\Module\\CSS\\Property\\Font_Family', 'Kirki_Output_Property_Font_Family'],
+			['Kirki\\Module\\Preset', 'Kirki_Modules_Preset'],
+			['Kirki\\Module\\Tooltips', 'Kirki_Modules_Tooltips'],
+			['Kirki\\Module\\Webfonts', 'Kirki_Modules_Webfonts'],
+			['Kirki\\Module\\Webfonts\\Google', 'Kirki_Fonts_Google'],
+			['Kirki\\Module\\Webfonts\\Fonts', 'Kirki_Fonts'],
+			['Kirki\\Module\\Webfonts\\Embed', 'Kirki_Modules_Webfonts_Embed'],
+			['Kirki\\Module\\Webfonts\\Async', 'Kirki_Modules_Webfonts_Async'],
+			['Kirki\\Module\\Field_Dependencies', 'Kirki_Modules_Field_Dependencies'],
+			['Kirki\\Module\\Editor_Styles', 'Kirki_Modules_Gutenberg'],
+			['Kirki\\Module\\Selective_Refresh', 'Kirki_Modules_Selective_Refresh'],
+			['Kirki\\Module\\Postmessage', 'Kirki_Modules_Postmessage'],
+			['Kirki\\Field\\Background', 'Kirki_Field_Background'],
+			['Kirki\\Field\\CSS\\Background', 'Kirki_Output_Field_Background'],
+			['Kirki\\Field\\Checkbox', 'Kirki_Field_Checkbox'],
+			['Kirki\\Field\\Checkbox_Switch', 'Kirki_Field_Switch'],
+			['Kirki\\Field\\Checkbox_Switch', 'Kirki\\Field\\Switch'],
+			// Preventing typo.
+			['Kirki\\Field\\Checkbox_Toggle', 'Kirki_Field_Toggle'],
+			['Kirki\\Field\\Checkbox_Toggle', 'Kirki\\Field\\Toggle'],
+			// Preventing typo.
+			['Kirki\\Field\\Code', 'Kirki_Field_Code'],
+			['Kirki\\Field\\Color', 'Kirki_Field_Color'],
+			['Kirki\\Field\\Color', 'Kirki_Field_Color_Alpha'],
+			['Kirki\\Field\\Color_Palette', 'Kirki_Field_Color_Palette'],
+			['Kirki\\Field\\Custom', 'Kirki_Field_Custom'],
+			['Kirki\\Field\\Dashicons', 'Kirki_Field_Dashicons'],
+			['Kirki\\Field\\Date', 'Kirki_Field_Date'],
+			['Kirki\\Field\\Dimension', 'Kirki_Field_Dimension'],
+			['Kirki\\Field\\Dimensions', 'Kirki_Field_Dimensions'],
+			['Kirki\\Field\\CSS\\Dimensions', 'Kirki_Output_Field_Dimensions'],
+			['Kirki\\Field\\Dimensions', 'Kirki_Field_Spacing'],
+			['Kirki\\Field\\Dimensions', 'Kirki\\Field\\Spacing'],
+			['Kirki\\Field\\Editor', 'Kirki_Field_Editor'],
+			['Kirki\\Field\\FontAwesome', 'Kirki_Field_FontAwesome'],
+			['Kirki\\Field\\Generic', 'Kirki_Field_Kirki_Generic'],
+			['Kirki\\Field\\Generic', 'Kirki_Field_Generic'],
+			['Kirki\\Field\\Text', 'Kirki_Field_Text'],
+			['Kirki\\Field\\Textarea', 'Kirki_Field_Textarea'],
+			['Kirki\\Field\\URL', 'Kirki_Field_URL'],
+			['Kirki\\Field\\URL', 'Kirki_Field_Link'],
+			['Kirki\\Field\\URL', 'Kirki\\Field\\Link'],
+			['Kirki\\Field\\Image', 'Kirki_Field_Image'],
+			['Kirki\\Field\\CSS\\Image', 'Kirki_Output_Field_Image'],
+			['Kirki\\Field\\Multicheck', 'Kirki_Field_Multicheck'],
+			['Kirki\\Field\\Multicolor', 'Kirki_Field_Multicolor'],
+			['Kirki\\Field\\CSS\\Multicolor', 'Kirki_Output_Field_Multicolor'],
+			['Kirki\\Field\\Number', 'Kirki_Field_Number'],
+			['Kirki\\Field\\Palette', 'Kirki_Field_Palette'],
+			['Kirki\\Field\\Repeater', 'Kirki_Field_Repeater'],
+			['Kirki\\Field\\Dropdown_Pages', 'Kirki_Field_Dropdown_Pages'],
+			['Kirki\\Field\\Preset', 'Kirki_Field_Preset'],
+			['Kirki\\Field\\Select', 'Kirki_Field_Select'],
+			['Kirki\\Field\\Slider', 'Kirki_Field_Slider'],
+			['Kirki\\Field\\Sortable', 'Kirki_Field_Sortable'],
+			['Kirki\\Field\\Typography', 'Kirki_Field_Typography'],
+			['Kirki\\Field\\CSS\\Typography', 'Kirki_Output_Field_Typography'],
+			['Kirki\\Field\\Upload', 'Kirki_Field_Upload'],
+		], 'customizer' => [['Kirki\\Control\\Base', 'Kirki_Control_Base'], ['Kirki\\Control\\Base', 'Kirki_Customize_Control'], ['Kirki\\Control\\Checkbox', 'Kirki_Control_Checkbox'], ['Kirki\\Control\\Checkbox_Switch', 'Kirki_Control_Switch'], ['Kirki\\Control\\Checkbox_Toggle', 'Kirki_Control_Toggle'], ['WP_Customize_Code_Editor_Control', 'Kirki_Control_Code'], ['Kirki\\Control\\Color', 'Kirki_Control_Color'], ['Kirki\\Control\\Color_Palette', 'Kirki_Control_Color_Palette'], ['WP_Customize_Cropped_Image_Control', 'Kirki_Control_Cropped_Image'], ['Kirki\\Control\\Custom', 'Kirki_Control_Custom'], ['Kirki\\Control\\Dashicons', 'Kirki_Control_Dashicons'], ['Kirki\\Control\\Date', 'Kirki_Control_Date'], ['Kirki\\Control\\Dimension', 'Kirki_Control_Dimension'], ['Kirki\\Control\\Editor', 'Kirki_Control_Editor'], ['Kirki\\Control\\Generic', 'Kirki_Control_Generic'], ['Kirki\\Control\\Image', 'Kirki_Control_Image'], ['Kirki\\Control\\Multicheck', 'Kirki_Control_Multicheck'], ['Kirki\\Control\\Generic', 'Kirki_Control_Number'], ['Kirki\\Control\\Palette', 'Kirki_Control_Palette'], ['Kirki\\Control\\Radio', 'Kirki_Control_Radio'], ['Kirki\\Control\\Radio_Buttonset', 'Kirki_Control_Radio_Buttonset'], ['Kirki\\Control\\Radio_Image', 'Kirki_Control_Radio_Image'], ['Kirki\\Control\\Radio_Image', 'Kirki_Controls_Radio_Image_Control'], ['Kirki\\Control\\Repeater', 'Kirki_Control_Repeater'], ['Kirki\\Control\\Select', 'Kirki_Control_Select'], ['Kirki\\Control\\Slider', 'Kirki_Control_Slider'], ['Kirki\\Control\\Sortable', 'Kirki_Control_Sortable'], ['Kirki\\Control\\Upload', 'Kirki_Control_Upload'], ['Kirki\\Settings\\Repeater', 'Kirki\\Settings\\Repeater_Setting'], ['Kirki\\Settings\\Repeater', 'Kirki_Settings_Repeater_Setting'], ['WP_Customize_Section', 'Kirki_Sections_Default_Section'], ['Kirki\\Section_Types\\Expanded', 'Kirki_Sections_Expanded_Section'], ['Kirki\\Section_Types\\Nested', 'Kirki_Sections_Nested_Section'], ['Kirki\\Section_Types\\Link', 'Kirki_Sections_Link_Section'], ['Kirki\\Panel_Types\\Nested', 'Kirki_Panels_Nested_Panel']]];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 0.1
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Adds object aliases.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @return void
+		 */
+		public function add_aliases()
+		{
+		}
+		/**
+		 * Adds object aliases for classes that get instantiated on customize_register.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @return void
+		 */
+		public function add_customizer_aliases()
+		{
+		}
+	}
+	/**
+	 * The Modules class.
+	 */
+	class Modules
+	{
+		/**
+		 * An array of available modules.
+		 *
+		 * @static
+		 * @access private
+		 * @since 3.0.0
+		 * @var array
+		 */
+		private static $modules = [];
+		/**
+		 * An array of active modules (objects).
+		 *
+		 * @static
+		 * @access private
+		 * @since 3.0.0
+		 * @var array
+		 */
+		private static $active_modules = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Set the default modules and apply the 'kirki_modules' filter.
+		 * In v3.0.35 this method was renamed from default_modules to setup_default_modules,
+		 * and its visibility changed from private to public to fix https://github.com/aristath/kirki/issues/2023
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 */
+		public function setup_default_modules()
+		{
+		}
+		/**
+		 * Instantiates the modules.
+		 * In v3.0.35 the visibility for this method was changed
+		 * from private to public to fix https://github.com/aristath/kirki/issues/2023
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 */
+		public function init()
+		{
+		}
+		/**
+		 * Add a module.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $module The classname of the module to add.
+		 * @since 3.0.0
+		 */
+		public static function add_module($module)
+		{
+		}
+		/**
+		 * Remove a module.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $module The classname of the module to add.
+		 * @since 3.0.0
+		 */
+		public static function remove_module($module)
+		{
+		}
+		/**
+		 * Get the modules array.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.0
+		 * @return array
+		 */
+		public static function get_modules()
+		{
+		}
+		/**
+		 * Get the array of active modules (objects).
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.0
+		 * @return array
+		 */
+		public static function get_active_modules()
+		{
+		}
+	}
+	/**
+	 * A simple wrapper class for static methods.
+	 */
+	class Sanitize_Values
+	{
+		/**
+		 * Checkbox sanitization callback.
+		 *
+		 * Sanitization callback for 'checkbox' type controls.
+		 * This callback sanitizes `$value` as a boolean value, either TRUE or FALSE.
+		 *
+		 * Deprecated. Use \Kirki\Field\Checkbox::sanitize() instead.
+		 *
+		 * @static
+		 * @access public
+		 * @see \Kirki\Field\Checkbox::sanitize()
+		 * @param bool|string $value Whether the checkbox is checked.
+		 * @return bool Whether the checkbox is checked.
+		 */
+		public static function checkbox($value)
+		{
+		}
+		/**
+		 * Sanitize number options.
+		 *
+		 * @static
+		 * @access public
+		 * @since 0.5
+		 * @param int|float|double|string $value The value to be sanitized.
+		 * @return integer|double|string
+		 */
+		public static function number($value)
+		{
+		}
+		/**
+		 * Drop-down Pages sanitization callback.
+		 *
+		 * - Sanitization: dropdown-pages
+		 * - Control: dropdown-pages
+		 *
+		 * Sanitization callback for 'dropdown-pages' type controls. This callback sanitizes `$page_id`
+		 * as an absolute integer, and then validates that $input is the ID of a published page.
+		 *
+		 * @see absint() https://developer.wordpress.org/reference/functions/absint/
+		 * @see get_post_status() https://developer.wordpress.org/reference/functions/get_post_status/
+		 *
+		 * @param int                  $page_id    Page ID.
+		 * @param WP_Customize_Setting $setting Setting instance.
+		 * @return int|string Page ID if the page is published; otherwise, the setting default.
+		 */
+		public static function dropdown_pages($page_id, $setting)
+		{
+		}
+		/**
+		 * Sanitizes css dimensions.
+		 *
+		 * @static
+		 * @access public
+		 * @since 2.2.0
+		 * @param string $value The value to be sanitized.
+		 * @return string
+		 */
+		public static function css_dimension($value)
+		{
+		}
+		/**
+		 * Filters numeric values.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $value The value to be sanitized.
+		 * @return int|float
+		 */
+		public static function filter_number($value)
+		{
+		}
+		/**
+		 * Sanitize RGBA colors
+		 *
+		 * @static
+		 * @since 0.8.5
+		 * @param string $value The value to be sanitized.
+		 * @return string
+		 */
+		public static function rgba($value)
+		{
+		}
+		/**
+		 * Sanitize colors.
+		 *
+		 * @static
+		 * @since 0.8.5
+		 * @param string $value The value to be sanitized.
+		 * @return string
+		 */
+		public static function color($value)
+		{
+		}
+		/**
+		 * DOES NOT SANITIZE ANYTHING.
+		 *
+		 * @static
+		 * @since 0.5
+		 * @param int|string|array $value The value to be sanitized.
+		 * @return int|string|array
+		 */
+		public static function unfiltered($value)
+		{
+		}
+	}
+	/**
+	 * This class acts as an interface.
+	 * Developers may use this object to add configurations, fields, panels and sections.
+	 * You can also access all available configurations, fields, panels and sections
+	 * by accessing the object's static properties.
+	 */
+	class Kirki extends \Kirki\Compatibility\Init
+	{
+		/**
+		 * URL to the Kirki folder.
+		 *
+		 * @deprecated This is no longer used. Only kept here for backwards compatibility to avoid fatal errors.
+		 * @static
+		 * @access public
+		 * @var string
+		 */
+		public static $url;
+		/**
+		 * An array containing all configurations.
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $config = [];
+		/**
+		 * An array containing all fields for compatibility purpose.
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $fields = [];
+		/**
+		 * An array containing all fields.
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $all_fields = [];
+		/**
+		 * An array containing all controls to be removed.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.17
+		 * @var array
+		 */
+		public static $controls_to_remove = [];
+		/**
+		 * Modules object.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @var object
+		 */
+		public $modules;
+		/**
+		 * Get the value of an option from the db.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $config_id The ID of the configuration corresponding to this field.
+		 * @param string $field_id  The field_id (defined as 'settings' in the field arguments).
+		 * @return mixed The saved value of the field.
+		 */
+		public static function get_option($config_id = '', $field_id = '')
+		{
+		}
+		/**
+		 * Sets the configuration options.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $config_id The configuration ID.
+		 * @param array  $args      The configuration options.
+		 */
+		public static function add_config($config_id, $args = [])
+		{
+		}
+		/**
+		 * Create a new panel.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $id   The ID for this panel.
+		 * @param array  $args The panel arguments.
+		 */
+		public static function add_panel($id = '', $args = [])
+		{
+		}
+		/**
+		 * Remove a panel.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.17
+		 * @param string $id   The ID for this panel.
+		 */
+		public static function remove_panel($id = '')
+		{
+		}
+		/**
+		 * Create a new section.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $id   The ID for this section.
+		 * @param array  $args The section arguments.
+		 */
+		public static function add_section($id, $args)
+		{
+		}
+		/**
+		 * Remove a section.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.17
+		 * @param string $id The ID for this section.
+		 */
+		public static function remove_section($id = '')
+		{
+		}
+		/**
+		 * Create a new field.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $config_id The configuration ID for this field.
+		 * @param array  $args      The field arguments.
+		 */
+		public static function add_field($config_id, $args = [])
+		{
+		}
+		/**
+		 * Remove a control.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.17
+		 * @param string $id The field ID.
+		 */
+		public static function remove_control($id)
+		{
+		}
+		/**
+		 * Gets a parameter for a config-id.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.10
+		 * @param string $id    The config-ID.
+		 * @param string $param The parameter we want.
+		 * @return string
+		 */
+		public static function get_config_param($id, $param)
+		{
+		}
+		/**
+		 * Migrate css-variables to output argument.
+		 *
+		 * This only exists for backwards-compatibility with the deprecated css-vars argument.
+		 *
+		 * @static
+		 * @since 4.0
+		 * @param array $args The field arguments.
+		 * @return array
+		 */
+		private static function migrate_css_vars($args)
+		{
+		}
+	}
+	/**
+	 * Singleton class
+	 */
+	final class Framework
+	{
+		/**
+		 * Holds the one, true instance of this object.
+		 *
+		 * @static
+		 * @access protected
+		 * @var object
+		 */
+		protected static $instance = null;
+		/**
+		 * Access the single instance of this class.
+		 *
+		 * @static
+		 * @access public
+		 * @return Kirki\Compatibility\Framework
+		 */
+		public static function get_instance()
+		{
+		}
+	}
+	/**
+	 * Please do not use this class directly.
+	 * You should instead extend it per-field-type.
+	 */
+	class Deprecated
+	{
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function __construct()
+		{
+		}
+	}
+}
+namespace {
+	// Removed in https://github.com/aristath/kirki/pull/1682/files
+	class Kirki_Active_Callback
+	{
+		public static function evaluate()
+		{
+		}
+		private static function evaluate_requirement()
+		{
+		}
+		public static function compare($value1, $value2, $operator)
+		{
+		}
+	}
+	class Kirki_CSS_To_File
+	{
+		public function __construct()
+		{
+		}
+		public function get_url()
+		{
+		}
+		public function get_timestamp()
+		{
+		}
+		public function write_file()
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * Make it easier to create customizer settings & controls with a single call,
+	 * register the control type if needed, run extra actions the the customizer.
+	 * This is a simple abstraction which makes adding simple controls to the Customizer.
+	 *
+	 * This class is not meant to be used as-is, you'll need to extend it from a child class.
+	 *
+	 * @since 0.1
+	 */
+	abstract class Field
+	{
+		/**
+		 * The field arguments.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var array
+		 */
+		protected $args;
+		/**
+		 * The control class-name.
+		 *
+		 * Use the full classname, with namespace included.
+		 * Example: '\Kirki\Control\Color'.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class;
+		/**
+		 * The setting class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string|null
+		 */
+		protected $settings_class;
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = false;
+		/**
+		 * Constructor.
+		 * Registers any hooks we need to run.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array $args The field arguments.
+		 */
+		public function __construct($args)
+		{
+		}
+		/**
+		 * Runs in the constructor. Can be used by child-classes to define extra logic.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @param array $args The field arguments.
+		 * @return void
+		 */
+		protected function init($args)
+		{
+		}
+		/**
+		 * Register the control-type.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function register_control_type($wp_customize)
+		{
+		}
+		/**
+		 * Filter setting args.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter control args.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Registers the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $customizer The customizer instance.
+		 * @return void
+		 */
+		public function add_setting($customizer)
+		{
+		}
+		/**
+		 * Registers the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_control($wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Date extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-date';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Date';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * A base for controls.
+	 *
+	 * @since 1.0
+	 */
+	class Base extends \WP_Customize_Control
+	{
+		/**
+		 * Used to automatically generate all CSS output.
+		 *
+		 * Whitelisting property for use in Kirki modules.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var array
+		 */
+		public $output = [];
+		/**
+		 * Data type
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $option_type = 'theme_mod';
+		/**
+		 * Option name (if using options).
+		 *
+		 * Whitelisting property for use in Kirki modules.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $option_name = false;
+		/**
+		 * The kirki_config we're using for this control
+		 *
+		 * Whitelisting property for use in Kirki modules.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $kirki_config = 'global';
+		/**
+		 * Whitelisting the "preset" argument for use in Kirki modules.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var array
+		 */
+		public $preset = [];
+		/**
+		 * Whitelisting the "css_vars" argument for use in Kirki modules.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $css_vars = '';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.4';
+		/**
+		 * Parent setting.
+		 *
+		 * Used for composite controls to denote the setting that should be saved.
+		 *
+		 * @access public
+		 * @since 1.1
+		 * @var string
+		 */
+		public $parent_setting;
+		/**
+		 * Wrapper attributes.
+		 *
+		 * The value of this property will be rendered to the wrapper element.
+		 * Can be 'class', 'id', 'data-*', and other attributes.
+		 *
+		 * @access public
+		 * @since 1.1
+		 * @var array
+		 */
+		public $wrapper_attrs = [];
+		/**
+		 * Backwards compatibility support for `$wrapper_attrs`.
+		 *
+		 * Kirki v3 already has this `$wrapper_atts` property.
+		 * It was not published in the documentation, and more for internal use.
+		 *
+		 * The `WP_Customize_Control` is using `input_attrs` not `input_atts` (see, attrs vs atts).
+		 * So Kirki uses `$wrapper_attrs` for consistency and keep the old `$wrapper_atts` backwards compatibility.
+		 *
+		 * This property could be removed in the future.
+		 * Please use `$wrapper_attrs` instead.
+		 *
+		 * @since 1.1
+		 * @deprecated 1.0.1 This variable could be removed in the future. Please use `$wrapper_attrs` instead.
+		 * @var array
+		 */
+		public $wrapper_atts = [];
+		/**
+		 * Wrapper options.
+		 *
+		 * This won't be rendered automatically to the wrapper element.
+		 * The purpose is to allow us to have custom options so we can manage it when needed.
+		 *
+		 * @access public
+		 * @since 1.1
+		 * @var array
+		 */
+		public $wrapper_opts = [];
+		/**
+		 * Extra script dependencies.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return array
+		 */
+		public function kirki_script_dependencies()
+		{
+		}
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Renders the control wrapper and calls $this->render_content() for the internals.
+		 *
+		 * @since 1.0
+		 */
+		protected function render()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @see WP_Customize_Control::to_json()
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * Render the control's content.
+		 *
+		 * Allows the content to be overridden without having to rewrite the wrapper in `$this::render()`.
+		 * Control content can alternately be rendered in JS. See WP_Customize_Control::print_template().
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function render_content()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @see WP_Customize_Control::print_template()
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+		/**
+		 * Returns an array of translation strings.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @return array
+		 */
+		protected function l10n()
+		{
+		}
+	}
+	/**
+	 * A simple date control, using jQuery UI.
+	 *
+	 * @since 1.0
+	 */
+	class Date extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-date';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Upload extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-upload';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Upload';
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Sanitizes the field value.
+		 *
+		 * @since 1.0.2
+		 *
+		 * @param mixed  $value The field value.
+		 * @param string $save_as The expected saving format.
+		 *
+		 * @return mixed
+		 */
+		public static function sanitize($value, $save_as = 'url')
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Upload control
+	 */
+	class Upload extends \WP_Customize_Media_Control
+	{
+		/**
+		 * Control type.
+		 *
+		 * @since 1.0.1
+		 * @var string
+		 */
+		public $type = 'upload';
+		/**
+		 * Media control mime type.
+		 *
+		 * @since 1.0.1
+		 * @var string
+		 */
+		public $mime_type = '';
+		/**
+		 * Button labels.
+		 *
+		 * @since 1.0.1
+		 * @var array
+		 */
+		public $button_labels = array();
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @since 1.0.1
+		 *
+		 * @uses WP_Customize_Media_Control::to_json()
+		 */
+		public function to_json()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 */
+	class Editor extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-editor';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Editor';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * A TinyMCE control.
+	 *
+	 * @since 1.0
+	 */
+	class Editor extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-editor';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Args to pass to TinyMCE.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var bool
+		 */
+		public $choices = [];
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * The actual editor is added from the \Kirki\Field\Editor class.
+		 * All this template contains is a button that triggers the global editor on/off
+		 * and a hidden textarea element that is used to mirror save the options.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Module\Webfonts {
+	/**3.
+	 * Manages the way Google Fonts are enqueued.
+	 */
+	final class Async
+	{
+		/**
+		 * Only load the webfont script if this is true.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.0
+		 * @var bool
+		 */
+		public static $load = false;
+		/**
+		 * The config ID.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var string
+		 */
+		protected $config_id;
+		/**
+		 * The \Kirki\Module\Webfonts object.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var object
+		 */
+		protected $webfonts;
+		/**
+		 * The \Kirki\Module\Webfonts\Google object.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var object
+		 */
+		protected $googlefonts;
+		/**
+		 * Fonts to load.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var array
+		 */
+		protected $fonts_to_load = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string $config_id   The config-ID.
+		 * @param object $webfonts    The \Kirki\Module\Webfonts object.
+		 * @param object $googlefonts The \Kirki\Module\Webfonts\Google object.
+		 * @param array  $args        Extra args we want to pass.
+		 */
+		public function __construct($config_id, $webfonts, $googlefonts, $args = [])
+		{
+		}
+		/**
+		 * Add preconnect for Google Fonts.
+		 *
+		 * @access public
+		 * @param array  $urls           URLs to print for resource hints.
+		 * @param string $relation_type  The relation type the URLs are printed.
+		 * @return array $urls           URLs to print for resource hints.
+		 */
+		public function resource_hints($urls, $relation_type)
+		{
+		}
+		/**
+		 * Webfont Loader for Google Fonts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function webfont_loader()
+		{
+		}
+		/**
+		 * Webfont Loader script for Google Fonts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function webfont_loader_script()
+		{
+		}
+		/**
+		 * Set the $load property of this object.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param bool $load Set to false to disable loading.
+		 * @return void
+		 */
+		public function set_load($load)
+		{
+		}
+	}
+	/**
+	 * Manages the way Google Fonts are enqueued.
+	 */
+	final class Embed
+	{
+		/**
+		 * The config ID.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var string
+		 */
+		protected $config_id;
+		/**
+		 * The \Kirki\Module\Webfonts object.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var object
+		 */
+		protected $webfonts;
+		/**
+		 * The \Kirki\Module\Webfonts\Google object.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var object
+		 */
+		protected $googlefonts;
+		/**
+		 * Fonts to load.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var array
+		 */
+		protected $fonts_to_load = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string $config_id   The config-ID.
+		 * @param object $webfonts    The \Kirki\Module\Webfonts object.
+		 * @param object $googlefonts The \Kirki\Module\Webfonts\Google object.
+		 * @param array  $args        Extra args we want to pass.
+		 */
+		public function __construct($config_id, $webfonts, $googlefonts, $args = [])
+		{
+		}
+		/**
+		 * Init.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function init()
+		{
+		}
+		/**
+		 * Add preconnect for Google Fonts.
+		 *
+		 * @access public
+		 * @param array  $urls           URLs to print for resource hints.
+		 * @param string $relation_type  The relation type the URLs are printed.
+		 * @return array $urls           URLs to print for resource hints.
+		 */
+		public function resource_hints($urls, $relation_type)
+		{
+		}
+		/**
+		 * Webfont Loader for Google Fonts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function populate_fonts()
+		{
+		}
+		/**
+		 * Webfont Loader script for Google Fonts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function the_css()
+		{
+		}
+		/**
+		 * Downloads font-files locally and uses the local files instead of the ones from Google's servers.
+		 * This addresses any and all GDPR concerns, as well as firewalls that exist in some parts of the world.
+		 *
+		 * @access private
+		 * @since 1.0.0
+		 * @param string $css The CSS with original URLs.
+		 * @return string     The CSS with local URLs.
+		 */
+		private function use_local_files($css)
+		{
+		}
+	}
+	/**
+	 * The Fonts object.
+	 */
+	final class Fonts
+	{
+		/**
+		 * The mode we'll be using to add google fonts.
+		 * This is a todo item, not yet functional.
+		 *
+		 * @static
+		 * @todo
+		 * @access public
+		 * @var string
+		 */
+		public static $mode = 'link';
+		/**
+		 * Holds a single instance of this object.
+		 *
+		 * @static
+		 * @access private
+		 * @var null|object
+		 */
+		private static $instance = null;
+		/**
+		 * An array of our google fonts.
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $google_fonts = null;
+		/**
+		 * The class constructor.
+		 */
+		private function __construct()
+		{
+		}
+		/**
+		 * Get the one, true instance of this class.
+		 * Prevents performance issues since this is only loaded once.
+		 *
+		 * @return object Fonts
+		 */
+		public static function get_instance()
+		{
+		}
+		/**
+		 * Compile font options from different sources.
+		 *
+		 * @return array    All available fonts.
+		 */
+		public static function get_all_fonts()
+		{
+		}
+		/**
+		 * Return an array of standard websafe fonts.
+		 *
+		 * @return array    Standard websafe fonts.
+		 */
+		public static function get_standard_fonts()
+		{
+		}
+		/**
+		 * Return an array of all available Google Fonts.
+		 *
+		 * @return array    All Google Fonts.
+		 */
+		public static function get_google_fonts()
+		{
+		}
+		/**
+		 * Returns an array of all available subsets.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_google_font_subsets()
+		{
+		}
+		/**
+		 * Dummy function to avoid issues with backwards-compatibility.
+		 * This is not functional, but it will prevent PHP Fatal errors.
+		 *
+		 * @static
+		 * @access public
+		 */
+		public static function get_google_font_uri()
+		{
+		}
+		/**
+		 * Returns an array of all available variants.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_all_variants()
+		{
+		}
+		/**
+		 * Determine if a font-name is a valid google font or not.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $fontname The name of the font we want to check.
+		 * @return bool
+		 */
+		public static function is_google_font($fontname)
+		{
+		}
+		/**
+		 * Gets available options for a font.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_font_choices()
+		{
+		}
+	}
+	/**
+	 * Fonts-downloading manager.
+	 *
+	 * @since 3.1.0
+	 */
+	class Downloader
+	{
+		/**
+		 * Get styles from URL.
+		 *
+		 * @access public
+		 * @since 3.1.0
+		 * @param string $url The URL.
+		 * @return string
+		 */
+		public function get_styles($url)
+		{
+		}
+		/**
+		 * Get styles with fonts downloaded locally.
+		 *
+		 * @access protected
+		 * @since 3.1.0
+		 * @param string $css The styles.
+		 * @return string
+		 */
+		protected function get_local_font_styles($css)
+		{
+		}
+		/**
+		 * Download files mentioned in our CSS locally.
+		 *
+		 * @access protected
+		 * @since 3.1.0
+		 * @param string $css The CSS we want to parse.
+		 * @return array      Returns an array of remote URLs and their local counterparts.
+		 */
+		protected function get_local_files_from_css($css)
+		{
+		}
+		/**
+		 * Get cached url contents.
+		 * If a cache doesn't already exist, get the URL contents from remote
+		 * and cache the result.
+		 *
+		 * @access public
+		 * @since 3.1.0
+		 * @param string $url        The URL we want to get the contents from.
+		 * @param string $user_agent The user-agent to use for our request.
+		 * @return string            Returns the remote URL contents.
+		 */
+		public function get_cached_url_contents($url = '', $user_agent = null)
+		{
+		}
+		/**
+		 * Get remote file contents.
+		 *
+		 * @access public
+		 * @since 3.1.0
+		 * @param string $url        The URL we want to get the contents from.
+		 * @param string $user_agent The user-agent to use for our request.
+		 * @return string            Returns the remote URL contents.
+		 */
+		public function get_url_contents($url = '', $user_agent = null)
+		{
+		}
+		/**
+		 * Get font files from the CSS.
+		 *
+		 * @access public
+		 * @since 3.1.0
+		 * @param string $css The CSS we want to parse.
+		 * @return array      Returns an array of font-families and the font-files used.
+		 */
+		public function get_files_from_css($css)
+		{
+		}
+		/**
+		 * Get the filesystem.
+		 *
+		 * @access protected
+		 * @since 3.1.0
+		 * @return WP_Filesystem
+		 */
+		protected function get_filesystem()
+		{
+		}
+	}
+	/**
+	 * Manages the way Google Fonts are enqueued.
+	 */
+	final class Google
+	{
+		/**
+		 * The object instance.
+		 * We use the singleton pattern here to avoid loading the google-font array multiple times.
+		 * This is mostly a performance tweak.
+		 *
+		 * @access private
+		 * @var null|object
+		 */
+		private static $instance = null;
+		/**
+		 * DUMMY. DOESN'T DO ANYTHING, SIMPLY BACKWARDS-COMPATIBILITY.
+		 *
+		 * @static
+		 * @access public
+		 * @var bool
+		 */
+		public static $force_load_all_subsets = false;
+		/**
+		 * If set to true, forces loading ALL variants.
+		 *
+		 * @static
+		 * @access public
+		 * @var bool
+		 */
+		public static $force_load_all_variants = false;
+		/**
+		 * The array of fonts
+		 *
+		 * @access public
+		 * @var array
+		 */
+		public $fonts = [];
+		/**
+		 * An array of all google fonts.
+		 *
+		 * @access private
+		 * @var array
+		 */
+		private $google_fonts = [];
+		/**
+		 * An array of fonts that should be hosted locally instead of served via the google-CDN.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var array
+		 */
+		protected $hosted_fonts = [];
+		/**
+		 * The class constructor.
+		 */
+		private function __construct()
+		{
+		}
+		/**
+		 * Get the one, true instance of this class.
+		 * Prevents performance issues since this is only loaded once.
+		 *
+		 * @return object Google
+		 */
+		public static function get_instance()
+		{
+		}
+		/**
+		 * Processes the arguments of a field
+		 * determines if it's a typography field
+		 * and if it is, then takes appropriate actions.
+		 *
+		 * @param array $args The field arguments.
+		 */
+		public function generate_google_font($args)
+		{
+		}
+		/**
+		 * Determines the vbalidity of the selected font as well as its properties.
+		 * This is vital to make sure that the google-font script that we'll generate later
+		 * does not contain any invalid options.
+		 */
+		public function process_fonts()
+		{
+		}
+		/**
+		 * Get the standard fonts JSON.
+		 *
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function get_standardfonts_json()
+		{
+		}
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * The Webfonts object.
+	 */
+	class Webfonts
+	{
+		/**
+		 * The Google object.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var \Kirki\Module\Webfonts\Google
+		 */
+		protected $fonts_google;
+		/**
+		 * An array of fields to be processed.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.0
+		 * @var array
+		 */
+		public static $fields = [];
+		/**
+		 * The class constructor
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Run on after_setup_theme.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function run()
+		{
+		}
+		/**
+		 * Init other objects depending on the method we'll be using.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 */
+		protected function init()
+		{
+		}
+		/**
+		 * Get the method we're going to use.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @deprecated in 3.0.36.
+		 * @return string
+		 */
+		public function get_method()
+		{
+		}
+		/**
+		 * Runs when a field gets added.
+		 * Adds fields to this object so we can loop through them.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param array  $args   The field args.
+		 * @param Object $object The field object.
+		 * @return void
+		 */
+		public function field_init($args, $object)
+		{
+		}
+		/**
+		 * Goes through all our fields and then populates the $this->fonts property.
+		 *
+		 * @access public
+		 * @param string $config_id The config-ID.
+		 */
+		public function loop_fields($config_id)
+		{
+		}
+	}
+	/**
+	 * Adds scripts for icons in sections & panels.
+	 */
+	class Section_Icons
+	{
+		/**
+		 * An array of panels and sections with icons.
+		 *
+		 * @static
+		 * @access private
+		 * @var array
+		 */
+		private static $icons = [];
+		/**
+		 * An array of panels.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var array
+		 */
+		private $panels = [];
+		/**
+		 * An array of sections.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var array
+		 */
+		private $sections = [];
+		/**
+		 * The class constructor.
+		 *
+		 * @access public
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Adds icon for a section/panel.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @param string $id      The panel or section ID.
+		 * @param string $icon    The icon to add.
+		 * @param string $context Lowercase 'section' or 'panel'.
+		 */
+		public function add_icon($id, $icon, $context = 'section')
+		{
+		}
+		/**
+		 * Hooks in kirki_panel_added to populate $this->panels.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string $id   The panel ID.
+		 * @param array  $args The panel arguments.
+		 */
+		public function panel_added($id, $args)
+		{
+		}
+		/**
+		 * Hooks in kirki_section_added to populate $this->sections.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string $id   The section ID.
+		 * @param array  $args The section arguments.
+		 */
+		public function section_added($id, $args)
+		{
+		}
+		/**
+		 * Format the script in a way that will be compatible with WordPress.
+		 */
+		public function customize_controls_enqueue_scripts()
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * Handles translations
+	 */
+	class L10n
+	{
+		/**
+		 * The plugin textdomain
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private $textdomain;
+		/**
+		 * The folder path containing translation files.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private $languages_path;
+		/**
+		 * The theme textdomain
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private $theme_textdomain = '';
+		/**
+		 * The class constructor.
+		 * Adds actions & filters to handle the rest of the methods.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string $textdomain     The textdomain we want to use. Defaults to "kirki".
+		 * @param string $languages_path The path to languages files.
+		 */
+		public function __construct($textdomain = 'kirki', $languages_path = '')
+		{
+		}
+		/**
+		 * Load the plugin textdomain
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function load_textdomain()
+		{
+		}
+		/**
+		 * Gets the path to a translation file.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return string Absolute path to the translation file.
+		 */
+		protected function get_path()
+		{
+		}
+		/**
+		 * Returns an array of paths where translation files may be located.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return array
+		 */
+		protected function get_paths()
+		{
+		}
+		/**
+		 * Allows overriding the textdomain from a theme.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param bool   $override Whether to override the .mo file loading. Default false.
+		 * @param string $domain   Text domain. Unique identifier for retrieving translated strings.
+		 * @param string $mofile   Path to the MO file.
+		 * @return bool
+		 */
+		public function override_load_textdomain($override, $domain, $mofile)
+		{
+		}
+		/**
+		 * Get the theme's textdomain.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @return string
+		 */
+		private function get_theme_textdomain()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class ReactColorful extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-react-colorful';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\ReactColorful';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Additional logic for the field.
+		 *
+		 * @since 4.0.0
+		 * @access protected
+		 *
+		 * @param array $args The field arguments.
+		 */
+		protected function init($args)
+		{
+		}
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Sanitize colors.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 *
+		 * @param string|array $value The color.
+		 * @return string|array
+		 */
+		public static function sanitize($value)
+		{
+		}
+		/**
+		 * Sanitize single color array.
+		 *
+		 * @param array  $color The provided color in array format.
+		 * @param string $color_type The color type. Accepts: rgb, hsl, and hsv.
+		 *
+		 * @return array The sanitized color.
+		 */
+		public static function sanitize_color_array($color, $color_type = 'rgb')
+		{
+		}
+		/**
+		 * Sanitize color string.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 *
+		 * @param string $value The color.
+		 * @return string
+		 */
+		public static function sanitize_color_string($value)
+		{
+		}
+		/**
+		 * Enqueue styles & scripts on 'customize_preview_init' action.
+		 *
+		 * @since 4.0.0
+		 * @access public
+		 */
+		public function enqueue_customize_preview_scripts()
+		{
+		}
+		/**
+		 * Add output control class for react colorful control.
+		 *
+		 * @since 4.0.0
+		 * @access public
+		 *
+		 * @param array $control_classes The existing control classes.
+		 * @return array
+		 */
+		public function output_control_classnames($control_classes)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Color extends \Kirki\Field\ReactColorful
+	{
+	}
+}
+namespace Kirki\Module\CSS {
+	/**
+	 * Handles field CSS output.
+	 */
+	class Output
+	{
+		/**
+		 * The field's `output` argument.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $output = [];
+		/**
+		 * An array of the generated styles.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $styles = [];
+		/**
+		 * The field.
+		 *
+		 * @access protected
+		 * @var array
+		 */
+		protected $field = [];
+		/**
+		 * The value.
+		 *
+		 * @access protected
+		 * @var string|array
+		 */
+		protected $value;
+		/**
+		 * The class constructor.
+		 *
+		 * @access public
+		 * @param string       $config_id The config ID.
+		 * @param array        $output    The output argument.
+		 * @param string|array $value     The value.
+		 * @param array        $field     The field.
+		 */
+		public function __construct($config_id, $output, $value, $field)
+		{
+		}
+		/**
+		 * If we have a sanitize_callback defined, apply it to the value.
+		 *
+		 * @param array        $output The output args.
+		 * @param string|array $value  The value.
+		 *
+		 * @return string|array
+		 */
+		protected function apply_sanitize_callback($output, $value)
+		{
+		}
+		/**
+		 * If we have a value_pattern defined, apply it to the value.
+		 *
+		 * @param array        $output The output args.
+		 * @param string|array $value  The value.
+		 * @return string|array
+		 */
+		protected function apply_value_pattern($output, $value)
+		{
+		}
+		/**
+		 * If we have a value_pattern defined, apply it to the value.
+		 *
+		 * @param array        $output The output args.
+		 * @param string|array $value  The value.
+		 * @return string|array
+		 */
+		protected function apply_pattern_replace($output, $value)
+		{
+		}
+		/**
+		 * Parses the output arguments.
+		 * Calls the process_output method for each of them.
+		 *
+		 * @access protected
+		 */
+		protected function parse_output()
+		{
+		}
+		/**
+		 * Parses an output and creates the styles array for it.
+		 *
+		 * @access protected
+		 * @param array        $output The field output.
+		 * @param string|array $value  The value.
+		 *
+		 * @return null
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+		/**
+		 * Some CSS properties are unique.
+		 * We need to tweak the value to make everything works as expected.
+		 *
+		 * @access protected
+		 * @param string       $property The CSS property.
+		 * @param string|array $value    The value.
+		 *
+		 * @return array
+		 */
+		protected function process_property_value($property, $value)
+		{
+		}
+		/**
+		 * Returns the value.
+		 *
+		 * @access protected
+		 * @param string|array $value The value.
+		 * @param array        $output The field "output".
+		 * @return string|array
+		 */
+		protected function process_value($value, $output)
+		{
+		}
+		/**
+		 * Exploses the private $styles property to the world
+		 *
+		 * @access protected
+		 * @return array
+		 */
+		public function get_styles()
+		{
+		}
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Output overrides.
+	 */
+	class Background extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Processes a single item from the `output` array.
+		 *
+		 * @access protected
+		 * @param array $output The `output` item.
+		 * @param array $value  The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Background extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-background';
+		/**
+		 * Extra logic for the field.
+		 *
+		 * Adds all sub-fields.
+		 *
+		 * @access public
+		 * @param array $args The arguments of the field.
+		 */
+		public function init($args)
+		{
+		}
+		/**
+		 * Sets the $sanitize_callback
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function set_sanitize_callback()
+		{
+		}
+		/**
+		 * Sanitizes background controls
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param array $value The value.
+		 * @return array
+		 */
+		public static function sanitize($value)
+		{
+		}
+		/**
+		 * Sets the $js_vars
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function set_js_vars()
+		{
+		}
+		/**
+		 * Override parent method. No need to register any setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_setting($wp_customize)
+		{
+		}
+		/**
+		 * Override the parent method. No need for a control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_control($wp_customize)
+		{
+		}
+		/**
+		 * Enqueue scripts & styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue_scripts()
+		{
+		}
+		/**
+		 * Adds a custom output class for typography fields.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $classnames The array of classnames.
+		 * @return array
+		 */
+		public function output_control_classnames($classnames)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Multicolor extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-multicolor';
+		/**
+		 * Extra logic for the field.
+		 *
+		 * Adds all sub-fields.
+		 *
+		 * @access public
+		 * @param array $args The arguments of the field.
+		 */
+		public function init($args)
+		{
+		}
+		/**
+		 * Prefer control specific value over field value
+		 *
+		 * @access public
+		 * @since 4.0
+		 *
+		 * @param string $setting The argument key inside $args.
+		 * @param string $choice The choice key inside $args['choices'].
+		 * @param array  $args The arguments.
+		 *
+		 * @return string
+		 */
+		public function filter_preferred_choice_setting($setting, $choice, $args)
+		{
+		}
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Sanitizes background controls
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param array $value The value.
+		 * @return array
+		 */
+		public static function sanitize($value)
+		{
+		}
+		/**
+		 * Override parent method. No need to register any setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_setting($wp_customize)
+		{
+		}
+		/**
+		 * Override the parent method. No need for a control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_control($wp_customize)
+		{
+		}
+		/**
+		 * Adds a custom output class for typography fields.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $classnames The array of classnames.
+		 * @return array
+		 */
+		public function output_control_classnames($classnames)
+		{
+		}
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Output overrides.
+	 */
+	class Multicolor extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Processes a single item from the `output` array.
+		 *
+		 * @access protected
+		 * @param array $output The `output` item.
+		 * @param array $value  The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Custom extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-custom';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Custom';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * The "custom" control allows you to add any raw HTML.
+	 *
+	 * @since 1.0
+	 */
+	class Custom extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-custom';
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class ReactSelect extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-select';
+		/**
+		 * Whether this is a multi-select or not.
+		 *
+		 * *Backwards compatibility note:
+		 *
+		 * Previously (when Kirki used Select2), $multiple is used to:
+		 * - Determine whether the select is multiple or not.
+		 * - Determine the maximum number of selection.
+		 *
+		 * Start from Kirki 4 (when Kirki uses react-select),
+		 * $multiple is used to determine whether the select is multiple or not.
+		 * The maximum selection number is now set in $max_selection.
+		 *
+		 * @since 1.0
+		 * @var bool
+		 */
+		protected $multiple = false;
+		/**
+		 * The maximum selection length for multiple selection.
+		 *
+		 * @since 1.1
+		 * @var bool
+		 */
+		protected $max_selection_number = 999;
+		/**
+		 * Placeholder text.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @var string|false
+		 */
+		protected $placeholder = false;
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\ReactSelect';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Get the value of "multiple" and "max_selection_number"
+		 * from the provided $multiple parameter.
+		 *
+		 * @since 1.1
+		 *
+		 * @param bool|int $multiple The provided $multiple value.
+		 * @return array
+		 */
+		public static function get_multiple_and_max($multiple)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Select extends \Kirki\Field\ReactSelect
+	{
+	}
+	/**
+	 * Field overrides.
+	 */
+	class FontAwesome extends \Kirki\Field\Select
+	{
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Output overrides.
+	 */
+	class Image extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Processes a single item from the `output` array.
+		 *
+		 * @access protected
+		 * @param array $output The `output` item.
+		 * @param array $value  The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 */
+	class Image extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-image';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Image';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Additional logic for this field.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @param array $args The field arguments.
+		 * @return void
+		 */
+		protected function init($args)
+		{
+		}
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter for output argument used by the kirki-framework/module-css module.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $output      A single output item.
+		 * @param mixed $value       The value.
+		 * @param array $all_outputs All field output args.
+		 * @param array $field       The field arguments.
+		 * @return array
+		 */
+		public function output_item_args($output, $value, $all_outputs, $field)
+		{
+		}
+		/**
+		 * Adds a custom output class for typography fields.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $classnames The array of classnames.
+		 * @return array
+		 */
+		public function output_control_classnames($classnames)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Adds the image control.
+	 *
+	 * @since 1.0
+	 */
+	class Image extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-image';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.2';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.1
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Preset extends \Kirki\Field\Select
+	{
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Dropdown_Pages extends \Kirki\Field\Select
+	{
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 */
+	class Code extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-code';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\WP_Customize_Code_Editor_Control';
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Util {
+	/**
+	 * A simple object containing static methods.
+	 *
+	 * @since 1.0
+	 */
+	class MaterialColors
+	{
+		/**
+		 * Gets an array of material-design colors.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param string $context Allows us to get subsets of the palette.
+		 * @return array
+		 */
+		public static function get_colors($context = 'primary')
+		{
+		}
+	}
+	/**
+	 * A simple object containing static methods.
+	 */
+	class Helper
+	{
+		/**
+		 * Recursive replace in arrays.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $array The first array.
+		 * @param array $array1 The second array.
+		 * @return mixed
+		 */
+		public static function array_replace_recursive($array, $array1)
+		{
+		}
+		/**
+		 * Helper method to be used from the array_replace_recursive method.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $array The first array.
+		 * @param array $array1 The second array.
+		 * @return array
+		 */
+		public static function recurse($array, $array1)
+		{
+		}
+		/**
+		 * Initialize the WP_Filesystem.
+		 *
+		 * @static
+		 * @access public
+		 * @return object WP_Filesystem
+		 */
+		public static function init_filesystem()
+		{
+		}
+		/**
+		 * Returns the attachment object.
+		 *
+		 * @static
+		 * @access public
+		 * @see https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+		 * @param string $url URL to the image.
+		 * @return int|string Numeric ID of the attachement.
+		 */
+		public static function get_image_id($url)
+		{
+		}
+		/**
+		 * Returns an array of the attachment's properties.
+		 *
+		 * @param string $url URL to the image.
+		 * @return array
+		 */
+		public static function get_image_from_url($url)
+		{
+		}
+		/**
+		 * Get an array of posts.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $args Define arguments for the get_posts function.
+		 * @return array
+		 */
+		public static function get_posts($args)
+		{
+		}
+		/**
+		 * Get an array of publicly-querable taxonomies.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_taxonomies()
+		{
+		}
+		/**
+		 * Get an array of publicly-querable post-types.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_post_types()
+		{
+		}
+		/**
+		 * Get an array of terms from a taxonomy.
+		 *
+		 * @static
+		 * @access public
+		 * @param string|array $taxonomies See https://developer.wordpress.org/reference/functions/get_terms/ for details.
+		 * @return array
+		 */
+		public static function get_terms($taxonomies)
+		{
+		}
+		/**
+		 * Returns an array of navigation menus.
+		 *
+		 * @access public
+		 * @param string $value_field The value to be stored in options. Accepted values: id|slug.
+		 * @return array
+		 */
+		public static function get_nav_menus($value_field = 'id')
+		{
+		}
+		/**
+		 * Gets an array of material-design colors.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $context Allows us to get subsets of the palette.
+		 * @return array
+		 */
+		public static function get_material_design_colors($context = 'primary')
+		{
+		}
+		/**
+		 * Get an array of all available dashicons.
+		 *
+		 * @static
+		 * @access public
+		 * @return array
+		 */
+		public static function get_dashicons()
+		{
+		}
+		/**
+		 * Compares the 2 values given the condition
+		 *
+		 * @param mixed  $value1   The 1st value in the comparison.
+		 * @param mixed  $value2   The 2nd value in the comparison.
+		 * @param string $operator The operator we'll use for the comparison.
+		 * @return boolean whether The comparison has succeded (true) or failed (false).
+		 */
+		public static function compare_values($value1, $value2, $operator)
+		{
+		}
+		/**
+		 * Prepare PHP array to be used as JS object.
+		 *
+		 * @see See https://developer.wordpress.org/reference/classes/wp_scripts/localize/
+		 *
+		 * @param array $values The data which can be either a single or multi-dimensional array.
+		 * @return array
+		 */
+		public static function prepare_php_array_for_js($values)
+		{
+		}
+	}
+	/**
+	 * Utility class.
+	 */
+	class Util
+	{
+		/**
+		 * Fields containing variables.
+		 *
+		 * @static
+		 * @access private
+		 * @since 4.0
+		 * @var array
+		 */
+		private $variables_fields = [];
+		/**
+		 * Constructor.
+		 *
+		 * @since 3.0.9
+		 * @access public
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Determine if Kirki is installed as a plugin.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.0
+		 * @return bool
+		 */
+		public static function is_plugin()
+		{
+		}
+		/**
+		 * Add fields with variables to self::$variables_fields.
+		 *
+		 * @access public
+		 * @since 4.0
+		 * @param array  $args   The field args.
+		 * @param Object $object The field object.
+		 * @return void
+		 */
+		public function field_init_variables($args, $object)
+		{
+		}
+		/**
+		 * Build the variables.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.9
+		 * @return array Formatted as array( 'variable-name' => value ).
+		 */
+		public static function get_variables()
+		{
+		}
+		/**
+		 * HTTP Request injection.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @param array  $request The request params.
+		 * @param string $url     The request URL.
+		 * @return array
+		 */
+		public function http_request($request = [], $url = '')
+		{
+		}
+		/**
+		 * Returns the $wp_version.
+		 *
+		 * @static
+		 * @access public
+		 * @since 3.0.12
+		 * @param string $context Use 'minor' or 'major'.
+		 * @return int|string      Returns integer when getting the 'major' version.
+		 *                         Returns string when getting the 'minor' version.
+		 */
+		public static function get_wp_version($context = 'minor')
+		{
+		}
+	}
+}
+namespace Kirki\Util\Setting {
+	/**
+	 * Handles saving and sanitizing of user-meta.
+	 *
+	 * @since 3.0.0
+	 * @see WP_Customize_Setting
+	 */
+	class Site_Option extends \WP_Customize_Setting
+	{
+		/**
+		 * Type of customize settings.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @var string
+		 */
+		public $type = 'site_option';
+		/**
+		 * Get the root value for a setting, especially for multidimensional ones.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $default Value to return if root does not exist.
+		 * @return mixed
+		 */
+		protected function get_root_value($default = null)
+		{
+		}
+		/**
+		 * Set the root value for a setting, especially for multidimensional ones.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $value Value to set as root of multidimensional setting.
+		 * @return bool Whether the multidimensional root was updated successfully.
+		 */
+		protected function set_root_value($value)
+		{
+		}
+		/**
+		 * Save the value of the setting, using the related API.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $value The value to update.
+		 * @return bool The result of saving the value.
+		 */
+		protected function update($value)
+		{
+		}
+		/**
+		 * Fetch the value of the setting.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @return mixed The value.
+		 */
+		public function value()
+		{
+		}
+	}
+	/**
+	 * Handles saving and sanitizing of user-meta.
+	 *
+	 * @since 3.0.0
+	 * @see WP_Customize_Setting
+	 */
+	class User_Meta extends \WP_Customize_Setting
+	{
+		/**
+		 * Type of customize settings.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @var string
+		 */
+		public $type = 'user_meta';
+		/**
+		 * Get the root value for a setting, especially for multidimensional ones.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $default Value to return if root does not exist.
+		 * @return mixed
+		 */
+		protected function get_root_value($default = null)
+		{
+		}
+		/**
+		 * Set the root value for a setting, especially for multidimensional ones.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $value Value to set as root of multidimensional setting.
+		 * @return bool Whether the multidimensional root was updated successfully.
+		 */
+		protected function set_root_value($value)
+		{
+		}
+		/**
+		 * Save the value of the setting, using the related API.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @param mixed $value The value to update.
+		 * @return bool The result of saving the value.
+		 */
+		protected function update($value)
+		{
+		}
+		/**
+		 * Fetch the value of the setting.
+		 *
+		 * @access protected
+		 * @since 3.0.0
+		 * @return mixed The value.
+		 */
+		public function value()
+		{
+		}
+	}
+}
+namespace Kirki\Util {
+	/**
+	 * A simple object containing static methods.
+	 */
+	class Dashicons
+	{
+		/**
+		 * Get an array of all available dashicons.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @return array
+		 */
+		public static function get_icons()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 */
+	class Dashicons extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-dashicons';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Dashicons';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Dashicons control (modified radio).
+	 *
+	 * @since 1.0
+	 */
+	class Dashicons extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-dashicons';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.2
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+	/**
+	 * Select control.
+	 *
+	 * @since 1.0
+	 */
+	class ReactSelect extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-react-select';
+		/**
+		 * Placeholder text.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string|false
+		 */
+		public $placeholder = false;
+		/**
+		 * Whether the select should be clearable or not.
+		 *
+		 * @since 1.0
+		 * @var bool
+		 */
+		public $clearable = false;
+		/**
+		 * Whether this is a multi-select or not.
+		 *
+		 * *Backwards compatibility note:
+		 *
+		 * Previously (when Kirki used Select2), $multiple is used to:
+		 * - Determine whether the select is multiple or not.
+		 * - Determine the maximum number of selection.
+		 *
+		 * Start from Kirki 4 (when Kirki uses react-select),
+		 * $multiple is used to determine whether the select is multiple or not.
+		 * The maximum selection number is now set in $max_selection.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var bool
+		 */
+		public $multiple = false;
+		/**
+		 * The maximum selection length for multiple selection.
+		 *
+		 * @access public
+		 * @since 1.1
+		 * @var bool
+		 */
+		public $max_selection_number = 999;
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.1.5';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Get the URL for the control folder.
+		 *
+		 * This is a static method because there are more controls in the Kirki framework
+		 * that use colorpickers, and they all need to enqueue the same assets.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.6
+		 * @return string
+		 */
+		public static function get_control_path_url()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @see WP_Customize_Control::to_json()
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+	}
+}
+namespace Kirki\Module\CSS {
+	/**
+	 * Output for CSS properties.
+	 */
+	class Property
+	{
+		/**
+		 * The property we're modifying.
+		 *
+		 * @access protected
+		 * @var string
+		 */
+		protected $property;
+		/**
+		 * The value
+		 *
+		 * @access protected
+		 * @var string|array
+		 */
+		protected $value;
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @param string $property The CSS property we're modifying.
+		 * @param mixed  $value    The value.
+		 */
+		public function __construct($property, $value)
+		{
+		}
+		/**
+		 * Modifies the value.
+		 *
+		 * @access protected
+		 */
+		protected function process_value()
+		{
+		}
+		/**
+		 * Gets the value.
+		 *
+		 * @access protected
+		 */
+		public function get_value()
+		{
+		}
+	}
+}
+namespace Kirki\Module\CSS\Property {
+	/**
+	 * Output overrides.
+	 */
+	class Background_Image extends \Kirki\Module\CSS\Property
+	{
+		/**
+		 * Modifies the value.
+		 *
+		 * @access protected
+		 */
+		protected function process_value()
+		{
+		}
+	}
+	/**
+	 * Output overrides.
+	 */
+	class Font_Family extends \Kirki\Module\CSS\Property
+	{
+		/**
+		 * Modifies the value.
+		 *
+		 * @access protected
+		 */
+		protected function process_value()
+		{
+		}
+	}
+	/**
+	 * Output overrides.
+	 */
+	class Background_Position extends \Kirki\Module\CSS\Property
+	{
+		/**
+		 * Modifies the value.
+		 *
+		 * @access protected
+		 */
+		protected function process_value()
+		{
+		}
+	}
+}
+namespace Kirki\Module\CSS {
+	/**
+	 * Handles CSS output.
+	 */
+	final class Generator
+	{
+		/**
+		 * The instance of this class (singleton pattern).
+		 *
+		 * @static
+		 * @access public
+		 * @var null|object
+		 */
+		public static $instance = null;
+		/**
+		 * Settings.
+		 *
+		 * @static
+		 * @access public
+		 * @var null|string|array
+		 */
+		public static $settings = null;
+		/**
+		 * Output.
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $output = [];
+		/**
+		 * Callback.
+		 *
+		 * @static
+		 * @access public
+		 * @var null|string|array
+		 */
+		public static $callback = null;
+		/**
+		 * Option Name.
+		 *
+		 * @static
+		 * @access public
+		 * @var null|string
+		 */
+		public static $option_name = null;
+		/**
+		 * Field Type.
+		 *
+		 * @static
+		 * @access public
+		 * @var string
+		 */
+		public static $field_type = null;
+		/**
+		 * Google Fonts
+		 *
+		 * @static
+		 * @access public
+		 * @var array
+		 */
+		public static $google_fonts = null;
+		/**
+		 * CSS
+		 *
+		 * @static
+		 * @access public
+		 * @var string
+		 */
+		public static $css;
+		/**
+		 * Value
+		 *
+		 * @static
+		 * @access public
+		 * @var mixed
+		 */
+		public static $value = null;
+		/**
+		 * The class constructor.
+		 */
+		private function __construct()
+		{
+		}
+		/**
+		 * Get a single instance of this class
+		 *
+		 * @return object
+		 */
+		public static function get_instance()
+		{
+		}
+		/**
+		 * Get the CSS for a field.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $field The field.
+		 * @return array
+		 */
+		public static function css($field)
+		{
+		}
+		/**
+		 * Gets the array of generated styles and creates the minimized, inline CSS.
+		 *
+		 * @static
+		 * @access public
+		 * @param array $css The CSS definitions array.
+		 * @return string    The generated CSS.
+		 */
+		public static function styles_parse($css = [])
+		{
+		}
+		/**
+		 * Add prefixes if necessary.
+		 *
+		 * @param  array $css The CSS definitions array.
+		 * @return array
+		 */
+		public static function add_prefixes($css)
+		{
+		}
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * The Module object.
+	 */
+	class CSS
+	{
+		/**
+		 * The CSS array
+		 *
+		 * @access public
+		 * @var array
+		 */
+		public static $css_array = array();
+		/**
+		 * An array of fields to be processed.
+		 *
+		 * @static
+		 * @access protected
+		 * @since 1.0
+		 * @var array
+		 */
+		protected static $fields = array();
+		/**
+		 * Field option types.
+		 *
+		 * @static
+		 * @access protected
+		 * @since 1.0
+		 * @var array
+		 */
+		protected static $field_option_types = array();
+		/**
+		 * The default handle for kirki's styles enqueue.
+		 *
+		 * @since 4.0
+		 * @access private
+		 * @static
+		 *
+		 * @var string
+		 */
+		private static $css_handle = 'kirki-styles';
+		/**
+		 * Constructor
+		 *
+		 * @access public
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Init.
+		 *
+		 * @access public
+		 */
+		public function init()
+		{
+		}
+		/**
+		 * Runs when a field gets added.
+		 * Adds fields to this object so their styles can later be generated.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array  $args   The field args.
+		 * @param Object $object The field object.
+		 * @return void
+		 */
+		public function field_init($args, $object)
+		{
+		}
+		/**
+		 * Print styles inline.
+		 *
+		 * @access public
+		 * @since 3.0.36
+		 * @return void
+		 */
+		public function print_styles_inline()
+		{
+		}
+		/**
+		 * Enqueue the styles.
+		 *
+		 * @access public
+		 * @since 3.0.36
+		 * @return void
+		 */
+		public function enqueue_styles()
+		{
+		}
+		/**
+		 * Prints the styles as an enqueued file.
+		 *
+		 * @access public
+		 * @since 3.0.36
+		 * @return void
+		 */
+		public function print_styles_action()
+		{
+		}
+		/**
+		 * Prints the styles.
+		 *
+		 * @access public
+		 */
+		public function print_styles()
+		{
+		}
+		/**
+		 * Loop through all fields and create an array of style definitions.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $config_id The configuration ID.
+		 */
+		public static function loop_controls($config_id)
+		{
+		}
+		/**
+		 * Gets fields from self::$fields by config-id.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @param string $config_id The config-ID.
+		 * @return array
+		 */
+		private static function get_fields_by_config($config_id)
+		{
+		}
+	}
+	/**
+	 * Adds the tooltips.
+	 *
+	 * @since 1.0
+	 */
+	class Tooltips
+	{
+		/**
+		 * An array containing field identifieds and their tooltips.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var array
+		 */
+		private $tooltips_content = [];
+		/**
+		 * The class constructor
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Enqueue scripts.
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function customize_controls_print_footer_scripts()
+		{
+		}
+		/**
+		 * Filter control args.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Radio extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-radio';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Radio';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Radio_Image extends \Kirki\Field\Radio
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-radio-image';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Radio_Image';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Radio_Buttonset extends \Kirki\Field\Radio
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-radio-buttonset';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Radio_Buttonset';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Radio control
+	 */
+	class Radio extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-radio';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.1';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.1
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+	/**
+	 * Radio Image control (modified radio).
+	 */
+	class Radio_Image extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-radio-image';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @see WP_Customize_Control::to_json()
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+	/**
+	 * Radio Buttonset control (modified radio)
+	 *
+	 * @since 1.0
+	 */
+	class Radio_Buttonset extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-radio-buttonset';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * Field dependencies.
+	 */
+	class Field_Dependencies
+	{
+		/**
+		 * An array of field dependencies.
+		 *
+		 * @access private
+		 * @since 1.0.0
+		 * @var array
+		 */
+		private $dependencies = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Filter control arguments.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param array $args The field arguments.
+		 * @return array
+		 */
+		public function field_add_control_args($args)
+		{
+		}
+		/**
+		 * Enqueues the field-dependencies script
+		 * and adds variables to it using the wp_localize_script function.
+		 * The rest is handled via JS.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function field_dependencies()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-checkbox';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Checkbox';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox_Switch extends \Kirki\Field\Checkbox
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-switch';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Checkbox_Switch';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox_Toggle extends \Kirki\Field\Checkbox
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-toggle';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Checkbox_Toggle';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Switch control (modified checkbox).
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox_Switch extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-switch';
+		/**
+		 * The control version.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.3';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @since 3.4.0
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+	/**
+	 * Switch control (modified checkbox).
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox_Toggle extends \Kirki\Control\Checkbox_Switch
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-toggle';
+	}
+	/**
+	 * Adds a checkbox control.
+	 *
+	 * @since 1.0
+	 */
+	class Checkbox extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-checkbox';
+		/**
+		 * The control version.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.3';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class None extends \Kirki\Field
+	{
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * Handle selective refreshes introduced in WordPress 4.5.
+	 */
+	class Selective_Refresh
+	{
+		/**
+		 * An array of fields with selective refreshes.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0.0
+		 * @var array
+		 */
+		private static $fields = [];
+		/**
+		 * Adds any necessary actions & filters.
+		 *
+		 * @access public
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Filter setting args.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param array                $field        The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($field, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Adds styles to the customizer.
+	 */
+	class Postmessage
+	{
+		/**
+		 * An array of fields to be processed.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var array
+		 */
+		protected $fields = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Filter setting args before adding the setting to the customizer.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param array $args The field arguments.
+		 * @return array
+		 */
+		public function field_add_setting_args($args)
+		{
+		}
+		/**
+		 * Enqueues the postMessage script
+		 * and adds variables to it using the wp_localize_script function.
+		 * The rest is handled via JS.
+		 */
+		public function postmessage()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Multicheck extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-multicheck';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Multicheck';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * The sanitize method that will be used as a falback
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param string|array $value The control's value.
+		 * @return array
+		 */
+		public static function sanitize($value)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Adds a multicheck control.
+	 *
+	 * @since 1.0
+	 */
+	class Multicheck extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-multicheck';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * Adds styles to the customizer.
+	 */
+	class Preset
+	{
+		/**
+		 * An array of preset controls and their arguments.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0.0
+		 * @var array
+		 */
+		private static $preset_controls = [];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Filter control arguments.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $args The field arguments.
+		 * @return array
+		 */
+		public function field_add_control_args($args)
+		{
+		}
+		/**
+		 * Enqueue scripts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function customize_controls_print_footer_scripts()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Slider extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-slider';
+		/**
+		 * The control class-name.
+		 *
+		 * @since 1.0
+		 * @access protected
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Slider';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @since 1.0
+		 * @access protected
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @param array                 $args The field arguments.
+		 * @param \WP_Customize_Manager $wp_customize The customizer instance.
+		 *
+		 * @return array $args The maybe-filtered arguments.
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @param array                 $args The field arguments.
+		 * @param \WP_Customize_Manager $wp_customize The customizer instance.
+		 *
+		 * @return array $args The maybe-filtered arguments.
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Slider control.
+	 *
+	 * @since 1.0
+	 */
+	class Slider extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-slider';
+		/**
+		 * The control version.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public static $control_ver = '1.0.4';
+		/**
+		 * Enqueue control related styles/scripts.
+		 *
+		 * @since 1.0
+		 * @access public
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @see WP_Customize_Control::to_json()
+		 *
+		 * @since 1.0
+		 * @access public
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding WP_Customize_Control::to_json().
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @since 1.0
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Palette extends \Kirki\Field\Radio
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-palette';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Palette';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Palette control (modified radio).
+	 *
+	 * @since 1.0
+	 */
+	class Palette extends \Kirki\Control\Radio
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-palette';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '0.1.1';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * Section.
+	 */
+	class Section
+	{
+		/**
+		 * The section ID.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var string
+		 */
+		protected $id;
+		/**
+		 * The section arguments.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @var array
+		 */
+		protected $args;
+		/**
+		 * An array of our section types.
+		 *
+		 * @access private
+		 * @var array
+		 */
+		private $section_types = ['kirki-expanded' => '\\Kirki\\Section_Types\\Expanded', 'kirki-nested' => '\\Kirki\\Section_Types\\Nested', 'kirki-link' => '\\Kirki\\Section_Types\\Link', 'kirki-outer' => '\\Kirki\\Section_Types\\Outer'];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string $id   The section ID.
+		 * @param array  $args The section args.
+		 */
+		public function __construct($id, $args = [])
+		{
+		}
+		/**
+		 * Register section types.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param object $wp_customize The customizer object.
+		 * @return void
+		 */
+		public function register_section_types($wp_customize)
+		{
+		}
+		/**
+		 * Add the section using the Customizer API.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param object $wp_customize The customizer object.
+		 */
+		public function add_section($wp_customize)
+		{
+		}
+		/**
+		 * Removes the section.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function remove()
+		{
+		}
+		/**
+		 * Add the section using the Customizer API.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param object $wp_customize The customizer object.
+		 */
+		public function remove_section($wp_customize)
+		{
+		}
+		/**
+		 * Enqueues any necessary scripts and styles.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function enqueue_scrips()
+		{
+		}
+		/**
+		 * Generate CSS for the outer sections.
+		 * These are by default hidden, we need to expose them.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return void
+		 */
+		public function outer_sections_css()
+		{
+		}
+	}
+}
+namespace Kirki\Section_Types {
+	/**
+	 * Nested section.
+	 */
+	class Nested extends \WP_Customize_Section
+	{
+		/**
+		 * The parent section.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $section;
+		/**
+		 * The section type.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $type = 'kirki-nested';
+		/**
+		 * Gather the parameters passed to client JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return array The array to be exported to the client as JSON.
+		 */
+		public function json()
+		{
+		}
+	}
+	/**
+	 * Link Section.
+	 */
+	class Link extends \WP_Customize_Section
+	{
+		/**
+		 * The section type.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $type = 'kirki-link';
+		/**
+		 * Button Text
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $button_text = '';
+		/**
+		 * Button URL.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $button_url = '';
+		/**
+		 * Gather the parameters passed to client JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return array The array to be exported to the client as JSON.
+		 */
+		public function json()
+		{
+		}
+		/**
+		 * Outputs the Underscore.js template.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return void
+		 */
+		protected function render_template()
+		{
+		}
+	}
+	/**
+	 * Outer Section.
+	 */
+	class Outer extends \WP_Customize_Section
+	{
+		/**
+		 * The section type.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $type = 'kirki-outer';
+	}
+	/**
+	 * Expanded Section.
+	 */
+	class Expanded extends \WP_Customize_Section
+	{
+		/**
+		 * The section type.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $type = 'kirki-expanded';
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Output overrides.
+	 */
+	class Typography extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Processes a single item from the `output` array.
+		 *
+		 * @access protected
+		 * @param array $output The `output` item.
+		 * @param array $value  The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Typography extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-typography';
+		/**
+		 * Has the glogal fonts var been added already?
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @var bool
+		 */
+		private static $fonts_var_added = false;
+		/**
+		 * Has the preview related var been added already?
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @var bool
+		 */
+		private static $preview_var_added = false;
+		/**
+		 * An array of typography controls.
+		 *
+		 * This is used by the typography script for any custom logic
+		 * that has to be applied to typography controls.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @var array
+		 */
+		private static $typography_controls = [];
+		/**
+		 * An array of standard font variants.
+		 *
+		 * @access private
+		 * @since 1.0.1
+		 *
+		 * @var array
+		 */
+		private static $std_variants;
+		/**
+		 * An array of complete font variants.
+		 *
+		 * @access private
+		 * @since 1.0.1
+		 *
+		 * @var array
+		 */
+		private static $complete_variants;
+		/**
+		 * An array of complete font variant labels.
+		 *
+		 * @access private
+		 * @since 1.0.2
+		 *
+		 * @var array
+		 */
+		private static $complete_variant_labels = [];
+		/**
+		 * Extra logic for the field.
+		 *
+		 * Adds all sub-fields.
+		 *
+		 * @access public
+		 * @param array $args The arguments of the field.
+		 */
+		public function init($args = [])
+		{
+		}
+		/**
+		 * Add sub-fields.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @param array $args The field arguments.
+		 * @return void
+		 */
+		private function add_sub_fields($args)
+		{
+		}
+		/**
+		 * Generate controls group.
+		 *
+		 * @param array $group The group data.
+		 * @param array $args The field args.
+		 */
+		public function generate_controls_group($group, $args)
+		{
+		}
+		/**
+		 * Sanitizes typography controls
+		 *
+		 * @static
+		 * @since 1.0
+		 * @param array $value The value.
+		 * @return array
+		 */
+		public static function sanitize($value)
+		{
+		}
+		/**
+		 * Enqueue scripts & styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue_control_scripts()
+		{
+		}
+		/**
+		 * Enqueue scripts for customize_preview_init.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue_preview_scripts()
+		{
+		}
+		/**
+		 * Prefer control specific value over field value
+		 *
+		 * @access public
+		 * @since 4.0
+		 * @param $setting
+		 * @param $choice
+		 * @param $args
+		 *
+		 * @return string
+		 */
+		public function filter_preferred_choice_setting($setting, $choice, $args)
+		{
+		}
+		/**
+		 * Populate the font family choices.
+		 *
+		 * It's separated from the `add_sub_field` function to prevent a bug
+		 * when hooking a function into `kirki_fonts_standard_fonts` hook after registering the field.
+		 *
+		 * When a function is hooked to `kirki_fonts_standard_fonts` before registering the field, it will work.
+		 * But if it's hooked after field registration, then the function won't be available.
+		 *
+		 * @access private
+		 * @since 1.0.1
+		 *
+		 * @return array
+		 */
+		private function get_font_family_choices()
+		{
+		}
+		/**
+		 * Get custom variant choices (for custom fonts).
+		 *
+		 * It's separated from the `add_sub_field` function to prevent a bug
+		 * when hooking a function into `kirki_fonts_standard_fonts` hook after registering the field.
+		 *
+		 * When a function is hooked to `kirki_fonts_standard_fonts` before registering the field, it will work.
+		 * But if it's hooked after field registration, then the function won't be available.
+		 *
+		 * @access private
+		 * @since 1.0.2
+		 *
+		 * @return array
+		 */
+		private function get_variant_choices()
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Adds a custom output class for typography fields.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $classnames The array of classnames.
+		 * @return array
+		 */
+		public function output_control_classnames($classnames)
+		{
+		}
+		/**
+		 * Override parent method. No need to register any setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_setting($wp_customize)
+		{
+		}
+		/**
+		 * Override the parent method. No need for a control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_control($wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Data {
+	/**
+	 * Hooks and tweaks to allow Kirki saving Options instead of theme-mods.
+	 *
+	 * @since 1.0
+	 */
+	class Option
+	{
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Filters the value for an option.
+		 *
+		 * @access public
+		 * @since 4.0
+		 * @param mixed  $value   The value.
+		 * @param string $option  The field-name.
+		 * @param mixed  $default The default value.
+		 * @param string $type    The option-type (theme_mod, option etc).
+		 * @return mixed          Returns the field value.
+		 */
+		public function kirki_get_value($value = '', $option = '', $default = '', $type = 'theme_mod')
+		{
+		}
+		/**
+		 * Allow filtering the arguments.
+		 *
+		 * @since 0.1
+		 * @param array                $args The arguments.
+		 * @param WP_Customize_Manager $customizer The customizer instance.
+		 * @return array                           Return the arguments.
+		 */
+		public function add_setting_args($args, $customizer)
+		{
+		}
+		/**
+		 * Allow filtering the arguments.
+		 *
+		 * @since 0.1
+		 * @param array                $args The arguments.
+		 * @param WP_Customize_Manager $customizer The customizer instance.
+		 * @return array                           Return the arguments.
+		 */
+		public function add_control_args($args, $customizer)
+		{
+		}
+		/**
+		 * Change the settings argument.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @param array $args The arguments.
+		 * @return array      Returns modified array with tweaks to the [settings] argument if needed.
+		 */
+		private function maybe_change_settings($args)
+		{
+		}
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Output overrides.
+	 */
+	class Dimensions extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Processes a single item from the `output` array.
+		 *
+		 * @access protected
+		 * @param array $output The `output` item.
+		 * @param array $value  The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Dimensions extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-dimensions';
+		/**
+		 * Extra logic for the field.
+		 *
+		 * Adds all sub-fields.
+		 *
+		 * @access public
+		 * @param array $args The arguments of the field.
+		 */
+		public function init($args = array())
+		{
+		}
+		/**
+		 * Sanitizes dimension controls.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param array $value The value.
+		 * @return array
+		 */
+		public static function sanitize($value)
+		{
+		}
+		/**
+		 * Override parent method. No need to register any setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_setting($wp_customize)
+		{
+		}
+		/**
+		 * Override the parent method. No need for a control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return void
+		 */
+		public function add_control($wp_customize)
+		{
+		}
+		/**
+		 * Enqueue scripts & styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue_scripts()
+		{
+		}
+		/**
+		 * Enqueue scripts & styles on customize_preview_init.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue_customize_preview_scripts()
+		{
+		}
+		/**
+		 * Adds a custom output class for typography fields.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param array $classnames The array of classnames.
+		 * @return array
+		 */
+		public function output_control_classnames($classnames)
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * Manages the way Google Fonts are enqueued.
+	 */
+	final class GoogleFonts
+	{
+		/**
+		 * An array of our google fonts.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.0
+		 * @var array
+		 */
+		public static $google_fonts;
+		/**
+		 * An array of our google font names.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.2
+		 * @var array
+		 */
+		public static $google_font_names;
+		/**
+		 * The class constructor.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Prints the googlefonts JSON file.
+		 *
+		 * @since 1.0.0
+		 * @param bool $die Whether the script should exit or not.
+		 * @return void
+		 */
+		public function print_googlefonts_json($die = true)
+		{
+		}
+		/**
+		 * Returns the array of googlefonts from the JSON file.
+		 *
+		 * @since 1.0.0
+		 * @return array
+		 */
+		public function get_array()
+		{
+		}
+		/**
+		 * Returns the array of googlefont names from the JSON file.
+		 *
+		 * @since 1.0.2
+		 * @return array
+		 */
+		public function get_names_array()
+		{
+		}
+		/**
+		 * Return an array of all available Google Fonts.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @return array All Google Fonts.
+		 */
+		public function get_google_fonts()
+		{
+		}
+		/**
+		 * Return an array of all available Google Font names.
+		 *
+		 * @access public
+		 * @since 1.0.2
+		 * @return array All Google Font names.
+		 */
+		public function get_google_font_names()
+		{
+		}
+		/**
+		 * Returns an array of google-fonts matching our arguments.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param array $args The arguments.
+		 * @return array
+		 */
+		public function get_google_fonts_by_args($args = [])
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 */
+	class Dimension extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-dimension';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Dimension';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * A text control with validation for CSS units.
+	 *
+	 * @since 1.0
+	 */
+	class Dimension extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-dimension';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Get the URL for the control folder.
+		 *
+		 * This is a static method because there are more controls in the Kirki framework
+		 * that use colorpickers, and they all need to enqueue the same assets.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @return string
+		 */
+		public static function get_control_path_url()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @see WP_Customize_Control::to_json()
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Generic extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-generic';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Generic';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Number extends \Kirki\Field\Generic
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-number';
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Text extends \Kirki\Field\Generic
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-text';
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class URL extends \Kirki\Field\Text
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-url';
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+	}
+	/**
+	 * Field overrides.
+	 */
+	class Textarea extends \Kirki\Field\Generic
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-textarea';
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * A generic and pretty abstract control.
+	 * Allows for great manipulation using the field's "choices" argumnent.
+	 *
+	 * @since 1.0
+	 */
+	class Generic extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-generic';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.2';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.1
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * A collection of methods to get the URL of files.
+	 *
+	 * @since 1.0
+	 */
+	class URL
+	{
+		/**
+		 * An array of instances.
+		 *
+		 * Used for performance reasons in case we need
+		 * the same url over and over again.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0.2
+		 * @var array
+		 */
+		private static $instances = [];
+		/**
+		 * The file path.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private $path;
+		/**
+		 * The content path.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private static $content_path;
+		/**
+		 * The content RL.
+		 *
+		 * @static
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private static $content_url;
+		/**
+		 * The file URL.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @var string
+		 */
+		private $url;
+		/**
+		 * Gets an instance based on the path.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.2
+		 * @param string $path Absolute path to a file.
+		 * @return URL         An instance of this object.
+		 */
+		public static function get_instance($path)
+		{
+		}
+		/**
+		 * Constructor.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @param string $path Absolute path to a file.
+		 */
+		private function __construct($path)
+		{
+		}
+		/**
+		 * Get a URL from a path.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.2
+		 * @param string $path The file path.
+		 * @return string
+		 */
+		public static function get_from_path($path)
+		{
+		}
+		/**
+		 * Get the file URL.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return string
+		 */
+		public function get_url()
+		{
+		}
+		/**
+		 * Check if the path is inside a parent theme.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return bool
+		 */
+		public function in_parent_theme()
+		{
+		}
+		/**
+		 * Check if the path is inside a child theme.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return bool
+		 */
+		public function in_child_theme()
+		{
+		}
+		/**
+		 * Set the $content_url.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @return void
+		 */
+		private function set_content_url()
+		{
+		}
+		/**
+		 * Set the $content_path.
+		 *
+		 * @access private
+		 * @since 1.0
+		 * @return void
+		 */
+		private function set_content_path()
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Color_Palette extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-color-palette';
+		/**
+		 * The control class-name.
+		 *
+		 * @since 1.0
+		 * @access protected
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Color_Palette';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @since 1.0
+		 * @access protected
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @param array                 $args The field arguments.
+		 * @param \WP_Customize_Manager $wp_customize The customizer instance.
+		 *
+		 * @return array $args The maybe-filtered arguments.
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @param array                 $args The field arguments.
+		 * @param \WP_Customize_Manager $wp_customize The customizer instance.
+		 *
+		 * @return array $args The maybe-filtered arguments.
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Sanitize colors.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.2
+		 * @param string $value The color.
+		 * @return string
+		 */
+		public static function sanitize($value)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Color Palette control.
+	 *
+	 * @since 1.0
+	 */
+	class Color_Palette extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public $type = 'kirki-color-palette';
+		/**
+		 * The control version.
+		 *
+		 * @since 1.0
+		 * @access public
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related styles/scripts.
+		 *
+		 * @since 1.0
+		 * @access public
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @see WP_Customize_Control::to_json()
+		 *
+		 * @since 1.0
+		 * @access public
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding WP_Customize_Control::to_json().
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @since 1.0
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Field\CSS {
+	/**
+	 * Outpout overrides.
+	 */
+	class ReactColorful extends \Kirki\Module\CSS\Output
+	{
+		/**
+		 * Process a single item from the `output` array.
+		 *
+		 * @since 4.0.0
+		 * @access protected
+		 *
+		 * @param array        $output The `output` item.
+		 * @param array|string $value The field's value.
+		 */
+		protected function process_output($output, $value)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * The react-colorful control.
+	 *
+	 * @since 1.0
+	 */
+	class ReactColorful extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-react-colorful';
+		/**
+		 * The control version.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0.14';
+		/**
+		 * The color mode.
+		 *
+		 * Used by 'mode' => 'alpha' argument.
+		 *
+		 * @access public
+		 * @var string
+		 */
+		public $mode = '';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @see WP_Customize_Control::to_json()
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * Remove un-used json properties.
+		 *
+		 * For consistency in JS, we converted some choices to use camelCase.
+		 * To reduce the returned json size, we remove the original properties (which is using snake_case) from the JSON.
+		 * But we keep them to stay in the choices array, so that they're still accessible.
+		 *
+		 * @return void
+		 */
+		public function remove_unused_json_props()
+		{
+		}
+		/**
+		 * Get color swatches values.
+		 *
+		 * @return array The color swatches values.
+		 */
+		public function color_swatches()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+	/**
+	 * Adds the image control.
+	 *
+	 * @since 1.0
+	 */
+	class Cropped_Image extends \WP_Customize_Cropped_Image_Control
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-cropped-image';
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Sortable extends \Kirki\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-sortable';
+		/**
+		 * The control class-name.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var string
+		 */
+		protected $control_class = '\\Kirki\\Control\\Sortable';
+		/**
+		 * Whether we should register the control class for JS-templating or not.
+		 *
+		 * @access protected
+		 * @since 0.1
+		 * @var bool
+		 */
+		protected $control_has_js_template = true;
+		/**
+		 * Filter arguments before creating the setting.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_setting_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Filter arguments before creating the control.
+		 *
+		 * @access public
+		 * @since 0.1
+		 * @param array                $args         The field arguments.
+		 * @param WP_Customize_Manager $wp_customize The customizer instance.
+		 * @return array
+		 */
+		public function filter_control_args($args, $wp_customize)
+		{
+		}
+		/**
+		 * Sanitizes sortable values.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @param array $value The checkbox value.
+		 * @return array
+		 */
+		public function sanitize($value = [])
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Sortable control (uses checkboxes).
+	 */
+	class Sortable extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-sortable';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 *
+		 * Class variables for this control class are available in the `data` JS object;
+		 * export custom variables by overriding {@see WP_Customize_Control::to_json()}.
+		 *
+		 * @see WP_Customize_Control::print_template()
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function content_template()
+		{
+		}
+	}
+}
+namespace Kirki\Module {
+	/**
+	 * Wrapper class for static methods.
+	 *
+	 * @since 3.0.35
+	 */
+	class Editor_Styles
+	{
+		/**
+		 * Configuration reference.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 * @var object $configs
+		 */
+		private $configs;
+		/**
+		 * Whether feature is enabled.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 * @var bool $enabled
+		 */
+		public $enabled;
+		/**
+		 * CSS Module reference.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 * @var object $modules_css
+		 */
+		public $modules_css;
+		/**
+		 * Webfonts Module reference.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 * @var object $modules_webfonts
+		 */
+		private $modules_webfonts;
+		/**
+		 * Google Fonts reference.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 * @var object $google_fonts
+		 */
+		private $google_fonts;
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 */
+		public function __construct()
+		{
+		}
+		/**
+		 * Initialize Module.
+		 *
+		 * Sets class properties and add necessary hooks.
+		 *
+		 * @since 3.0.35
+		 */
+		public function init()
+		{
+		}
+		/**
+		 * Add hooks for Gutenberg editor integration.
+		 *
+		 * @access protected
+		 * @since 3.0.35
+		 */
+		protected function add_hooks()
+		{
+		}
+		/**
+		 * Add theme support for editor styles.
+		 *
+		 * This checks if theme has declared editor-styles support
+		 * already, and if not present, declares it. Hooked late.
+		 *
+		 * @access public
+		 * @since 3.0.35
+		 */
+		public function add_theme_support()
+		{
+		}
+		/**
+		 * Helper method to check if feature is disabled.
+		 *
+		 * Feature can be disabled by KIRKI_NO_OUTPUT constant,
+		 * gutenbeg_support argument, and disabled output argument.
+		 *
+		 * @access public
+		 * @param array $args An array of arguments.
+		 * @since 3.0.35
+		 *
+		 * @return bool $disabled Is gutenberg integration feature disabled?
+		 */
+		private function is_disabled($args = [])
+		{
+		}
+		/**
+		 * Set class property for $configs.
+		 *
+		 * @access private
+		 * @since 3.0.35
+		 */
+		private function set_configs()
+		{
+		}
+		/**
+		 * Set class property for $enabled.
+		 *
+		 * @access private
+		 * @since 3.0.35
+		 */
+		private function set_enabled()
+		{
+		}
+		/**
+		 * Set class property for $modules_css.
+		 *
+		 * @access private
+		 * @since 3.0.35
+		 */
+		private function set_modules_css()
+		{
+		}
+		/**
+		 * Set class property for $google_fonts.
+		 *
+		 * @access private
+		 * @since 3.0.35
+		 */
+		private function set_google_fonts()
+		{
+		}
+		/**
+		 * Set class property for $modules_webfonts.
+		 *
+		 * @access private
+		 * @since 3.0.35
+		 */
+		private function set_modules_webfonts()
+		{
+		}
+	}
+}
+namespace Kirki\Panel_Types {
+	/**
+	 * Nested panel.
+	 */
+	class Nested extends \WP_Customize_Panel
+	{
+		/**
+		 * The parent panel.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @var string
+		 */
+		public $panel;
+		/**
+		 * Type of this panel.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @var string
+		 */
+		public $type = 'kirki-nested';
+		/**
+		 * Gather the parameters passed to client JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 3.0.0
+		 * @return array The array to be exported to the client as JSON.
+		 */
+		public function json()
+		{
+		}
+	}
+}
+namespace Kirki {
+	/**
+	 * Panel.
+	 */
+	class Panel
+	{
+		/**
+		 * The panel ID.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @var string
+		 */
+		protected $id;
+		/**
+		 * The panel arguments.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @var array
+		 */
+		protected $args;
+		/**
+		 * An array of our panel types.
+		 *
+		 * @access private
+		 * @var array
+		 */
+		private $panel_types = ['default' => 'WP_Customize_Panel', 'kirki-nested' => '\\Kirki\\Panel_Types\\Nested'];
+		/**
+		 * Constructor.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string $id   The panel ID.
+		 * @param array  $args The panel args.
+		 */
+		public function __construct($id, $args = [])
+		{
+		}
+		/**
+		 * Add the panel using the Customizer API.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param object $wp_customize The customizer object.
+		 */
+		public function add_panel($wp_customize)
+		{
+		}
+		/**
+		 * Removes the panel.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function remove()
+		{
+		}
+		/**
+		 * Add the panel using the Customizer API.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param object $wp_customize The customizer object.
+		 */
+		public function remove_panel($wp_customize)
+		{
+		}
+		/**
+		 * Enqueues any necessary scripts and styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 */
+		public function enqueue_scrips()
+		{
+		}
+	}
+}
+namespace Kirki\Settings {
+	/**
+	 * Repeater Settings.
+	 */
+	class Repeater extends \WP_Customize_Setting
+	{
+		/**
+		 * Constructor.
+		 *
+		 * Any supplied $args override class property defaults.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param WP_Customize_Manager $manager The WordPress WP_Customize_Manager object.
+		 * @param string               $id       A specific ID of the setting. Can be a theme mod or option name.
+		 * @param array                $args     Setting arguments.
+		 */
+		public function __construct($manager, $id, $args = [])
+		{
+		}
+		/**
+		 * Fetch the value of the setting.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return mixed The value.
+		 */
+		public function value()
+		{
+		}
+		/**
+		 * Convert the JSON encoded setting coming from Customizer to an Array.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string $value URL Encoded JSON Value.
+		 * @return array
+		 */
+		public function sanitize_repeater_setting($value)
+		{
+		}
+	}
+}
+namespace Kirki\Field {
+	/**
+	 * Field overrides.
+	 *
+	 * @since 1.0
+	 */
+	class Repeater extends \Kirki\Compatibility\Field
+	{
+		/**
+		 * The field type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'kirki-repeater';
+		/**
+		 * Used only on repeaters.
+		 * Contains an array of the fields.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @var array
+		 */
+		protected $fields = [];
+		/**
+		 * Sets the control type.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function set_type()
+		{
+		}
+		/**
+		 * Sets the $transport
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function set_transport()
+		{
+		}
+		/**
+		 * Sets the $sanitize_callback
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function set_sanitize_callback()
+		{
+		}
+		/**
+		 * The sanitize method that will be used as a falback
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param string|array $value The control's value.
+		 */
+		public function sanitize($value)
+		{
+		}
+	}
+}
+namespace Kirki\Control {
+	/**
+	 * Repeater control
+	 *
+	 * @since 1.0
+	 */
+	class Repeater extends \Kirki\Control\Base
+	{
+		/**
+		 * The control type.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $type = 'repeater';
+		/**
+		 * The fields that each container row will contain.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var array
+		 */
+		public $fields = [];
+		/**
+		 * Will store a filtered version of value for advenced fields (like images).
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @var array
+		 */
+		protected $filtered_value = [];
+		/**
+		 * The row label
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var array
+		 */
+		public $row_label = [];
+		/**
+		 * The button label
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public $button_label = '';
+		/**
+		 * The version. Used in scripts & styles for cache-busting.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0
+		 * @var string
+		 */
+		public static $control_ver = '1.0';
+		/**
+		 * Constructor.
+		 * Supplied `$args` override class property defaults.
+		 * If `$args['settings']` is not defined, use the $id as the setting ID.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @param WP_Customize_Manager $manager Customizer bootstrap instance.
+		 * @param string               $id      Control ID.
+		 * @param array                $args    {@see WP_Customize_Control::__construct}.
+		 */
+		public function __construct($manager, $id, $args = [])
+		{
+		}
+		/**
+		 * Enqueue control related scripts/styles.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function enqueue()
+		{
+		}
+		/**
+		 * Refresh the parameters passed to the JavaScript via JSON.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function to_json()
+		{
+		}
+		/**
+		 * Render the control's content.
+		 * Allows the content to be overriden without having to rewrite the wrapper in $this->render().
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @return void
+		 */
+		protected function render_content()
+		{
+		}
+		/**
+		 * An Underscore (JS) template for this control's content (but not its container).
+		 * Class variables for this control class are available in the `data` JS object.
+		 *
+		 * @access public
+		 * @since 1.0
+		 * @return void
+		 */
+		public function repeater_js_template()
+		{
+		}
+		/**
+		 * Validate row-labels.
+		 *
+		 * @access protected
+		 * @since 1.0
+		 * @param array $args {@see WP_Customize_Control::__construct}.
+		 * @return void
+		 */
+		protected function row_label($args)
+		{
+		}
+	}
+}
+namespace {
+	/**
+	 * The color calculations class.
+	 */
+	class ariColor
+	{
+		/**
+		 * An array of our instances.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.0
+		 * @var array
+		 */
+		public static $instances = array();
+		/**
+		 * The color initially set.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var mixed
+		 */
+		public $color;
+		/**
+		 * A fallback color in case of failure.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var mixed
+		 */
+		public $fallback = '#ffffff';
+		/**
+		 * Fallback object from the fallback color.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var object
+		 */
+		public $fallback_obj;
+		/**
+		 * The mode we're using for this color.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $mode = 'hex';
+		/**
+		 * An array containing all word-colors (white/blue/red etc)
+		 * and their corresponding HEX codes.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var array
+		 */
+		public $word_colors = array();
+		/**
+		 * The hex code of the color.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var string
+		 */
+		public $hex;
+		/**
+		 * Red value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var int
+		 */
+		public $red = 0;
+		/**
+		 * Green value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var int
+		 */
+		public $green = 0;
+		/**
+		 * Blue value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var int
+		 */
+		public $blue = 0;
+		/**
+		 * Alpha value (min:0, max: 1)
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $alpha = 1;
+		/**
+		 * Hue value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $hue;
+		/**
+		 * Saturation value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $saturation;
+		/**
+		 * Lightness value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $lightness;
+		/**
+		 * Chroma value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $chroma;
+		/**
+		 * An array containing brightnesses.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var array
+		 */
+		public $brightness = array();
+		/**
+		 * Luminance value.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @var float
+		 */
+		public $luminance;
+		/**
+		 * The class constructor.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @param string|array $color The color.
+		 * @param string       $mode  The color mode. Leave empty to auto-detect.
+		 */
+		protected function __construct($color = '', $mode = 'auto')
+		{
+		}
+		/**
+		 * Gets an instance for this color.
+		 * We use a separate instance per color
+		 * because there's no need to create a completely new instance each time we call this class.
+		 * Instead using instances helps us improve performance & footprint.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.0.0
+		 * @param string|array $color The color.
+		 * @param string       $mode  Mode to be used.
+		 * @return ariColor    (object)
+		 */
+		public static function newColor($color, $mode = 'auto')
+		{
+		}
+		/**
+		 * Alias of the newColor method.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.1
+		 * @param string|array $color The color.
+		 * @param string       $mode  Mode to be used.
+		 * @return ariColor    (object)
+		 */
+		public static function new_color($color, $mode = 'auto')
+		{
+		}
+		/**
+		 * Allows us to get a new instance by modifying a property of the existing one.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string           $property   Can be one of the following:
+		 *                             red,
+		 *                             green,
+		 *                             blue,
+		 *                             alpha,
+		 *                             hue,
+		 *                             saturation,
+		 *                             lightness,
+		 *                             brightness.
+		 * @param int|float|string $value      The new value.
+		 * @return ariColor|null
+		 */
+		public function getNew($property = '', $value = '')
+		{
+		}
+		/**
+		 * Allias for the getNew method.
+		 *
+		 * @access public
+		 * @since 1.1.0
+		 * @param string           $property   Can be one of the following:
+		 *                             red,
+		 *                             green,
+		 *                             blue,
+		 *                             alpha,
+		 *                             hue,
+		 *                             saturation,
+		 *                             lightness,
+		 *                             brightness.
+		 * @param int|float|string $value      The new value.
+		 * @return ariColor|null
+		 */
+		public function get_new($property = '', $value = '')
+		{
+		}
+		/**
+		 * Figure out what mode we're using.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string|array $color The color we're querying.
+		 * @return string
+		 */
+		public function get_mode($color)
+		{
+		}
+		/**
+		 * Starts with a HEX color and calculates all other properties.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return null
+		 */
+		protected function from_hex()
+		{
+		}
+		/**
+		 * Starts with an RGB color and calculates all other properties.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return null
+		 */
+		protected function from_rgb()
+		{
+		}
+		/**
+		 * Starts with an RGBA color and calculates all other properties.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return null
+		 */
+		protected function from_rgba()
+		{
+		}
+		/**
+		 * Starts with an HSL color and calculates all other properties.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return null
+		 */
+		protected function from_hsl()
+		{
+		}
+		/**
+		 * Starts with an HSLA color and calculates all other properties.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return null
+		 */
+		protected function from_hsla()
+		{
+		}
+		/**
+		 * Generates the HEX value of a color given values for $red, $green, $blue.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @param int|string $red   The red value of this color.
+		 * @param int|string $green The green value of this color.
+		 * @param int|string $blue  The blue value of this color.
+		 * @return string
+		 */
+		protected function rgb_to_hex($red, $green, $blue)
+		{
+		}
+		/**
+		 * Convert a decimal value to hex and make sure it's 2 characters.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @param int|string $value The value to convert.
+		 * @return string
+		 */
+		protected function dexhex_double_digit($value)
+		{
+		}
+		/**
+		 * Calculates the red, green, blue values of an HSL color.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @see https://gist.github.com/brandonheyer/5254516
+		 */
+		protected function from_hsl_array()
+		{
+		}
+		/**
+		 * Returns a CSS-formatted value for colors.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 * @param string $mode The mode we're using.
+		 * @return string
+		 */
+		public function toCSS($mode = 'hex')
+		{
+		}
+		/**
+		 * Alias for the toCSS method.
+		 *
+		 * @access public
+		 * @since 1.1
+		 * @param string $mode The mode we're using.
+		 * @return string
+		 */
+		public function to_css($mode = 'hex')
+		{
+		}
+		/**
+		 * Sets the HSL values of a color based on the values of red, green, blue.
+		 *
+		 * @access public
+		 * @since 1.0.0
+		 */
+		protected function set_hsl()
+		{
+		}
+		/**
+		 * Sets the brightness of a color based on the values of red, green, blue.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 */
+		protected function set_brightness()
+		{
+		}
+		/**
+		 * Sets the luminance of a color (range:0-255) based on the values of red, green, blue.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 */
+		protected function set_luminance()
+		{
+		}
+		/**
+		 * Gets an array of all the wordcolors.
+		 *
+		 * @access protected
+		 * @since 1.0.0
+		 * @return array
+		 */
+		protected function get_word_colors()
+		{
+		}
+		/**
+		 * Use fallback object.
+		 *
+		 * @access protected
+		 * @since 1.2.0
+		 */
+		protected function from_fallback()
+		{
+		}
+		/**
+		 * Handle non-existing public methods.
+		 *
+		 * @access public
+		 * @since 1.1.0
+		 * @param string $name      The method name.
+		 * @param mixed  $arguments The method arguments.
+		 * @return mixed
+		 */
+		public function __call($name, $arguments)
+		{
+		}
+		/**
+		 * Handle non-existing public static methods.
+		 *
+		 * @static
+		 * @access public
+		 * @since 1.1.0
+		 * @param string $name      The method name.
+		 * @param mixed  $arguments The method arguments.
+		 * @return mixed
+		 */
+		public static function __callStatic($name, $arguments)
+		{
+		}
+	}
+	/**
+	 * Helper class for color manipulation.
+	 */
+	final class Kirki_Color extends \ariColor
+	{
+		/**
+		 * A proxy for the sanitize_color method.
+		 *
+		 * @param string|array $color The color.
+		 * @param bool         $hash  Whether we want to include a hash (#) at the beginning or not.
+		 * @return string             The sanitized hex color.
+		 */
+		public static function sanitize_hex($color = '#FFFFFF', $hash = \true)
+		{
+		}
+		/**
+		 * A proxy the sanitize_color method.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color The color.
+		 * @return string
+		 */
+		public static function sanitize_rgba($color)
+		{
+		}
+		/**
+		 * Sanitize colors.
+		 * Determine if the current value is a hex or an rgba color and call the appropriate method.
+		 *
+		 * @static
+		 * @access public
+		 * @since 0.8.5
+		 * @param string|array $color The color.
+		 * @param string       $mode  The mode to be used.
+		 * @return string
+		 */
+		public static function sanitize_color($color = '', $mode = 'auto')
+		{
+		}
+		/**
+		 * Gets the rgb value of a color.
+		 *
+		 * @static
+		 * @access public
+		 * @param string  $color   The color.
+		 * @param boolean $implode Whether we want to implode the values or not.
+		 * @return array|string
+		 */
+		public static function get_rgb($color, $implode = \false)
+		{
+		}
+		/**
+		 * A proxy for the sanitize_color method.
+		 *
+		 * @static
+		 * @access public
+		 * @param string|array $color The color to convert.
+		 * @return string The hex value of the color.
+		 */
+		public static function rgba2hex($color)
+		{
+		}
+		/**
+		 * Get the alpha channel from an rgba color.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color The rgba color formatted like rgba(r,g,b,a).
+		 * @return int|float    The alpha value of the color.
+		 */
+		public static function get_alpha_from_rgba($color)
+		{
+		}
+		/**
+		 * Gets the rgba value of the $color.
+		 *
+		 * @static
+		 * @access public
+		 * @param string    $color The hex value of a color.
+		 * @param int|float $alpha Opacity level (0-1).
+		 * @return string
+		 */
+		public static function get_rgba($color = '#fff', $alpha = 1)
+		{
+		}
+		/**
+		 * Strips the alpha value from an RGBA color string.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color The RGBA color string.
+		 * @return string       The corresponding RGB string.
+		 */
+		public static function rgba_to_rgb($color)
+		{
+		}
+		/**
+		 * Gets the brightness of the $hex color.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $hex The hex value of a color.
+		 * @return int        Value between 0 and 255.
+		 */
+		public static function get_brightness($hex)
+		{
+		}
+		/**
+		 * Adjusts brightness of the $hex color.
+		 *
+		 * @static
+		 * @access public
+		 * @param   string  $hex    The hex value of a color.
+		 * @param   integer $steps  Should be between -255 and 255. Negative = darker, positive = lighter.
+		 * @return  string          Returns hex color.
+		 */
+		public static function adjust_brightness($hex, $steps)
+		{
+		}
+		/**
+		 * Mixes 2 hex colors.
+		 * The "percentage" variable is the percent of the first color.
+		 * to be used it the mix. default is 50 (equal mix).
+		 *
+		 * @static
+		 * @access public
+		 * @param string|false $hex1       Color.
+		 * @param string|false $hex2       Color.
+		 * @param int          $percentage A value between 0 and 100.
+		 * @return string                  Returns hex color.
+		 */
+		public static function mix_colors($hex1, $hex2, $percentage)
+		{
+		}
+		/**
+		 * Convert hex color to hsv.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $hex The hex value of color 1.
+		 * @return array Returns array( 'h', 's', 'v' ).
+		 */
+		public static function hex_to_hsv($hex)
+		{
+		}
+		/**
+		 * Convert hex color to hsv.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color The rgb color to convert array( 'r', 'g', 'b' ).
+		 * @return array Returns array( 'h', 's', 'v' ).
+		 */
+		public static function rgb_to_hsv($color = array())
+		{
+		}
+		/**
+		 * This is a very simple algorithm that works by summing up the differences between the three color components red, green and blue.
+		 * A value higher than 500 is recommended for good readability.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color_1 The 1st color.
+		 * @param string $color_2 The 2nd color.
+		 * @return string
+		 */
+		public static function color_difference($color_1 = '#ffffff', $color_2 = '#000000')
+		{
+		}
+		/**
+		 * This function tries to compare the brightness of the colors.
+		 * A return value of more than 125 is recommended.
+		 * Combining it with the color_difference function above might make sense.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color_1 The 1st color.
+		 * @param string $color_2 The 2nd color.
+		 * @return string
+		 */
+		public static function brightness_difference($color_1 = '#ffffff', $color_2 = '#000000')
+		{
+		}
+		/**
+		 * Uses the luminosity to calculate the difference between the given colors.
+		 * The returned value should be bigger than 5 for best readability.
+		 *
+		 * @static
+		 * @access public
+		 * @param string $color_1 The 1st color.
+		 * @param string $color_2 The 2nd color.
+		 * @return string
+		 */
+		public static function lumosity_difference($color_1 = '#ffffff', $color_2 = '#000000')
+		{
+		}
+	}
+}
+namespace {
+	/**
+	 * Fires at the end of the update message container in each
+	 * row of the plugins list table.
+	 * Allows us to add important notices about updates should they be needed.
+	 * Notices should be added using "== Upgrade Notice ==" in readme.txt.
+	 *
+	 * @since 2.3.8
+	 * @param array $plugin_data An array of plugin metadata.
+	 * @param array $response    An array of metadata about the available plugin update.
+	 */
+	function kirki_show_upgrade_notification($plugin_data, $response)
+	{
+	}
+	/**
+	 * Get the value of a field.
+	 * This is a deprecated function that we used when there was no API.
+	 * Please use get_theme_mod() or get_option() instead.
+	 * @see https://developer.wordpress.org/reference/functions/get_theme_mod/
+	 * @see https://developer.wordpress.org/reference/functions/get_option/
+	 *
+	 * @return mixed
+	 */
+	function kirki_get_option($option = '')
+	{
+	}
+	function kirki_sanitize_hex($color)
+	{
+	}
+	function kirki_get_rgb($hex, $implode = \false)
+	{
+	}
+	function kirki_get_rgba($hex = '#fff', $opacity = 100)
+	{
+	}
+	function kirki_get_brightness($hex)
+	{
+	}
+	\define('KIRKI_PLUGIN_FILE', __FILE__);
+	\define('KIRKI_VERSION', '4.0.22');
+	/**
+	 * Returns an instance of the Kirki object.
+	 */
+	function kirki()
+	{
+	}
+}

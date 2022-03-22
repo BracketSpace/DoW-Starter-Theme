@@ -12,7 +12,7 @@ namespace DoWStarterTheme;
 use DoWStarterTheme\Core\Config;
 use DoWStarterTheme\Core\Theme;
 use DoWStarterTheme\Factories\Filesystem;
-use DoWStarterTheme\Requirements\AssetsChecker;
+use DoWStarterTheme\Requirements as Checkers;
 use DoWStarterTheme\Deps\Micropackage\Requirements\Requirements;
 
 /**
@@ -32,11 +32,15 @@ if (!file_exists($dowstAutoloader)) {
 // Require autoloader.
 require_once $dowstAutoloader;
 
+// Create root Filesystem instance.
+$dowstFs = Filesystem::get(__DIR__, 'root');
+
 // Create Requirements instance.
 $dowstRequirements = new Requirements(
 	'DoW Starter Theme',
 	[
 		'assets' => true,
+		'customizer' => true,
 		'dochooks' => true,
 		'php' => '7.4',
 		'php_extensions' => ['SimpleXML'],
@@ -50,7 +54,8 @@ $dowstRequirements = new Requirements(
 	]
 );
 
-$dowstRequirements->register_checker(AssetsChecker::class);
+$dowstRequirements->register_checker(Checkers\AssetsChecker::class);
+$dowstRequirements->register_checker(Checkers\CustomizerChecker::class);
 
 if (!$dowstRequirements->satisfied()) {
 	$dowstMessage = sprintf(
@@ -67,9 +72,6 @@ if (!$dowstRequirements->satisfied()) {
 
 	return;
 }
-
-// Create root Filesystem instance.
-$dowstFs = Filesystem::get(__DIR__, 'root');
 
 // Create core class instance.
 $dowstTheme = Theme::get($dowstFs);
