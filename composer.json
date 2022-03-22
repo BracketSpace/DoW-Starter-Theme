@@ -57,7 +57,7 @@
           "dep_namespace": "DoWStarterTheme\\Deps\\",
           "dep_directory": "/dependencies/",
           "classmap_directory": "/dependencies/classes/",
-          "classmap_prefix": "dowst_",
+          "classmap_prefix": false,
           "delete_vendor_directories": false,
           "skip_duplicates": true
       }
