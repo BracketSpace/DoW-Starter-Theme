@@ -40,7 +40,7 @@ class Customizer
 
 			if ($type === self::TYPE_PANEL) {
 				$this->registerPanel($id, $data);
-			} elseif ($type === self::TYPE_SECTION) {
+			} else {
 				$this->registerSection($id, $data);
 			}
 		}
@@ -56,9 +56,16 @@ class Customizer
 	{
 		$result = preg_match('/^(?P<type>.+?):(?P<id>.+)$/', $key, $matches);
 
-		return $result === 1
-			? ['type' => $matches['type'], 'id' => $matches['id']]
-			: ['type' => self::TYPE_SECTION, 'id' => $key];
+		// Pattern does not match, assume it is section without `section:` prefix.
+		if ($result !== 1) {
+			return ['type' => self::TYPE_SECTION, 'id' => $key];
+		}
+
+		if (!in_array($matches['type'], [self::TYPE_SECTION, self::TYPE_PANEL], true)) {
+			throw new \InvalidArgumentException("Type \"{$matches['type']}\" is not valid Customizer type.");
+		}
+
+		return ['type' => $matches['type'], 'id' => $matches['id']];
 	}
 
 	/**
@@ -72,11 +79,7 @@ class Customizer
 	{
 		$panel = new Panel($id, $data);
 
-		if (!$panel->isRegistered()) {
-			$panel->register();
-		}
-
-		foreach ($data['children'] as $key => $sectionData) {
+		foreach ($data['sections'] as $key => $sectionData) {
 			['id' => $sectionId] = $this->parseKey($key);
 
 			$this->registerSection($sectionId, $sectionData, $panel);
@@ -93,17 +96,9 @@ class Customizer
 	 */
 	protected function registerSection(string $id, array $data, ?Panel $panel = null): void
 	{
-		$section = new Section($id, $data);
+		$section = new Section($id, $data, $panel);
 
-		if ($panel !== null) {
-			$section->setPanel($panel);
-		}
-
-		if (!$section->isRegistered()) {
-			$section->register();
-		}
-
-		foreach ($data['children'] as $fieldId => $fieldData) {
+		foreach ($data['fields'] as $fieldId => $fieldData) {
 			$this->registerField($fieldId, $fieldData, $section);
 		}
 	}
@@ -118,7 +113,6 @@ class Customizer
 	 */
 	protected function registerField(string $id, array $data, Section $section): void
 	{
-		$field = new Field($id, $section, $data);
-		$field->register();
+		new Field($id, $section, $data);
 	}
 }

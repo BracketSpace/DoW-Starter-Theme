@@ -12,12 +12,12 @@ return [
 		'title' => __('Example Panel', 'dow-starter-theme'),
 		'description' => __('Example Panel description', 'dow-starter-theme'),
 		'priority' => 100,
-		'children' => [
+		'sections' => [
 			'section:example_section_1' => [
 				'title' => __('Example Section', 'dow-starter-theme'),
 				'description' => __('Example Section description', 'dow-starter-theme'),
 				'priority' => 100,
-				'children' => [
+				'fields' => [
 					'example_field_1' => [
 						'type' => 'checkbox',
 						'label' => 'Example Field',
@@ -32,7 +32,7 @@ return [
 		'title' => __('Example Section', 'dow-starter-theme'),
 		'description' => __('Example Section description', 'dow-starter-theme'),
 		'priority' => 100,
-		'children' => [
+		'fields' => [
 			'example_field_2' => [
 				'type' => 'checkbox',
 				'label' => 'Example Field',
@@ -42,7 +42,7 @@ return [
 
 	// existing Section / new Field
 	'section:title_tagline' => [
-		'children' => [
+		'fields' => [
 			'example_field_3' => [
 				'type' => 'checkbox',
 				'label' => 'Example Field',
