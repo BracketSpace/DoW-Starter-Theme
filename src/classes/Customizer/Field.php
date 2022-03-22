@@ -127,12 +127,6 @@ final class Field
 			)
 		);
 
-		// Remove default Kirki actions from constructor, because of they high
-		// priority (higher than our customizer registrar).
-		remove_action('customize_register', [$field, 'register_control_type']);
-		remove_action('customize_register', [$field, 'add_setting']);
-		remove_action('customize_register', [$field, 'add_control']);
-
 		// phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
 		global $wp_customize;
 
