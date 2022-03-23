@@ -9,6 +9,9 @@
         <exclude name="ImportDetection.Imports.RequireImports"/>
 
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent" />
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
         <exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
         <exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
         <exclude name="PEAR.Commenting.FileComment.Missing"/>
@@ -22,7 +25,6 @@
         <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
         <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
         <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma"/>
-        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
     </rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
