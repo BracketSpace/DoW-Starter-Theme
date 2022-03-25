@@ -154,7 +154,7 @@ class TemplateFilters
 			foreach ($types as $type) {
 				$type = sanitize_key($type);
 
-				if (!isset($templates[$postType])) {
+				if (!isset($templates[$type])) {
 					$templates[$type] = [];
 				}
 
