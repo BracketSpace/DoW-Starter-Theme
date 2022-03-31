@@ -1,4 +1,9 @@
 /**
+ * Normalize
+ */
+@use "~normalize.css" as *;
+
+/**
  * Base
  */
 @use "base";
