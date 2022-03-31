@@ -1,5 +1,0 @@
-!build/
-!vendor/composer/
-!vendor/autoload.php
-!dependencies/
-!theme.json
