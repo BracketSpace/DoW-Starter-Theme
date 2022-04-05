@@ -89,7 +89,7 @@ class ACF
 	 */
 	public function prepareBlockGroups(): void
 	{
-		$this->blockGroups = get_option('starter-theme-trashed-acf-groups', []);
+		$this->blockGroups = get_option('dow-starter-theme-trashed-acf-groups', []);
 		$blocksPath = $this->fs->path($this->blocksLocation);
 
 		/**
@@ -206,14 +206,14 @@ class ACF
 			return;
 		}
 
-		$trashed = get_option('starter-theme-trashed-acf-groups', []);
+		$trashed = get_option('dow-starter-theme-trashed-acf-groups', []);
 
 		if (! array_key_exists($key, $trashed)) {
 			return;
 		}
 
 		$trashed[$key] = $this->blockGroups[$key];
-		update_option('starter-theme-trashed-acf-groups', $trashed);
+		update_option('dow-starter-theme-trashed-acf-groups', $trashed);
 	}
 
 	/**
@@ -233,14 +233,14 @@ class ACF
 			return;
 		}
 
-		$trashed = get_option('starter-theme-trashed-acf-groups', []);
+		$trashed = get_option('dow-starter-theme-trashed-acf-groups', []);
 
 		if (!array_key_exists($key, $trashed)) {
 			return;
 		}
 
 		unset($trashed[$key]);
-		update_option('starter-theme-trashed-acf-groups', $trashed);
+		update_option('dow-starter-theme-trashed-acf-groups', $trashed);
 	}
 
 	/**
