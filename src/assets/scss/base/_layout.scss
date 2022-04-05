@@ -58,8 +58,15 @@ $header-height-mobile: $header-height !default;
 	}
 
 	.content-width,
-	.entry-content > *,
-	.reusable-content > * {
+	.entry-content > * {
 		@extend %content-width;
+	}
+
+	.reusable-content {
+		@extend %container-full;
+
+		> * {
+			@extend %content-width;
+		}
 	}
 }
