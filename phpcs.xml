@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 <ruleset name="DoW Coding Style">
-    <config name="minimum_supported_wp_version" value="5.0"/>
+	<config name="minimum_supported_wp_version" value="5.0"/>
 
-    <rule ref="PSR12NeutronRuleset">
-        <!-- NeutronStandard bug -->
-        <exclude name="NeutronStandard.Functions.TypeHint.NoReturnType"/>
-        <!-- https://github.com/sirbrillig/phpcs-import-detection/issues/45 -->
-        <exclude name="ImportDetection.Imports.RequireImports"/>
+	<rule ref="PSR12NeutronRuleset">
+		<!-- NeutronStandard bug -->
+		<exclude name="NeutronStandard.Functions.TypeHint.NoReturnType"/>
+		<!-- https://github.com/sirbrillig/phpcs-import-detection/issues/45 -->
+		<exclude name="ImportDetection.Imports.RequireImports"/>
 
 		<exclude name="Generic.WhiteSpace.DisallowTabIndent" />
-		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound"/>
+		<exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
+		<exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
+		<exclude name="PEAR.Commenting.FileComment.Missing"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+		<exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+		<exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
+		<exclude name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator" />
+		<exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction" />
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
+		<exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
+		<exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
+		<exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
+		<exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma"/>
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
-		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
-        <exclude name="NeutronStandard.Functions.LongFunction.LongFunction"/>
-        <exclude name="PEAR.Commenting.FileComment.InvalidPackage"/>
-        <exclude name="PEAR.Commenting.FileComment.Missing"/>
-        <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
-        <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
-        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
-        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
-        <exclude name="SlevomatCodingStandard.Functions.DisallowArrowFunction.DisallowedArrowFunction" />
-        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword"/>
-        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName" />
-        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint" />
-        <exclude name="VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable" />
-        <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma"/>
-    </rule>
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
+	</rule>
 
 	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent" />
 
@@ -33,37 +33,37 @@
 		<exclude-pattern>/src/views</exclude-pattern>
 	</rule>
 
-    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-        <properties>
-            <property name="prefixes" type="array">
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
 				<element value="dowst"/>
-                <element value="DoWStarterTheme"/>
-            </property>
-        </properties>
+				<element value="DoWStarterTheme"/>
+			</property>
+		</properties>
 
 		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound" />
 
-	    <exclude-pattern>/src/views</exclude-pattern>
-    </rule>
+		<exclude-pattern>/src/views</exclude-pattern>
+	</rule>
 
 	<rule ref="Generic.Files.LineLength.TooLong">
 		<exclude-pattern>/src/views</exclude-pattern>
 	</rule>
 
-    <!-- Check for correct text domain on all translatable strings. -->
-    <rule ref="WordPress.WP.I18n">
-        <properties>
-            <property name="text_domain" type="array">
-                <element value="dow-starter-theme"/>
-            </property>
-        </properties>
-    </rule>
+	<!-- Check for correct text domain on all translatable strings. -->
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="dow-starter-theme"/>
+			</property>
+		</properties>
+	</rule>
 
-    <rule ref="PEAR.Commenting.FunctionComment"/>
+	<rule ref="PEAR.Commenting.FunctionComment"/>
 
-    <rule ref="Squiz.PHP.DiscouragedFunctions">
-        <properties>
-            <!--
+	<rule ref="Squiz.PHP.DiscouragedFunctions">
+		<properties>
+			<!--
 			* ini_set() environment belongs to the server
 			* env() does not work in production (artisan config:cache)
 			* eval() is dangerous!
@@ -74,20 +74,20 @@
 			Defaults: https://github.com/squizlabs/PHP_CodeSniffer/blob/master/src/Standards/Squiz/Sniffs/PHP/DiscouragedFunctionsSniff.php
 			See https://github.com/WordPress/WordPress-Coding-Standards/blob/develop/WordPress/Sniffs/PHP/DiscouragedPHPFunctionsSniff.php
 			-->
-            <property name="forbiddenFunctions" type="array">
-                <element key="ini_set" value="null"/>
-                <element key="env" value="null"/>
-                <element key="list" value="null"/>
-                <element key="extract" value="null"/>
-                <element key="eval" value="null"/>
-                <element key="print" value="null"/>
-                <element key="print_r" value="null"/>
-                <element key="dump" value="null"/>
-                <element key="dd" value="null"/>
-                <element key="var_dump" value="null"/>
-                <element key="error_log" value="null"/>
-                <element key="define" value="null"/>
-            </property>
-        </properties>
-    </rule>
+			<property name="forbiddenFunctions" type="array">
+				<element key="ini_set" value="null"/>
+				<element key="env" value="null"/>
+				<element key="list" value="null"/>
+				<element key="extract" value="null"/>
+				<element key="eval" value="null"/>
+				<element key="print" value="null"/>
+				<element key="print_r" value="null"/>
+				<element key="dump" value="null"/>
+				<element key="dd" value="null"/>
+				<element key="var_dump" value="null"/>
+				<element key="error_log" value="null"/>
+				<element key="define" value="null"/>
+			</property>
+		</properties>
+	</rule>
 </ruleset>
