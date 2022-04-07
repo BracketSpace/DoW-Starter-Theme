@@ -67,7 +67,7 @@ class TemplateFilters
 		$template = (string)preg_replace(
 			"/{$ext}$/",
 			'',
-			str_replace($viewsPath, '', $path)
+			str_replace([$viewsPath, '/'], ['', '.'], $path)
 		);
 
 		Theme::getService(Layout::class)->setTemplate($template);
