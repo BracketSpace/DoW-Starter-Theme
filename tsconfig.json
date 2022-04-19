@@ -27,7 +27,8 @@
 		"strict": true,
 		"target": "es5",
 		"types": [
-			"node"
+			"node",
+      "youtube"
 		]
 	},
 	"include": [

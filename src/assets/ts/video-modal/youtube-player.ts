@@ -1,9 +1,4 @@
 /**
- * Extednal dependencies
- */
-import '@types/youtube'; // eslint-disable-line import/no-unresolved
-
-/**
  * Internal depdependencies
  */
 import { loadScript } from './utils';
