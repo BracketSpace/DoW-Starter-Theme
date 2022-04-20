@@ -36,8 +36,8 @@ class Menu
 	/**
 	 * Displays nav menu.
 	 *
-	 * @param string        $id       Menu ID (location).
-	 * @param bool|Callable $fallback Fallback to be called if the menu doesn't exist.
+	 * @param string         $id       Menu ID (location).
+	 * @param false|Callable $fallback Fallback to be called if the menu doesn't exist.
 	 * @return void
 	 */
 	public static function display(string $id, $fallback = false): void
@@ -46,7 +46,7 @@ class Menu
 			[
 				'container' => '',
 				'echo' => false,
-				'falback_cb' => $fallback,
+				'fallback_cb' => $fallback,
 				'theme_location' => $id,
 			]
 		);
