@@ -6,8 +6,9 @@ import { on } from 'delegated-events';
 /**
  * Internal dependencies
  */
-import { YouTubePlayer, WistiaPlayer, VimeoPlayer } from '.';
 import { getVideoId } from './utils';
+import { YouTubePlayer, WistiaPlayer, VimeoPlayer } from '.';
+import Player from './player';
 
 export default class VideoModal {
 	activeProvider?: string;
@@ -15,8 +16,8 @@ export default class VideoModal {
 	isOpen = false;
 	isOpening = false;
 	modal?: HTMLElement;
-	players = {};
-	playerClasses = {
+	players: Record<string, Player> = {};
+	playerClasses: Record<string, typeof Player> = {
 		youtube: YouTubePlayer,
 		wistia: WistiaPlayer,
 		vimeo: VimeoPlayer,
@@ -37,7 +38,7 @@ export default class VideoModal {
 
 		const element =
 			undefined === target.dataset.videoProvider
-				? <HTMLElement>target.closest('[data-video-provider]')
+				? target.closest<HTMLElement>('[data-video-provider]')
 				: target;
 
 		if (!element) {
