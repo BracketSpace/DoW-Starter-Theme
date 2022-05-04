@@ -70,7 +70,7 @@ trait Labelable
 	 * @param mixed  $value Value for given key.
 	 * @return void
 	 */
-	private static function setData(string $key, $value)
+	protected static function setData(string $key, $value)
 	{
 		self::$data[static::class][$key] = $value;
 	}
