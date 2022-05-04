@@ -10,6 +10,14 @@ namespace DoWStarterTheme\PostTypes;
 class ReusableContentPostType extends PostType
 {
 	/**
+	 * Change text to Reusable Content.
+	 */
+	public function __construct()
+	{
+		static::setData('pluralName', __('Reusable Content', 'dow-starter-theme'));
+	}
+
+	/**
 	 * Returns post type args.
 	 *
 	 * @return array<string, mixed>
