@@ -56,5 +56,6 @@
       "scripts": "ts",
       "src": "src/assets"
     }
-  }
+  },
+  "packageManager": "yarn@4.1.1"
 }
