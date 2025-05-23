@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Helpers\View as v;
+use DoWStarterTheme\Common\View\ViewHelper as v;
 
 while (have_posts()) {
-	the_post();
+    the_post();
 
-	v::partial('content');
+    v::print('partials.content');
 }

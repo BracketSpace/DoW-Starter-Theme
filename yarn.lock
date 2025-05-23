@@ -11066,7 +11066,7 @@ __metadata:
 
 "tools@file:./.tools::locator=dow-starter-theme%40workspace%3A.":
   version: 1.0.0
-  resolution: "tools@file:./.tools#./.tools::hash=1fb1af&locator=dow-starter-theme%40workspace%3A."
+  resolution: "tools@file:./.tools#./.tools::hash=a9fc6b&locator=dow-starter-theme%40workspace%3A."
   dependencies:
     abbreviate: "npm:0.0.3"
     chalk: "npm:^5.0.0"
@@ -11083,7 +11083,7 @@ __metadata:
     yargs: "npm:^17.3.1"
   bin:
     tools: ./index.js
-  checksum: 10c0/55e8eb6949ce4e2ff8555aaab349fc2201115af02d3c24cc5527681cffe0f9e511797b72b1126d8f9aaa824b978b0e7db628c5e81dd4ee9bee5362a94a90de5a
+  checksum: 10c0/1708d043813d4423f30d12935a6777ea84133f99addf0e4c119557a8186cb8a762416272b82dfd55d67163346f61530eff5418261d12388fb6fd102436e3c1d9
   languageName: node
   linkType: hard
 

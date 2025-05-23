@@ -3,6 +3,7 @@
 *.log
 /build
 /dependencies
+!/dependencies/.gitkeep
 /theme.json
 /vendor
 node_modules

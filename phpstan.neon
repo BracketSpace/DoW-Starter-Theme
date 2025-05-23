@@ -2,17 +2,19 @@ includes:
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/szepeviktor/phpstan-wordpress/extension.neon
 parameters:
+    level: 8
+    paths:
+        - src/classes/
+        - src/templates/
+        - src/views/
+        - functions.php
     bootstrapFiles:
         - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
         - stubs/kirki.stub
-    level: max
-    phpVersion: 74000
-    inferPrivatePropertyTypeFromConstructor: true
-    paths:
-        - ./
-    excludePaths:
-        - */vendor/*
-        - */dependencies/*
-        - */node_modules/*
+    scanDirectories:
+      - dependencies
     ignoreErrors:
-        - '#Variable static property access on DoWStarterTheme\\Abstracts\\Labelable\.#'
+      -
+        identifier: trait.unused
+      -
+        identifier: staticProperty.dynamicName

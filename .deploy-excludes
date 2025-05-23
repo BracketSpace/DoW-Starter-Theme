@@ -14,7 +14,6 @@
 .tools
 composer.json
 composer.lock
-grumphp.yml
 node_modules
 package-lock.json
 package.json

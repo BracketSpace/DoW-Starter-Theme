@@ -12,7 +12,6 @@
 .stylelintrc.json
 .tools
 
-grumphp.yml
 package-lock.json
 postcss.config.js
 
