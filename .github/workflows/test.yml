@@ -2,53 +2,69 @@ name: Test
 
 on: push
 
+env:
+  PHP_VERSION: "8.2"
+  NODE_VERSION: 23
+
 jobs:
   syntax:
     name: PHP Syntax
     runs-on: ubuntu-latest
     steps:
-      - name: Set PHP version
-        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP Dependencies
-        uses: "ramsey/composer-install@v2"
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
       - name: Lint
         run: composer syntax
   phpcompat:
     name: PHP Compat
     runs-on: ubuntu-latest
     steps:
-      - name: Set PHP version
-        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP Dependencies
-        uses: "ramsey/composer-install@v2"
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
       - name: Analyze
         run: composer phpcompat
   phpstan:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
-      - name: Set PHP version
-        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP Dependencies
-        uses: "ramsey/composer-install@v2"
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
       - name: Analyze
         run: composer phpstan
   phpcs:
     name: PHP Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - name: Set PHP version
-        run: sudo update-alternatives --set php /usr/bin/php7.4
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install PHP Dependencies
-        uses: "ramsey/composer-install@v2"
+        uses: actions/checkout@v4
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          coverage: none
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v3
       - name: Coding Standards
         run: composer phpcs
   stylelint:
@@ -56,23 +72,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Install Corepack
+        run: corepack enable
+      - name: Set Yarn version
+        run: corepack prepare yarn@stable --activate
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-      - name: Cache Yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.yarn-cache-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
       - name: Install Node dependencies
-        run: yarn install --no-progress
+        run: yarn install
       - name: Lint SCSS files
         run: yarn lint:scss
   eslint:
@@ -80,23 +91,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Install Corepack
+        run: corepack enable
+      - name: Set Yarn version
+        run: corepack prepare yarn@stable --activate
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-      - name: Cache Yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.yarn-cache-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
       - name: Install Node dependencies
-        run: yarn install --no-progress
+        run: yarn install
       - name: Lint JS files
         run: yarn lint:js
   tsc:
@@ -104,22 +110,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
+      - name: Install Corepack
+        run: corepack enable
+      - name: Set Yarn version
+        run: corepack prepare yarn@stable --activate
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
-          node-version: '16'
-      - name: Setup variables
-        id: vars
-        run: |
-          echo "::set-output name=yarn-cache-path::$(yarn cache dir)"
-      - name: Cache Yarn
-        uses: actions/cache@v1
-        with:
-          path: ${{ steps.vars.outputs.yarn-cache-path }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-yarn-
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'yarn'
       - name: Install Node dependencies
-        run: yarn install --no-progress
+        run: yarn install
       - name: Check types
         run: yarn tsc
