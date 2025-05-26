@@ -1,6 +1,6 @@
 @use "sass:math";
-@use "scss/utils/functions/unit";
-@use "scss/utils/variables" as vars;
+@use "scss/utils/unit";
+@use "scss/config/variables" as vars;
 
 @function calc-responsive-sm-value($value) {
 	@if (false == unit.is-number($value)) {

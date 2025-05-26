@@ -1,4 +1,4 @@
-@use "scss/utils/variables" as v;
+@use "scss/config/variables" as v;
 
 @mixin selectors {
 	@each $name, $color in v.$colors {

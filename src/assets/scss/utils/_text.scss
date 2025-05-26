@@ -1,10 +1,10 @@
 /**
  * Text mixins
  */
-@use "../variables" as v;
-@use "props";
 @use "sass:map";
 @use "sass:meta";
+@use "scss/config/variables" as v;
+@use "scss/utils/props";
 
 @mixin style($style) {
 	$text-styles: map.get(v.$typography, text-styles);

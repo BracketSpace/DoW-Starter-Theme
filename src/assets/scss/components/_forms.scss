@@ -1,11 +1,11 @@
-@use "scss/utils/mixins" as m;
+@use "scss/utils/form";
 
 %form-field {
 	/* add form field styles here */
 }
 
 @mixin selectors {
-	@include m.input {
+	@include form.input {
 		@extend %form-field;
 	}
 }

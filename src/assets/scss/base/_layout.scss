@@ -2,7 +2,7 @@
  * Layout
  */
 @use "scss/placeholders/layout";
-@use "scss/utils/mixins" as m;
+@use "scss/utils/breakpoint" as b;
 
 $header-height: false !default;
 $header-height-mobile: $header-height !default;
@@ -25,7 +25,7 @@ $header-height-mobile: $header-height !default;
 		@if $header-height {
 			padding-top: $header-height;
 
-			@include m.bp-down(sm) {
+			@include bp.down(sm) {
 				padding-top: $header-height-mobile;
 			}
 		}
@@ -34,7 +34,7 @@ $header-height-mobile: $header-height !default;
 			@if $header-height {
 				padding-top: calc(32px + #{$header-height});
 
-				@include m.bp-down(sm) {
+				@include bp.down(sm) {
 					padding-top: calc(46px + #{$header-height-mobile});
 				}
 			} @else {

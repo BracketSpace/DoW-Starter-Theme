@@ -1,15 +1,14 @@
-@use "../utils/mixins" as m;
-@use "../utils/mixins/layout";
+@use "scss/utils/layout";
 
 %container {
-	@include m.container;
+	@include layout.container;
 }
 
 %container-full {
-	@include m.container(full);
+	@include layout.container(full);
 }
 
 %content-width {
-	@include m.content;
+	@include layout.content;
 	@include layout.variants;
 }

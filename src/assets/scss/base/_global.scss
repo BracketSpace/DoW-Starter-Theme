@@ -2,9 +2,9 @@
  * Global
  */
 @use "sass:map";
-@use "scss/utils/functions/font";
-@use "scss/utils/mixins/text";
-@use "scss/utils/variables" as v;
+@use "scss/utils/font";
+@use "scss/utils/text";
+@use "scss/config/variables" as v;
 
 %root {
 	overflow-x: hidden;

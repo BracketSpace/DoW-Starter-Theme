@@ -1,8 +1,8 @@
-@use "../utils/mixins" as m;
+@use "../utils/breakpoint" as bp;
 
 .responsive-spacer {
 	&-fullsize {
-		@include m.bp-down(md) {
+		@include bp.down(md) {
 			display: none;
 		}
 	}
@@ -10,11 +10,11 @@
 	&-tablet {
 		display: none;
 
-		@include m.bp-down(md) {
+		@include bp.down(md) {
 			display: block;
 		}
 
-		@include m.bp-down(sm) {
+		@include bp.down(sm) {
 			display: none;
 		}
 	}
@@ -22,7 +22,7 @@
 	&-mobile {
 		display: none;
 
-		@include m.bp-down(sm) {
+		@include bp.down(sm) {
 			display: block;
 		}
 	}

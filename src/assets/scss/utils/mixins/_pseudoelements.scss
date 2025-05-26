@@ -2,7 +2,7 @@
  * Pseudoelement mixins
  */
 @use "sass:string";
-@use "scss/utils/functions/unit" as u;
+@use "scss/utils/unit" as u;
 
 @mixin pseudoelement(
 	$content: "",

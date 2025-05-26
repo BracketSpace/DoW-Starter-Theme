@@ -2,9 +2,9 @@
  * Typography
  */
 @use "sass:map";
-@use "scss/utils/functions/helpers" as h;
-@use "scss/utils/mixins/props";
-@use "scss/utils/variables" as v;
+@use "scss/config/variables" as v;
+@use "scss/utils/helpers" as h;
+@use "scss/utils/props";
 
 $headings: map.get(v.$typography, headings);
 $text-styles: map.get(v.$typography, text-styles);

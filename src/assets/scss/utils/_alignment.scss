@@ -1,10 +1,8 @@
 /**
  * Alignment mixins
  */
-@use "../functions/bp" as *;
-@use "../variables" as *;
-@use "../variables" as v;
-@use "breakpoint" as bp;
+@use "scss/config/variables" as v;
+@use "scss/utils/breakpoint" as bp;
 
 @mixin props($padding) {
 	margin-left: -1 * $padding !important;
@@ -17,17 +15,17 @@
 	$bp-mobile: v.$padding-breakpoint;
 
 	@if (null == $bp) {
-		@include props($padding);
+		@include props(v.$padding);
 		$bp-mobile: md;
-	} @else if (bp($bp) > bp(md)) {
+	} @else if (bp.get($bp) > bp.get(md)) {
 		@include bp.down($bp) {
-			@include props($padding);
+			@include props(v.$padding);
 		}
 	} @else {
 		$bp-mobile: $bp;
 	}
 
 	@include bp.down($bp-mobile) {
-		@include props($padding-mobile);
+		@include props(v.$padding-mobile);
 	}
 }

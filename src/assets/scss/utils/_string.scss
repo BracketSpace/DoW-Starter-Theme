@@ -5,6 +5,7 @@
 @use "sass:list";
 @use "sass:map";
 @use "sass:string";
+@use "sass:meta";
 
 @function kebab-case($string, $exclude-numbers: false) {
 	$string: string.quote(#{$string});
@@ -16,8 +17,6 @@
 	@if $exclude-numbers {
 		$exclude: list.join($exclude, $numbers);
 	}
-
-	@warn $string;
 
 	$prev-char: "";
 
@@ -45,7 +44,7 @@
 	$result: ();
 
 	@each $key, $value in $map {
-		@if (map == type-of($value)) {
+		@if (map == meta.type-of($value)) {
 			$value: kebab-case-keys($value, $numbers);
 		}
 

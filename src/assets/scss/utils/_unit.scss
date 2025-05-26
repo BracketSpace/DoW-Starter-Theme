@@ -2,6 +2,7 @@
  * Helper Functions
  */
 @use "sass:math";
+@use "sass:meta";
 @use "sass:string";
 
 $rem-base: 16 !default;
@@ -15,7 +16,7 @@ $rem-base: 16 !default;
 }
 
 @function is-number($value) {
-	@return type-of($value) == "number";
+	@return meta.type-of($value) == "number";
 }
 
 @function rem-calc($size) {
@@ -23,7 +24,7 @@ $rem-base: 16 !default;
 }
 
 @function rem-to-val($value) {
-	@if (rem == unit($value)) {
+	@if (rem == math.unit($value)) {
 		@return (strip-unit($value) * $rem-base);
 	}
 
@@ -35,7 +36,7 @@ $rem-base: 16 !default;
 }
 
 @function maybe-rem-calc($value) {
-	@if (is-number($value) and 0 == string.length(unit($value))) {
+	@if (is-number($value) and 0 == string.length(math.unit($value))) {
 		@return rem-calc($value);
 	}
 

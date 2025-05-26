@@ -1,0 +1,67 @@
+/**
+ * Color functions
+ */
+
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "scss/config/variables" as *;
+
+$colors: () !default;
+
+@function get($colorName, $index: 1) {
+	$colorName: string.quote(#{$colorName});
+
+	@if map.has-key($colors, $colorName) {
+		$color: map.get($colors, $colorName);
+
+		$return: "";
+
+		@if $index == "light" {
+			$index: 2;
+		} @else if $index == "dark" {
+			$index: 3;
+		}
+
+		@if meta.type-of($color) == "list" {
+			$return: list.nth($color, $index);
+		} @else {
+			$return: $color;
+		}
+
+		@return $return;
+	} @else {
+		@error "Invalid color: #{$colorName}.";
+	}
+
+	@return null;
+}
+
+$current-name: null;
+$current: null;
+$current-selector: null;
+$current-background-selector: null;
+
+@mixin classes($text-color: true, $background-color: true) {
+	@each $name, $color in $colors {
+		$current-name: $name !global;
+		$current: get($name) !global;
+		$current-selector: ".has-#{ $name }-color" !global;
+		$current-background-selector: ".has-#{ $name }-background-color" !global;
+
+		@if ($text-color) {
+			#{if(&, "&", "")}#{ $current-selector } {
+				color: $color;
+			}
+		}
+
+		@if ($background-color) {
+			#{if(&, "&", "")}#{ $current-background-selector } {
+				background-color: $color;
+			}
+		}
+
+		@content;
+	}
+}

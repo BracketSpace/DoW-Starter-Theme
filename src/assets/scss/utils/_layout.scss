@@ -1,0 +1,70 @@
+/**
+ * Internal dependencies
+ */
+@use "scss/utils/breakpoint" as bp;
+@use "scss/utils/helpers" as h;
+@use "scss/utils/unit" as u;
+@use "scss/config/variables" as v;
+@use "sass:map";
+@use "sass:meta";
+
+$layout-values: (
+	contentSize,
+	wideSize,
+	containerSize,
+	padding,
+	paddingMobile,
+	paddingBreakpoint,
+);
+
+@mixin variants($key: 'contentSize') {
+	@each $type, $config in v.$layout {
+		@if not h.contains($layout-values, $type) and
+			meta.type-of($config) == "map" and
+			map.has-key($config, $key) and
+			u.is-number(map.get($config, $key))
+		{
+			$class: #{$type};
+
+			@if $type != 'page' {
+				$class: single-#{$type};
+			}
+
+			.#{$class} & {
+				max-width: u.rem-calc(map.get($config, $key));
+			}
+		}
+	}
+}
+
+@mixin container(
+	$width: v.$container-width,
+	$p: v.$padding,
+	$pm: v.$padding-mobile
+) {
+	margin: auto;
+	padding-left: $p;
+	padding-right: $p;
+	width: 100%;
+
+	@if full != $width {
+		max-width: $width + ($p * 2);
+	}
+
+	@include bp.down(v.$padding-breakpoint) {
+		padding-left: $pm;
+		padding-right: $pm;
+
+		@if full != $width {
+			max-width: $width + ($pm * 2);
+		}
+	}
+}
+
+@mixin content($width: v.$content-width) {
+	$width: u.maybe-rem-calc($width);
+
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $width;
+}

@@ -2,9 +2,9 @@
  * Variables
  */
 @use ".tmp/scss/vars" as *;
-@use "functions/string";
 @use "sass:map";
-@use "scss/utils/functions/unit" as *;
+@use "scss/utils/string";
+@use "scss/utils/unit" as u;
 
 $general: string.kebab-case-keys(map.get($vars, "general"));
 $layout: string.kebab-case-keys(map.get($vars, "layout"));
@@ -21,11 +21,11 @@ $fonts: (
 	secondary: $font-secondary,
 );
 
-$content-width: rem-calc(map.get($layout, "content-size"));
-$alignwide-width: rem-calc(map.get($layout, "wide-size"));
-$container-width: rem-calc(map.get($layout, "container-size"));
-$padding: rem-calc(map.get($layout, "padding"));
-$padding-mobile: rem-calc(map.get($layout, "padding-mobile"));
+$content-width: u.rem-calc(map.get($layout, "content-size"));
+$alignwide-width: u.rem-calc(map.get($layout, "wide-size"));
+$container-width: u.rem-calc(map.get($layout, "container-size"));
+$padding: u.rem-calc(map.get($layout, "padding"));
+$padding-mobile: u.rem-calc(map.get($layout, "padding-mobile"));
 $padding-breakpoint: map.get($layout, "padding-breakpoint");
 
 $min-responsive-spacing: map.get($general, "min-responsive-spacing");
