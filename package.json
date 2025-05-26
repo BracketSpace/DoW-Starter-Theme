@@ -4,10 +4,8 @@
   "repository": "https://github.com/BracketSpace/DoW-Starter-Theme.git",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "start": "mp-scripts start --mode=development",
-    "prebuild": "tools generate sass-vars",
-    "build": "mp-scripts build --mode=production",
-    "postbuild": "tools generate theme-json",
+    "start": "yarn sass-vars -w & mp-scripts start --mode=development",
+    "build": "yarn sass-vars && mp-scripts build --mode=production && yarn theme-json",
     "build:dev": "mp-scripts build --mode=development",
     "lint:js": "mp-scripts lint-js",
     "lint:scss": "mp-scripts lint-style",
