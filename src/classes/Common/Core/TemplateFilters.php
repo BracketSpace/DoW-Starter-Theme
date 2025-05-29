@@ -82,7 +82,7 @@ class TemplateFilters implements Hookable
         $this->layout->setTemplate($template);
 
         // Always return path to index.php - it's the entry point for the entire theme.
-        return $this->fs->path('src/views/index.php');
+        return $this->fs->path('index.php');
     }
 
     /**
