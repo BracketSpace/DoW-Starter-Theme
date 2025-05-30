@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Features\Shortcodes;
+namespace DoWStarterTheme\Common\Shortcodes;
 
 use DoWStarterTheme\Common\Abstracts\Shortcode;
 

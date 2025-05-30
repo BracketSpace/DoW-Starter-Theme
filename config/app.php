@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 use DoWStarterTheme\Common\View\Finder\ViewFinderProvider;
 use DoWStarterTheme\Common\{
-    Hooks,
     Customizer,
     Helpers,
+    Hooks,
     Integrations as CommonIntegrations,
     Managers as CommonManagers,
     Menu,
+    Shortcodes,
     Widget,
     WordPress,
 };
