@@ -4,24 +4,18 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Common\Widget;
 
-use DoWStarterTheme\Common\Config\Config;
-use DoWStarterTheme\Common\Contracts\Hookable;
-use DoWStarterTheme\Deps\Illuminate\Support\Collection;
+use DoWStarterTheme\Common\Abstracts\Manager;
 
 /**
  * Widget areas manager class.
+ *
+ * @phpstan-type TItem array<string, mixed>
+ *
+ * @extends Manager<TItem, TItem>
  */
-class WidgetAreaManager implements Hookable
+class WidgetAreaManager extends Manager
 {
-    /**
-     * Class constructor.
-     *
-     * @param Config $config Config instance.
-     */
-    public function __construct(
-        private Config $config,
-    ) {
-    }
+    protected string $configKey = 'widgets.areas';
 
     /**
      * Registers widgets.
@@ -37,23 +31,26 @@ class WidgetAreaManager implements Hookable
         }
     }
 
-    /**
-     * Gets the list of widget areas to be registered.
+        /**
+     * Filters items list.
      *
-     * @return  array<string, array<string, mixed>>
+     * @phpstan-assert-if-true TItem $item
+     * @param mixed $item Item class.
+     * @return bool
      */
-    protected function getItems(): array
+    protected function filterItem(mixed $item): bool
     {
-        $items = $this->config->get('widgets.areas');
+        return is_array($item);
+    }
 
-        return Collection::make(is_array($items) ? $items : [])
-            ->filter(static fn($item, $key) => is_string($key) && is_array($item))
-            ->map(
-                static fn(array $item, string $key) => [
-                ...$item,
-                'id' => $key,
-                ]
-            )
-            ->all();
+    /**
+     * Initializes item.
+     *
+     * @param TItem $item Item class.
+     * @return TItem
+     */
+    protected function initializeItem(mixed $item): mixed
+    {
+        return $item;
     }
 }

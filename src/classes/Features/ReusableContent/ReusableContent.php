@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features\ReusableContent;
 
-use DoWStarterTheme\Common\Helpers\BlockSpacing;
+use DoWStarterTheme\Features\BlockSpacing\BlockSpacing;
 
 /**
  * Reusable Content helper class

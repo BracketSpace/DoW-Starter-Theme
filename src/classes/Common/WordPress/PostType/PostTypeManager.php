@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Common\WordPress\PostType;
 
-use DoWStarterTheme\Common\Abstracts\Manager;
+use DoWStarterTheme\Common\Abstracts\ObjectManager;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<\DoWStarterTheme\Common\WordPress\PostType\PostType>
+ * @extends ObjectManager<PostType>
  */
-class PostTypeManager extends Manager
+class PostTypeManager extends ObjectManager
 {
     protected string $parentClass = PostType::class;
 

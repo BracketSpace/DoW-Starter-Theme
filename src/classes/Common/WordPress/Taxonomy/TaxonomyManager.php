@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Common\WordPress\Taxonomy;
 
-use DoWStarterTheme\Common\Abstracts\Manager;
+use DoWStarterTheme\Common\Abstracts\ObjectManager;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<Taxonomy>
+ * @extends ObjectManager<Taxonomy>
  */
-class TaxonomyManager extends Manager
+class TaxonomyManager extends ObjectManager
 {
     protected string $parentClass = Taxonomy::class;
 

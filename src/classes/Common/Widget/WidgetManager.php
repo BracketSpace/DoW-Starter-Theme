@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Common\Widget;
 
-use DoWStarterTheme\Common\Abstracts\Manager;
+use DoWStarterTheme\Common\Abstracts\ObjectManager;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<Widget>
+ * @extends ObjectManager<Widget>
  */
-class WidgetManager extends Manager
+class WidgetManager extends ObjectManager
 {
     protected string $parentClass = Widget::class;
 

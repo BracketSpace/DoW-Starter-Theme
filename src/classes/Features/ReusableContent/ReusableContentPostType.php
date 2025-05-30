@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features\ReusableContent;
 
-use DoWStarterTheme\Common\Abstracts\PostType;
+use DoWStarterTheme\Common\WordPress\PostType\PostType;
 
 /**
  * Reusable Content Post Type class
