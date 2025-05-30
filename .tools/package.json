@@ -6,9 +6,7 @@
   "author": "Wojtek Szałkiewicz <wojtek@bracketspace.com>",
   "description": "Custom tools for WordPress theme project.",
   "type": "module",
-  "bin": {
-    "tools": "./index.js"
-  },
+  "bin": "./index.js",
   "dependencies": {
     "abbreviate": "0.0.3",
     "chalk": "^5.0.0",

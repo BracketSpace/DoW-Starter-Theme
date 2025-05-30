@@ -96,7 +96,7 @@ abstract class AdminPage extends Sluggable implements Hookable
     /**
      * Returns an array of assets to enqueue for the page.
      *
-     * @return array<Asset>
+     * @return array<\DoWStarterTheme\Common\Assets\Asset>
      */
     protected function getAssets(): array
     {

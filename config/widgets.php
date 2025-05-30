@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Features\Widgets;
+use DoWStarterTheme\Feature\SocialLinks\SocialLinksWidget;
 
 return [
     'classes' => [
-        Widgets\SocialLinksWidget::class,
+        SocialLinksWidget::class,
     ],
 
     'areas' => [

@@ -37,9 +37,11 @@ const Edit: FC<BlockEditProps> = ({
 	const updateMobileHeight = (value: number | undefined) =>
 		setAttributes({ mobileHeight: value });
 
-	const updateHeight = (value: number, force = false) =>
+	const updateHeight = (value: number | undefined, force = false) =>
 		setAttributes(
-			auto || force ? calculateAutoHeight(value) : { height: value }
+			value && (auto || force)
+				? calculateAutoHeight(value)
+				: { height: value }
 		);
 
 	const toggleAutoCalculate = (checked: boolean) => {
@@ -88,6 +90,7 @@ const Edit: FC<BlockEditProps> = ({
 					updateHeight(spacerHeight);
 				}}
 				showHandle={isSelected}
+				children={undefined} // Fix TypeScript error due to invalid types
 			/>
 			<InspectorControls>
 				<PanelBody title={__('Size settings')}>
