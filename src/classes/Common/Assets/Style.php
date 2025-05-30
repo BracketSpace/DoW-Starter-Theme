@@ -27,7 +27,7 @@ abstract class Style extends Asset
      */
     public function getBasePath(): string
     {
-        return 'dist/css';
+        return 'build/css';
     }
 
     /**

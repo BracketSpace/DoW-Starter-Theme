@@ -48,7 +48,7 @@ abstract class Script extends Asset
      */
     protected function getBasePath(): string
     {
-        return 'dist/js';
+        return 'build/js';
     }
 
     /**
