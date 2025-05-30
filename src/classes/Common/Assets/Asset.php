@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\Assets;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
 use DoWStarterTheme\Deps\Illuminate\Support\Str;
