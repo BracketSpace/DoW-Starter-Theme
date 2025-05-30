@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Features\Composers\Partials;
+namespace DoWStarterTheme\Features\SinglePost\Partials;
 
 use DoWStarterTheme\Common\View\ViewComposer;
 
