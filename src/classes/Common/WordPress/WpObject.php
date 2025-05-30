@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\WordPress;
+
+use DoWStarterTheme\Common\Abstracts\Labelable;
 
 /**
  * WpObject class

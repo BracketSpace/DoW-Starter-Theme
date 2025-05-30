@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Managers;
+namespace DoWStarterTheme\Common\WordPress\Taxonomy;
 
 use DoWStarterTheme\Common\Abstracts\Manager;
-use DoWStarterTheme\Common\Abstracts\Taxonomy;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<\DoWStarterTheme\Common\Abstracts\Taxonomy>
+ * @extends \DoWStarterTheme\Common\Abstracts\Manager<Taxonomy>
  */
 class TaxonomyManager extends Manager
 {

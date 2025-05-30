@@ -11,6 +11,7 @@ use DoWStarterTheme\Common\{
     Managers as CommonManagers,
     Menu,
     Widget,
+    WordPress,
 };
 use DoWStarterTheme\Features\BlockSpacing;
 use DoWStarterTheme\Features\ReusableContent;
@@ -27,9 +28,7 @@ return [
         Core\TemplateFilters::class,
         Core\ThemeSupport::class,
 
-        CommonManagers\PostTypeManager::class,
         CommonManagers\ShortcodeManager::class,
-        CommonManagers\TaxonomyManager::class,
 
         CommonIntegrations\ACF::class,
         CommonIntegrations\ACFBlockCreator::class,
@@ -43,6 +42,12 @@ return [
 
         // Menu
         Menu\MenuRegistrar::class,
+
+        // Post Type
+        WordPress\PostType\PostTypeManager::class,
+
+        // Taxonomy
+        WordPress\Taxonomy\TaxonomyManager::class,
 
         // Widgets
         Widget\WidgetAreaManager::class,

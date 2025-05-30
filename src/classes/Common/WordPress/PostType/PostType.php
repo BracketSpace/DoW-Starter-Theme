@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\WordPress\PostType;
 
+use DoWStarterTheme\Common\WordPress\WpObject;
 use DoWStarterTheme\Deps\Illuminate\Support\Str;
 
 /**

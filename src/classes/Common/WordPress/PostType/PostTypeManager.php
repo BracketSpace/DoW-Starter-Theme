@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Managers;
+namespace DoWStarterTheme\Common\WordPress\PostType;
 
-use DoWStarterTheme\Common\Abstracts\PostType;
 use DoWStarterTheme\Common\Abstracts\Manager;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<\DoWStarterTheme\Common\Abstracts\PostType>
+ * @extends \DoWStarterTheme\Common\Abstracts\Manager<\DoWStarterTheme\Common\WordPress\PostType\PostType>
  */
 class PostTypeManager extends Manager
 {

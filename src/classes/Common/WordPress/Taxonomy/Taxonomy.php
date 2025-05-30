@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\WordPress\Taxonomy;
+
+use DoWStarterTheme\Common\WordPress\PostType\PostType;
+use DoWStarterTheme\Common\WordPress\WpObject;
 
 /**
  * Taxonomy abstract class
