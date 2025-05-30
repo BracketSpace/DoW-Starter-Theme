@@ -60,6 +60,7 @@ export default class {
 
 	async apiLoadMethod() {}
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	async load(videoId: string) {}
 
 	play() {}

@@ -16,6 +16,9 @@
     "sass-vars": "tools generate sass-vars",
     "theme-json": "tools generate theme-json"
   },
+  "workspaces": [
+    ".tools"
+  ],
   "devDependencies": {
     "@babel/runtime": "^7.27.1",
     "@micropackage/responsive-embeds": "^1.0.3",
@@ -45,7 +48,7 @@
     "postcss-prepend-selector": "^0.3.1",
     "react": "^19.1.0",
     "terser-webpack-plugin": "^5.3.14",
-    "tools": "file:./.tools",
+    "tools": "workspace:^",
     "typescript": "^5.8.3"
   },
   "mpScriptsConfig": {

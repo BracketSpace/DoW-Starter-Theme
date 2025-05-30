@@ -11,17 +11,11 @@ use DoWStarterTheme\Deps\Illuminate\Support\Collection;
 /**
  * Abstract manager class.
  *
- * @template TItem of object
+ * @template TConfigItem
+ * @template TItem
  */
 abstract class Manager implements Hookable
 {
-    /**
-     * Parent class name.
-     *
-     * @var class-string<TItem>
-     */
-    protected string $parentClass;
-
     /**
      * Config key that stores items.
      */
@@ -54,32 +48,25 @@ abstract class Manager implements Hookable
         $items = $this->config->get($this->configKey);
 
         return Collection::make(is_array($items) ? $items : [])
-            ->filter(fn($item) => $this->filterItemCallback($item))
-            ->map(fn($item) => $this->initializeItemCallback($item))
+            ->filter(fn($item) => $this->filterItem($item))
+            ->map(fn($item) => $this->initializeItem($item))
             ->all();
     }
 
     /**
      * Filters items list.
      *
-     * @phpstan-assert-if-true class-string<TItem> $item
-     * @param mixed $item Item class.
+     * @phpstan-assert-if-true TConfigItem $item
+     * @param mixed $item Item.
      * @return bool
      */
-    protected function filterItemCallback(mixed $item): bool
-    {
-        return is_string($item) && class_exists($item) && is_subclass_of($item, $this->parentClass);
-    }
+    abstract protected function filterItem(mixed $item): bool;
 
     /**
      * Initializes item.
      *
-     * @param class-string<TItem> $item Item class.
+     * @param TConfigItem $item Item.
      * @return TItem
      */
-    protected function initializeItemCallback(string $item): mixed
-    {
-        // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
-        return new $item();
-    }
+    abstract protected function initializeItem(mixed $item): mixed;
 }

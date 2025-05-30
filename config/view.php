@@ -5,7 +5,7 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Features\Composers;
+use DoWStarterTheme\Features\SinglePost;
 
 return [
     /**
@@ -22,7 +22,7 @@ return [
      * Composers
      */
     'composers' => [
-        Composers\Partials\ExampleComposer::class,
-        Composers\Single::class,
+        SinglePost\Partials\ExampleComposer::class,
+        SinglePost\SingleComposer::class,
     ],
 ];

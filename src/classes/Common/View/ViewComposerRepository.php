@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Common\Config\Config;
-use DoWStarterTheme\Common\Abstracts\ViewComposer;
 
 /**
  * View Composer Repository class
