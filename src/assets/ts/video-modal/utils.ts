@@ -1,7 +1,7 @@
 /**
  * Loads script. Returns Promise, which gets resolved in `onload` event callback and rejected in case of an error.
  *
- * @param  src Script source URL.
+ * @param src Script source URL.
  */
 export const loadScript = (src: string) =>
 	new Promise((resolve, reject) => {
@@ -27,8 +27,8 @@ export const patterns = {
 /**
  * Gets video ID from given URL based on given provider name.
  *
- * @param  url      Video URL.
- * @param  provider Video provider name.
+ * @param url      Video URL.
+ * @param provider Video provider name.
  * @return         Video ID.
  */
 export const getVideoId = (url: string, provider?: string) => {
