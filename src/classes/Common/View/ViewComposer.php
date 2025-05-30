@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Deps\Illuminate\Support\Str;
-use DoWStarterTheme\Common\View\View;
 
 /**
  * View Composer abstract class
