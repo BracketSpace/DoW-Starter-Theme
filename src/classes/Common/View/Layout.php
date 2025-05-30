@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Helpers;
-
-use DoWStarterTheme\Common\View\ViewFactory;
+namespace DoWStarterTheme\Common\View;
 
 /**
  * Layout class
