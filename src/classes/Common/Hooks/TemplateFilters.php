@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Core;
+namespace DoWStarterTheme\Common\Hooks;
 
 use DoWStarterTheme\Common\Config\Config;
 use DoWStarterTheme\Common\Contracts\Hookable;
-use DoWStarterTheme\Common\Helpers\Layout;
+use DoWStarterTheme\Common\View\Layout;
 use DoWStarterTheme\Deps\Micropackage\Filesystem\Filesystem;
 use WP_Post;
 use WP_Theme;

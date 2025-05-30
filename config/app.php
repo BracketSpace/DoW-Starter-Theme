@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use DoWStarterTheme\Common\View\Finder\ViewFinderProvider;
 use DoWStarterTheme\Common\{
-    Core,
+    Hooks,
     Customizer,
     Helpers,
     Integrations as CommonIntegrations,
@@ -22,11 +22,11 @@ return [
     ],
 
     'components' => [
-        Core\I18n::class,
-        Core\ImageSizes::class,
-        Core\SVGSupport::class,
-        Core\TemplateFilters::class,
-        Core\ThemeSupport::class,
+        Hooks\I18n::class,
+        Hooks\ImageSizes::class,
+        Hooks\SVGSupport::class,
+        Hooks\TemplateFilters::class,
+        Hooks\ThemeSupport::class,
 
         CommonManagers\ShortcodeManager::class,
 

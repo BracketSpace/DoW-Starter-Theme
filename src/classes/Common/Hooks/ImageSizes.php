@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Core;
+namespace DoWStarterTheme\Common\Hooks;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
 use DoWStarterTheme\Common\Config\Config;
