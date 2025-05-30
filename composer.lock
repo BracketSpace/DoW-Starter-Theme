@@ -1723,16 +1723,16 @@
         },
         {
             "name": "micropackage/acf-block-creator",
-            "version": "1.0.6",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/micropackage/acf-block-creator.git",
-                "reference": "0d7329310495f61fde09b1f185688ad19e00c744"
+                "reference": "7143a4e6f743b3fb496a167c758a2dd09127fb7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/micropackage/acf-block-creator/zipball/0d7329310495f61fde09b1f185688ad19e00c744",
-                "reference": "0d7329310495f61fde09b1f185688ad19e00c744",
+                "url": "https://api.github.com/repos/micropackage/acf-block-creator/zipball/7143a4e6f743b3fb496a167c758a2dd09127fb7e",
+                "reference": "7143a4e6f743b3fb496a167c758a2dd09127fb7e",
                 "shasum": ""
             },
             "require": {
@@ -1769,9 +1769,9 @@
             "description": "ACF Block Creator - automatic block creation add-on for ACF",
             "support": {
                 "issues": "https://github.com/micropackage/acf-block-creator/issues",
-                "source": "https://github.com/micropackage/acf-block-creator/tree/1.0.6"
+                "source": "https://github.com/micropackage/acf-block-creator/tree/1.0.7"
             },
-            "time": "2022-03-17T08:54:42+00:00"
+            "time": "2025-05-30T11:50:32+00:00"
         },
         {
             "name": "micropackage/block-loader",
@@ -6063,12 +6063,12 @@
         }
     ],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
