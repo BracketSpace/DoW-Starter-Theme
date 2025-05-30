@@ -1,7 +1,8 @@
 /**
  * External depdependencies
  */
-import { type Player as BaseVimeoPlayer } from '@vimeo/player'; // eslint-disable-line import/no-unresolved
+// eslint-disable-next-line import/no-unresolved
+import BaseVimeoPlayer from '@vimeo/player';
 
 /**
  * Internal depdependencies
