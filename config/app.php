@@ -11,6 +11,7 @@ use DoWStarterTheme\Common\{
     Managers as CommonManagers,
     Widget,
 };
+use DoWStarterTheme\Features\BlockSpacing;
 use DoWStarterTheme\Features\ReusableContent;
 
 return [
@@ -19,7 +20,6 @@ return [
     ],
 
     'components' => [
-        Core\BlockSpacing::class,
         Core\I18n::class,
         Core\ImageSizes::class,
         Core\Menu::class,
@@ -37,6 +37,9 @@ return [
 
         Customizer\Customizer::class,
         ReusableContent\ReusableContentHooks::class,
+
+        // Block Spacing
+        BlockSpacing\BlockSpacingHooks::class,
 
         // Widgets
         Widget\WidgetAreaManager::class,

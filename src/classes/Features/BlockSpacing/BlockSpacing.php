@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Helpers;
+namespace DoWStarterTheme\Features\BlockSpacing;
 
 /**
  * BlockSpacing class

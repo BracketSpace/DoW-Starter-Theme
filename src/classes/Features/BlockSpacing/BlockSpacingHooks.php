@@ -2,25 +2,24 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Core;
+namespace DoWStarterTheme\Features\BlockSpacing;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
-use DoWStarterTheme\Common\Helpers\BlockSpacing as BlockSpacingHelper;
 use DoWStarterTheme\Common\Helpers\CSSGenerator;
 use WP_Post;
 
 /**
  * BlockSpacing class
  */
-class BlockSpacing implements Hookable
+class BlockSpacingHooks implements Hookable
 {
     /**
      * Class constructor.
      *
-     * @param BlockSpacingHelper $helper Block spacing helper instance.
+     * @param BlockSpacing $blockSpacing Block spacing helper instance.
      */
     public function __construct(
-        private BlockSpacingHelper $helper,
+        private BlockSpacing $blockSpacing,
     ) {
     }
 
@@ -33,7 +32,7 @@ class BlockSpacing implements Hookable
      */
     public function addStyles(): void
     {
-        $styles = $this->helper->getStyles((int)get_the_ID());
+        $styles = $this->blockSpacing->getStyles((int)get_the_ID());
 
         if (! is_string($styles) || $styles === '') {
             return;
