@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Helpers;
+namespace DoWStarterTheme\Common\Widget;
 
 use DoWStarterTheme\Common\View\ViewFactory;
 
 /**
- * Widgets class
+ * Widgets area class
  */
-class Widgets
+class WidgetArea
 {
     /**
      * Class constructor.

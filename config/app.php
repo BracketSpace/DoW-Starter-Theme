@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 use DoWStarterTheme\Common\View\Finder\ViewFinderProvider;
 use DoWStarterTheme\Common\{
-    Abstracts,
     Core,
     Customizer,
     Helpers,
     Integrations as CommonIntegrations,
     Managers as CommonManagers,
-    View,
+    Widget,
 };
 use DoWStarterTheme\Features\ReusableContent;
 
@@ -27,13 +26,10 @@ return [
         Core\SVGSupport::class,
         Core\TemplateFilters::class,
         Core\ThemeSupport::class,
-        Core\Widgets::class,
 
         CommonManagers\PostTypeManager::class,
         CommonManagers\ShortcodeManager::class,
         CommonManagers\TaxonomyManager::class,
-        CommonManagers\WidgetAreaManager::class,
-        CommonManagers\WidgetManager::class,
 
         CommonIntegrations\ACF::class,
         CommonIntegrations\ACFBlockCreator::class,
@@ -41,10 +37,15 @@ return [
 
         Customizer\Customizer::class,
         ReusableContent\ReusableContentHooks::class,
+
+        // Widgets
+        Widget\WidgetAreaManager::class,
+        Widget\WidgetHooks::class,
+        Widget\WidgetManager::class,
     ],
 
     'initialize' => [
-        Abstracts\Widget::class,
+        Widget\Widget::class,
         Helpers\CSSGenerator::class,
     ],
 

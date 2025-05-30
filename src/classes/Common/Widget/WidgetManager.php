@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Managers;
+namespace DoWStarterTheme\Common\Widget;
 
 use DoWStarterTheme\Common\Abstracts\Manager;
-use DoWStarterTheme\Common\Abstracts\Widget;
 
 /**
- * @extends \DoWStarterTheme\Common\Abstracts\Manager<\DoWStarterTheme\Common\Abstracts\Widget>
+ * @extends \DoWStarterTheme\Common\Abstracts\Manager<Widget>
  */
 class WidgetManager extends Manager
 {

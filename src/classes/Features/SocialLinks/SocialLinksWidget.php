@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Features\Widgets;
+namespace DoWStarterTheme\Feature\SocialLinks;
 
-use DoWStarterTheme\Common\Abstracts\Widget;
+use DoWStarterTheme\Common\Widget\Widget;
 
 /**
  * Social Links Widget class

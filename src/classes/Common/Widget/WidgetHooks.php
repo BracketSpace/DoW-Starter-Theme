@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Core;
+namespace DoWStarterTheme\Common\Widget;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
 
 /**
  * Widgets integration class
  */
-class Widgets implements Hookable
+class WidgetHooks implements Hookable
 {
     /**
      * Filters sidebar default options.

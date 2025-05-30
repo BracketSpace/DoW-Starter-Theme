@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Abstracts;
+namespace DoWStarterTheme\Common\Widget;
 
 use DoWStarterTheme\Common\Contracts\WithContainerSetter;
 use DoWStarterTheme\Common\Traits\HasContainerSetter;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Managers;
+namespace DoWStarterTheme\Common\Widget;
 
 use DoWStarterTheme\Common\Config\Config;
 use DoWStarterTheme\Common\Contracts\Hookable;
