@@ -9,6 +9,7 @@ use DoWStarterTheme\Common\{
     Helpers,
     Integrations as CommonIntegrations,
     Managers as CommonManagers,
+    Menu,
     Widget,
 };
 use DoWStarterTheme\Features\BlockSpacing;
@@ -22,7 +23,6 @@ return [
     'components' => [
         Core\I18n::class,
         Core\ImageSizes::class,
-        Core\Menu::class,
         Core\SVGSupport::class,
         Core\TemplateFilters::class,
         Core\ThemeSupport::class,
@@ -40,6 +40,9 @@ return [
 
         // Block Spacing
         BlockSpacing\BlockSpacingHooks::class,
+
+        // Menu
+        Menu\MenuRegistrar::class,
 
         // Widgets
         Widget\WidgetAreaManager::class,

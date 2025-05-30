@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Core;
+namespace DoWStarterTheme\Common\Menu;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
 use DoWStarterTheme\Common\Config\Config;
@@ -10,7 +10,7 @@ use DoWStarterTheme\Common\Config\Config;
 /**
  * Menu class
  */
-class Menu implements Hookable
+class MenuRegistrar implements Hookable
 {
     /**
      * Class constructor.

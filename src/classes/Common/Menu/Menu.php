@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Helpers;
+namespace DoWStarterTheme\Common\Menu;
 
 use DoWStarterTheme\Common\View\ViewFactory;
 
