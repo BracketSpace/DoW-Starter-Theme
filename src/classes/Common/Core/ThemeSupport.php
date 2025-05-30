@@ -54,8 +54,8 @@ class ThemeSupport implements Hookable
      */
     private function getThemeSupports(): array
     {
-        $imageSizes = $this->config->get('theme-support');
+        $themeSupport = $this->config->get('theme-support');
 
-        return is_array($imageSizes) ? $imageSizes : [];
+        return is_array($themeSupport) ? $themeSupport : [];
     }
 }
