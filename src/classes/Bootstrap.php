@@ -102,7 +102,7 @@ class Bootstrap
         if (! $requirements->satisfied()) {
             if (is_admin()) {
                 $requirements->print_notice();
-            } else {
+            } elseif (! is_login()) {
                 $requirements->kill();
             }
 
