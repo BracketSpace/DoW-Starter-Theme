@@ -4,10 +4,11 @@ includes:
 parameters:
     level: 8
     paths:
+        - functions.php
+        - index.php
         - src/classes/
         - src/templates/
         - src/views/
-        - functions.php
     bootstrapFiles:
         - vendor/php-stubs/acf-pro-stubs/acf-pro-stubs.php
         - stubs/kirki.stub
