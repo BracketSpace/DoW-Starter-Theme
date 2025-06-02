@@ -5,8 +5,8 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Common\Helpers\Layout;
 use DoWStarterTheme\Bootstrap as StarterTheme;
+use DoWStarterTheme\Common\View\Layout;
 
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
