@@ -25,9 +25,10 @@ abstract class ObjectManager extends Manager
      *
      * @phpstan-assert-if-true class-string<TItem> $item
      * @param mixed $item Item class.
+     * @param mixed $key  Item key.
      * @return bool
      */
-    protected function filterItem(mixed $item): bool
+    protected function filterItem(mixed $item, mixed $key): bool
     {
         return is_string($item) &&
             class_exists($item) &&
@@ -38,9 +39,10 @@ abstract class ObjectManager extends Manager
      * Initializes item.
      *
      * @param class-string<TItem> $item Item class.
+     * @param mixed               $key  Item key.
      * @return TItem
      */
-    protected function initializeItem(mixed $item): mixed
+    protected function initializeItem(mixed $item, mixed $key): mixed
     {
         // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
         return new $item();

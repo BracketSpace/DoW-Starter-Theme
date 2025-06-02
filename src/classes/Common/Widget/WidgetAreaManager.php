@@ -36,9 +36,10 @@ class WidgetAreaManager extends Manager
      *
      * @phpstan-assert-if-true TItem $item
      * @param mixed $item Item class.
+     * @param mixed $key  Item key.
      * @return bool
      */
-    protected function filterItem(mixed $item): bool
+    protected function filterItem(mixed $item, mixed $key): bool
     {
         return is_array($item);
     }
@@ -47,10 +48,11 @@ class WidgetAreaManager extends Manager
      * Initializes item.
      *
      * @param TItem $item Item class.
+     * @param mixed $key  Item key.
      * @return TItem
      */
-    protected function initializeItem(mixed $item): mixed
+    protected function initializeItem(mixed $item, mixed $key): mixed
     {
-        return $item;
+        return ['id' => $key, ...$item];
     }
 }

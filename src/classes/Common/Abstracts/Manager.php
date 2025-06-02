@@ -48,8 +48,8 @@ abstract class Manager implements Hookable
         $items = $this->config->get($this->configKey);
 
         return Collection::make(is_array($items) ? $items : [])
-            ->filter(fn($item) => $this->filterItem($item))
-            ->map(fn($item) => $this->initializeItem($item))
+            ->filter(fn($item, $key) => $this->filterItem($item, $key))
+            ->map(fn($item, $key) => $this->initializeItem($item, $key))
             ->all();
     }
 
@@ -58,15 +58,17 @@ abstract class Manager implements Hookable
      *
      * @phpstan-assert-if-true TConfigItem $item
      * @param mixed $item Item.
+     * @param mixed $key  Item key.
      * @return bool
      */
-    abstract protected function filterItem(mixed $item): bool;
+    abstract protected function filterItem(mixed $item, mixed $key): bool;
 
     /**
      * Initializes item.
      *
      * @param TConfigItem $item Item.
+     * @param mixed       $key  Item key.
      * @return TItem
      */
-    abstract protected function initializeItem(mixed $item): mixed;
+    abstract protected function initializeItem(mixed $item, mixed $key): mixed;
 }
