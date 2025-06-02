@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Common\Config\Config;
+use DoWStarterTheme\Deps\DI\Container;
 
 /**
  * View Composer Repository class
@@ -28,10 +29,12 @@ class ViewComposerRepository
     /**
      * Class constructor.
      *
-     * @param Config $config Config instance.
+     * @param Config    $config    Config instance.
+     * @param Container $container Container instance.
      */
     public function __construct(
         private Config $config,
+        private Container $container,
     ) {
         $this->registerComposers();
     }
@@ -83,8 +86,7 @@ class ViewComposerRepository
     private function getComposer(string $composer): ViewComposer
     {
         if (! isset($this->composers[$composer])) {
-            // phpcs:ignore NeutronStandard.Functions.VariableFunctions.VariableFunction
-            $this->composers[$composer] = new $composer();
+            $this->composers[$composer] = $this->container->get($composer);
         }
 
         return $this->composers[$composer];
