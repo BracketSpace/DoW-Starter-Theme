@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Common\View\Finder\ViewFinderProvider;
+// phpcs:disable SlevomatCodingStandard.Namespaces.UseFromSameNamespace.UseFromSameNamespace
+
 use DoWStarterTheme\Common\{
     Customizer,
     Helpers,
@@ -11,15 +12,18 @@ use DoWStarterTheme\Common\{
     Managers as CommonManagers,
     Menu,
     Shortcodes,
+    View,
     Widget,
     WordPress,
 };
-use DoWStarterTheme\Features\BlockSpacing;
-use DoWStarterTheme\Features\ReusableContent;
+use DoWStarterTheme\Features\{
+    BlockSpacing,
+    ReusableContent,
+};
 
 return [
     'providers' => [
-        ViewFinderProvider::class,
+        View\Finder\ViewFinderProvider::class,
     ],
 
     'components' => [
