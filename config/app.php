@@ -37,7 +37,9 @@ return [
 
         CommonIntegrations\ACF::class,
         CommonIntegrations\ACFBlockCreator::class,
-        CommonIntegrations\Editor::class,
+
+        // Block Editor Integration
+        CommonIntegrations\Editor\Editor::class,
 
         Customizer\Customizer::class,
         ReusableContent\ReusableContentHooks::class,

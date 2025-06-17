@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DoWStarterTheme\Common\Integrations;
+namespace DoWStarterTheme\Common\Integrations\Editor;
 
 use DoWStarterTheme\Common\Contracts\Hookable;
 use DoWStarterTheme\Common\Config\Config;
