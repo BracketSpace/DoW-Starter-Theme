@@ -4483,6 +4483,8 @@ __metadata:
     postcss-object-fit-images: "npm:^1.1.2"
     postcss-prepend-selector: "npm:^0.3.1"
     react: "npm:^17.0.2"
+    stylelint-config-prettier-scss: "npm:^1.0.0"
+    stylelint-prettier: "npm:^5.0.3"
     terser-webpack-plugin: "npm:^5.3.1"
     tools: "file:./.tools"
     typescript: "npm:^4.6.2"
@@ -10596,6 +10598,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stylelint-config-prettier-scss@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "stylelint-config-prettier-scss@npm:1.0.0"
+  peerDependencies:
+    stylelint: ">=15.0.0"
+  bin:
+    stylelint-config-prettier-scss: bin/check.js
+    stylelint-config-prettier-scss-check: bin/check.js
+  checksum: 10c0/4d5e1d1c200d4611b5b7bd2d2528cc9e301f26645802a2774aec192c4c2949cbf5a0147eba8b2e6e4ff14a071b03024f3034bb1b4fda37a8ed5a0081a9597d4d
+  languageName: node
+  linkType: hard
+
 "stylelint-config-recommended-scss@npm:^5.0.2":
   version: 5.0.2
   resolution: "stylelint-config-recommended-scss@npm:5.0.2"
@@ -10636,6 +10650,18 @@ __metadata:
   peerDependencies:
     stylelint: ^14.0.0
   checksum: 10c0/afb59f8e73251f1311a6aa1c134282a66a0cffc44b7491ee7d6d16a26b48f3dcd9fb858c1109604efe98e0c91ada1ca41954e64bf6a41072b3fad38db170431c
+  languageName: node
+  linkType: hard
+
+"stylelint-prettier@npm:^5.0.3":
+  version: 5.0.3
+  resolution: "stylelint-prettier@npm:5.0.3"
+  dependencies:
+    prettier-linter-helpers: "npm:^1.0.0"
+  peerDependencies:
+    prettier: ">=3.0.0"
+    stylelint: ">=16.0.0"
+  checksum: 10c0/955e647131b96e088f3ea80ef409772aff8854d9f9831ac5826b76780fc9a49e0ad0f5aac1b5e6ed714848bea85068a7ba815585ed8b9f1e4da41a29b5666e4d
   languageName: node
   linkType: hard
 
