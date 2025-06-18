@@ -1,5 +1,5 @@
-@use "scss/utils/functions/unit" as u;
-@use "scss/utils/variables" as vars;
+@use "scss/utils/unit" as u;
+@use "scss/config/variables" as vars;
 
 @mixin selectors {
 	.video-modal {

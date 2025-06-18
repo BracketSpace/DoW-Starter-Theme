@@ -1,0 +1,19 @@
+/**
+ * Text mixins
+ */
+@use "sass:map";
+@use "sass:meta";
+@use "scss/config/variables" as v;
+@use "scss/utils/props";
+
+@mixin style($style) {
+	$text-styles: map.get(v.$typography, text-styles);
+
+	@if map == meta.type-of($text-styles) {
+		$props: map.get($text-styles, $style);
+
+		@if $props {
+			@include props.from-map($props);
+		}
+	}
+}

@@ -4,13 +4,11 @@
     "description": "DoW Starter Theme",
     "license": "MIT",
     "require": {
-        "php": ">=7.4",
-        "coenjacobs/mozart": "^0.7.1",
-        "composer-runtime-api": "^2.0",
-        "cweagans/composer-patches": "^1.7",
+        "php": ">=8.2",
+        "brianhenryie/strauss": "^0.21.0",
         "hassankhan/config": "^3.0",
-        "illuminate/collections": "^8.83",
-        "illuminate/support": "^8.83",
+        "illuminate/collections": "^12.0",
+        "illuminate/support": "^12.0",
         "micropackage/acf-block-creator": "^1.0",
         "micropackage/block-loader": "^1.0",
         "micropackage/classnames": "^1.0",
@@ -18,56 +16,31 @@
         "micropackage/filesystem": "^1.1",
         "micropackage/requirements": "^1.2",
         "micropackage/singleton": "^1.1.1",
-        "phpro/grumphp": "^1.5"
+        "php-di/php-di": "^7.0"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-        "php-parallel-lint/php-parallel-lint": "^1.3",
-        "php-stubs/acf-pro-stubs": "^5.10",
+        "php-parallel-lint/php-parallel-lint": "^1.4",
+        "php-stubs/acf-pro-stubs": "*",
         "php-stubs/wordpress-stubs": "*",
         "phpcompatibility/php-compatibility": "^9.3",
-        "phpstan/phpstan-strict-rules": "^0.12.7",
-        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.5.0",
-        "szepeviktor/phpstan-wordpress": "^0.7.0"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "cweagans/composer-patches": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpro/grumphp": true
-        }
+        "phpstan/phpstan": "^2.1.13",
+        "phpstan/phpstan-strict-rules": "^2.0.4",
+        "squizlabs/php_codesniffer": "*",
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.1.1",
+        "szepeviktor/phpstan-wordpress": "^2.0.1",
+        "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
     },
     "autoload": {
         "psr-4": {
-            "DoWStarterTheme\\": "src/classes",
-            "DoWStarterTheme\\Deps\\": "dependencies/"
+            "DoWStarterTheme\\": "src/classes"
         }
     },
-    "extra": {
-      "patches": {
-          "coenjacobs/mozart": {
-              "Skip file duplicates": "https://github.com/coenjacobs/mozart/pull/136.patch",
-              "Prevent prepending classmap prefix multiple times": "https://github.com/coenjacobs/mozart/pull/137.patch"
-          }
-      },
-      "mozart": {
-          "dep_namespace": "DoWStarterTheme\\Deps\\",
-          "dep_directory": "/dependencies/",
-          "classmap_directory": "/dependencies/classes/",
-          "classmap_prefix": false,
-          "delete_vendor_directories": false,
-          "skip_duplicates": true
-      }
-    },
     "scripts": {
-        "compose": "vendor/bin/mozart compose",
-        "phpcs": "phpcs -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
-        "phpcbf": "phpcbf -ps --parallel=4 --runtime-set php_version 74000 --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
-        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4  --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
-        "phpstan": "phpstan analyze",
+        "phpcs": "phpcs --parallel=4",
+        "phpcbf": "phpcbf --parallel=4",
+        "phpcompat": "phpcs --standard=PHPCompatibility --runtime-set testVersion 8.2  --ignore=*/vendor/*,*/node_modules/*,*/build/*,*/dependencies/* --extensions=php --colors .",
+        "phpstan": "phpstan analyze -v --memory-limit=-1",
         "syntax": "parallel-lint --exclude node_modules --exclude vendor --exclude dependencies .",
         "test": [
             "@syntax",
@@ -79,13 +52,33 @@
             "@syntax",
             "@phpcompat"
         ],
-        "post-install-cmd": [
-            "@compose",
+        "prefix-namespaces": [
+            "strauss --updateCallSites=false",
             "composer dump-autoload"
         ],
+        "post-install-cmd": [
+            "@prefix-namespaces"
+        ],
         "post-update-cmd": [
-            "@compose",
-            "composer dump-autoload"
+            "@prefix-namespaces"
         ]
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "dependencies",
+            "namespace_prefix": "DoWStarterTheme\\Deps\\",
+            "classmap_prefix": "DOWST_",
+            "exclude_from_copy": {
+                "packages": [
+                    "brianhenryie/strauss"
+                ]
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

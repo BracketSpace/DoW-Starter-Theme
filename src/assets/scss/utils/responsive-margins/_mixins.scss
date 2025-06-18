@@ -1,7 +1,7 @@
 @use "./functions" as fn;
 @use "sass:math";
-@use "scss/utils/functions/unit";
-@use "scss/utils/mixins/breakpoint" as bp;
+@use "scss/utils/unit";
+@use "scss/utils/breakpoint" as bp;
 
 @mixin responsive-value($value, $type: "margin", $position: "top") {
 	$value-sm: fn.calc-responsive-sm-value($value);

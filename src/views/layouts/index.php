@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Helpers\View as v;
+use DoWStarterTheme\Common\View\ViewHelper as v;
 
-v::partial('header');
+v::print('partials.header');
 ?>
 
 <div class="site-inner container-full">
-	<main class="content">
-		<?php v::raw('content'); ?>
-	</main>
+    <main class="content">
+        <?php v::raw('content'); ?>
+    </main>
 </div>
 
-<?php v::partial('footer'); ?>
+<?php v::print('partials.footer'); ?>

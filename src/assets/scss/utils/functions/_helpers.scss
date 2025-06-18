@@ -1,7 +1,0 @@
-/**
- * Helper functions
- */
-
-@function contains($list, $value) {
-	@return not not index($list, $value);
-}

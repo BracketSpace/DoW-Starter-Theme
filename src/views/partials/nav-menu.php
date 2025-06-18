@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use DoWStarterTheme\Helpers\View as v;
+use DoWStarterTheme\Common\View\ViewHelper as v;
 ?>
 
 <nav class="<?php v::attr('class'); ?>" role="navigation">
-	<?php v::raw('menu'); ?>
+    <?php v::raw('menu'); ?>
 </nav>

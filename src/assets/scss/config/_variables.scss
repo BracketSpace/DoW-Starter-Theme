@@ -1,0 +1,35 @@
+/**
+ * Variables
+ */
+@use ".tmp/scss/vars" as *;
+@use "sass:map";
+@use "scss/utils/string";
+@use "scss/utils/unit" as u;
+
+$general: string.kebab-case-keys(map.get($vars, "general"));
+$layout: string.kebab-case-keys(map.get($vars, "layout"));
+
+$breakpoints: map.get($general, "breakpoints");
+$colors: string.kebab-case-keys(map.get($vars, "colors"));
+$typography: string.kebab-case-keys(map.get($vars, "typography"), true);
+
+$font-primary: "Arial", sans-serif;
+$font-secondary: "Times New Roman", serif;
+
+$fonts: (
+	primary: $font-primary,
+	secondary: $font-secondary,
+);
+
+$content-width: u.rem-calc(map.get($layout, "content-size"));
+$alignwide-width: u.rem-calc(map.get($layout, "wide-size"));
+$container-width: u.rem-calc(map.get($layout, "container-size"));
+$padding: u.rem-calc(map.get($layout, "padding"));
+$padding-mobile: u.rem-calc(map.get($layout, "padding-mobile"));
+$padding-breakpoint: map.get($layout, "padding-breakpoint");
+
+$min-responsive-spacing: map.get($general, "min-responsive-spacing");
+$max-responsive-spacing: map.get($general, "max-responsive-spacing");
+$rem-base: map.get($general, "rem-base");
+
+$heading-tags: (h1, h2, h3, h4, h5, h6);

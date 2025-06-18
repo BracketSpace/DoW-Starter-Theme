@@ -1,6 +1,7 @@
-@use "scss/utils/functions/color";
-@use "scss/utils/functions/unit" as u;
-@use "scss/utils/mixins" as m;
+@use "scss/utils/color";
+@use "scss/utils/unit" as u;
+@use "scss/utils/mixins" as *;
+@use "scss/utils/breakpoint" as bp;
 
 $menu-toggle-color: color.get(white) !default;
 $menu-toggle-width: u.rem-calc(34) !default;
@@ -24,7 +25,7 @@ $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 		transition: all 0.12s 0.2s ease;
 		width: $menu-toggle-width;
 
-		@include m.bp-down(sm) {
+		@include bp.down(sm) {
 			background-color: $menu-toggle-color;
 		}
 
@@ -33,7 +34,7 @@ $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 			transform: rotate(90deg);
 			transition: top 0.12s ease, transform 0.12s 0.2s ease;
 
-			@include m.bp-down(sm) {
+			@include bp.down(sm) {
 				background-color: $menu-toggle-color;
 			}
 		}
@@ -43,7 +44,7 @@ $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 			top: 0;
 			transition: opacity 0.12s 0.2s ease, top 0.12s ease;
 
-			@include m.bp-down(sm) {
+			@include bp.down(sm) {
 				background-color: $menu-toggle-color;
 			}
 		}
@@ -76,15 +77,15 @@ $menu-toggle-bar-top: $menu-toggle-bar-spacing + $menu-toggle-bar-height;
 		transition: transform 0.12s ease;
 		width: $menu-toggle-width;
 
-		@include m.bp-down(md) {
+		@include bp.down(md) {
 			display: block;
 		}
 
-		@include m.before("", 100%, 100%, -$menu-toggle-bar-top, 0) {
+		@include before("", 100%, 100%, -$menu-toggle-bar-top, 0) {
 			transition: top 0.12s 0.2s ease, transform 0.12s ease;
 		}
 
-		@include m.after("", 100%, 100%, $menu-toggle-bar-top, 0) {
+		@include after("", 100%, 100%, $menu-toggle-bar-top, 0) {
 			transition: opacity 0.12s ease, top 0.12s 0.2s ease;
 			width: $menu-toggle-width;
 		}

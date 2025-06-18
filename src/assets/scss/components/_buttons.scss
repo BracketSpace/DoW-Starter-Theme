@@ -1,4 +1,4 @@
-@use "scss/utils/mixins" as m;
+@use "scss/utils/color";
 
 %button {
 	/* add button styles here */
@@ -11,6 +11,6 @@
 	input[type="button"] {
 		@extend %button;
 
-		@include m.colors;
+		@include color.classes;
 	}
 }

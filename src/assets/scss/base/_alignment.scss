@@ -1,9 +1,9 @@
 /**
  * Internal dependencies
  */
-@use "scss/utils/mixins/alignment";
-@use "scss/utils/mixins/layout";
-@use "scss/utils/variables" as v;
+@use "scss/utils/alignment";
+@use "scss/utils/layout";
+@use "scss/config/variables" as v;
 @use "sass:map";
 
 @mixin selectors {

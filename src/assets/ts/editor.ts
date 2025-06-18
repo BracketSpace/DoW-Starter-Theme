@@ -16,7 +16,7 @@ import {
 
 registerBlockAttributes();
 
-addFilter('blocks.registerBlockType', 'gpd', filterBlockSettings);
+addFilter('blocks.registerBlockType', 'dow-starter-theme', filterBlockSettings);
 
 domReady(() => {
 	registerBlockStyles();

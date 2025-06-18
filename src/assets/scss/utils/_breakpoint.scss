@@ -1,0 +1,73 @@
+/**
+ * Breakpoint mixins
+ */
+
+@use "sass:map";
+@use "sass:meta";
+@use "scss/config/variables" as *;
+@use "scss/utils/unit";
+
+$breakpoints: () !default;
+
+@function get($breakpoint, $useRem: false) {
+	$breakpoint-value: false;
+
+	@if map.has-key($breakpoints, $breakpoint) {
+		$breakpoint-value: map.get($breakpoints, $breakpoint);
+	} @else if (meta.type-of($breakpoint) == "number") {
+		$breakpoint-value: $breakpoint;
+	} @else {
+		@warn "Invalid breakpoint: #{$breakpoint}.";
+	}
+
+	@if (unit.is-unitless($breakpoint-value)) {
+		@if ($useRem == true) {
+			$breakpoint-value: unit.rem-calc($breakpoint-value);
+		} @else {
+			$breakpoint-value: $breakpoint-value * 1px;
+		}
+	}
+
+	@return $breakpoint-value;
+}
+
+@mixin up($breakpoint, $useRem: false) {
+	$breakpoint-value: get($breakpoint, $useRem);
+
+	@if ($breakpoint-value) {
+		@media (min-width: $breakpoint-value) {
+			@content;
+		}
+	}
+}
+
+@mixin down($breakpoint, $useRem: false) {
+	$breakpoint-value: get($breakpoint, $useRem);
+	$diff: 1;
+
+	@if ($useRem == true) {
+		$diff: unit.rem-calc($diff);
+	}
+
+	@if ($breakpoint-value) {
+		@media (max-width: ($breakpoint-value - $diff)) {
+			@content;
+		}
+	}
+}
+
+@mixin between($low, $high, $useRem: false) {
+	$low-value: get($low, $useRem);
+	$high-value: get($high, $useRem);
+	$diff: 1;
+
+	@if ($useRem == true) {
+		$diff: unit.rem-calc($diff);
+	}
+
+	@if ($low-value and $high-value) {
+		@media (min-width: $low-value) and (max-width: ($high-value - $diff)) {
+			@content;
+		}
+	}
+}
