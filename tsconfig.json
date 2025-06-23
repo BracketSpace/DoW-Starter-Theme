@@ -1,37 +1,44 @@
 {
-	"compilerOptions": {
-		"allowJs": true,
-		"allowSyntheticDefaultImports": true,
-		"baseUrl": ".",
-    "downlevelIteration": true,
-		"esModuleInterop": true,
-		"experimentalDecorators": true,
-		"forceConsistentCasingInFileNames": true,
-		"isolatedModules": true,
-		"jsx": "react-jsx",
-		"lib": [
-			"dom",
-			"dom.iterable",
-			"esnext"
-		],
-		"module": "esnext",
-		"moduleResolution": "node",
-		"noEmit": true,
-		"noFallthroughCasesInSwitch": true,
-    "paths": {
-      "ts/*": ["src/assets/ts/*"],
-      "acf-blocks/*": ["src/blocks/*"]
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "downlevelIteration": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true,
+        "jsx": "react-jsx",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": true,
+        "noFallthroughCasesInSwitch": true,
+        "paths": {
+            "@/*": [
+                "src/assets/ts/*"
+            ],
+            "acf-blocks/*": [
+                "src/blocks/*"
+            ],
+            "images/*": [
+                "src/assets/images/*"
+            ]
+        },
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "target": "es5",
+        "types": [
+            "node",
+            "youtube"
+        ]
     },
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
-		"target": "es5",
-		"types": [
-			"node",
-      "youtube"
-		]
-	},
-	"include": [
-    "."
-	]
+    "include": [
+        "."
+    ]
 }

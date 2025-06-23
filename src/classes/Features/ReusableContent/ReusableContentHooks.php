@@ -54,7 +54,7 @@ class ReusableContentHooks implements Hookable
     public function contentSlotsField(array $field): array
     {
         if ($field['name'] === 'content_slot') {
-            $field['choices'] = $this->config;
+            $field['choices'] = $this->config->get('content-slots');
         }
 
         return $field;

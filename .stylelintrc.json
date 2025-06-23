@@ -1,3 +1,10 @@
 {
-  "extends": "@micropackage/scripts/stylelint-config"
+  "extends": [
+    "@micropackage/scripts/stylelint-config",
+    "stylelint-prettier/recommended",
+    "stylelint-config-prettier-scss"
+  ],
+  "plugins": [
+    "stylelint-prettier"
+  ]
 }

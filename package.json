@@ -47,8 +47,11 @@
     "postcss-object-fit-images": "^1.1.2",
     "postcss-prepend-selector": "^0.3.1",
     "react": "^19.1.0",
+    "stylelint-config-prettier-scss": "^1.0.0",
+    "stylelint-prettier": "^5.0.3",
     "terser-webpack-plugin": "^5.3.14",
     "tools": "workspace:^",
+    "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typescript": "^5.8.3"
   },
   "mpScriptsConfig": {
