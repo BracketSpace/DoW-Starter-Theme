@@ -1,14 +1,14 @@
 /**
  * External dependencies
  */
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import classnames from 'classnames';
 
 /**
  * WordPress dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { InspectorControls } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import {
 	TextControl,
 	PanelBody,
@@ -16,6 +16,7 @@ import {
 	ResizableBox,
 	ToggleControl,
 } from '@wordpress/components';
+import { View } from '@wordpress/primitives';
 
 /**
  * Internal dependencies
@@ -31,6 +32,13 @@ const Edit: FC<BlockEditProps> = ({
 	isSelected,
 	toggleSelection,
 }) => {
+	const [isResizing, setIsResizing] = useState(false);
+	const [_height, setHeight] = useState(height);
+
+	useEffect(() => {
+		setHeight(height);
+	}, [height]);
+
 	const updateTabletHeight = (value: number | undefined) =>
 		setAttributes({ tabletHeight: value });
 
@@ -54,44 +62,60 @@ const Edit: FC<BlockEditProps> = ({
 
 	return (
 		<>
-			<ResizableBox
-				className={classnames(
-					'block-library-spacer__resize-container',
-					className,
-					{
-						'is-selected': isSelected,
-					}
-				)}
-				size={{
-					height,
-					width: '100%',
-				}}
-				minHeight={MIN_SPACER_HEIGHT}
-				enable={{
-					top: false,
-					right: false,
-					bottom: true,
-					left: false,
-					topRight: false,
-					bottomRight: false,
-					bottomLeft: false,
-					topLeft: false,
-				}}
-				onResizeStart={() => toggleSelection && toggleSelection(false)}
-				onResizeStop={(event, direction, elt, delta) => {
-					if (toggleSelection) {
-						toggleSelection(true);
-					}
+			<View
+				{...useBlockProps({
+					style: {
+						height: _height,
+					},
+				})}
+			>
+				<ResizableBox
+					className={classnames(
+						'block-library-spacer__resize-container',
+						className,
+						{
+							'is-resizing': isResizing,
+							'is-selected': isSelected,
+						}
+					)}
+					minHeight={MIN_SPACER_HEIGHT}
+					enable={{
+						top: false,
+						right: false,
+						bottom: true,
+						left: false,
+						topRight: false,
+						bottomRight: false,
+						bottomLeft: false,
+						topLeft: false,
+					}}
+					onResizeStart={() => {
+						if (toggleSelection) {
+							toggleSelection(false);
+						}
 
-					const spacerHeight = Math.min(
-						height + delta.height,
-						MAX_SPACER_HEIGHT
-					);
-					updateHeight(spacerHeight);
-				}}
-				showHandle={isSelected}
-				children={undefined} // Fix TypeScript error due to invalid types
-			/>
+						setIsResizing(true);
+					}}
+					onResizeStop={(event, direction, elt) => {
+						if (toggleSelection) {
+							toggleSelection(true);
+						}
+
+						updateHeight(elt.clientHeight);
+
+						setIsResizing(false);
+					}}
+					onResize={(event, direction, elt) => {
+						if (!isResizing) {
+							setIsResizing(true);
+						}
+
+						setHeight(elt.clientHeight);
+					}}
+					showHandle={isSelected}
+					children={undefined} // Fix TypeScript error due to invalid types
+				/>
+			</View>
 			<InspectorControls>
 				<PanelBody title={__('Size settings')}>
 					<RangeControl
