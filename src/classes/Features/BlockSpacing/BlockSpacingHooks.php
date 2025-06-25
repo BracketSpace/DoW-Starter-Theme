@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Features\BlockSpacing;
 
+use DoWStarterTheme\Common\Assets\MainStyle;
 use DoWStarterTheme\Common\Contracts\Hookable;
 use DoWStarterTheme\Common\Helpers\CSSGenerator;
 use WP_Post;
@@ -17,9 +18,11 @@ class BlockSpacingHooks implements Hookable
      * Class constructor.
      *
      * @param BlockSpacing $blockSpacing Block spacing helper instance.
+     * @param MainStyle    $style        Main style asset instance.
      */
     public function __construct(
         private BlockSpacing $blockSpacing,
+        private MainStyle $style,
     ) {
     }
 
@@ -38,7 +41,7 @@ class BlockSpacingHooks implements Hookable
             return;
         }
 
-        wp_add_inline_style('dow-starter-theme-front-style', $styles);
+        wp_add_inline_style($this->style->getHandle(), $styles);
     }
 
     /**
