@@ -42,12 +42,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "create_gutenberg_block": 0,
-    "block_name": "",
-    "block_slug": "",
-    "block_category": "sgp",
-    "block_align": "full",
-    "block_container_class": "block-inner",
     "inner_blocks": 0,
     "modified": 1614785093
 }
