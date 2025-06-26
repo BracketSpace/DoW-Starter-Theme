@@ -267,4 +267,26 @@ final class ViewHelper
     {
         return self::$container->get($class);
     }
+
+    /**
+     * Starts a new section in the layout.
+     *
+     * @param string $sectionName
+     * @return void
+     */
+    public static function start(string $sectionName): void
+    {
+        self::getInstance(Layout::class)->startSection($sectionName);
+    }
+
+    /**
+     * Ends the current section.
+     *
+     * @param string $sectionName
+     * @return void
+     */
+    public static function end(string $sectionName): void
+    {
+        self::getInstance(Layout::class)->endSection($sectionName);
+    }
 }
