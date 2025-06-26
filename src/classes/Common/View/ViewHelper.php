@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DoWStarterTheme\Common\View;
 
+use DoWStarterTheme\Common\Helpers\SVG;
+use DoWStarterTheme\Deps\DI\Container;
 use Stringable;
 
 /**
@@ -26,14 +28,24 @@ final class ViewHelper
     private static ViewFactory $factory;
 
     /**
+     * Container instance
+     *
+     * @var Container
+     */
+    private static Container $container;
+
+    /**
      * Sets view factory instance.
      *
      * @param  ViewFactory $factory View factory instance.
      * @return void
      */
-    public static function setup(ViewFactory $factory): void
-    {
+    public static function setup(
+        ViewFactory $factory,
+        Container $container,
+    ): void {
         self::$factory = $factory;
+        self::$container = $container;
     }
 
     /**
@@ -142,6 +154,10 @@ final class ViewHelper
 
         $func = "esc_{$type}";
 
+        if (! is_callable($func)) {
+            return;
+        }
+
         // phpcs:ignore NeutronStandard.Functions.DisallowCallUserFunc.CallUserFunc
         echo call_user_func($func, $value);
     }
@@ -171,6 +187,40 @@ final class ViewHelper
     }
 
     /**
+     * Sets layout name.
+     *
+     * @param string $layout Layout name.
+     * @return void
+     */
+    public static function layout(string $layout): void
+    {
+        self::$container->get(Layout::class)->setLayout($layout);
+    }
+
+    /**
+     * Checks whether view exists.
+     *
+     * @param  string $name View name.
+     * @return bool
+     */
+    public static function exists(string $name): bool
+    {
+        return self::$factory->exists($name);
+    }
+
+    /**
+     * Displays partial view.
+     *
+     * @param string               $name Partial view name.
+     * @param array<string, mixed> $data Partial view data.
+     * @return void
+     */
+    public static function partial(string $name, array $data = []): void
+    {
+        self::print("partials.{$name}", $data);
+    }
+
+    /**
      * Creates and displays new view.
      *
      * @param string               $name Template name.
@@ -180,5 +230,41 @@ final class ViewHelper
     public static function print(string $name, array $data = []): void
     {
         self::$factory->get($name, $data)->render(true);
+    }
+
+    /**
+     * Prints the SVG icon.
+     *
+     * @param   string $name Icon name.
+     * @return  void
+     */
+    public static function icon(string $name): void
+    {
+        self::$container->get(SVG::class)->print("icons/{$name}");
+    }
+
+    /**
+     * Creates and gets HTML of new view.
+     *
+     * @param string               $name Template name.
+     * @param array<string, mixed> $data Variables passed to template file.
+     * @return string
+     */
+    public static function getHtml(string $name, array $data = []): string
+    {
+        return self::$factory->get($name, $data)->render(false);
+    }
+
+    /**
+     * Gets instance from container.
+     *
+     * @template T
+     *
+     * @param string|class-string<T> $class Template name.
+     * @return mixed|T
+     */
+    public static function getInstance(string $class): mixed
+    {
+        return self::$container->get($class);
     }
 }

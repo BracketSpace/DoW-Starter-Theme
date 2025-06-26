@@ -24,8 +24,19 @@ class ViewFactory
         private ViewFinder $finder,
         private ViewComposerRepository $composer,
     ) {
-        ViewHelper::setup($this);
+        ViewHelper::setup($this, $container);
     }
+
+	/**
+	 * Gets the key for the view in the container.
+	 *
+	 * @param  string $name View name.
+	 * @return string
+	 */
+	private function getKey(string $name): string
+	{
+        return "view:{$name}";
+	}
 
     /**
      * Returns view instance prepared with given data.
@@ -36,7 +47,7 @@ class ViewFactory
      */
     public function get(string $name, array $data = []): View
     {
-        $containerKey = "view:{$name}";
+        $containerKey = $this->getKey($name);
 
         if (! $this->container->has($containerKey)) {
             $view = $this->make($name, $data);
@@ -52,12 +63,36 @@ class ViewFactory
         return $view;
     }
 
+	/**
+	 * Checks if an view file exists.
+	 *
+	 * @param  string $name View name.
+	 * @return bool
+	 */
+	public function exists(string $name): bool
+	{
+		$file = $this->finder->find($name);
+
+		return $file !== null;
+	}
+
+	/**
+	 * Checks if an instance of View class for given view name exists.
+	 *
+	 * @param  string $name View name.
+	 * @return bool
+	 */
+	public function has(string $name): bool
+	{
+		return $this->container->has($this->getKey($name));
+	}
+
     /**
-     * Makes new vView instance.
+     * Makes new View instance.
      *
      * @param  string               $name View name.
      * @param  array<string, mixed> $data View data.
-     * @return \DoWStarterTheme\Common\View\View
+     * @return View
      */
     private function make(string $name, array $data = []): View
     {
