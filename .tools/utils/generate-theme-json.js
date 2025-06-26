@@ -10,11 +10,13 @@ import { mapValues, pick, startCase } from 'lodash-es';
 import { loadConfig, saveConfig } from './config.js';
 
 const getColorPalette = async () =>
-	Object.entries(await loadConfig('colors')).map(([slug, color]) => ({
-		slug,
-		color,
-		name: startCase(slug),
-	}));
+	Object.entries(await loadConfig('colors'))
+		.filter(([slug]) => !slug.startsWith('_'))
+		.map(([slug, color]) => ({
+			slug,
+			color,
+			name: startCase(slug),
+		}));
 
 const getLayoutSettings = async () =>
 	mapValues(

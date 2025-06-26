@@ -5,6 +5,7 @@ declare(strict_types=1);
 // phpcs:disable SlevomatCodingStandard.Namespaces.UseFromSameNamespace.UseFromSameNamespace
 
 use DoWStarterTheme\Common\{
+    Assets,
     Customizer,
     Helpers,
     Hooks,
@@ -37,6 +38,10 @@ return [
 
         CommonIntegrations\ACF::class,
         CommonIntegrations\ACFBlockCreator::class,
+
+        // Assets
+        Assets\MainScript::class,
+        Assets\MainStyle::class,
 
         // Block Editor Integration
         CommonIntegrations\Editor\Editor::class,
