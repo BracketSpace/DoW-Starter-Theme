@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Common\Helpers\SVG;
+use DoWStarterTheme\Common\Menu\Menu;
 use DoWStarterTheme\Deps\DI\Container;
 use Stringable;
 
@@ -288,5 +289,16 @@ final class ViewHelper
     public static function end(string $sectionName): void
     {
         self::getInstance(Layout::class)->endSection($sectionName);
+    }
+
+    /**
+     * Display menu.
+     *
+     * @param string $id
+     * @return void
+     */
+    public static function menu(string $id): void
+    {
+        self::getInstance(Menu::class)->display($id);
     }
 }
