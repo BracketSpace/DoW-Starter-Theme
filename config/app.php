@@ -53,7 +53,7 @@ return [
         BlockSpacing\BlockSpacingHooks::class,
 
         // Menu
-        Menu\MenuHooks::class,
+        Menu\MenuIcons::class,
         Menu\MenuRegistrar::class,
 
         // Post Type
