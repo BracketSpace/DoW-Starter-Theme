@@ -38,7 +38,8 @@ final class ViewHelper
     /**
      * Sets view factory instance.
      *
-     * @param  ViewFactory $factory View factory instance.
+     * @param  ViewFactory $factory   View factory instance.
+     * @param  Container   $container Container instance.
      * @return void
      */
     public static function setup(
@@ -153,14 +154,8 @@ final class ViewHelper
             $type = 'html';
         }
 
-        $func = "esc_{$type}";
-
-        if (! is_callable($func)) {
-            return;
-        }
-
         // phpcs:ignore NeutronStandard.Functions.DisallowCallUserFunc.CallUserFunc
-        echo call_user_func($func, $value);
+        echo call_user_func("esc_{$type}", $value);
     }
 
     /**
@@ -261,18 +256,18 @@ final class ViewHelper
      *
      * @template T
      *
-     * @param string|class-string<T> $class Template name.
-     * @return mixed|T
+     * @param string|class-string<T> $id Template name.
+     * @return ($id is class-string<T> ? T : mixed)
      */
-    public static function getInstance(string $class): mixed
+    public static function getInstance(string $id): mixed
     {
-        return self::$container->get($class);
+        return self::$container->get($id);
     }
 
     /**
      * Starts a new section in the layout.
      *
-     * @param string $sectionName
+     * @param string $sectionName Section name.
      * @return void
      */
     public static function start(string $sectionName): void
@@ -283,7 +278,7 @@ final class ViewHelper
     /**
      * Ends the current section.
      *
-     * @param string $sectionName
+     * @param string $sectionName Section name.
      * @return void
      */
     public static function end(string $sectionName): void
@@ -294,7 +289,7 @@ final class ViewHelper
     /**
      * Display menu.
      *
-     * @param string $id
+     * @param string $id Menu ID.
      * @return void
      */
     public static function menu(string $id): void
