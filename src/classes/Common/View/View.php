@@ -9,6 +9,8 @@ namespace DoWStarterTheme\Common\View;
  */
 class View
 {
+    protected ViewData $data;
+
     /**
      * Constructor.
      *
@@ -17,8 +19,9 @@ class View
      */
     public function __construct(
         protected string $file,
-        protected array $data = []
+        array $data = []
     ) {
+        $this->data = new ViewData($data);
     }
 
     /**
@@ -30,7 +33,11 @@ class View
      */
     public function with(array $data, bool $override = true): View
     {
-        $this->data = $override ? $data : array_merge($this->data, $data);
+        if ($override) {
+            $this->data->replace($data);
+        } else {
+            $this->data->merge($data);
+        }
 
         return $this;
     }
@@ -38,9 +45,9 @@ class View
     /**
      * Returns data array.
      *
-     * @return array<string, mixed> View data.
+     * @return ViewData View data.
      */
-    public function getData(): array
+    public function getData(): ViewData
     {
         return $this->data;
     }
@@ -53,7 +60,7 @@ class View
      */
     public function render(bool $echo = false): string
     {
-        ViewHelper::pushVariables($this->data);
+        ViewHelper::pushVariables($this->data->getAll());
 
         ob_start();
         include $this->file;

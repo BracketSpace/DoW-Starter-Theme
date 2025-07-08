@@ -19,6 +19,13 @@ abstract class ViewComposer
     protected static ?array $views = null;
 
     /**
+     * View data instance
+     *
+     * @var ViewData
+     */
+    protected ViewData $viewData;
+
+    /**
      * List of views served by this composer
      *
      * @return array<string>
@@ -54,12 +61,12 @@ abstract class ViewComposer
      */
     public function compose(View $view): void
     {
-        $viewData = $view->getData();
+        $this->viewData = $view->getData();
 
         $view->with(
             array_merge(
                 $this->with(),
-                $viewData,
+                $this->viewData->getAll(),
                 $this->override()
             )
         );
