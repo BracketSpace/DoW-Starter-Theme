@@ -24,7 +24,7 @@ final class ViewHelper
     /**
      * View factory instance.
      *
-     * @var \DoWStarterTheme\Common\View\ViewFactory
+     * @var ViewFactory
      */
     private static ViewFactory $factory;
 
