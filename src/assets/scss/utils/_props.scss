@@ -21,13 +21,13 @@
 
 			@if not h.contains((font-size, line-height, label), $prop) {
 				@if (color == $prop and true == $conditional-color) {
-					&:not(.has-text-color) {
+					&:where(:not(.has-text-color)) {
 						#{ $prop }: $value;
 					}
 				} @else if
 					(background-color == $prop and true == $conditional-color)
 				{
-					&:not(.has-background) {
+					&:where(:not(.has-background)) {
 						#{ $prop }: $value;
 					}
 				} @else {
