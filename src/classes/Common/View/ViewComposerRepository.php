@@ -6,6 +6,7 @@ namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Common\Config\Config;
 use DoWStarterTheme\Deps\DI\Container;
+use LogicException;
 
 /**
  * View Composer Repository class
