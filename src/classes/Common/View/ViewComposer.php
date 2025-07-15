@@ -54,6 +54,16 @@ abstract class ViewComposer
     }
 
     /**
+     * Determines if the views should be validated.
+     *
+     * @return bool
+     */
+    public static function shouldValidate(): bool
+    {
+        return true;
+    }
+
+    /**
      * Composes the view.
      *
      * @param View $view View instance.

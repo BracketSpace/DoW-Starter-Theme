@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace DoWStarterTheme\Common\View;
 
 use DoWStarterTheme\Common\Config\Config;
+use DoWStarterTheme\Common\View\Finder\ViewFinder;
 use DoWStarterTheme\Deps\DI\Container;
+use LogicException;
 
 /**
  * View Composer Repository class
@@ -29,12 +31,14 @@ class ViewComposerRepository
     /**
      * Class constructor.
      *
-     * @param Config    $config    Config instance.
-     * @param Container $container Container instance.
+     * @param Config     $config    Config instance.
+     * @param Container  $container Container instance.
+     * @param ViewFinder $finder    ViewFinder instance.
      */
     public function __construct(
         private Config $config,
         private Container $container,
+        private ViewFinder $finder,
     ) {
         $this->registerComposers();
     }
@@ -51,7 +55,7 @@ class ViewComposerRepository
 
         foreach ($composers as $composer) {
             if (! is_string($composer) || ! is_subclass_of($composer, ViewComposer::class)) {
-                continue;
+                throw new LogicException('Composer [' . $composer . '] does not exists.');
             }
 
             $this->mapComposerToViews($composer);
@@ -67,8 +71,13 @@ class ViewComposerRepository
     private function mapComposerToViews(string $composer): void
     {
         $views = $composer::getViews();
+        $shouldValidate = $composer::shouldValidate();
 
         foreach ($views as $view) {
+            if ($shouldValidate && $this->finder->find($view) === null) {
+                throw new LogicException('View file for composer [' . $composer . '] does not exist: ' . $view);
+            }
+
             if (! isset($this->viewComposers[$view])) {
                 $this->viewComposers[$view] = [];
             }
