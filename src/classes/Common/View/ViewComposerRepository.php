@@ -51,7 +51,7 @@ class ViewComposerRepository
 
         foreach ($composers as $composer) {
             if (! is_string($composer) || ! is_subclass_of($composer, ViewComposer::class)) {
-                continue;
+                throw new LogicException('Composer [' . $composer . '] does not exists.');
             }
 
             $this->mapComposerToViews($composer);
